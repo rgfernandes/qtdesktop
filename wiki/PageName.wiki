@@ -1,0 +1,30 @@
+#summary TheList - list of current Qt[4] apps.
+
+= The subj =
+#summary TheList - list of current Qt[4] apps.
+
+= The subj =
+PIM:
+  * Contacts:
+  * Tasks:
+  * Notes:
+Office
+  * Word processor:
+  * Spreadsheet:
+  * Presentation:
+DB RAD:
+Utilities:
+  * File manager:
+  * Archivers:
+  * Calc:
+  * Notepad:
+WEB:
+  * Web-browser:
+  * Mailer:
+  * IM:
+  * News:
+  * RSS:
+  * FTP:
+Multimedia:
+  * Video player:
+  * Audio player:
