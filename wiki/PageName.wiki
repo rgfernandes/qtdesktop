@@ -12,19 +12,24 @@ Office
   * Word processor:
   * Spreadsheet:
   * Presentation:
+  * Dictionary: [http://qstardict.ylsoftware.com/ QStarDict]
 DB RAD:
 Utilities:
-  * File manager:
-  * Archivers:
-  * Calc:
-  * Notepad:
+  * File manager: [QtCommander http://qtcmd.nes.pl/]
+  * Archivers: q7z
+  * Calc: 
+  * Notepad: [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd]
 WEB:
-  * Web-browser:
-  * Mailer:
-  * IM:
+  * Web-browser: [ arora]
+  * Mailer: [http://www.manitou-mail.org/ Mantoi-Mail]
+  * IM: [ qutim], [ psi]
   * News:
   * RSS:
   * FTP:
+  * Terminal: [http://qterminal.sourceforge.net/ QTerminal]
 Multimedia:
-  * Video player:
-  * Audio player:
+  * Video player: [http://smplayer.sourceforge.net/ SMPlayer]
+  * Audio player: [http://qmmp.ylsoftware.com/ qmmp]
+Misc:
+  * XML-editor: [http://code.google.com/p/qxmledit/ QXmlEdit]
+  * 
