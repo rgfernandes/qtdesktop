@@ -15,14 +15,14 @@ Office
   * Dictionary: [http://qstardict.ylsoftware.com/ QStarDict]
 DB RAD:
 Utilities:
-  * File manager: [QtCommander http://qtcmd.nes.pl/]
+  * File manager: [http://qtcmd.nes.pl/ QtCommander]
   * Archivers: q7z
   * Calc: 
   * Notepad: [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd]
 WEB:
   * Web-browser: [ arora]
   * Mailer: [http://www.manitou-mail.org/ Mantoi-Mail]
-  * IM: [ qutim], [ psi]
+  * IM: [http://www.qutim.org/ qutim], [http://psi-im.org/ psi]
   * News:
   * RSS:
   * FTP:
