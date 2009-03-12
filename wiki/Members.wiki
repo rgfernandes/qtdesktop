@@ -1,0 +1,25 @@
+#summary QtProject developers
+
+= Qt-based apps developers =
+
+Antico-delixe: 
+QStarDict: 
+LyX: 
+QtCommander: 
+q7z: 
+JuffEd: 
+arora: 
+Mantoi-Mail: 
+qutim: 
+psi: 
+QWit: 
+QTwitter: 
+SMPlayer: 
+qmmp: 
+Avidemux_qt4: 
+qtradio: 
+Eric: 
+QDevelop: 
+QXmlEdit: 
+Flo: 
+QTerminal: 
