@@ -2,16 +2,16 @@
 
 = Qt-based apps developers =
 
-  * Antico-delixe: 
-  * QStarDict: 
+  * Antico-delixe: Svetoslav Ludmiloff <ludmiloff@gmail.com>
+  * QStarDict: Alexander Rodin <rodin.alexander@gmail.com>
   * LyX: 
   * QtCommander: 
-  * q7z: 
-  * JuffEd: 
+  * q7z: Chris Giles <chris@giles.name>
+  * JuffEd: Mikhail Murzin <mezomish@gmail.com>
   * arora: 
   * Mantoi-Mail: 
   * qutim: 
-  * psi: 
+  * psi: Kevin Smith <kismith@psi-im.org>
   * QWit: 
   * QTwitter: 
   * SMPlayer: 
