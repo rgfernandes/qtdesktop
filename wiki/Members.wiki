@@ -14,7 +14,7 @@
   * psi: Kevin Smith <kismith@psi-im.org>
   * QWit: 
   * QTwitter: 
-  * SMPlayer: 
+  * SMPlayer: Ricardo Villalba <rvm@escomposlinux.org>
   * qmmp: 
   * Avidemux_qt4: 
   * qtradio: 
