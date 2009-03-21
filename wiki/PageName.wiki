@@ -12,7 +12,7 @@ Office
   * Word processor:
   * Spreadsheet:
   * Presentation:
-  * Dictionary: [http://qstardict.ylsoftware.com/ QStarDict]
+  * Dictionary: [http://qstardict.ylsoftware.com/ QStarDict] by [<rodin.alexander@gmail.com> Alexander Rodin]
 DB RAD:
 Utilities:
   * File manager: [http://qtcmd.nes.pl/ QtCommander]
