@@ -26,13 +26,17 @@ Internet:
   * News:
   * RSS:
   * FTP:
+  * WebDAV client: [ WebDAVdir] by [mailto: ]
 Multimedia:
   * Video player: [http://smplayer.sourceforge.net/ SMPlayer] by [mailto:rvm@escomposlinux.org Ricardo Villalba]
   * Audio player: [http://qmmp.ylsoftware.com/ Qmmp] by [mailto:forkotov02@hotmail.ru Ilya Kotov]
   * Picture viewer: 
   * Radio: [ Qtradio] by [mailto: ]
+  * Mp3 tag editor: [ QTagConverter] by [mailto: ]
 Development:
   * DB RAD: [http://sqliteman.com/ Sqliteman] by [mailto:petr@scribus.info Petr Vanek]
   * XML-editor: [http://code.google.com/p/qxmledit/ QXmlEdit] by [mailto:lbellonda@gmail.com Luca Vellonda]
-Misc:
   * Python IDE: [ Eric] by [mailto: ]
+  * C++ IDE: [ Monkey Studio] by [mailto: ], [ Qdevelop] by [mailto: ]
+  * SVN client: [ Qsvn] by [mailto: Andreas Richter]
+Misc:
