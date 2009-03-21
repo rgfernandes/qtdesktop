@@ -44,4 +44,4 @@ Development:
 Misc:
   * Mind mapping: [http://trac.geiseri.com/wiki/FloMain Flo] (by [mailto:geisery@yahoo.com Ian Reinhart Geiser])
   * Emulator frontends: [http://sourceforge.net/projects/q4wine Q4wine] (by [mailto:brezerk@gmail.com Alexey Malakhov]), [http://qtemu.org QtEmu] (by [mailto:uwolfer@fwo.ch Urs Wolfer])
-  * Graph SocNetV: ] (by [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras])
+  * Graph: [ SocNetV] (by [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras])
