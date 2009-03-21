@@ -2,24 +2,33 @@
 
 = Qt-based apps developers =
 
-  * Antico-delixe: Svetoslav Ludmiloff <ludmiloff@gmail.com>
-  * QStarDict: Alexander Rodin <rodin.alexander@gmail.com>
-  * LyX: 
-  * QtCommander: 
-  * q7z: Chris Giles <chris@giles.name>
-  * JuffEd: Mikhail Murzin <mezomish@gmail.com>
-  * arora: 
-  * Mantoi-Mail: 
-  * qutim: 
-  * psi: Kevin Smith <kismith@psi-im.org>
-  * QWit: 
-  * QTwitter: 
-  * SMPlayer: Ricardo Villalba <rvm@escomposlinux.org>
-  * qmmp: 
+  * Antico-delixe: Svetoslav Ludmiloff <ludmiloff@gmail.com> (bg)
+  * Arora: Benjamin C Meyer <ben@meyerhome.net>
   * Avidemux_qt4: 
-  * qtradio: 
   * Eric: 
-  * QDevelop: 
-  * QXmlEdit: 
   * Flo: 
-  * QTerminal: 
+  * JuffEd: Mikhail Murzin <mezomish@gmail.com> (ru)
+  * LyX: 
+  * Mantoi-Mail: Daniel V.rit. <daniel@mantoi-mail.org>
+  * Monkey Studio: 
+  * Psi: Kevin Smith <kismith@psi-im.org>
+  * Q4wine: 
+  * Q7z: Chris Giles <chris@giles.name>
+  * QDevelop: 
+  * Qmmp: Ilya Kotov <forkotov02@hotmail.ru>
+  * QStarDict: Alexander Rodin <rodin.alexander@gmail.com>
+  * Qsvn: Andreas Richter
+  * QTagConverter: 
+  * QtCommander: Piotr Mierzwiński <piom@qtcmd.nes.pl> (pl)
+  * QtEmu: 
+  * QTerminal: Vladimir Kuznetsov <vovanec@gmail.com>
+  * Qtradio: 
+  * QTwitter: Dominik Kapusta <d@ayoy.net> (pl)
+  * QutIM: 
+  * QWit: 
+  * QXmlEdit: Luca Vellonda <lbellonda@gmail.com>
+  * Research Assistant: Pavel Malakhov <24pm@mail.ru> (ru)
+  * SocNetV: 
+  * SMPlayer: Ricardo Villalba <rvm@escomposlinux.org>
+  * Sqliteman: 
+  * Surfer: 
