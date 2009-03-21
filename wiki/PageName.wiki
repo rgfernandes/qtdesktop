@@ -38,10 +38,10 @@ Multimedia:
 Development:
   * DB RAD: [http://sqliteman.com/ Sqliteman] (by [mailto:petr@scribus.info Petr Vanek])
   * XML-editor: [http://code.google.com/p/qxmledit/ QXmlEdit] (by [mailto:lbellonda@gmail.com Luca Vellonda])
-  * Python IDE: [ Eric(] by [mailto: ])
-  * C++ IDE: [http://www.monkeystudio.org Monkey Studio] (by [mailto:pasnox@gmail.com Azevedo Filipe]), [http://qdevelop.org Qdevelop] (by [mailto:jl.biord@free.fr Jean-Luc Biord)
+  * Python IDE: [http://eric-ide.python-projects.org/ Eric(] by [mailto: Detlev Offenbach])
+  * C++ IDE: [http://www.monkeystudio.org Monkey Studio] (by [mailto:pasnox@gmail.com Azevedo Filipe]), [http://qdevelop.org Qdevelop] (by [mailto:jl.biord@free.fr Jean-Luc Biord])
   * SVN client: [http://www.anrichter.net/projects/qsvn Qsvn] (by [mailto:ar@anrichter.net Andreas Richter])
 Misc:
   * Mind mapping: [http://trac.geiseri.com/wiki/FloMain Flo] (by [mailto:geisery@yahoo.com Ian Reinhart Geiser])
-  * Emulator frontends: [http://sourceforge.net/projects/q4wine Q4wine] (by [mailto:brezerk@gmail.com Alexey Malakhov]), [http://qtemu.org QtEmu] (by [mailto: Urs Wolfer uwolfer@fwo.ch])
+  * Emulator frontends: [http://sourceforge.net/projects/q4wine Q4wine] (by [mailto:brezerk@gmail.com Alexey Malakhov]), [http://qtemu.org QtEmu] (by [mailto:uwolfer@fwo.ch Urs Wolfer])
   * Graph SocNetV: ] (by [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras])
