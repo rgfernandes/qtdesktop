@@ -8,7 +8,7 @@ PIM:
   * Tasks:
   * Notes:
 Office:
-  * Word processor: [ LyX] by [mailto: ]
+  * Word processor: [http://www.lyx.org/ LyX] by LyX team
   * Spreadsheet:
   * Presentation:
   * Dictionary: [http://qstardict.ylsoftware.com/ QStarDict] by [mailto:rodin.alexander@gmail.com Alexander Rodin]
@@ -18,21 +18,23 @@ Utilities:
   * Calc: 
   * Notepad: [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd] by [mailto:mezomish@gmail.com Mikhail Murzin]
   * Terminal: [http://qterminal.sourceforge.net/ QTerminal] by [mailto:vovanec@gmail.com Vladimir Kuznetsov]
+  * Html editor: [https://sourceforge.net/projects/rassistant Research Assistant] by [mailto:24pm@mail.ru Pavel Malakhov]
 Internet:
-  * Web-browser: [http://code.google.com/p/arora/ arora] by [mailto:ben@meyerhome.net Benjamin Meyer], [ Surfer] by [mailto: ]
+  * Web-browser: [http://code.google.com/p/arora/ arora] by [mailto:ben@meyerhome.net Benjamin Meyer], [https://sourceforge.net/projects/rassistant Surfer] by [mailto:payableondeath90@gmail.com Ivan Andrianov]
   * Mailer: [http://www.manitou-mail.org/ Mantoi-Mail] by [mailto:daniel@mantoi-mail.org Daniel V.rit.]
   * IM: [http://psi-im.org/ psi] by [mailto:kismith@psi-im.org Kevin Smith], [http://www.qutim.org/ QutIM] by [mailto: ]
-  * Blog: [ QTwitter] by [mailto:d@ayoy.net Dominik Kapusta], [ QWit] by [mailto: ]
-  * News:
-  * RSS:
-  * FTP:
+  * Microblog publisher: [http://qtwitter.ayoy.net QTwitter] by [mailto:d@ayoy.net Dominik Kapusta], [http://code.google.com/p/qwit/ QWit] by [mailto:artem.iglikov@gmail.com Artem Iglikov]
+  * News reader:
+  * RSS reader:
+  * FTP client:
   * WebDAV client: [ WebDAVdir] by [mailto: ]
 Multimedia:
   * Video player: [http://smplayer.sourceforge.net/ SMPlayer] by [mailto:rvm@escomposlinux.org Ricardo Villalba]
   * Audio player: [http://qmmp.ylsoftware.com/ Qmmp] by [mailto:forkotov02@hotmail.ru Ilya Kotov]
   * Picture viewer: 
-  * Radio: [ Qtradio] by [mailto: ]
-  * Mp3 tag editor: [ QTagConverter] by [mailto: ]
+  * Radio: [http://linux.perlak.com Qtradio] by [mailto: Pawel Pustelnik]
+  * Mp3 tag editor: [http://sourceforge.net/projects/qtagconvert QTagConverter] by [mailto:drmoriarty.0@gmail.com DrMoriarty]
+  * Video editor: [http://www.avidemux.org/ Avidemux_qt] by [mailto: ]
 Development:
   * DB RAD: [http://sqliteman.com/ Sqliteman] by [mailto:petr@scribus.info Petr Vanek]
   * XML-editor: [http://code.google.com/p/qxmledit/ QXmlEdit] by [mailto:lbellonda@gmail.com Luca Vellonda]
@@ -40,3 +42,6 @@ Development:
   * C++ IDE: [ Monkey Studio] by [mailto: ], [ Qdevelop] by [mailto: ]
   * SVN client: [ Qsvn] by [mailto: Andreas Richter]
 Misc:
+  * Mind mapping: [http://trac.geiseri.com/wiki/FloMain Flo] by [mailto:geisery@yahoo.com Ian Reinhart Geiser]
+  * Emulator frontends: [ Q4wine] by [mailto: ], [ QtEmu] by [mailto: ]
+  * SocNetV:
