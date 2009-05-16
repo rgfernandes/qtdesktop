@@ -33,7 +33,7 @@ This is list of current qt applications
 || Web camera || [http:// qwebcam] || [mailto:] ||
 || FTP || [http:// scyntia] || [mailto:] ||
 || Video player || [http://smplayer.sourceforge.net SMPlayer] || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||
-|| Video player || [VLC] || [mailto:] ||
+|| Video player || [http://www.videolan.org/vlc VLC] || [mailto:] ||
 || Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
 || Video editor || [http:// Avidemux_QT] || [mailto:] ||
 || Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
@@ -55,5 +55,6 @@ This is list of current qt applications
 || Scientific || [http:// lybniz] || [mailto:] ||
 || Emulator || [http://sourceforge.net/projects/q4wine Q4wine] || [mailto:brezerk@gmail.com Alexey Malakhov] ||
 || Emulator || [http://qtemu.org QtEmu] || [mailto:uwolfer@fwo.ch Urs Wolfer] ||
-|| Graph || [SocNetV] || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||
+|| Graph || [http://socnetv.sourceforge.net SocNetV] || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||
+|| PDF editor || [http://http://pdfedit.petricek.net] || [mailto:] ||
 ||  || [http://] || [mailto:] ||
