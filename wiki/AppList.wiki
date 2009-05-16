@@ -1,6 +1,6 @@
 #summary Application list
 
-[.. Top]
+[../.. Top]
 
 = Introduction =
 
