@@ -1,0 +1,10 @@
+#summary Application list
+
+= Introduction =
+
+This is list of current qt applications
+
+
+= Details =
+
+|| *Type* || *Application* || *Author* ||
