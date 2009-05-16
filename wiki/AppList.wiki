@@ -10,3 +10,50 @@ This is list of current qt applications
 = Details =
 
 || *Type* || *Application* || *Author* ||
+|| DE || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||
+|| Dictionary || [http://qstardict.ylsoftware.com QStarDict] || [mailto:rodin.alexander@gmail.com Alexander Rodin] ||
+|| Text processor || [http://www.lyx.org LyX] ||
+|| Text processor || [http:// Scribus] ||  ||
+|| Text processor || [http:// TeXMaker] ||  ||
+|| Spreadsheet || [http://] ||  ||
+|| File manager || [http://qtcmd.nes.pl QtCommander] || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||
+|| Archiver || [http://k7z.sourceforge.net/7Z/Q7Z q7z] || [mailto:chris@giles.name Chris Giles] ||
+|| Calc || [http://] || [mailto:] ||
+|| Notepad || [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd] || [mailto:mezomish@gmail.com Mikhail Murzin] ||
+|| Terminal || [http://qterminal.sourceforge.net QTerminal] || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||
+|| Html editor || [https://sourceforge.net/projects/rassistant Research Assistant] || [mailto:24pm@mail.ru Pavel Malakhov] ||
+|| Web-browser || [http://code.google.com/p/arora arora] || [mailto:ben@meyerhome.net Benjamin Meyer] ||
+|| Web-browser || Surfer || [mailto:payableondeath90@gmail.com Ivan Andrianov] ||
+|| Mailer || [http://www.manitou-mail.org Mantoi-Mail] || [mailto:daniel@mantoi-mail.org Daniel V.rit.] ||
+|| IM.XMPP || [http://psi-im.org psi] || [mailto:kismith@psi-im.org Kevin Smith] ||
+|| IM.Oscar || [http://www.qutim.org qutim] || [mailto:qutim.develop@gmail.com Rustam Chakin] ||
+|| uBlog.Twitter || [http://code.google.com/p/qwit/ QWit] || [mailto:d@ayoy.net Dominik Kapusta] ||
+|| uBlog.Twitter || [http://github.com/ayoy/qtwitter QTwitter] || [mailto:artem.iglikov@gmail.com Artem Iglikov] ||
+|| WebDAV client || [http://code.google.com/p/qtwdav QT WebDav Explorer] || [mailto:ppkciz@gmail.com Patrik Hohl] ||
+|| Web camera || [http:// qwebcam] || [mailto:] ||
+|| FTP || [http:// scyntia] || [mailto:] ||
+|| Video player || [http://smplayer.sourceforge.net SMPlayer] || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||
+|| Video player || [VLC] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
+|| Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:] ||
+|| Video editor || [http:// Avidemux_QT] || [mailto:] ||
+|| Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
+|| Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConverter] || [mailto:drmoriarty.0@gmail.com DrMoriarty] ||
+|| Development.DB || [http://sqliteman.com Sqliteman] || [mailto:petr@scribus.info Petr Vanek] ||
+|| Development.Python || [http://eric-ide.python-projects.org/ Eric] || [mailto:detlev@die-offenbachs.de Detlev Offenbach] ||
+|| Development.C++ || [http://edyuk.org Edyuk] || [mailto:] ||
+|| Development.C++ || [http://groups.google.com/group/haiq HaiQ] || [mailto:] ||
+|| Development.C++ || [http://monkeystudio.org Monkey Studio] || [mailto:pasnox@gmail.com Azevedo Filipe] ||
+|| Development.C++ || [http://qdevelop.org QDevelop] || [mailto:jl.biord@free.fr Jean-Luc Biord] ||
+|| SVN client || [http://www.anrichter.net/projects/qsvn Qsvn] || [mailto:ar@anrichter.net Andreas Richter] ||
+|| VoIP || [http://www.qutecom.org QuteCom] || [mailto:] ||
+|| XML-editor || [http://code.google.com/p/qxmledit/ QXmlEdit] || [mailto:lbellonda@gmail.com Luca Vellonda] ||
+|| Mind mapping || [http://trac.geiseri.com/wiki/FloMain Flo] || [mailto:geisery@yahoo.com Ian Reinhart Geiser] ||
+|| Scientific || [http:// speedcrunch] || [mailto:] ||
+|| Scientific || [http:// scidavis] || [mailto:] ||
+|| Scientific || [http:// avogadro] || [mailto:] ||
+|| Scientific || [http:// zhu3D] || [mailto:] ||
+|| Scientific || [http:// lybniz] || [mailto:] ||
+|| Emulator || [http://sourceforge.net/projects/q4wine Q4wine] || [mailto:brezerk@gmail.com Alexey Malakhov] ||
+|| Emulator || [http://qtemu.org QtEmu] || [mailto:uwolfer@fwo.ch Urs Wolfer] ||
+|| Graph || [SocNetV] || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||
+||  || [http://] || [mailto:] ||
