@@ -14,6 +14,7 @@ Add your content here.
     * qmix - audio mixer
     * qbd - keyboard layout indicator
     * CD recorder (like k3b)
+    * Calculator
     * Sreen locker
   * DB RAD
   * PIM:
