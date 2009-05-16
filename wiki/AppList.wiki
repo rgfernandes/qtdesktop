@@ -33,8 +33,8 @@ This is list of current qt applications
 || Web camera || [http:// qwebcam] || [mailto:] ||
 || FTP || [http:// scyntia] || [mailto:] ||
 || Video player || [http://smplayer.sourceforge.net SMPlayer] || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||
-|| Video player || [VLC] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
-|| Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:] ||
+|| Video player || [VLC] || [mailto:] ||
+|| Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
 || Video editor || [http:// Avidemux_QT] || [mailto:] ||
 || Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
 || Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConverter] || [mailto:drmoriarty.0@gmail.com DrMoriarty] ||
