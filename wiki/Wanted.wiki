@@ -15,6 +15,7 @@ Add your content here.
     * qbd - keyboard layout indicator
     * CD recorder (like k3b)
     * Calculator
+    * Image viewer
     * Sreen locker
   * DB RAD
   * PIM:
