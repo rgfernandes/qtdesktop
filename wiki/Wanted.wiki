@@ -1,0 +1,34 @@
+#summary Wanted software.
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+  * PIM:
+    * Contacts
+    * Tasks
+    * Notes
+  * Utility:
+    * qmix - audio mixer
+    * qbd - keyboard layout indicator
+    * CD recorder (like k3b)
+    * Sreen locker
+  * DB RAD
+  * PIM:
+    * Contacts
+    * Tasks
+    * Todo
+    * Event
+    * Notes
+  * Office:
+    * Word processor:
+    * Spreadsheet: 
+    * Presentation: 
+  * Internet:
+    * RSS-reader
+    * Blogger client
+    * News client
+    * FTP client
+    * Torrent client
