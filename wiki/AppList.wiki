@@ -52,12 +52,12 @@ This is list of current qt applications
 || Scientific || speedcrunch ||  ||
 || Scientific || scidavis ||  ||
 || Scientific || avogadro ||  ||
-|| Scientific || zhu3D] ||  ||
+|| Scientific || zhu3D ||  ||
 || Scientific || lybniz ||  ||
 || Emulator || [http://sourceforge.net/projects/q4wine Q4wine] || [mailto:brezerk@gmail.com Alexey Malakhov] ||
 || Emulator || [http://qtemu.org QtEmu] || [mailto:uwolfer@fwo.ch Urs Wolfer] ||
 || Graph || [http://socnetv.sourceforge.net SocNetV] || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||
-|| PDF editor || [http://http://pdfedit.petricek.net PDFedit] ||  ||
-|| OCR frontend || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || [mailto:] ||
-|| Scanning || [http://scantailor.sourceforge.net Scantailor] || [mailto:] ||
+|| PDF editor || [http://pdfedit.petricek.net PDFedit] ||  ||
+|| OCR frontend || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || [mailto:cas@altlinux.ru Andrew Tsherepanov] ||
+|| Scanning || [http://scantailor.sourceforge.net Scantailor] || [mailto:joseph_a@mail.ru Joseph Artsimovich] ||
 ||  || [http://] || [mailto:] ||
