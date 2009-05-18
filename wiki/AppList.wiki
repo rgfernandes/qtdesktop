@@ -19,6 +19,7 @@ This is list of current qt applications
 || File manager || [http://qtcmd.nes.pl QtCommander] || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||
 || Archiver || [http://k7z.sourceforge.net/7Z/Q7Z q7z] || [mailto:chris@giles.name Chris Giles] ||
 || Calc ||  ||  ||
+|| Kbd switch || axkb ||  ||
 || Notepad || [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd] || [mailto:mezomish@gmail.com Mikhail Murzin] ||
 || Terminal || [http://qterminal.sourceforge.net QTerminal] || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||
 || Html editor || [https://sourceforge.net/projects/rassistant Research Assistant] || [mailto:24pm@mail.ru Pavel Malakhov] ||
@@ -57,4 +58,6 @@ This is list of current qt applications
 || Emulator || [http://qtemu.org QtEmu] || [mailto:uwolfer@fwo.ch Urs Wolfer] ||
 || Graph || [http://socnetv.sourceforge.net SocNetV] || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||
 || PDF editor || [http://http://pdfedit.petricek.net PDFedit] ||  ||
+|| OCR frontend || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || [mailto:] ||
+|| Scanning || [http://scantailor.sourceforge.net Scantailor] || [mailto:] ||
 ||  || [http://] || [mailto:] ||
