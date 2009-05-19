@@ -38,7 +38,7 @@ This is list of current qt applications
 || Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
 || Video editor || [http:// Avidemux_QT] || [mailto:] ||
 || Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
-|| Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConverter] || [mailto:drmoriarty.0@gmail.com DrMoriarty] ||
+|| Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConvert] || [mailto:drmoriarty.0@gmail.com DrMoriarty] ||
 || Development.DB || [http://sqliteman.com Sqliteman] || [mailto:petr@scribus.info Petr Vanek] ||
 || Development.Python || [http://eric-ide.python-projects.org/ Eric] || [mailto:detlev@die-offenbachs.de Detlev Offenbach] ||
 || Development.C++ || [http://edyuk.org Edyuk] ||  ||
