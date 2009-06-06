@@ -11,6 +11,7 @@ Qt-based mp3 tag converter
  * convert tags between from ID3v1 to ID3v2 and vice versa - and IDv2 from one version to another;
  * delete unused tags;
  * workflow-like processing
+ * encodings - for all of the fields
 
 == Options ==
 
@@ -36,3 +37,63 @@ Qt-based mp3 tag converter
   Next, Convert (w/ warning if we try convert yet converted files)
  * Statusbar
   Current file etc
+
+== Encodings ==
+
+ * Ascii
+ * Transcoding
+ * koi7
+ * koi8-r/u/ru
+ * cp866
+ * cp1251
+ * utf8
+ * utf16*
+
+== Workflow ==
+
+=== ID3v1: ===
+
+What to do:
+
+ # Don't tought
+ # Delete
+ # Convert encoding:
+ # Fill from IDv2:
+ (next - for Convert and Fill from IDv2):
+  # Fields: ...
+   * ...
+  # From encoding:
+   * Std/defined in tag
+   * Force:
+    * ...
+   * Auto (try std => enca)
+  # To encoding:
+    * ...
+=== ID3v2 ===
+ # Don't tought
+ # Delete
+ # Convert version:
+  # From:
+   * ...
+  # To:
+   * ...
+ * Convert encoding:
+ * Fill from IDv1:
+ (next - for Convert version/encoding and Fill from IDv1):
+ * Fields:
+  * ...
+ * From encoding:
+  * Std/defined in tag
+  * Force:
+   * ...
+  * Auto (try std => enca)
+ * To encoding:
+  * Std:
+   * ...
+  * Force:
+   * ...
+
+== Notes ==
+
+ * Inexisted/deleted tags/fields - disabled
+ * All fields - readonly, but selectable
