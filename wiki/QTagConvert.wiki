@@ -1,0 +1,38 @@
+#summary QTagConvert requirements
+
+= QTagConvert =
+
+Qt-based mp3 tag converter
+
+== Features ==
+
+ * Just convert tags - and nothing else;
+ * convert encodings of ID3v1 and ID3v2 tags;
+ * convert tags between from ID3v1 to ID3v2 and vice versa - and IDv2 from one version to another;
+ * delete unused tags;
+ * workflow-like processing
+
+== Options ==
+
+ * Autosave last path
+ * Autorefresh Filelist on load
+ * Defaults:
+  * IDv2 ver
+  * Fill char on xcoding
+
+== MainScreen ==
+
+ * Dir tree
+  Tree of directories - w/ "recurse" checkbox (find files in selected dir only - or below too)
+ * Filelist
+  List of processing files - w/ Refresh/Stop button and "processed" flag lefter filename (to prepend double conversion);
+ * Source
+  id3v1 tags (if exists, encoding), id3v2 tags (if exists, ver, encoding)
+ * Workflow
+  What to do w/ tags
+ * Dest
+  Preview of converted tags
+ * Buttons
+  Next, Convert (w/ warning if we try convert yet converted files)
+ * Statusbar
+  Current file etc
