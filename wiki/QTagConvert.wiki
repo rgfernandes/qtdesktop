@@ -21,7 +21,7 @@ Qt-based mp3 tag converter
   * IDv2 ver
   * Fill char on xcoding
 
-== MainScreen ==
+== Main Screen ==
 
  * Dir tree
   Tree of directories - w/ "recurse" checkbox (find files in selected dir only - or below too)
@@ -47,51 +47,52 @@ Qt-based mp3 tag converter
  * cp866
  * cp1251
  * utf8
- * utf16*
+ * utf16
 
 == Workflow ==
 
-=== ID3v1: ===
+=== ID3v1 ===
 
-What to do:
-
- # Don't tought
- # Delete
- # Convert encoding:
- # Fill from IDv2:
- (next - for Convert and Fill from IDv2):
-  # Fields: ...
+ # What to do:
+  # Don't tought
+  # Delete
+  # Convert encoding
+  # Fill from IDv2
+ # Fields:
    * ...
-  # From encoding:
-   * Std/defined in tag
-   * Force:
-    * ...
-   * Auto (try std => enca)
-  # To encoding:
-    * ...
+ # From encoding:
+  # Std/defined in tag
+  # Force:
+   * ...
+  # Auto (try std => enca)
+ # To encoding:
+   * ...
+
 === ID3v2 ===
- # Don't tought
- # Delete
- # Convert version:
-  # From:
-   * ...
-  # To:
-   * ...
- * Convert encoding:
- * Fill from IDv1:
- (next - for Convert version/encoding and Fill from IDv1):
- * Fields:
+
+ # What to do:
+  # Don't tought
+  # Delete
+  # Convert version (???):
+   # From:
+    * ...
+   # To:
+    * ...
+  # Convert encoding:
+  # Fill from IDv1:
+ # Fields:
   * ...
- * From encoding:
+ # From encoding:
   * Std/defined in tag
   * Force:
    * ...
   * Auto (try std => enca)
- * To encoding:
+ # To encoding:
   * Std:
    * ...
   * Force:
    * ...
+ # From version ? ...
 
 == Notes ==
 
