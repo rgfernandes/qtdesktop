@@ -4,18 +4,11 @@
 
 Add your content here.
 
-
 = Details =
-  * PIM:
-    * Contacts
-    * Tasks
-    * Notes
   * Utility:
     * qmix - audio mixer
-    * qbd - keyboard layout indicator
     * CD recorder (like k3b)
     * Calculator
-    * Image viewer
     * Sreen locker
   * DB RAD
   * PIM:
@@ -33,4 +26,3 @@ Add your content here.
     * Blogger client
     * News client
     * FTP client
-    * Torrent client
