@@ -12,7 +12,7 @@ This is list of current qt applications
 || *Type* || *Application* || *Author* ||
 || DE || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||
 || Dictionary || [http://qstardict.ylsoftware.com QStarDict] || [mailto:rodin.alexander@gmail.com Alexander Rodin] ||
-|| Text processor || [http://www.lyx.org LyX] ||
+|| Text processor || [http://www.lyx.org LyX] || ||
 || Text processor || [http:// Scribus] ||  ||
 || Text processor || [http:// TeXMaker] ||  ||
 || Spreadsheet ||  ||  ||
