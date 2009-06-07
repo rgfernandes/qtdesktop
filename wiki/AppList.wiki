@@ -37,6 +37,8 @@ This is list of current qt applications
 || Video player || [http://smplayer.sourceforge.net SMPlayer] || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||
 || Video player || [http://www.videolan.org/vlc VLC] ||  ||
 || Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
+|| Audio player || [http://code.google.com/p/cuberok cuberok] || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||
+|| Audio player || [http://rniamo.is-a-geek.com/mu rplayer] || [mailto:rniamo@gmail.com] ||
 || Video editor || [http:// Avidemux_QT] || [mailto:] ||
 || Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
 || Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConvert] || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||
