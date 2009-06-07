@@ -19,7 +19,7 @@ This is list of current qt applications
 || File manager || [http://qtcmd.nes.pl QtCommander] || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||
 || Archiver || [http://k7z.sourceforge.net/7Z/Q7Z q7z] || [mailto:chris@giles.name Chris Giles] ||
 || Calc ||  ||  ||
-|| Kbd switch || axkb || [mailt:disels@gmail.com Phoudor Ch] ||
+|| Kbd switch || axkb || [mailto:disels@gmail.com Phoudor Ch] ||
 || Notepad || [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd] || [mailto:mezomish@gmail.com Mikhail Murzin] ||
 || Notepad || [http://www.qt-apps.org/content/show.php/QWriter QWriter] || [mailto:kossne@mail.ru Konstantin Gancov] ||
 || Terminal || [http://qterminal.sourceforge.net QTerminal] || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||
@@ -38,10 +38,11 @@ This is list of current qt applications
 || Video player || [http://www.videolan.org/vlc VLC] ||  ||
 || Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
 || Audio player || [http://code.google.com/p/cuberok cuberok] || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||
-|| Audio player || [http://rniamo.is-a-geek.com/mu rplayer] || [mailto:rniamo@gmail.com] ||
+|| Audio player || [http://rniamo.is-a-geek.com/mu RPlayer] || [mailto:rniamo@gmail.com] ||
 || Video editor || [http:// Avidemux_QT] || [mailto:] ||
 || Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
 || Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConvert] || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||
+|| Image viewer || [http://rniamo.is-a-geek.com/mu RViewer] || [mailto:rniamo@gmail.com] ||
 || Development.DB || [http://sqliteman.com Sqliteman] || [mailto:petr@scribus.info Petr Vanek] ||
 || Development.Python || [http://eric-ide.python-projects.org/ Eric] || [mailto:detlev@die-offenbachs.de Detlev Offenbach] ||
 || Development.C++ || [http://edyuk.org Edyuk] ||  ||
