@@ -13,14 +13,15 @@ This is list of current qt applications
 || DE || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||
 || Dictionary || [http://qstardict.ylsoftware.com QStarDict] || [mailto:rodin.alexander@gmail.com Alexander Rodin] ||
 || Text processor || [http://www.lyx.org LyX] || ||
-|| Text processor || [http:// Scribus] ||  ||
-|| Text processor || [http:// TeXMaker] ||  ||
+|| Text processor || [http://www.scribus.net Scribus] ||  ||
+|| Text processor || [http://www.xm1math.net/texmaker TeXMaker] ||  ||
 || Spreadsheet ||  ||  ||
 || File manager || [http://qtcmd.nes.pl QtCommander] || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||
 || Archiver || [http://k7z.sourceforge.net/7Z/Q7Z q7z] || [mailto:chris@giles.name Chris Giles] ||
 || Calc ||  ||  ||
-|| Kbd switch || axkb ||  ||
+|| Kbd switch || axkb || [mailt:disels@gmail.com Phoudor Ch] ||
 || Notepad || [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd] || [mailto:mezomish@gmail.com Mikhail Murzin] ||
+|| Notepad || [http://www.qt-apps.org/content/show.php/QWriter QWriter] || [mailto:kossne@mail.ru Konstantin Gancov] ||
 || Terminal || [http://qterminal.sourceforge.net QTerminal] || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||
 || Html editor || [https://sourceforge.net/projects/rassistant Research Assistant] || [mailto:24pm@mail.ru Pavel Malakhov] ||
 || Web-browser || [http://code.google.com/p/arora arora] || [mailto:ben@meyerhome.net Benjamin Meyer] ||
