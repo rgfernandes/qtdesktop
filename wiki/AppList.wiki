@@ -29,8 +29,8 @@ This is list of current qt applications
 || Mailer || [http://www.manitou-mail.org Mantoi-Mail] || [mailto:daniel@mantoi-mail.org Daniel V.rit.] ||
 || IM.XMPP || [http://psi-im.org psi] || [mailto:kismith@psi-im.org Kevin Smith] ||
 || IM.Oscar || [http://www.qutim.org qutim] || [mailto:qutim.develop@gmail.com Rustam Chakin] ||
-|| uBlog.Twitter || [http://code.google.com/p/qwit/ QWit] || [mailto:d@ayoy.net Dominik Kapusta] ||
-|| uBlog.Twitter || [http://github.com/ayoy/qtwitter QTwitter] || [mailto:artem.iglikov@gmail.com Artem Iglikov] ||
+|| uBlog.Twitter || [http://code.google.com/p/qwit/ Qwit] || [mailto:artem.iglikov@gmail.com Artem Iglikov] ||
+|| uBlog.Twitter || [http://github.com/ayoy/qtwitter QTwitter] || [mailto:d@ayoy.net Dominik Kapusta] ||
 || WebDAV client || [http://code.google.com/p/qtwdav QT WebDav Explorer] || [mailto:ppkciz@gmail.com Patrik Hohl] ||
 || Web camera || [http:// qwebcam] ||  ||
 || FTP || [http:// scyntia] ||  ||
