@@ -8,7 +8,7 @@ Qt-based mp3 tag converter
 
  * Just convert tags - and nothing else;
  * convert encodings of ID3v1 and ID3v2 tags;
- * convert tags between from ID3v1 to ID3v2 and vice versa - and IDv2 from one version to another;
+ * convert tags between from ID3v1 to ID3v2 and vice versa - and IDv2 from one version to another: [http://www.id3.org/id3v2-00 2.2], [http://www.id3.org/id3v2.3.0 2.3], [ 2.4];
  * delete unused tags;
  * workflow-like processing
  * encodings - for all of the fields
