@@ -1,67 +1,70 @@
 #summary Application list
 
-[../.. Top]
-
 = Introduction =
 
 This is list of current qt applications
 
-
 = Details =
 
-|| *Type* || *Application* || *Author* ||
-|| DE || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||
-|| Dictionary || [http://qstardict.ylsoftware.com QStarDict] || [mailto:rodin.alexander@gmail.com Alexander Rodin] ||
-|| Text processor || [http://www.lyx.org LyX] || ||
-|| Text processor || [http://www.scribus.net Scribus] ||  ||
-|| Text processor || [http://www.xm1math.net/texmaker TeXMaker] ||  ||
-|| Spreadsheet ||  ||  ||
-|| File manager || [http://qtcmd.nes.pl QtCommander] || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||
-|| Archiver || [http://k7z.sourceforge.net/7Z/Q7Z q7z] || [mailto:chris@giles.name Chris Giles] ||
-|| Calc ||  ||  ||
-|| Kbd switch || axkb || [mailto:disels@gmail.com Phoudor Ch] ||
-|| Notepad || [https://juffed.svn.sourceforge.net/svnroot/juffed/trunk JuffEd] || [mailto:mezomish@gmail.com Mikhail Murzin] ||
-|| Notepad || [http://www.qt-apps.org/content/show.php/QWriter QWriter] || [mailto:kossne@mail.ru Konstantin Gancov] ||
-|| Terminal || [http://qterminal.sourceforge.net QTerminal] || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||
-|| Html editor || [https://sourceforge.net/projects/rassistant Research Assistant] || [mailto:24pm@mail.ru Pavel Malakhov] ||
-|| Web-browser || [http://code.google.com/p/arora arora] || [mailto:ben@meyerhome.net Benjamin Meyer] ||
-|| Web-browser || Surfer || [mailto:payableondeath90@gmail.com Ivan Andrianov] ||
-|| Mailer || [http://www.manitou-mail.org Mantoi-Mail] || [mailto:daniel@mantoi-mail.org Daniel V.rit.] ||
-|| IM.XMPP || [http://psi-im.org psi] || [mailto:kismith@psi-im.org Kevin Smith] ||
-|| IM || [http://www.qutim.org qutim] || [mailto:euroelessar@gmail.com Ruslan Nigmatullin] ||
-|| uBlog.Twitter || [http://code.google.com/p/qwit/ Qwit] || [mailto:artem.iglikov@gmail.com Artem Iglikov] ||
-|| uBlog.Twitter || [http://github.com/ayoy/qtwitter QTwitter] || [mailto:d@ayoy.net Dominik Kapusta] ||
-|| WebDAV client || [http://code.google.com/p/qtwdav QT WebDav Explorer] || [mailto:ppkciz@gmail.com Patrik Hohl] ||
-|| Web camera || [http:// qwebcam] ||  ||
-|| FTP || [http:// scyntia] ||  ||
-|| Video player || [http://smplayer.sourceforge.net SMPlayer] || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||
-|| Video player || [http://www.videolan.org/vlc VLC] ||  ||
-|| Audio player || [http://qmmp.ylsoftware.com qmmp] || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||
-|| Audio player || [http://code.google.com/p/cuberok cuberok] || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||
-|| Audio player || [http://rniamo.is-a-geek.com/mu RPlayer] || [mailto:rniamo@gmail.com] ||
-|| Video editor || [http:// Avidemux_QT] || [mailto:] ||
-|| Radio player || [http://linux.perlak.com qtradio] || [mailto:  Pawel Pustelnik] ||
-|| Mp3 tag editor || [http://sourceforge.net/projects/qtagconvert QTagConvert] || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||
-|| Image viewer || [http://rniamo.is-a-geek.com/mu RViewer] || [mailto:rniamo@gmail.com] ||
-|| Development.DB || [http://sqliteman.com Sqliteman] || [mailto:petr@scribus.info Petr Vanek] ||
-|| Development.Python || [http://eric-ide.python-projects.org/ Eric] || [mailto:detlev@die-offenbachs.de Detlev Offenbach] ||
-|| Development.C++ || [http://edyuk.org Edyuk] ||  ||
-|| Development.C++ || [http://groups.google.com/group/haiq HaiQ] ||  ||
-|| Development.C++ || [http://monkeystudio.org Monkey Studio] || [mailto:pasnox@gmail.com Azevedo Filipe] ||
-|| Development.C++ || [http://qdevelop.org QDevelop] || [mailto:jl.biord@free.fr Jean-Luc Biord] ||
-|| SVN client || [http://www.anrichter.net/projects/qsvn Qsvn] || [mailto:ar@anrichter.net Andreas Richter] ||
-|| VoIP || [http://www.qutecom.org QuteCom] ||  ||
-|| XML-editor || [http://code.google.com/p/qxmledit/ QXmlEdit] || [mailto:lbellonda@gmail.com Luca Vellonda] ||
-|| Mind mapping || [http://trac.geiseri.com/wiki/FloMain Flo] || [mailto:geisery@yahoo.com Ian Reinhart Geiser] ||
-|| Scientific || speedcrunch ||  ||
-|| Scientific || scidavis ||  ||
-|| Scientific || avogadro ||  ||
-|| Scientific || zhu3D ||  ||
-|| Scientific || lybniz ||  ||
-|| Emulator || [http://sourceforge.net/projects/q4wine Q4wine] || [mailto:brezerk@gmail.com Alexey Malakhov] ||
-|| Emulator || [http://qtemu.org QtEmu] || [mailto:uwolfer@fwo.ch Urs Wolfer] ||
-|| Graph || [http://socnetv.sourceforge.net SocNetV] || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||
-|| PDF editor || [http://pdfedit.petricek.net PDFedit] ||  ||
-|| OCR frontend || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || [mailto:cas@altlinux.ru Andrew Tsherepanov] ||
-|| Scanning || [http://scantailor.sourceforge.net Scantailor] || [mailto:joseph_a@mail.ru Joseph Artsimovich] ||
-||  || [http://] || [mailto:] ||
+|| *Package* || *Application* || *Category* || *Author* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
+|| anticodeluxe || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || DE || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||  ||  ||  ||  ||  ||  ||  ||
+|| arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] ||  ||  ||  ||  ||  ||  ||  ||
+|| avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] ||  ||  ||  ||  ||  ||  ||  ||
+|| cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  ||  ||  ||  ||  ||  ||  ||
+|| cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] ||  ||  ||  ||  ||  ||  ||  ||
+|| edyuk || [http://edyuk.org Edyuk] || Development.C++ || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| eric || [http://eric-ide.python-projects.org/ Eric] || Development.Python || [mailto:detlev@die-offenbachs.de Detlev Offenbach] ||  ||  ||  ||  ||  ||  ||  ||
+|| flo || [http://trac.geiseri.com/wiki/FloMain Flo] || Mind mapping || [mailto:geisery@yahoo.com Ian Reinhart Geiser] ||  ||  ||  ||  ||  ||  ||  ||
+|| haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| juffed || [http://sourceforge.net/projects/juffed JuffEd] || Notepad || [mailto:mezomish@gmail.com Mikhail Murzin] ||  ||  ||  ||  ||  ||  ||  ||
+|| lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Mailer || [mailto:daniel@mantoi-mail.org Daniel V.rit.] ||  ||  ||  ||  ||  ||  ||  ||
+|| monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] ||  ||  ||  ||  ||  ||  ||  ||
+|| pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] ||  ||  ||  ||  ||  ||  ||  ||
+|| q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] ||  ||  ||  ||  ||  ||  ||  ||
+|| q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] ||  ||  ||  ||  ||  ||  ||  ||
+|| qdevelop || [http://qdevelop.org QDevelop] || Development.C++ || [mailto:jl.biord@free.fr Jean-Luc Biord] ||  ||  ||  ||  ||  ||  ||  ||
+|| qmmp || [http://qmmp.ylsoftware.com Qmmp] || Audio player || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||  ||  ||  ||  ||  ||  ||  ||
+|| qstardict || [http://qstardict.ylsoftware.com QStarDict] || Dictionary || [mailto:rodin.alexander@gmail.com Alexander Rodin] ||  ||  ||  ||  ||  ||  ||  ||
+|| qsvn || [http://www.anrichter.net/projects/qsvn Qsvn] || SVN client || [mailto:ar@anrichter.net Andreas Richter] ||  ||  ||  ||  ||  ||  ||  ||
+|| qtagconvert || [http://sourceforge.net/projects/qtagconvert QTagConvert] || Mp3 tag editor || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  ||  ||  ||  ||  ||  ||  ||
+|| qtcommander || [http://qtcmd.nes.pl QtCommander] || File manager || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||  ||  ||  ||  ||  ||  ||  ||
+|| qtemu || [http://qtemu.org QtEmu] || Emulator || [mailto:uwolfer@fwo.ch Urs Wolfer] ||  ||  ||  ||  ||  ||  ||  ||
+|| qterminal || [http://qterminal.sourceforge.net QTerminal] || Terminal || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||  ||  ||  ||  ||  ||  ||  ||
+|| qtradio || [http://linux.perlak.com QtRadio] || Radio player || [mailto: Pawel Pustelnik] ||  ||  ||  ||  ||  ||  ||  ||
+|| qtwitter || [http://github.com/ayoy/qtwitter QTwitter] || uBlog.Twitter || [mailto:d@ayoy.net Dominik Kapusta] ||  ||  ||  ||  ||  ||  ||  ||
+|| qutecom || [http://www.qutecom.org QuteCom] || VoIP || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| qutim || [http://www.qutim.org qutIM] || IM || [mailto:euroelessar@gmail.com Ruslan Nigmatullin] ||  ||  ||  ||  ||  ||  ||  ||
+|| qwebcam || [http://freshmeat.net/projects/qwebcam QwebCam] || Web camera || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| qwit || [http://code.google.com/p/qwit/ Qwit] || uBlog.Twitter || [mailto:artem.iglikov@gmail.com Artem Iglikov] ||  ||  ||  ||  ||  ||  ||  ||
+|| qwriter || [http://www.qt-apps.org/content/show.php/QWriter QWriter] || Notepad || [mailto:kossne@mail.ru Konstantin Gancov] ||  ||  ||  ||  ||  ||  ||  ||
+|| qxmledit || [http://code.google.com/p/qxmledit/ QXmlEdit] || XML-editor || [mailto:lbellonda@gmail.com Luca Vellonda] ||  ||  ||  ||  ||  ||  ||  ||
+|| rassistant || [http://sourceforge.net/projects/rassistant Research Assistant] || Html editor || [mailto:24pm@mail.ru Pavel Malakhov] ||  ||  ||  ||  ||  ||  ||  ||
+|| rplayer || [http://rniamo.is-a-geek.com/mu RPlayer] || Audio player || [mailto:rniamo@gmail.com ] ||  ||  ||  ||  ||  ||  ||  ||
+|| rviewer || [http://rniamo.is-a-geek.com/mu RViewer] || Image viewer || [mailto:rniamo@gmail.com ] ||  ||  ||  ||  ||  ||  ||  ||
+|| scantailor || [http://scantailor.sourceforge.net Scantailor] || Scanning || [mailto:joseph_a@mail.ru Joseph Artsimovich] ||  ||  ||  ||  ||  ||  ||  ||
+|| scidavis || [http://scidavis.sourceforge.net SciDAVis] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| scribus || [http://www.scribus.net Scribus] || Text processor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| smplayer || [http://smplayer.sourceforge.net SMPlayer] || Video player || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||  ||  ||  ||  ||  ||  ||  ||
+|| socnetv || [http://socnetv.sourceforge.net SocNetV] || Graph || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||  ||  ||  ||  ||  ||  ||  ||
+|| speedcrunch || [http://speedcrunch.org SpeedCrunch] || Calc || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] ||  ||  ||  ||  ||  ||  ||  ||
+|| surfer || [http://www.qt-apps.org/content/show.php/Surfer Surfer] || Web-browser || [mailto:payableondeath90@gmail.com Ivan Andrianov] ||  ||  ||  ||  ||  ||  ||  ||
+|| texmaker || [http://www.xm1math.net/texmaker TeXMaker] || Text processor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| vlc || [http://www.videolan.org/vlc VLC] || Video player || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| webdavdir || [http://code.google.com/p/qtwdav QT WebDav Explorer] || WebDAV client || [mailto:ppkciz@gmail.com Patrik Hohl] ||  ||  ||  ||  ||  ||  ||  ||
+|| zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+
+----
+
+ * Ver - current version
+ * Build ver - current pkg version
+ * F - Fedora 10 rpm
+ * M - Mandriva 2009 rpm
+ * S - OpenSUSE 11.1 rpm
+ * D - Debian 5.0 "Lenny" deb
+ * U - xUbuntu 9.04 deb
