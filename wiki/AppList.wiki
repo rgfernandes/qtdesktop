@@ -6,7 +6,7 @@ This is list of current qt applications
 
 = Details =
 
-|| *Package* || *Application* || *Category* || *Author* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
+|| *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
 || antico-deluxe || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || DE || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||  || 0.2 || + || + || + ||  ||  ||
 || arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] ||  || 0.7.0 || + || + || - ||  ||  ||
 || avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
