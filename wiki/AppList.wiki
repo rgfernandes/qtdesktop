@@ -7,30 +7,30 @@ This is list of current qt applications
 = Details =
 
 || *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
-|| antico-deluxe || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || DE || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] ||  || 0.2 || + || + || + ||  ||  ||
-|| arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] ||  || 0.7.0 || + || + || - ||  ||  ||
-|| avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] ||  || 0.4.2 || + || + || - ||  ||  ||
-|| cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  || 0.0.10 || + || + || - ||  ||  ||
-|| cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] ||  || 0.1.2 || + || + || - ||  ||  ||
-|| edyuk || [http://edyuk.org Edyuk] || Development.C++ || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| eric || [http://eric-ide.python-projects.org/ Eric] || Development.Python || [mailto:detlev@die-offenbachs.de Detlev Offenbach] ||  ||  ||  ||  ||  ||  ||  ||
+|| antico-deluxe || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || DE || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] || 0.2 || 0.2 || + || + || + ||  ||  ||
+|| arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.7.1 || 0.7.0 || r || + || - ||  ||  ||
+|| avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
+|| avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] || 0.9.6 ||  ||  ||  ||  ||  ||  ||
+|| axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  ||
+|| cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 0.0.10 || 0.0.10 || + || + || - ||  ||  ||
+|| cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] || 0.1.2 || 0.1.2 || + || + || - ||  ||  ||
+|| edyuk || [http://edyuk.org Edyuk] || Development.C++ || [mailto: ] || 1.1.0 ||  ||  ||  ||  ||  ||  ||
+|| eric || [http://eric-ide.python-projects.org/ Eric] || Development.Python || [mailto:detlev@die-offenbachs.de Detlev Offenbach] || 4.3.4 ||  || r ||  ||  ||  ||  ||
 || flo || [http://trac.geiseri.com/wiki/FloMain Flo] || Mind mapping || [mailto:geisery@yahoo.com Ian Reinhart Geiser] ||  ||  ||  ||  ||  ||  ||  ||
-|| haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| juffed || [http://sourceforge.net/projects/juffed JuffEd] || Notepad || [mailto:mezomish@gmail.com Mikhail Murzin] ||  || 0.7.551 || + || x || + ||  ||  ||
-|| kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto: ] ||  || 4.0 || + || + || - ||  ||  ||
+|| haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] || 1.0-beta ||  ||  ||  ||  ||  ||  ||
+|| juffed || [http://sourceforge.net/projects/juffed JuffEd] || Notepad || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.6 || 0.7.551 || + || x || + ||  ||  ||
+|| kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto: ] || 4.0 || 4.0 || + || + || - ||  ||  ||
 || lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Mailer || [mailto:daniel@mantoi-mail.org Daniel V.rit.] ||  ||  ||  ||  ||  ||  ||  ||
-|| monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] ||  || 1.8.3.2 || + || - || - ||  ||  ||
-|| pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] ||  || 0.4.2 || - || - || - ||  ||  ||
-|| psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] ||  || 0.12 || r ||  ||  ||  ||  ||
-|| q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] ||  || 0.112 || + || + || + ||  ||  ||
-|| q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] ||  ||  ||  ||  ||  ||  ||  ||
-|| qdevelop || [http://qdevelop.org QDevelop] || Development.C++ || [mailto:jl.biord@free.fr Jean-Luc Biord] ||  ||  || r ||  ||  ||  ||  ||
-|| qmmp || [http://qmmp.ylsoftware.com Qmmp] || Audio player || [mailto:forkotov02@hotmail.ru Ilya Kotov] ||  ||  || r ||  ||  ||  ||  ||
-|| qstardict || [http://qstardict.ylsoftware.com QStarDict] || Dictionary || [mailto:rodin.alexander@gmail.com Alexander Rodin] ||  ||  ||  ||  ||  ||  ||  ||
+|| lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] || 1.6.3 ||  || r ||  ||  ||  ||  ||
+|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Mailer || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
+|| monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.3.3 || 1.8.3.2 || + || - || - ||  ||  ||
+|| pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] || 0.4.2 || 0.4.2 || - || - || - ||  ||  ||
+|| psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] || 0.12.1 || 0.12 || r ||  ||  ||  ||  ||
+|| q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] || 0.112 || 0.112 || + || + || + ||  ||  ||
+|| q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] || 0.8.0 ||  ||  ||  ||  ||  ||  ||
+|| qdevelop || [http://qdevelop.org QDevelop] || Development.C++ || [mailto:jl.biord@free.fr Jean-Luc Biord] || 0.27 ||  || r ||  ||  ||  ||  ||
+|| qmmp || [http://qmmp.ylsoftware.com Qmmp] || Audio player || [mailto:forkotov02@hotmail.ru Ilya Kotov] || 0.3.0 ||  || r ||  ||  ||  ||  ||
+|| qstardict || [http://qstardict.ylsoftware.com QStarDict] || Dictionary || [mailto:rodin.alexander@gmail.com Alexander Rodin] || 0.13.1 ||  ||  ||  ||  ||  ||  ||
 || qsvn || [http://www.anrichter.net/projects/qsvn Qsvn] || SVN client || [mailto:ar@anrichter.net Andreas Richter] ||  || 0.8.1 || + || + || - ||  ||  ||
 || qtagconvert || [http://sourceforge.net/projects/qtagconvert QTagConvert] || Mp3 tag editor || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  || 2.0.0 || + || + || - ||  ||  ||
 || qtcmd || [http://qtcmd.nes.pl QtCommander] || File manager || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||  || 0.8 || + || + || - ||  ||  ||
@@ -40,7 +40,7 @@ This is list of current qt applications
 || qtradio || [http://linux.perlak.com QtRadio] || Radio player || [mailto: Pawel Pustelnik] ||  ||  ||  ||  ||  ||  ||  ||
 || qtwitter || [http://github.com/ayoy/qtwitter QTwitter] || uBlog.Twitter || [mailto:d@ayoy.net Dominik Kapusta] ||  || 0.5.0 || + || + || + ||  ||  ||
 || qutecom || [http://www.qutecom.org QuteCom] || VoIP || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| qutim || [http://www.qutim.org qutIM] || IM || [mailto:euroelessar@gmail.com Ruslan Nigmatullin] ||  || 0.1.99 || + || + || + ||  ||  ||
+|| qutim || [http://www.qutim.org qutIM] || IM || [mailto:euroelessar@gmail.com Ruslan Nigmatullin] ||  || 0.2alpha || + || + || + ||  ||  ||
 || qwebcam || [http://freshmeat.net/projects/qwebcam QwebCam] || Web camera || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
 || qwit || [http://code.google.com/p/qwit/ Qwit] || uBlog.Twitter || [mailto:artem.iglikov@gmail.com Artem Iglikov] ||  || 0.7 || + || + || + ||  ||  ||
 || qwriter || [http://www.qt-apps.org/content/show.php/QWriter QWriter] || Notepad || [mailto:kossne@mail.ru Konstantin Gancov] ||  || 0.1 || + || + || - ||  ||  ||
@@ -49,15 +49,15 @@ This is list of current qt applications
 || rplayer || [http://rniamo.is-a-geek.com/mu RPlayer] || Audio player || [mailto:rniamo@gmail.com ] ||  ||  || - || - || - ||  ||  ||
 || rviewer || [http://rniamo.is-a-geek.com/mu RViewer] || Image viewer || [mailto:rniamo@gmail.com ] ||  || 0.5 || + || + || + ||  ||  ||
 || scantailor || [http://scantailor.sourceforge.net Scantailor] || Scanning || [mailto:joseph_a@mail.ru Joseph Artsimovich] ||  || 0.9.3 || + || + || + ||  ||  ||
-|| scidavis || [http://scidavis.sourceforge.net SciDAVis] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| scribus || [http://www.scribus.net Scribus] || Text processor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| smplayer || [http://smplayer.sourceforge.net SMPlayer] || Video player || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||  || 0.6.6 || + || + || + ||  ||  ||
+|| scidavis || [http://scidavis.sourceforge.net SciDAVis] || Scientific || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
+|| scribus || [http://www.scribus.net Scribus] || Text processor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
+|| smplayer || [http://smplayer.sourceforge.net SMPlayer] || Video player || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||  || 0.6.6 || r || + || + ||  ||  ||
 || socnetv || [http://socnetv.sourceforge.net SocNetV] || Graph || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||  || 0.51 || + || + || + ||  ||  ||
 || speedcrunch || [http://speedcrunch.org SpeedCrunch] || Calc || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
-|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] ||  || 1.2.0 || + || + || + ||  ||  ||
+|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] ||  || 1.2.0 || r || + || + ||  ||  ||
 || surfer || [http://www.qt-apps.org/content/show.php/Surfer Surfer] || Web-browser || [mailto:payableondeath90@gmail.com Ivan Andrianov] ||  ||  ||  ||  ||  ||  ||  ||
-|| texmaker || [http://www.xm1math.net/texmaker TeXMaker] || Text processor || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| vlc || [http://www.videolan.org/vlc VLC] || Video player || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| texmaker || [http://www.xm1math.net/texmaker TeXMaker] || Text processor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
+|| vlc || [http://www.videolan.org/vlc VLC] || Video player || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || webdavdir || [http://code.google.com/p/qtwdav QT WebDav Explorer] || WebDAV client || [mailto:ppkciz@gmail.com Patrik Hohl] ||  ||  ||  ||  ||  ||  ||  ||
 || zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
 
