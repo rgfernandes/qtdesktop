@@ -10,7 +10,7 @@ This is list of current qt applications
 || antico-deluxe || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || DE || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] || 0.2 || 0.2 || + || + || + ||  ||  ||
 || arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.7.1 || 0.7.0 || r || + || - ||  ||  ||
 || avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
-|| avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] || 0.9.6 ||  ||  ||  ||  ||  ||  ||
+|| avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] || 0.9.6 ||  || r ||  ||  ||  ||  ||
 || axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  ||
 || cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 0.0.10 || 0.0.10 || + || + || - ||  ||  ||
 || cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] || 0.1.2 || 0.1.2 || + || + || - ||  ||  ||
@@ -20,11 +20,11 @@ This is list of current qt applications
 || haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] || 1.0-beta ||  ||  ||  ||  ||  ||  ||
 || juffed || [http://sourceforge.net/projects/juffed JuffEd] || Notepad || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.6 || 0.7.551 || + || x || + ||  ||  ||
 || kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto: ] || 4.0 || 4.0 || + || + || - ||  ||  ||
-|| lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
+|| lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] || 1.6.3 ||  || r ||  ||  ||  ||  ||
 || mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Mailer || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
 || monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.3.3 || 1.8.3.2 || + || - || - ||  ||  ||
-|| pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] || 0.4.2 || 0.4.2 || - || - || - ||  ||  ||
+|| pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] || 0.4.2 || 0.4.2 || r || - || - ||  ||  ||
 || psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] || 0.12.1 || 0.12 || r ||  ||  ||  ||  ||
 || q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] || 0.112 || 0.112 || + || + || + ||  ||  ||
 || q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] || 0.8.0 ||  ||  ||  ||  ||  ||  ||
