@@ -12,6 +12,8 @@ This is list of current qt applications
 || avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] || 0.9.6 ||  || r ||  ||  ||  ||  ||
 || axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  ||
+|| beediff || [http://www.beesoft.org BeeDiff] || Diff frontend || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 1.9 || 1.9 ||  ||  ||  ||  ||  ||
+|| bsc || [http://www.beesoft.org Beesoft Commander] || File manager || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 4.1.0 || 4.1.0 ||  ||  ||  ||  ||  ||
 || cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 0.0.10 || 0.0.10 || + || + || - ||  ||  ||
 || cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] || 0.1.2 || 0.1.2 || + || + || - ||  ||  ||
 || edyuk || [http://edyuk.org Edyuk] || Development.C++ || [mailto: ] || 1.1.0 ||  ||  ||  ||  ||  ||  ||
