@@ -24,19 +24,22 @@ This is list of current qt applications
 || kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto: ] || 4.0 || 4.0 || + || + || - ||  ||  ||
 || lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] || 1.6.3 ||  || r ||  ||  ||  ||  ||
-|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Mailer || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
+|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
 || monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.3.3 || 1.8.3.2 || + || - || - ||  ||  ||
+|| nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  ||
 || pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] || 0.4.2 || 0.4.2 || r || - || - ||  ||  ||
 || psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] || 0.12.1 || 0.12 || r ||  ||  ||  ||  ||
 || q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] || 0.112 || 0.112 || + || + || + ||  ||  ||
 || q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] || 0.8.0 ||  ||  ||  ||  ||  ||  ||
 || qdevelop || [http://qdevelop.org QDevelop] || Development.C++ || [mailto:jl.biord@free.fr Jean-Luc Biord] || 0.27 ||  || r ||  ||  ||  ||  ||
+|| qgmailnotifier || [http://www.qt-apps.org/content/show.php/QGMailNotifier?content=85979 QGmailNotifier] || Mail notifier || "Evan Teran" || 2008.2 ||  ||  ||  ||  ||  ||  ||
 || qmmp || [http://qmmp.ylsoftware.com Qmmp] || Audio player || [mailto:forkotov02@hotmail.ru Ilya Kotov] || 0.3.0 ||  || r ||  ||  ||  ||  ||
 || qstardict || [http://qstardict.ylsoftware.com QStarDict] || Dictionary || [mailto:rodin.alexander@gmail.com Alexander Rodin] || 0.13.1 ||  ||  ||  ||  ||  ||  ||
 || qsvn || [http://www.anrichter.net/projects/qsvn Qsvn] || SVN client || [mailto:ar@anrichter.net Andreas Richter] ||  || 0.8.1 || + || + || - ||  ||  ||
 || qtagconvert || [http://sourceforge.net/projects/qtagconvert QTagConvert] || Mp3 tag editor || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  || 2.0.0 || + || + || - ||  ||  ||
 || qtcmd || [http://qtcmd.nes.pl QtCommander] || File manager || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||  || 0.8 || + || + || - ||  ||  ||
 || qtcreator || [http://www.qtsoftware.com/developer/qt-creator QtCreator] || Development.C++ || [mailto: ] ||  || 0.1.2 ||  ||  ||  ||  ||  ||
+|| qtdbf || [qtDbf] || DBF viewer/editor || [mailto:hevele@juniorcom.ro Hevele Hegyi Istvan] || 0.9.1 || 0.9.0 || + || + || + ||  ||  ||
 || qtemu || [http://qtemu.org QtEmu] || Emulator || [mailto:uwolfer@fwo.ch Urs Wolfer] ||  || 1.0.5 || + || + || + ||  ||  ||
 || qterminal || [http://qterminal.sourceforge.net QTerminal] || Terminal || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||  || 0.1.4 || + || + || + ||  ||  ||
 || qtradio || [http://linux.perlak.com QtRadio] || Radio player || [mailto: Pawel Pustelnik] ||  ||  ||  ||  ||  ||  ||  ||
