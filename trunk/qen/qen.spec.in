@@ -1,0 +1,54 @@
+Name:		qen
+Version:	
+Release:	
+Summary:	Qt4 eGroupWare Notifier
+Source:		%{name}-%{version}.tar.bz2
+#Source1:	qen.desktop
+URL:		http://uprojects.googlecode.com/svn/trunk/qen/
+Group:		Productivity/Office/Other
+License:	GPL
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+Requires:	python PyQt4
+BuildRequires:	python qt4 desktop-file-utils PyQt4
+BuildArch:	noarch
+
+%description
+No Description yet
+
+%prep
+%setup -q
+
+%build
+pyuic4 ui/Main.ui -o source/Ui_Main.py
+pyrcc4 ui/Main.qrc -o source/Main_rc.py
+pyuic4 ui/Settings.ui -o source/Ui_Settings.py
+pyrcc4 ui/Settings.qrc -o source/Settings_rc.py
+
+%install
+rm -rf $RPM_BUILD_ROOT
+%{__python} install.py -x \
+   -p %{_prefix} \
+   -d %{_docdir}/%{name} \
+   -b $RPM_BUILD_ROOT
+%__install -D -m 0644 %{name}.png %{buildroot}%{_datadir}/icons/%{name}.png
+desktop-file-install --vendor qen \
+	--add-category Office \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{name}.desktop
+
+%clean
+%__rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%doc %{_docdir}/%{name}
+%{_bindir}/%{name}
+%dir %{_libdir}/%{name}
+%{_libdir}/%{name}/*.py
+%{_libdir}/%{name}/*.pyc
+%{_libdir}/%{name}/*.pyo
+%{_libdir}/%{name}/translations/*
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/%{name}.png
+
+%changelog

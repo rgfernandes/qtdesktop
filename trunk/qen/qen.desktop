@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=QEN
+GenericName=Qt4 eGroupWare Notifier
+Comment=KDE Menu entry for QEN
+Version=0.0.1
+Type=Application
+Categories=Qt;Network;Office;
+Terminal=false
+Encoding=UTF-8
+Icon=qen.png
+Exec=qen
+#ServiceTypes=inode/directory
+X-KDE-StartupNotify=true
