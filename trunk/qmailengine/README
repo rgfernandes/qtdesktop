@@ -1,0 +1,10 @@
+
+
+INSTALLATION:
+qmake && make && make install
+
+USAGE:
+ * in project file:
+ CONFIG += qmailengine
+ * in sources:
+ #include <QMailEngine>
