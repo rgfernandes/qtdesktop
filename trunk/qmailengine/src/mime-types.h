@@ -1,3 +1,6 @@
+#ifndef MIMETYPES_H
+#define MIMETYPES_H
+
 #include <QHash>
 #include <QString>
 
@@ -340,3 +343,4 @@ public:
 	
 };
 	
+#endif
