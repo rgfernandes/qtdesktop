@@ -90,6 +90,8 @@ public:
 		smtphost=lsmtphost;
 		t=0;
 		smtpsocket=0;
+		running=false;
+		qDebug()<<"running"<<running;
 		return;
 	};
 	~Smtp();

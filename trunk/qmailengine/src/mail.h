@@ -43,6 +43,7 @@
 #include <QMessageBox>
 
 #include "mime.h"
+#include "mime-types.h"
 
 class Mail;
 
@@ -72,12 +73,18 @@ public:
 	index(0),
 	is_send_data_valid( FALSE ),
 	mime_source(),
-	temp_file() {
+	temp_file(0) {
 		init ();
 	};
 
-/*--------------------------------------------------------------------------*/
 	MailPrivate (const MailPrivate &copy);
+	
+	~MailPrivate (){
+		if(temp_file!=0){
+			temp_file->close();
+			delete temp_file;
+		}
+	};
 
 /*--------------------------------------------------------------------------*/
 
@@ -96,6 +103,9 @@ public:
 
 		is_singlePart=true;
 
+		temp_dir=QDir::tempPath()+QDir::separator()+"temp_mail_data";
+		QDir d(temp_dir);
+		if(!d.exists()) d.mkpath(temp_dir);
 		//mail_parts.setAutoDelete(true);
 	}
 
@@ -114,7 +124,7 @@ public:
 	 */ 
 	QString send_data;
 	/**
-	 * Content of attached filed
+	 * Content of attached files
 	 */ 
 	QByteArray raw_data;
 
@@ -126,7 +136,8 @@ public:
 	bool is_send_data_valid;
 	
 	QString mime_source;
-	QString temp_file;
+	QTemporaryFile *temp_file;
+	QString temp_dir;
 };
 
 /****************************************************************************/
@@ -215,6 +226,10 @@ public:
 	uint longestLine(const QString cstr);
 	QString breakLongLines(const QString& in, uint max_len, QString separator="=");
 
+	//used to add attachments to a message
+	void attachFile(QString fileName);
+	void attachMail(Mail *M);
+	
 	/**
 	 * Used to check if mail or mail part is single or multipart.
 	 * @return True if mail is not multipart
@@ -398,6 +413,8 @@ protected:
 private:
 
 	MailPrivate* d;
+	
+	MimeTypes mimeTypes;
 };
 
 #endif

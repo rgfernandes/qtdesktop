@@ -44,9 +44,9 @@
 class QTextStream;
 class QHostInfo;
 
-#       ifdef Q_OS_WIN32
-        __declspec(dllexport)
-#       endif
+#ifdef Q_OS_WIN32
+ __declspec(dllexport)
+#endif
 
 class Pop3Private;
 

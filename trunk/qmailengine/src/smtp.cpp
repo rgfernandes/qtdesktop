@@ -61,7 +61,6 @@ void Smtp::run()
 	
 	//qDebug() << "Config server smtp connect to......  "  << smtphost;
 	
-	QCoreApplication::processEvents();
 //qDebug()<<smtphost<<smtpusername<<smtppass;
 	
 	connect( this, SIGNAL(ConnectorSuccess()), this ,SLOT(ReadLiner()));
@@ -103,7 +102,7 @@ void Smtp::run()
 
 void Smtp::queueMail(Mail *m, bool qas)
 {
-	qDebug()<<"qas"<<qas;
+	qDebug()<<"qas"<<qas<<running;
 	if(readyToSend && queuedMails.size()==0){
 		mutex.lock();
 		quitAfterSending=qas;

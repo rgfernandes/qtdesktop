@@ -1,4 +1,5 @@
 #include "mail.h"
 #include "mime.h"
+#include "mime-types.h"
 #include "pop3.h"
 #include "smtp.h"
