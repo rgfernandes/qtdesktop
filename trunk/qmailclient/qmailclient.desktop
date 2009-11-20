@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=QMailClient
+Comment=Qt mail client
+GenericName=QMailClient
+Exec=qmailclient
+Terminal=false
+Type=Application
+Icon=qmailclient
+Categories=Network;Qt;
+StartupNotify=true
