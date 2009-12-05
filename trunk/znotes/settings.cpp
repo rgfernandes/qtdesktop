@@ -29,12 +29,80 @@ Settings::Settings() : config("pDev", "zNotes")
 	ScriptShowOutput = config.value("ScriptShowOutput").toBool();
 	ScriptCopyOutput = config.value("ScriptCopyOutput").toBool();
 	//
-	tbHideEdit = config.value("tbHideEdit").toBool();
-	tbHideMove = config.value("tbHideMove").toBool();
-	tbHideCopy = config.value("tbHideCopy").toBool();
-	tbHideSetup = config.value("tbHideSetup").toBool();
-	tbHideRun = config.value("tbHideRun").toBool();
-	tbHideExit = config.value("tbHideExit").toBool();
+	///TODO: remove this code, when in version 0.4:
+	//
+	if(config.contains("Toolbar/itemCount"))
+	{
+		tb_items.resize(config.value("Toolbar/itemCount").toInt());
+		for(int i=itemAdd; i<itemMax; ++i)
+		{
+			int pos = config.value(getItemName(i), tb_items.size()).toInt();
+			if(pos<tb_items.size()) tb_items[pos] = i;
+		}
+	}
+	else
+	{
+		bool old_settings_exist = (
+				config.contains("tbHideEdit") ||
+				config.contains("tbHideMove") ||
+				config.contains("tbHideCopy") ||
+				config.contains("tbHideSetup") ||
+				config.contains("tbHideRun") ||
+				config.contains("tbHideExit") );
+		if(old_settings_exist) //converting old toolbar's settings
+		{
+			if(!config.value("tbHideEdit").toBool())
+			{
+				tb_items.append(itemAdd);
+				tb_items.append(itemRemove);
+				tb_items.append(itemRename);
+				tb_items.append(itemSeparator);
+			}
+			if(!config.value("tbHideMove").toBool())
+			{
+				tb_items.append(itemPrev);
+				tb_items.append(itemNext);
+				tb_items.append(itemSeparator);
+			}
+			if(!config.value("tbHideCopy").toBool())
+			{
+				tb_items.append(itemCopy);
+				tb_items.append(itemSeparator);
+			}
+			if(!config.value("tbHideSetup").toBool())
+			{
+				tb_items.append(itemSetup);
+				tb_items.append(itemInfo);
+				tb_items.append(itemSeparator);
+			}
+			if(!config.value("tbHideRun").toBool())
+			{
+				tb_items.append(itemRun);
+				tb_items.append(itemSearch);
+				tb_items.append(itemSeparator);
+			}
+			if(!config.value("tbHideExit").toBool()) tb_items.append(itemExit);
+		}
+		else //default toolbar's settings
+		{
+			tb_items.append(itemAdd);
+			tb_items.append(itemRemove);
+			tb_items.append(itemRename);
+			tb_items.append(itemSeparator);
+			tb_items.append(itemPrev);
+			tb_items.append(itemNext);
+			tb_items.append(itemSeparator);
+			tb_items.append(itemCopy);
+			tb_items.append(itemSeparator);
+			tb_items.append(itemSetup);
+			tb_items.append(itemInfo);
+			tb_items.append(itemSeparator);
+			tb_items.append(itemRun);
+			tb_items.append(itemSearch);
+			tb_items.append(itemSeparator);
+			tb_items.append(itemExit);
+		}
+	}
 }
 
 void Settings::setNotesPath(const QString& path)
@@ -146,62 +214,14 @@ void Settings::setScripts()
 	}
 }
 
-void Settings::setTbHideEdit(bool v)
+void Settings::setToolbarItems(const QVector<int>& v)
 {
-	if(tbHideEdit !=v )
+	if(v==tb_items) return;
+	tb_items = v;
+	config.setValue("Toolbar/itemCount", tb_items.size());
+	for(int i=0; i<tb_items.size(); ++i) if(tb_items[i]!=itemSeparator)
 	{
-		tbHideEdit = v;
-		config.setValue("tbHideEdit", tbHideEdit);
-		emit tbHidingChanged();
+		config.setValue(getItemName(tb_items[i]), i);
 	}
-}
-
-void Settings::setTbHideMove(bool v)
-{
-	if(tbHideMove !=v )
-	{
-		tbHideMove = v;
-		config.setValue("tbHideMove", tbHideMove);
-		emit tbHidingChanged();
-	}
-}
-
-void Settings::setTbHideCopy(bool v)
-{
-	if(tbHideCopy !=v )
-	{
-		tbHideCopy = v;
-		config.setValue("tbHideCopy", tbHideCopy);
-		emit tbHidingChanged();
-	}
-}
-
-void Settings::setTbHideSetup(bool v)
-{
-	if(tbHideSetup !=v )
-	{
-		tbHideSetup = v;
-		config.setValue("tbHideSetup", tbHideSetup);
-		emit tbHidingChanged();
-	}
-}
-
-void Settings::setTbHideRun(bool v)
-{
-	if(tbHideRun !=v )
-	{
-		tbHideRun = v;
-		config.setValue("tbHideRun", tbHideRun);
-		emit tbHidingChanged();
-	}
-}
-
-void Settings::setTbHideExit(bool v)
-{
-	if(tbHideExit !=v )
-	{
-		tbHideExit = v;
-		config.setValue("tbHideExit", tbHideExit);
-		emit tbHidingChanged();
-	}
+	emit ToolbarItemsChanged();
 }

@@ -2,16 +2,23 @@
 #include "ui_configdialog.h"
 
 #include "settings.h"
+#include "toolbarmodel.h"
 
 #include <QtDebug>
 #include <QFileDialog>
 #include <QFontDialog>
 #include <QColorDialog>
 
+ItemModel m_items;
+ItemToolbarModel mt_items;
+
 configDialog::configDialog(QWidget *parent) :
 	QDialog(parent), m_ui(new Ui::configDialog)
 {
 	m_ui->setupUi(this);
+	m_ui->listActions->setModel(&m_items);
+	m_ui->listToolbarActions->setModel(&mt_items);
+	//
 	m_ui->ed_NotesPath->setText(settings.getNotesPath());
 	m_ui->cb_HideStart->setChecked(settings.getHideStart());
 	m_ui->cb_ToolbarHide->setChecked(settings.getHideToolbar());
@@ -23,12 +30,11 @@ configDialog::configDialog(QWidget *parent) :
 	m_ui->cb_ScriptShowOutput->setChecked(settings.getScriptShowOutput());
 	m_ui->cb_ScriptCopyOutput->setChecked(settings.getScriptCopyOutput());
 	//
-	m_ui->cb_tbHideEdit->setChecked(settings.getTbHideEdit());
-	m_ui->cb_tbHideMove->setChecked(settings.getTbHideMove());
-	m_ui->cb_tbHideCopy->setChecked(settings.getTbHideCopy());
-	m_ui->cb_tbHideSetup->setChecked(settings.getTbHideSetup());
-	m_ui->cb_tbHideRun->setChecked(settings.getTbHideRun());
-	m_ui->cb_tbHideExit->setChecked(settings.getTbHideExit());
+	mt_items.setVector(settings.getToolbarItems());
+	m_items.setVector(settings.getToolbarItems());
+	//
+	connect(m_ui->listActions->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(currentListActionChanged(QModelIndex,QModelIndex)));
+	connect(m_ui->listToolbarActions->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(currentToolbarActionChanged(QModelIndex,QModelIndex)));
 }
 
 configDialog::~configDialog()
@@ -46,13 +52,7 @@ void configDialog::SaveSettings()
 	settings.setNoteFont(m_ui->lb_FontExample->font());
 	settings.setScriptShowOutput(m_ui->cb_ScriptShowOutput->checkState());
 	settings.setScriptCopyOutput(m_ui->cb_ScriptCopyOutput->checkState());
-	//
-	settings.setTbHideEdit(m_ui->cb_tbHideEdit->checkState());
-	settings.setTbHideMove(m_ui->cb_tbHideMove->checkState());
-	settings.setTbHideCopy(m_ui->cb_tbHideCopy->checkState());
-	settings.setTbHideSetup(m_ui->cb_tbHideSetup->checkState());
-	settings.setTbHideRun(m_ui->cb_tbHideRun->checkState());
-	settings.setTbHideExit(m_ui->cb_tbHideExit->checkState());
+	settings.setToolbarItems(mt_items.getVector());
 }
 
 void configDialog::on_buttonBox_clicked(QAbstractButton* button)
@@ -94,4 +94,58 @@ void configDialog::on_btn_ScriptRemove_clicked()
 void configDialog::on_btn_ScriptAdd_clicked()
 {
 	settings.getScriptModel().append("","","");
+}
+
+void configDialog::on_butActionAdd_clicked()
+{
+	int id = m_ui->listActions->currentIndex().row();
+	int row = (m_ui->listToolbarActions->selectionModel()->hasSelection())?
+		m_ui->listToolbarActions->currentIndex().row():-1;
+	//qDebug() << id << " " << row;
+	mt_items.insert(id, row);
+	m_items.remove(id);
+}
+
+void configDialog::on_butActionRemove_clicked()
+{
+	QModelIndex index = m_ui->listToolbarActions->currentIndex();
+	int id = mt_items.getId(index);
+	mt_items.remove(index);
+	m_items.insert(id);
+}
+
+void configDialog::on_butActionTop_clicked()
+{
+	QModelIndex index(m_ui->listToolbarActions->currentIndex());
+	mt_items.up(index);
+	//m_ui->listToolbarActions->setCurrentIndex(mt_items.index(index.row()+1,0));
+}
+
+void configDialog::on_butActionBottom_clicked()
+{
+	QModelIndex index(m_ui->listToolbarActions->currentIndex());
+	mt_items.down(index);
+	//m_ui->listToolbarActions->setCurrentIndex(mt_items.index(index.row()-1,0));
+}
+
+void configDialog::currentToolbarActionChanged(QModelIndex index, QModelIndex)
+{
+	m_ui->butActionRemove->setEnabled(index.isValid());
+	int row = index.row();
+	m_ui->butActionTop->setEnabled(row>0);
+	m_ui->butActionBottom->setEnabled(row<(mt_items.rowCount()-1));
+}
+
+void configDialog::currentListActionChanged(QModelIndex index, QModelIndex)
+{
+//	QModelIndexList list = m_ui->listActions->selectionModel()->selectedRows(0);
+//	qDebug() << "> " << list.size();
+//	for(int i=0; i<list.size(); ++i)
+//	{if(m_items.isUsed(list[i].row()))
+//	{
+//		m_ui->butActionAdd->setEnabled(false);
+//		return;
+//	} qDebug() << i; }
+//	m_ui->butActionAdd->setEnabled(true);
+	m_ui->butActionAdd->setEnabled(index.isValid() && !m_items.isUsed(index.row()));
 }

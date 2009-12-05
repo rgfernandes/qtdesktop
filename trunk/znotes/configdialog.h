@@ -3,6 +3,7 @@
 
 #include <QtGui/QDialog>
 #include <QAbstractButton>
+#include <QModelIndex>
 
 namespace Ui {
 	class configDialog;
@@ -19,6 +20,13 @@ private:
 	void SaveSettings();
 
 private slots:
+	void currentToolbarActionChanged(QModelIndex, QModelIndex);
+	void currentListActionChanged(QModelIndex, QModelIndex);
+	//
+	void on_butActionBottom_clicked();
+	void on_butActionTop_clicked();
+	void on_butActionRemove_clicked();
+	void on_butActionAdd_clicked();
 	void on_btn_ScriptAdd_clicked();
 	void on_btn_ScriptRemove_clicked();
 	void on_btn_FontChange_clicked();

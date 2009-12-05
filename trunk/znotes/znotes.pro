@@ -2,7 +2,7 @@
 # Project created by QtCreator 2009-09-20T17:20:55
 # -------------------------------------------------
 TARGET = znotes
-VERSION = 0.3.6
+VERSION = 0.3.7
 QT += core \
     gui
 TEMPLATE = app
@@ -16,13 +16,16 @@ SOURCES += main.cpp \
     settings.cpp \
     note.cpp \
     scriptmodel.cpp \
-    aboutDialog.cpp
+    aboutDialog.cpp \
+    toolbarmodel.cpp
 HEADERS += mainwindow.h \
     configdialog.h \
     settings.h \
     note.h \
     scriptmodel.h \
-    aboutDialog.h
+    aboutDialog.h \
+    toolbaraction.h \
+    toolbarmodel.h
 FORMS += mainwindow.ui \
     configdialog.ui \
     aboutDialog.ui
@@ -42,9 +45,7 @@ TSQM.commands = $$QMAKE_LRELEASE \
 TSQM.CONFIG = no_link
 QMAKE_EXTRA_COMPILERS += TSQM
 PRE_TARGETDEPS += $$TS_OUT
-!os2 {
-	DEFINES += VERSION=\\\"$$VERSION\\\"
-}
+!os2:DEFINES += VERSION=\\\"$$VERSION\\\"
 unix { 
     PREFIX = $$(PREFIX)
     isEmpty( PREFIX ):PREFIX = /usr
@@ -61,10 +62,8 @@ unix {
         pixmap \
         desktop
 }
-os2 {
-	DEFINES += VERSION=\"$$VERSION\"
-	RC_FILE = znotes_os2.rc
+os2 { 
+    DEFINES += VERSION=\"$$VERSION\"
+    RC_FILE = znotes_os2.rc
 }
-win32 {
-	RC_FILE = znotes.rc
-}
+win32:RC_FILE = znotes.rc

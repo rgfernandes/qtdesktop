@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>505</width>
-    <height>251</height>
+    <width>495</width>
+    <height>241</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -118,7 +118,7 @@
             <enum>QFrame::StyledPanel</enum>
            </property>
            <property name="text">
-            <string>Eat more of these soft French loaves and drink tea.</string>
+            <string>The quick brown fox jumps over the lazy dog.</string>
            </property>
           </widget>
          </item>
@@ -200,76 +200,76 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="toolbar">
       <attribute name="title">
        <string>Toolbar</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
-        <widget class="QCheckBox" name="cb_tbHideEdit">
-         <property name="text">
-          <string>Hide edit section</string>
-         </property>
-         <property name="icon">
-          <iconset resource="znotes.qrc">
-           <normaloff>:/res/add.png</normaloff>:/res/add.png</iconset>
-         </property>
-        </widget>
+        <widget class="QListView" name="listActions"/>
        </item>
        <item>
-        <widget class="QCheckBox" name="cb_tbHideMove">
-         <property name="text">
-          <string>Hide move section</string>
-         </property>
-         <property name="icon">
-          <iconset resource="znotes.qrc">
-           <normaloff>:/res/next.png</normaloff>:/res/next.png</iconset>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QPushButton" name="butActionAdd">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="znotes.qrc">
+             <normaloff>:/res/te/right.png</normaloff>:/res/te/right.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="butActionRemove">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="znotes.qrc">
+             <normaloff>:/res/te/left.png</normaloff>:/res/te/left.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="butActionTop">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="znotes.qrc">
+             <normaloff>:/res/te/up.png</normaloff>:/res/te/up.png</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="butActionBottom">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="znotes.qrc">
+             <normaloff>:/res/te/down.png</normaloff>:/res/te/down.png</iconset>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
-        <widget class="QCheckBox" name="cb_tbHideCopy">
-         <property name="text">
-          <string>Hide copy section</string>
-         </property>
-         <property name="icon">
-          <iconset resource="znotes.qrc">
-           <normaloff>:/res/copy.png</normaloff>:/res/copy.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cb_tbHideSetup">
-         <property name="text">
-          <string>Hide setup section</string>
-         </property>
-         <property name="icon">
-          <iconset resource="znotes.qrc">
-           <normaloff>:/res/settings.png</normaloff>:/res/settings.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cb_tbHideRun">
-         <property name="text">
-          <string>Hide run section</string>
-         </property>
-         <property name="icon">
-          <iconset resource="znotes.qrc">
-           <normaloff>:/res/exec.png</normaloff>:/res/exec.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cb_tbHideExit">
-         <property name="text">
-          <string>Hide exit section</string>
-         </property>
-         <property name="icon">
-          <iconset resource="znotes.qrc">
-           <normaloff>:/res/exit.png</normaloff>:/res/exit.png</iconset>
-         </property>
-        </widget>
+        <widget class="QListView" name="listToolbarActions"/>
        </item>
       </layout>
      </widget>
