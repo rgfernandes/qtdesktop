@@ -73,6 +73,7 @@ private:
 			default: return new QAction(this);
 		}
 	}
+	void changeEvent(QEvent *e);
 public slots:
 	void SaveCurrentNote();
 	void RemoveCurrentNote();
@@ -104,7 +105,7 @@ public slots:
 	//
 	void notesPathChanged();
 	void windowStateChanged();
-	void toolbarVisChanged();//TODO:think
+	//void toolbarVisChanged();//TODO:think
 	void noteFontChanged();
 private slots:
 	void on_edSearch_returnPressed();
