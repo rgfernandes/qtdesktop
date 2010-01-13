@@ -8,3 +8,4 @@ UI_DIR = build
 FORMS = ui/mainwindow.ui ui/preferences.ui
 HEADERS = src/mainwindowimpl.h
 SOURCES = src/mainwindowimpl.cpp src/main.cpp
+TRANSLATIONS += i18n/qrdc_ru.ts
