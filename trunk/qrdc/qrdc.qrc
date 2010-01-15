@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icons" >
+    <file>icons/RealVnc.gif</file>
+    <file>icons/Vnc.gif</file>
+  </qresource>
+</RCC>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>218</width>
-    <height>304</height>
+    <width>346</width>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,45 +16,59 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QToolBox" name="toolBox">
+     <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
-      <widget class="QWidget" name="page">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>200</width>
-         <height>112</height>
-        </rect>
-       </property>
-       <attribute name="label">
-        <string>VNC</string>
+      <widget class="QWidget" name="tabRDP">
+       <attribute name="title">
+        <string>&amp;RDP</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QListView" name="listView"/>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>57</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <attribute name="label">
-        <string>RDP</string>
+      <widget class="QWidget" name="tabVNC">
+       <attribute name="title">
+        <string>&amp;VNC</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QListView" name="listView_2"/>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="страница">
-       <attribute name="label">
-        <string>SSH</string>
+      <widget class="QWidget" name="tabNX">
+       <attribute name="title">
+        <string>&amp;NX</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QListView" name="listView_4"/>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="страница_2">
-       <attribute name="label">
-        <string>NX</string>
+      <widget class="QWidget" name="tabSSH">
+       <attribute name="title">
+        <string>&amp;SSH</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QListView" name="listView_3"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabTelnet">
+       <attribute name="title">
+        <string>&amp;Telnet</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="QListView" name="listView_5"/>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -65,8 +79,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>218</width>
-     <height>23</height>
+     <width>346</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -85,18 +99,35 @@
    </widget>
    <widget class="QMenu" name="menu_Service">
     <property name="title">
-     <string>&amp;Service</string>
+     <string>&amp;Preferences</string>
     </property>
-    <addaction name="actionPreferences"/>
+    <addaction name="actionDefaultRDP"/>
+    <addaction name="actionDefaultVNC"/>
+    <addaction name="actionDefaultSSH"/>
+   </widget>
+   <widget class="QMenu" name="menu_Actions">
+    <property name="title">
+     <string>&amp;Connection</string>
+    </property>
+    <addaction name="actionListRDP"/>
+    <addaction name="actionListVNC"/>
+    <addaction name="actionListSSH"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd"/>
+    <addaction name="actionEdit"/>
+    <addaction name="actionDel"/>
    </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_Actions"/>
    <addaction name="menu_Service"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>E&amp;xit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
@@ -104,25 +135,99 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>&amp;About</string>
    </property>
   </action>
   <action name="actionAboutQt">
    <property name="text">
-    <string>AboutQt</string>
+    <string>About &amp;Qt</string>
    </property>
   </action>
   <action name="actionHelp">
    <property name="text">
-    <string>Help</string>
+    <string>&amp;Help</string>
    </property>
   </action>
-  <action name="actionPreferences">
+  <action name="actionAdd">
    <property name="text">
-    <string>Preferences</string>
+    <string>&amp;Add</string>
+   </property>
+   <property name="toolTip">
+    <string>Add new connection</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>&amp;Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit connection</string>
+   </property>
+  </action>
+  <action name="actionDel">
+   <property name="text">
+    <string>&amp;Del</string>
+   </property>
+   <property name="toolTip">
+    <string>Delete connection</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open current connection</string>
+   </property>
+  </action>
+  <action name="actionDefaultRDP">
+   <property name="text">
+    <string>&amp;RDP</string>
+   </property>
+   <property name="toolTip">
+    <string>RDP defaults</string>
+   </property>
+  </action>
+  <action name="actionDefaultVNC">
+   <property name="text">
+    <string>&amp;VNC</string>
+   </property>
+   <property name="toolTip">
+    <string>VNC defaults</string>
+   </property>
+  </action>
+  <action name="actionListRDP">
+   <property name="text">
+    <string>&amp;RDP</string>
+   </property>
+   <property name="toolTip">
+    <string>Show RDP connections</string>
+   </property>
+  </action>
+  <action name="actionListVNC">
+   <property name="text">
+    <string>&amp;VNC</string>
+   </property>
+   <property name="toolTip">
+    <string>List VNC connections</string>
+   </property>
+  </action>
+  <action name="actionDefaultSSH">
+   <property name="text">
+    <string>&amp;SSH</string>
+   </property>
+   <property name="toolTip">
+    <string>Default SSH preferences</string>
+   </property>
+  </action>
+  <action name="actionListSSH">
+   <property name="text">
+    <string>&amp;SSH</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../qrdc.qrc"/>
+ </resources>
  <connections/>
 </ui>
