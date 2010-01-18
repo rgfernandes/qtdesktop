@@ -1,6 +1,6 @@
 TEMPLATE = app
 QT = gui core sql
-CONFIG += qt release warn_on console
+CONFIG += qt warn_on console debug
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build

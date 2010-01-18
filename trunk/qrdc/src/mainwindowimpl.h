@@ -34,5 +34,7 @@ private slots:
 private:
 	LISTTYPE	currentList;
 	void	setSlots(void);
+	bool	createConnection(void);
+	bool	loadSql(QStringList &);
 };
 #endif

@@ -1,30 +1,8 @@
 #include <QApplication>
 #include <QtCore>
 #include <QtGui>
-#include <QtSql>
 #include "mainwindowimpl.h"
 //
-bool	createConnection(QMainWindow *mw)
-{
-	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-	db.setDatabaseName(QDesktopServices::storageLocation(QDesktopServices::DataLocation) + QDir::separator() + "qrdc.db");
-	if (!db.open())
-	{
-		QMessageBox::critical(mw,
-			QMainWindow::tr("Opening database error"),
-			QMainWindow::tr("Unable to establish a database connection."),
-			QMessageBox::Cancel, QMessageBox::NoButton);
-		return false;
-	}
-	else
-	{
-		if (db.tables().isEmpty())
-		{
-			
-		}
-	}
-	return true;
-}
 
 int main(int argc, char ** argv)
 {
@@ -39,8 +17,8 @@ int main(int argc, char ** argv)
 	app.installTranslator(&appTranslator);
 	// </tr>
 	MainWindowImpl win;
-	win.setModels();
 	win.show(); 
+	win.setModels();
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }

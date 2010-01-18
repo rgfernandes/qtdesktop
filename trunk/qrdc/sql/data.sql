@@ -5,3 +5,10 @@ CREATE TABLE IF NOT EXISTS h (	id		INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,	n
 CREATE TRIGGER p_d	BEFORE	DELETE	ON main.p	FOR EACH ROW	BEGIN		DELETE FROM v WHERE protoid=old.id;		DELETE FROM c WHERE protoid=old.id;	END;
 CREATE TRIGGER v_d	BEFORE	DELETE	ON main.v	FOR EACH ROW	BEGIN		UPDATE c SET varid = NULL WHERE varid=old.id;	END;
 CREATE TRIGGER h_d	BEFORE	DELETE	ON main.h	FOR EACH ROW	BEGIN		DELETE FROM c WHERE hostid=old.id;	END;
+INSERT INTO p VALUES (1, 'RDP',	'rdesktop',	3389,	False,	'%h:%p',	NULL);
+INSERT INTO p VALUES (2, 'VNC',	'vncviewer',	5900,	False,	'%h::%p',	NULL);
+INSERT INTO p VALUES (3, 'NX',		'nxssh',	22,	False,	'-p %p %h',	NULL);
+INSERT INTO p VALUES (4, 'SSH',	'ssh',		22,	True,	'-p %p %h',	NULL);
+INSERT INTO p VALUES (5, 'Telnet',	'telnet',	23,	False,	'%h %p',	NULL);
+INSERT INTO p VALUES (6, 'FTP',	'ftp',		21,	False,	'%h:%p',	NULL);
+INSERT INTO v VALUES (1, 'NULL',	'NULL',		NULL);

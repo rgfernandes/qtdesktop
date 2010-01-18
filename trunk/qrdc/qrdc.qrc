@@ -20,7 +20,6 @@
     <file>icons/Vnc.gif</file>
   </qresource>
   <qresource prefix="sql" >
-    <file>sql/default.sql</file>
-    <file>sql/scheme.sql</file>
+    <file>sql/data.sql</file>
   </qresource>
 </RCC>
