@@ -2,417 +2,270 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="ru_RU">
 <context>
-    <name>Dialog</name>
+    <name>DialogConnection</name>
     <message>
-        <location filename="../ui/rdp.ui" line="14"/>
-        <location filename="../ui/vnc.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="14"/>
+        <source>Connection</source>
+        <translation>Соединение</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="464"/>
-        <source>Path</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="20"/>
+        <source>&amp;Name</source>
+        <translation>&amp;Наименование</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="176"/>
-        <source>Find</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="33"/>
+        <source>&amp;Protocol</source>
+        <translation>&amp;Протокол</translation>
     </message>
     <message>
-        <location filename="../ui/rdp.ui" line="260"/>
-        <location filename="../ui/vnc.ui" line="304"/>
-        <source>Geometry:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="46"/>
+        <source>&amp;Host</source>
+        <translation>&amp;Хост</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="487"/>
-        <source>x</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="59"/>
+        <source>&amp;Port</source>
+        <translation>&amp;Порт</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="119"/>
-        <source>&lt;custom&gt;</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="72"/>
+        <source>&amp;Variable</source>
+        <translation>&amp;Переменная</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="124"/>
-        <source>640x480</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="85"/>
+        <source>&amp;Args</source>
+        <translation>&amp;Аргументы</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="129"/>
-        <source>800x600</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/connection.ui" line="98"/>
+        <source>&amp;Comments</source>
+        <translation>&amp;Комментарии</translation>
+    </message>
+</context>
+<context>
+    <name>DialogHost</name>
+    <message>
+        <location filename="../ui/host.ui" line="14"/>
+        <source>Host</source>
+        <translation>Компьютер</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="134"/>
-        <source>1024x768</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/host.ui" line="20"/>
+        <source>&amp;Name</source>
+        <translation>&amp;Наименование</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="139"/>
-        <source>1280x1024</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/host.ui" line="33"/>
+        <source>&amp;Value</source>
+        <translation>&amp;Значение</translation>
+    </message>
+</context>
+<context>
+    <name>DialogProtocol</name>
+    <message>
+        <location filename="../ui/protocol.ui" line="14"/>
+        <source>Protocol</source>
+        <translation>Протокол</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="500"/>
-        <source>Display:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="20"/>
+        <source>E&amp;xecutable</source>
+        <translation>Исполняемый &amp;файл</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="225"/>
-        <source>Shared:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="33"/>
+        <location filename="../ui/protocol.ui" line="120"/>
+        <source>...</source>
+        <translation>...</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="340"/>
-        <source>ViewOnly:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="40"/>
+        <source>&amp;Name</source>
+        <translation>&amp;Наименование</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="363"/>
-        <source>FullScreen:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="53"/>
+        <source>&amp;Port</source>
+        <translation>&amp;Порт</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="248"/>
-        <source>AutSelect:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="73"/>
+        <source>&amp;Console</source>
+        <translation>&amp;Консоль</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="153"/>
-        <source>DesktopSize</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="90"/>
+        <source>&amp;Commandline</source>
+        <translation>&amp;Командная строка</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="79"/>
-        <source>Colors:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/protocol.ui" line="103"/>
+        <source>&amp;Picture</source>
+        <translation>&amp;Картинка</translation>
+    </message>
+</context>
+<context>
+    <name>DialogVar</name>
+    <message>
+        <location filename="../ui/var.ui" line="14"/>
+        <source>Variable</source>
+        <translation>Переменная</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="415"/>
-        <source>Encoding:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/var.ui" line="20"/>
+        <source>&amp;Protocol</source>
+        <translation>&amp;Протокол</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="212"/>
-        <source>UseLocalCursor</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/var.ui" line="33"/>
+        <source>&amp;Name</source>
+        <translation>&amp;Наименование</translation>
     </message>
     <message>
-        <location filename="../ui/vnc.ui" line="376"/>
-        <source>WMDecoration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="441"/>
-        <source>MenuKey:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="327"/>
-        <source>via:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="92"/>
-        <location filename="../ui/vnc.ui" line="105"/>
-        <location filename="../ui/vnc.ui" line="199"/>
-        <location filename="../ui/vnc.ui" line="261"/>
-        <location filename="../ui/vnc.ui" line="402"/>
-        <location filename="../ui/vnc.ui" line="428"/>
-        <source>CheckBox</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="275"/>
-        <source>8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="280"/>
-        <source>64</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="285"/>
-        <source>256</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="290"/>
-        <source>FullColor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="40"/>
-        <source>Tight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="45"/>
-        <source>ZRLE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="50"/>
-        <source>hextile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="55"/>
-        <source>raw</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/vnc.ui" line="389"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="299"/>
-        <source>User:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="65"/>
-        <source>Domain:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="104"/>
-        <source>Shell:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="234"/>
-        <source>Directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="156"/>
-        <source>Password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="286"/>
-        <source>Keyboard map:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="78"/>
-        <source>Fullscreent:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="91"/>
-        <source>Bitmap:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="208"/>
-        <source>SeamlessRDP:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="247"/>
-        <source>BackingStore:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="182"/>
-        <source>Disable  encryption:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="143"/>
-        <source>Do not send mouse motion events.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="273"/>
-        <source>private  colourmap.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="312"/>
-        <source>Hide window manager decorations,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="325"/>
-        <source>Do not override window manager key bindings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="130"/>
-        <source>-S &lt;button size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="169"/>
-        <source>Title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="195"/>
-        <source>Numlock sync</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="221"/>
-        <source>BPP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="39"/>
-        <source>Compression</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="117"/>
-        <source>Bandwidth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/rdp.ui" line="52"/>
-        <source>Cache bitmaps</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/var.ui" line="46"/>
+        <source>&amp;Value</source>
+        <translation>&amp;Значение</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/mainwindow.ui" line="14"/>
-        <source>MainWindow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="25"/>
-        <location filename="../ui/mainwindow.ui" line="165"/>
-        <location filename="../ui/mainwindow.ui" line="181"/>
-        <source>&amp;RDP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="35"/>
-        <location filename="../ui/mainwindow.ui" line="173"/>
-        <location filename="../ui/mainwindow.ui" line="189"/>
-        <source>&amp;VNC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="45"/>
-        <location filename="../ui/mainwindow.ui" line="197"/>
-        <location filename="../ui/mainwindow.ui" line="205"/>
-        <source>&amp;SSH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="68"/>
+        <location filename="../ui/mainwindow.ui" line="34"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="74"/>
-        <location filename="../ui/mainwindow.ui" line="128"/>
+        <location filename="../ui/mainwindow.ui" line="40"/>
+        <location filename="../ui/mainwindow.ui" line="117"/>
         <source>&amp;Help</source>
+        <translation>&amp;Помощь</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="48"/>
+        <source>&amp;Action</source>
+        <translation>&amp;Действие</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="58"/>
+        <source>&amp;View</source>
+        <translation>&amp;Вид</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="73"/>
+        <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="82"/>
-        <source>&amp;Preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="90"/>
-        <source>&amp;Connection</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="110"/>
+        <location filename="../ui/mainwindow.ui" line="95"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы&amp;ход</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="118"/>
+        <location filename="../ui/mainwindow.ui" line="103"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;О программе</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="123"/>
+        <location filename="../ui/mainwindow.ui" line="112"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>О &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="133"/>
+        <location filename="../ui/mainwindow.ui" line="126"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Добавить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="136"/>
+        <location filename="../ui/mainwindow.ui" line="129"/>
         <source>Add new connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить новое соединение</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="138"/>
+        <source>&amp;Edit</source>
+        <translation>Р&amp;едактировать</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="141"/>
-        <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="144"/>
         <source>Edit connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="149"/>
+        <location filename="../ui/mainwindow.ui" line="150"/>
         <source>&amp;Del</source>
-        <translation type="unfinished"></translation>
+        <translation>У&amp;далить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="152"/>
+        <location filename="../ui/mainwindow.ui" line="153"/>
         <source>Delete connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="157"/>
+        <location filename="../ui/mainwindow.ui" line="158"/>
         <source>&amp;Open</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Открыть</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="160"/>
+        <location filename="../ui/mainwindow.ui" line="161"/>
         <source>Open current connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть текущее соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="168"/>
-        <source>RDP defaults</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/mainwindow.ui" line="169"/>
+        <source>&amp;Variables</source>
+        <translation>&amp;Переменные</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="176"/>
-        <source>VNC defaults</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/mainwindow.ui" line="177"/>
+        <source>&amp;Protocols</source>
+        <translation>&amp;Протоколы</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
-        <source>Show RDP connections</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/mainwindow.ui" line="185"/>
+        <source>&amp;Hosts</source>
+        <translation>&amp;Компьютеры</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="192"/>
-        <source>List VNC connections</source>
-        <translation type="unfinished"></translation>
+        <location filename="../ui/mainwindow.ui" line="193"/>
+        <source>&amp;Connections</source>
+        <translation>&amp;Соединения</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="200"/>
-        <source>Default SSH preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.ui" line="113"/>
+        <location filename="../ui/mainwindow.ui" line="98"/>
         <source>Ctrl+X</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowImpl</name>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="60"/>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="60"/>
+        <source>QRDC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="64"/>
+        <source>About Qt</source>
+        <translation>О Qt</translation>
+    </message>
+</context>
+<context>
+    <name>QMainWindow</name>
+    <message>
+        <location filename="../src/main.cpp" line="14"/>
+        <source>Opening database error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/main.cpp" line="15"/>
+        <source>Unable to establish a database connection.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

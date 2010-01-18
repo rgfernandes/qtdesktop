@@ -1,6 +1,26 @@
 <RCC>
   <qresource prefix="icons" >
+    <file>icons/add.gif</file>
+    <file>icons/cancel.gif</file>
+    <file>icons/config.gif</file>
+    <file>icons/copy.gif</file>
+    <file>icons/del.gif</file>
+    <file>icons/edit.gif</file>
+    <file>icons/minus.gif</file>
+    <file>icons/ok.gif</file>
+    <file>icons/plus.gif</file>
+    <file>icons/poweroff.gif</file>
+    <file>icons/qt.gif</file>
+    <file>icons/qt4.gif</file>
+    <file>icons/save.gif</file>
+    <file>icons/stop.gif</file>
+    <file>icons/XP_16x16x8.gif</file>
+    <file>icons/XP_16x16x8.png</file>
     <file>icons/RealVnc.gif</file>
     <file>icons/Vnc.gif</file>
+  </qresource>
+  <qresource prefix="sql" >
+    <file>sql/default.sql</file>
+    <file>sql/scheme.sql</file>
   </qresource>
 </RCC>
