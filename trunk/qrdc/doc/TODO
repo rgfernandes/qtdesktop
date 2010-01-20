@@ -1,6 +1,5 @@
-* bug: del entry
-* bug: refresh DialogConnection submodel after editing host/var/proto
 * bug: settings: terminal call commandline
+* bug: refresh DialogConnection submodel after editing host/var/proto
 * bug: Dialog*: check data befor submition
 * issue: service: backup to / restore from text file
 * issue: freedesktop.org compatibility (qrdc.desktop, qrdc.png)

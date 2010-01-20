@@ -37,8 +37,8 @@ void	MainWindowImpl::setModels(void)
 {
 	modelP = new QSqlTableModel();	// create model _after_ opening db
 	modelP->setTable("p");
+	modelP->setSort(1, Qt::AscendingOrder);
 	//modelP->setEditStrategy(QSqlTableModel::OnManualSubmit);
-	modelP->select();
 	modelP->setHeaderData(0, Qt::Horizontal, tr("#"));
 	modelP->setHeaderData(1, Qt::Horizontal, tr("Name"));
 	modelP->setHeaderData(2, Qt::Horizontal, tr("Executable"));
@@ -46,9 +46,11 @@ void	MainWindowImpl::setModels(void)
 	modelP->setHeaderData(4, Qt::Horizontal, tr("Console"));
 	modelP->setHeaderData(5, Qt::Horizontal, tr("CmdLine"));
 	modelP->setHeaderData(6, Qt::Horizontal, tr("Logo"));
+	modelP->select();
 
 	modelV = new QSqlTableModel();
 	modelV->setTable("v");
+	modelV->setSort(1, Qt::AscendingOrder);
 	//modelV->setEditStrategy(QSqlTableModel::OnManualSubmit);
 	modelV->select();
 	modelV->setHeaderData(0, Qt::Horizontal, tr("#"));
@@ -57,18 +59,19 @@ void	MainWindowImpl::setModels(void)
 
 	modelH = new QSqlTableModel();
 	modelH->setTable("h");
+	modelH->setSort(1, Qt::AscendingOrder);
 	//modelH->setEditStrategy(QSqlTableModel::OnManualSubmit);
-	modelH->select();
 	modelH->setHeaderData(0, Qt::Horizontal, tr("#"));
 	modelH->setHeaderData(1, Qt::Horizontal, tr("Name"));
 	modelH->setHeaderData(2, Qt::Horizontal, tr("Value"));
+	modelH->select();
 
 	modelC = new QSqlRelationalTableModel();
 	modelC->setTable("c");
+	modelC->setSort(1, Qt::AscendingOrder);
 	modelC->setRelation(modelC->fieldIndex("protoid"),	QSqlRelation("p", "id", "name")); 
 	modelC->setRelation(modelC->fieldIndex("hostid"),	QSqlRelation("h", "id", "name")); 
 	modelC->setRelation(modelC->fieldIndex("varid"),	QSqlRelation("v", "id", "name"));
-	modelC->select();
 	modelC->setHeaderData(0, Qt::Horizontal, tr("#"));
 	modelC->setHeaderData(1, Qt::Horizontal, tr("Name"));
 	modelC->setHeaderData(2, Qt::Horizontal, tr("Protocol"));
@@ -77,6 +80,7 @@ void	MainWindowImpl::setModels(void)
 	modelC->setHeaderData(5, Qt::Horizontal, tr("Var"));
 	modelC->setHeaderData(6, Qt::Horizontal, tr("CmdLine"));
 	modelC->setHeaderData(7, Qt::Horizontal, tr("Comments"));
+	modelC->select();
 
 	actionConnections->setChecked(true);
 	onActionConnections();
@@ -97,6 +101,10 @@ void	MainWindowImpl::onActionConnections(void)
 	currentList = CONNECTION;
 	tableView->setModel(modelC);
 	tableView->resizeColumnsToContents();
+	tableView->hideColumn(0);
+	tableView->hideColumn(5);
+	tableView->hideColumn(6);
+	tableView->hideColumn(7);
 }
 
 void	MainWindowImpl::onActionHosts(void)
@@ -104,6 +112,7 @@ void	MainWindowImpl::onActionHosts(void)
 	currentList = HOST;
 	tableView->setModel(modelH);
 	tableView->resizeColumnsToContents();
+	tableView->hideColumn(0);
 }
 
 void	MainWindowImpl::onActionVariables(void)
@@ -111,6 +120,7 @@ void	MainWindowImpl::onActionVariables(void)
 	currentList = VAR;
 	tableView->setModel(modelV);
 	tableView->resizeColumnsToContents();
+	tableView->hideColumn(0);
 }
 
 void	MainWindowImpl::onActionProtocols(void)
@@ -118,6 +128,11 @@ void	MainWindowImpl::onActionProtocols(void)
 	currentList = PROTO;
 	tableView->setModel(modelP);
 	tableView->resizeColumnsToContents();
+	tableView->hideColumn(0);
+	tableView->hideColumn(2);
+	tableView->hideColumn(4);
+	tableView->hideColumn(5);
+	tableView->hideColumn(6);
 }
 
 void	MainWindowImpl::onActionAdd(void)
@@ -146,18 +161,19 @@ void	MainWindowImpl::onActionAdd(void)
 
 void	MainWindowImpl::onActionEdit(void)
 {
+	QModelIndex idx = tableView->currentIndex();
 	switch (currentList) {
 		case CONNECTION:
-			dialogC->Edit(tableView->currentIndex());
+			dialogC->Edit(idx);
 			break;
 		case HOST:
-			dialogH->Edit(tableView->currentIndex());
+			dialogH->Edit(idx);
 			break;
 		case PROTO:
-			dialogP->Edit(tableView->currentIndex());
+			dialogP->Edit(idx);
 			break;
 		case VAR:
-			dialogV->Edit(tableView->currentIndex());
+			dialogV->Edit(idx);
 			break;
 		default:
 			break;
@@ -165,19 +181,20 @@ void	MainWindowImpl::onActionEdit(void)
 }
 
 void	MainWindowImpl::onActionDel(void) {
-	if (QMessageBox::question(this, QObject::tr("Deleting record"), QObject::tr("Are you sure?"))) {
+	if (QMessageBox::question(this, QObject::tr("Deleting record"), QObject::tr("Are you sure?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+		int row = tableView->currentIndex().row();
 		switch (currentList) {
 			case CONNECTION:
-				//modelC->removeRows( ->Edit(tableView->currentIndex());
+				modelC->removeRows(row, 1);
 				break;
 			case HOST:
-				//dialogH->Edit(tableView->currentIndex());
+				modelH->removeRows(row, 1);
 				break;
 			case PROTO:
-				//dialogP->Edit(tableView->currentIndex());
+				modelP->removeRows(row, 1);
 				break;
 			case VAR:
-				//dialogV->Edit(tableView->currentIndex());
+				modelV->removeRows(row, 1);
 				break;
 			default:
 				break;
@@ -192,7 +209,7 @@ void	MainWindowImpl::onActionSettings(void)
 
 void	MainWindowImpl::onActionAbout(void)
 {
-	QMessageBox::about(this, tr("About"), tr("QRDC"));
+	QMessageBox::about(this, tr("About"), QString("%1 v.%2\n(c) %3").arg(QCoreApplication::applicationName()).arg(QCoreApplication::applicationVersion()).arg(QCoreApplication::organizationName()));
 }
 
 void	MainWindowImpl::onActionAboutQt(void)
