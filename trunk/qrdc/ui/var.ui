@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>178</width>
-    <height>136</height>
+    <width>284</width>
+    <height>108</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,19 +15,6 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="lProto">
-     <property name="text">
-      <string>&amp;Protocol</string>
-     </property>
-     <property name="buddy">
-      <cstring>cbProto</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="cbProto"/>
-   </item>
-   <item row="1" column="0">
     <widget class="QLabel" name="lName">
      <property name="text">
       <string>&amp;Name</string>
@@ -37,10 +24,10 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item row="0" column="1">
     <widget class="QLineEdit" name="leName"/>
    </item>
-   <item row="2" column="0">
+   <item row="1" column="0">
     <widget class="QLabel" name="lValue">
      <property name="text">
       <string>&amp;Value</string>
@@ -50,10 +37,10 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="1" column="1">
     <widget class="QLineEdit" name="leValue"/>
    </item>
-   <item row="3" column="0" colspan="2">
+   <item row="2" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
@@ -63,11 +50,43 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>cbProto</tabstop>
   <tabstop>leName</tabstop>
   <tabstop>leValue</tabstop>
   <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>DialogVar</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>141</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>141</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>DialogVar</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>141</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>141</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

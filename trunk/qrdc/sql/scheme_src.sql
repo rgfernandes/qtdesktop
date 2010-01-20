@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS h (
 	name		TEXT NOT NULL UNIQUE,
 	val		TEXT NOT NULL UNIQUE
 	);
-CREATE TABLE IF NOT EXISTS h (
+CREATE TABLE IF NOT EXISTS c (
 	id		INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	name		TEXT NOT NULL UNIQUE,
+	name		TEXT NOT NULL,
 	protoid		INTEGER NOT NULL,
 	hostid		INTEGER NOT NULL,
 	port		INTEGER NULL,
@@ -52,3 +52,28 @@ CREATE TRIGGER h_d
 	BEGIN
 		DELETE FROM c WHERE hostid=old.id;
 	END;
+CREATE VIEW IF NOT EXISTS view_c AS
+	SELECT
+		c.id		AS id,
+		c.name		AS name,
+		c.protoid	AS protoid,
+		c.hostid	AS hostid,
+		c.port		AS port,
+		c.varid		AS varid,
+		c.cmdline	AS cmdline,
+		c.comments	AS comments,
+		p.name		AS p_name,
+		p.programm	AS p_programm,
+		p.port		AS p_port,
+		p.term		AS p_term,
+		p.cmdline	AS p_cmdline,
+		p.logo		AS p_logo,
+		h.name		AS h_name,
+		h.val		AS h_val,
+		v.name		AS v_name,
+		v.val		AS v_val
+	FROM c
+		JOIN p		ON p.id = c.protoid
+		JOIN h		ON h.id = c.hostid
+		JOIN v		ON v.id = c.varid
+	;

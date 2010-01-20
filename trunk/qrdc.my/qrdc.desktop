@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=QRDC
-GenericName=Qt4 Remote Desktop Connection
-Icon=qrdc
-Exec=qrdc
-Terminal=false
-Categories=Qt;System;
