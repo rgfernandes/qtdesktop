@@ -77,6 +77,8 @@
      <string>&amp;Service</string>
     </property>
     <addaction name="actionSettings"/>
+    <addaction name="actionBackupDB"/>
+    <addaction name="actionRestoreDB"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_View"/>
@@ -241,6 +243,30 @@
    </property>
    <property name="text">
     <string>&amp;Settings</string>
+   </property>
+  </action>
+  <action name="actionBackupDB">
+   <property name="icon">
+    <iconset resource="../qrdc.qrc">
+     <normaloff>:/icons/icons/backup.png</normaloff>:/icons/icons/backup.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Backup</string>
+   </property>
+   <property name="toolTip">
+    <string>Backup database to text file</string>
+   </property>
+  </action>
+  <action name="actionRestoreDB">
+   <property name="icon">
+    <iconset resource="../qrdc.qrc">
+     <normaloff>:/icons/icons/restore.png</normaloff>:/icons/icons/restore.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Restore</string>
+   </property>
+   <property name="toolTip">
+    <string>Restore database from text file</string>
    </property>
   </action>
  </widget>

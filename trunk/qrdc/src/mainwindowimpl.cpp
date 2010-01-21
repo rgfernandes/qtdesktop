@@ -1,6 +1,5 @@
 #include "mainwindowimpl.h"
 #include <QtGui>
-#include <QtSql>
 //
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f) {
@@ -13,10 +12,11 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	viewGroup->addAction(actionProtocols);
 	setSlots();
 	// edit dialogs
-	dialogC = new DialogConnectionImpl;
-	dialogH = new DialogHostImpl;
-	dialogP = new DialogProtocolImpl;
-	dialogV = new DialogVarImpl;
+	dialogC = new DialogConnectionImpl(this);
+	dialogH = new DialogHostImpl(this);
+	dialogP = new DialogProtocolImpl(this);
+	dialogV = new DialogVarImpl(this);
+	settings = new DialogSettingsImpl(this);
 }
 
 void	MainWindowImpl::setSlots(void) {
@@ -29,12 +29,15 @@ void	MainWindowImpl::setSlots(void) {
 	connect( actionEdit,		SIGNAL( triggered() ),	this, SLOT( onActionEdit() ) );
 	connect( actionDel,		SIGNAL( triggered() ),	this, SLOT( onActionDel() ) );
 	connect( actionOpen,		SIGNAL( triggered() ),	this, SLOT( onActionOpen() ) );
+	connect( actionSettings,	SIGNAL( triggered() ),	this, SLOT( onActionSettings() ) );
+	connect( actionBackupDB,	SIGNAL( triggered() ),	this, SLOT( onActionBackup() ) );
+	connect( actionRestoreDB,	SIGNAL( triggered() ),	this, SLOT( onActionRestore() ) );
 	connect( actionAbout,		SIGNAL( triggered() ),	this, SLOT( onActionAbout() ) );
 	connect( actionAboutQt,		SIGNAL( triggered() ),	this, SLOT( onActionAboutQt() ) );
 }
 
-void	MainWindowImpl::setModels(void)
-{
+void	MainWindowImpl::setModels(QSqlDatabase *d) {
+	db = d;
 	modelP = new QSqlTableModel();	// create model _after_ opening db
 	modelP->setTable("p");
 	modelP->setSort(1, Qt::AscendingOrder);
@@ -104,7 +107,6 @@ void	MainWindowImpl::onActionConnections(void)
 	tableView->hideColumn(0);
 	tableView->hideColumn(5);
 	tableView->hideColumn(6);
-	tableView->hideColumn(7);
 }
 
 void	MainWindowImpl::onActionHosts(void)
@@ -181,7 +183,7 @@ void	MainWindowImpl::onActionEdit(void)
 }
 
 void	MainWindowImpl::onActionDel(void) {
-	if (QMessageBox::question(this, QObject::tr("Deleting record"), QObject::tr("Are you sure?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+	if (QMessageBox::question(this, tr("Deleting record"), tr("Are you sure?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
 		int row = tableView->currentIndex().row();
 		switch (currentList) {
 			case CONNECTION:
@@ -204,7 +206,7 @@ void	MainWindowImpl::onActionDel(void) {
 
 void	MainWindowImpl::onActionSettings(void)
 {
-	;
+	settings->Go();
 }
 
 void	MainWindowImpl::onActionAbout(void)
@@ -219,7 +221,8 @@ void	MainWindowImpl::onActionAboutQt(void)
 
 void	MainWindowImpl::onActionHelp(void)
 {
-	
+	QMessageBox::information(this, tr("Help"), tr("Help is absent yet"));
+
 }
 
 void	MainWindowImpl::onActionOpen(void)
@@ -245,9 +248,15 @@ void	MainWindowImpl::onActionOpen(void)
 			// [<term>] <program> <var> <args> <p_args(host, port)>
 			QString cmdline = QString("%1 %2 %3 %4").arg(program).arg(var).arg(args).arg(p_args.arg(host).arg(port));
 			//qDebug() << cmdline;
-			if (term)
-				cmdline = "konsole -e " + cmdline;
-			QProcess::startDetached(cmdline);
+			if (term) {
+				if (settings->terminal.isEmpty()) {
+					QMessageBox::critical(this, tr("Terminal error"), tr("'Terminal' application not defined.\nPlease, set terminal in Settings."));
+					return;
+				} else
+					cmdline = settings->terminal + " " + cmdline; 
+			}
+			if (!QProcess::startDetached(cmdline))
+				QMessageBox::critical(this, tr("Starting application error"), tr("Can't start application:\n\"%1\"").arg(cmdline));
 		}
 	}
 }

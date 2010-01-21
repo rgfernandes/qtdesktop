@@ -81,7 +81,7 @@ int main(int argc, char ** argv)
 		return 1;
 	// </db>
 	MainWindowImpl *win = new MainWindowImpl();
-	win->setModels();
+	win->setModels(&db);
 	win->show(); 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	int retvalue = app.exec();

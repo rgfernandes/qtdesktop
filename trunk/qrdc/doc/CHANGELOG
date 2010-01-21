@@ -1,7 +1,11 @@
 20100120: 0.0.1
 	* initial release
 2010012x: 0.0.2
-	* About
+	* Changed: About
 	* Changed: sort models
 	* Changed: hide columns
 	* Fixed: delete entry
+	* Added: settings: terminal call commandline
+	* Added: backup to text file (tab-separated)
+	* Added: starting restore
+	* some fixes

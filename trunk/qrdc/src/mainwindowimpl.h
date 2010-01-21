@@ -8,6 +8,7 @@
 #include "hostimpl.h"
 #include "protocolimpl.h"
 #include "varimpl.h"
+#include "settingsimpl.h"
 //
 
 enum	LISTTYPE	{
@@ -22,7 +23,7 @@ class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 Q_OBJECT
 public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
-	void				setModels(void);
+	void				setModels(QSqlDatabase *);
 private slots:
 	void				onActionExit(void);
 	void				onActionConnections(void);
@@ -34,11 +35,14 @@ private slots:
 	void				onActionEdit(void);
 	void				onActionDel(void);
 	void				onActionSettings(void);
+	void				onActionBackup(void);
+	void				onActionRestore(void);
 	void				onActionAbout(void);
 	void				onActionAboutQt(void);
 	void				onActionHelp(void);
 private:
 	LISTTYPE			currentList;
+	QSqlDatabase			*db;
 	QSqlRelationalTableModel	*modelC;
 	QSqlTableModel			*modelP, *modelV, *modelH;
 	void				setSlots(void);
@@ -46,5 +50,6 @@ private:
 	DialogHostImpl			*dialogH;
 	DialogProtocolImpl		*dialogP;
 	DialogVarImpl			*dialogV;
+	DialogSettingsImpl		*settings;
 };
 #endif

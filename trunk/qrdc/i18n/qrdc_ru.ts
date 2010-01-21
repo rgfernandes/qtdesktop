@@ -192,7 +192,7 @@
     </message>
     <message>
         <location filename="../ui/mainwindow.ui" line="50"/>
-        <location filename="../ui/mainwindow.ui" line="134"/>
+        <location filename="../ui/mainwindow.ui" line="136"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
@@ -212,190 +212,293 @@
         <translation>&amp;Сервис</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="90"/>
+        <location filename="../ui/mainwindow.ui" line="92"/>
         <source>Tool bar</source>
         <translation>Панель инструментов</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="112"/>
+        <location filename="../ui/mainwindow.ui" line="114"/>
         <source>E&amp;xit</source>
         <translation>Вы&amp;ход</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="120"/>
+        <location filename="../ui/mainwindow.ui" line="122"/>
         <source>&amp;About</source>
         <translation>&amp;О программе</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="129"/>
+        <location filename="../ui/mainwindow.ui" line="131"/>
         <source>About &amp;Qt</source>
         <translation>О &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="143"/>
+        <location filename="../ui/mainwindow.ui" line="145"/>
         <source>&amp;Add</source>
         <translation>&amp;Добавить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="146"/>
+        <location filename="../ui/mainwindow.ui" line="148"/>
         <source>Add new connection</source>
         <translation>Добавить новое соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="158"/>
+        <location filename="../ui/mainwindow.ui" line="160"/>
         <source>&amp;Edit</source>
         <translation>Р&amp;едактировать</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="161"/>
+        <location filename="../ui/mainwindow.ui" line="163"/>
         <source>Edit connection</source>
         <translation>Редактировать соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="173"/>
+        <location filename="../ui/mainwindow.ui" line="175"/>
         <source>&amp;Del</source>
         <translation>У&amp;далить</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="176"/>
+        <location filename="../ui/mainwindow.ui" line="178"/>
         <source>Delete connection</source>
         <translation>Удалить соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="184"/>
+        <location filename="../ui/mainwindow.ui" line="186"/>
         <source>&amp;Open</source>
         <translation>&amp;Открыть</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="187"/>
+        <location filename="../ui/mainwindow.ui" line="189"/>
         <source>Open current connection</source>
         <translation>Открыть текущее соединение</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="198"/>
+        <location filename="../ui/mainwindow.ui" line="200"/>
         <source>&amp;Variables</source>
         <translation>&amp;Переменные</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="209"/>
+        <location filename="../ui/mainwindow.ui" line="211"/>
         <source>&amp;Protocols</source>
         <translation>&amp;Протоколы</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="220"/>
+        <location filename="../ui/mainwindow.ui" line="222"/>
         <source>&amp;Hosts</source>
         <translation>&amp;Компьютеры</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="231"/>
+        <location filename="../ui/mainwindow.ui" line="233"/>
         <source>&amp;Connections</source>
         <translation>&amp;Соединения</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="243"/>
+        <location filename="../ui/mainwindow.ui" line="245"/>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="254"/>
+        <source>&amp;Backup</source>
+        <translation>&amp;Архивировать</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="257"/>
+        <source>Backup database to text file</source>
+        <translation>Архивировать базу данных в текстовый файл</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="266"/>
+        <source>&amp;Restore</source>
+        <translation>&amp;Восстановить</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.ui" line="269"/>
+        <source>Restore database from text file</source>
+        <translation>Восстановить базу данных из текстового файла</translation>
     </message>
 </context>
 <context>
     <name>MainWindowImpl</name>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="42"/>
-        <location filename="../src/mainwindowimpl.cpp" line="54"/>
-        <location filename="../src/mainwindowimpl.cpp" line="62"/>
-        <location filename="../src/mainwindowimpl.cpp" line="72"/>
+        <location filename="../src/mainwindowimpl.cpp" line="45"/>
+        <location filename="../src/mainwindowimpl.cpp" line="59"/>
+        <location filename="../src/mainwindowimpl.cpp" line="67"/>
+        <location filename="../src/mainwindowimpl.cpp" line="78"/>
         <source>#</source>
         <translation>№</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="43"/>
-        <location filename="../src/mainwindowimpl.cpp" line="55"/>
-        <location filename="../src/mainwindowimpl.cpp" line="63"/>
-        <location filename="../src/mainwindowimpl.cpp" line="73"/>
+        <location filename="../src/mainwindowimpl.cpp" line="46"/>
+        <location filename="../src/mainwindowimpl.cpp" line="60"/>
+        <location filename="../src/mainwindowimpl.cpp" line="68"/>
+        <location filename="../src/mainwindowimpl.cpp" line="79"/>
         <source>Name</source>
         <translation>Наименование</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="44"/>
+        <location filename="../src/mainwindowimpl.cpp" line="47"/>
         <source>Executable</source>
         <translation>Программа</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="45"/>
-        <location filename="../src/mainwindowimpl.cpp" line="76"/>
+        <location filename="../src/mainwindowimpl.cpp" line="48"/>
+        <location filename="../src/mainwindowimpl.cpp" line="82"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="46"/>
+        <location filename="../src/mainwindowimpl.cpp" line="49"/>
         <source>Console</source>
         <translation>Косноль</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="47"/>
-        <location filename="../src/mainwindowimpl.cpp" line="78"/>
+        <location filename="../src/mainwindowimpl.cpp" line="50"/>
+        <location filename="../src/mainwindowimpl.cpp" line="84"/>
         <source>CmdLine</source>
         <translation>КмндСтрока</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="48"/>
+        <location filename="../src/mainwindowimpl.cpp" line="51"/>
         <source>Logo</source>
         <translation>Логотип</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="56"/>
-        <location filename="../src/mainwindowimpl.cpp" line="64"/>
+        <location filename="../src/mainwindowimpl.cpp" line="61"/>
+        <location filename="../src/mainwindowimpl.cpp" line="69"/>
         <source>Value</source>
         <translation>Значение</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="74"/>
+        <location filename="../src/mainwindowimpl.cpp" line="80"/>
         <source>Protocol</source>
         <translation>Протокол</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="75"/>
+        <location filename="../src/mainwindowimpl.cpp" line="81"/>
         <source>Host</source>
         <translation>Компьютер</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="77"/>
+        <location filename="../src/mainwindowimpl.cpp" line="83"/>
         <source>Var</source>
         <translation>Переменная</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="79"/>
+        <location filename="../src/mainwindowimpl.cpp" line="85"/>
         <source>Comments</source>
         <translation>Комментарии</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="195"/>
-        <source>About</source>
-        <translation>О программе</translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindowimpl.cpp" line="195"/>
-        <source>QRDC</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../src/mainwindowimpl.cpp" line="200"/>
-        <source>About Qt</source>
-        <translation>О Qt</translation>
-    </message>
-</context>
-<context>
-    <name>QObject</name>
-    <message>
-        <location filename="../src/mainwindowimpl.cpp" line="168"/>
+        <location filename="../src/mainwindowimpl.cpp" line="186"/>
         <source>Deleting record</source>
         <translation>Удаление записи</translation>
     </message>
     <message>
-        <location filename="../src/mainwindowimpl.cpp" line="168"/>
+        <location filename="../src/mainwindowimpl.cpp" line="186"/>
         <source>Are you sure?</source>
         <translation>Вы уверены?</translation>
     </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="214"/>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="224"/>
+        <source>Help</source>
+        <translation>Помощь</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="224"/>
+        <source>Help is absent yet</source>
+        <translation>Помощь пока отсутствует</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="253"/>
+        <source>Terminal error</source>
+        <translation>Ошибка терминала</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="253"/>
+        <source>&apos;Terminal&apos; application not defined.
+Please, set terminal in Settings.</source>
+        <translation>Приложение &quot;Терминал&quot; не определено.
+Пожалуйста, укажите терминал в Настройках.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="259"/>
+        <source>Starting application error</source>
+        <translation>Ошибка запуска приложения</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="259"/>
+        <source>Can&apos;t start application:
+&quot;%1&quot;</source>
+        <translation>Невозможно запустить приложение:
+&quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindowimpl.cpp" line="219"/>
+        <source>About Qt</source>
+        <translation>О Qt</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="6"/>
+        <source>Save file</source>
+        <translation>Записать файл</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="6"/>
+        <location filename="../src/impex.cpp" line="57"/>
+        <source>Text files (*.txt)</source>
+        <translation>Тектовые файлы (*.txt)</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="50"/>
+        <location filename="../src/impex.cpp" line="89"/>
+        <location filename="../src/impex.cpp" line="93"/>
+        <location filename="../src/impex.cpp" line="95"/>
+        <source>Error</source>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="50"/>
+        <source>Fail to open backup file to write</source>
+        <translation>Невозможно открыть файл архива для записи</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="56"/>
+        <source>Restore database</source>
+        <translation>Восстановить базу данных</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="56"/>
+        <source>Your data will be replaced. Are you sure?</source>
+        <translation>Ваши данные будут замещены. Вы уверены?</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="57"/>
+        <source>Load file</source>
+        <translation>Загрузить файл</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="89"/>
+        <source>Can&apos;t commit transaction</source>
+        <translation>Невозможно завершить транзакцию</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="93"/>
+        <source>0 bytes read</source>
+        <translation>Считано 0 байт</translation>
+    </message>
+    <message>
+        <location filename="../src/impex.cpp" line="95"/>
+        <source>Fail to open backup file to read</source>
+        <translation>Невозможно открыть файл архива для чтения</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
     <message>
         <location filename="../src/main.cpp" line="16"/>
         <source>Opening database error</source>

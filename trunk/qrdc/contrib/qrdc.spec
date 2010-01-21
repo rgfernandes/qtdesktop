@@ -22,8 +22,8 @@ Name:		qrdc
 Version:	0.0.1
 Release:	1
 License:	GPL
-Source:		%{name}-%{version}.tar.gz
-Group:		System
+Source:		%{name}_%{version}.tar.gz
+Group:		Network
 Summary:	QT-based Remote Desctop Connection frontend.
 Vendor:		TI_Eugene <ti.eugene@gmail.com>
 BuildRequires:	gcc-c++, make, %{breq}
@@ -37,24 +37,24 @@ Prefix:		/usr
 %setup -q
 
 %build
-%{lrelease} i18n/*.ts
+#%{lrelease} i18n/*.ts
 %{qmake}
 make
 
 %install
 %{__rm} -rf %{buildroot}
 %{makeinstall} INSTALL_ROOT=%{buildroot}
-install -D -m 644 %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
-install -D -m 644 system-run.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/%{name}.png
+#install -D -m 644 %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
+#install -D -m 644 system-run.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/%{name}.png
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
-%doc AUTHORS COPYING README INSTALL TODO
+%doc doc/*
 %defattr(-,root,root,-)
 %{_bindir}/%{name}
-%{_datadir}/qt4/translations/%{name}_*.qm
+%{_datadir}/qrdc/i18n/%{name}_*.qm
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 

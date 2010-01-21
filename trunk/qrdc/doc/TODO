@@ -1,15 +1,13 @@
-* bug: settings: terminal call commandline
 * bug: refresh DialogConnection submodel after editing host/var/proto
+* issue: restore from text file
 * bug: Dialog*: check data befor submition
-* issue: service: backup to / restore from text file
-* issue: freedesktop.org compatibility (qrdc.desktop, qrdc.png)
-* issue: qrdc.spec
-* issue: qrdc.nsis?
 * issue: action triggers: enable/disable add/edit/del triggers on current model
 * issue: set cursor after add/edit/del
-* issue: models: sort
-* issue: models: hide unwanted columns
 * issue: modelC: tooltip from comments
 * issue: Dialog*: OK and Cancel hotkeys
 * issue: Dialog*: tooltips
+* issue: freedesktop.org compatibility (qrdc.desktop, qrdc.png)
+* bug: i18n path
+* issue: qrdc.spec
+* issue: qrdc.nsis?
 * issue: help
