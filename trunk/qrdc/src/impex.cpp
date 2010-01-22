@@ -36,14 +36,15 @@ void	MainWindowImpl::onActionBackup(void)
 			// 4. Connections
 			q.exec("SELECT * FROM c");
 			while (q.next())
-				outf << QString("c\t%1\t%2\t%3\t%4\t%5\t%6\t%7\n").arg(
+				outf << QString("c\t%1\t%2\t%3\t%4\t%5\t%6\t%7\t%8\n").arg(
 					q.value(0).toString(),
 					q.value(1).toString(),
 					q.value(2).toString(),
 					q.value(3).toString(),
 					q.value(4).toString(),
 					q.value(5).toString(),
-					q.value(6).toString());
+					q.value(7).toString(),
+					q.value(8).toString());
 			// the end
 			file->close();
 		} else
@@ -64,23 +65,48 @@ void	MainWindowImpl::onActionRestore(void)
 				file->close();
 				if (!list.isEmpty()) {
 					db->transaction();
-					QSqlQuery q;
-					q.exec("DELETE ALL FROM * p");
-					q.exec("DELETE ALL FROM * v");
-					q.exec("DELETE ALL FROM * h");
-					q.exec("DELETE ALL FROM * c");
+					modelC->removeRows(0, modelC->rowCount());
+					modelP->removeRows(0, modelP->rowCount());
+					modelV->removeRows(0, modelV->rowCount());
+					modelH->removeRows(0, modelH->rowCount());    
 					QListIterator<QString> itr (list);  
 					while (itr.hasNext()) {
 						QString s =  itr.next();
 						if (!s.isEmpty()) {
 							line = s.split("\t");
 							//qDebug() << line;
-							if (line[0] == "h") {
+							if (line[0] == "h") {	// + and len == ...
 								r = modelH->record();
 								r.setValue(0, QVariant(line[1].toLongLong()));
 								r.setValue(1, QVariant(line[2]));
 								r.setValue(2, QVariant(line[3]));
-								qDebug() << "host" << modelH->insertRecord(-1, r);
+								modelH->insertRecord(-1, r);
+							} else if (line[0] == "v") {
+								r = modelV->record();
+								r.setValue(0, QVariant(line[1].toLongLong()));
+								r.setValue(1, QVariant(line[2]));
+								r.setValue(2, QVariant(line[3]));
+								modelV->insertRecord(-1, r);
+							} else if (line[0] == "p") {
+								r = modelP->record();
+								r.setValue(0, QVariant(line[1].toLongLong()));
+								r.setValue(1, QVariant(line[2]));
+								r.setValue(2, QVariant(line[3]));
+								r.setValue(3, QVariant(line[4].toInt()));
+								r.setValue(4, QVariant(line[5] == "true"));
+								r.setValue(5, QVariant(line[6]));
+								modelP->insertRecord(-1, r);
+							} else if (line[0] == "c") {
+								r = modelC->record();
+								r.setValue(0, QVariant(line[1].toLongLong()));
+								r.setValue(1, QVariant(line[2]));
+								r.setValue(2, QVariant(line[3].toLongLong()));
+								r.setValue(3, QVariant(line[4].toLongLong()));
+								r.setValue(4, QVariant(line[5].toInt()));
+								r.setValue(5, QVariant(line[6].toLongLong()));
+								r.setValue(6, QVariant(line[7]));
+								r.setValue(7, QVariant(line[8]));
+								modelC->insertRecord(-1, r);
 							}
 						}
 					}
