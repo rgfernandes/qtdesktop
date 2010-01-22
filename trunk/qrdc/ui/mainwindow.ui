@@ -104,6 +104,11 @@
    <addaction name="actionDel"/>
    <addaction name="separator"/>
    <addaction name="actionOpen"/>
+   <addaction name="separator"/>
+   <addaction name="actionSettings"/>
+   <addaction name="separator"/>
+   <addaction name="actionBackupDB"/>
+   <addaction name="actionRestoreDB"/>
   </widget>
   <action name="actionExit">
    <property name="icon">
@@ -182,6 +187,10 @@
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../qrdc.qrc">
+     <normaloff>:/icons/icons/connect.gif</normaloff>:/icons/icons/connect.gif</iconset>
+   </property>
    <property name="text">
     <string>&amp;Open</string>
    </property>
@@ -189,7 +198,7 @@
     <string>Open current connection</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Return</string>
+    <string>Return</string>
    </property>
   </action>
   <action name="actionVariables">
