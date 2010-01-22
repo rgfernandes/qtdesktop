@@ -77,35 +77,39 @@ void	MainWindowImpl::onActionRestore(void)
 							//qDebug() << line;
 							if (line[0] == "h") {	// + and len == ...
 								r = modelH->record();
-								r.setValue(0, QVariant(line[1].toLongLong()));
-								r.setValue(1, QVariant(line[2]));
-								r.setValue(2, QVariant(line[3]));
+								r.setValue("id", line[1].toLongLong());
+								r.setValue("name", line[2]);
+								r.setValue("val", line[3]);
 								modelH->insertRecord(-1, r);
 							} else if (line[0] == "v") {
 								r = modelV->record();
-								r.setValue(0, QVariant(line[1].toLongLong()));
-								r.setValue(1, QVariant(line[2]));
-								r.setValue(2, QVariant(line[3]));
+								r.setValue("id", line[1].toLongLong());
+								r.setValue("name", line[2]);
+								r.setValue("val", line[3]);
 								modelV->insertRecord(-1, r);
 							} else if (line[0] == "p") {
 								r = modelP->record();
-								r.setValue(0, QVariant(line[1].toLongLong()));
-								r.setValue(1, QVariant(line[2]));
-								r.setValue(2, QVariant(line[3]));
-								r.setValue(3, QVariant(line[4].toInt()));
-								r.setValue(4, QVariant(line[5] == "true"));
-								r.setValue(5, QVariant(line[6]));
+								r.setValue("id", line[1].toLongLong());
+								r.setValue("name", line[2]);
+								r.setValue("programm", line[3]);
+								r.setValue("port", line[4].toInt());
+								r.setValue("term", line[5] == "true");
+								r.setValue("cmdline", line[6]);
 								modelP->insertRecord(-1, r);
 							} else if (line[0] == "c") {
 								r = modelC->record();
-								r.setValue(0, QVariant(line[1].toLongLong()));
-								r.setValue(1, QVariant(line[2]));
-								r.setValue(2, QVariant(line[3].toLongLong()));
-								r.setValue(3, QVariant(line[4].toLongLong()));
-								r.setValue(4, QVariant(line[5].toInt()));
-								r.setValue(5, QVariant(line[6].toLongLong()));
-								r.setValue(6, QVariant(line[7]));
-								r.setValue(7, QVariant(line[8]));
+								// !!! add related fields !!!
+								r.append(QSqlField("protoid", QVariant::LongLong));
+								r.append(QSqlField("hostid", QVariant::LongLong));
+								r.append(QSqlField("varid", QVariant::LongLong));
+								r.setValue("id", line[1].toLongLong());
+								r.setValue("name", line[2]);
+								r.setValue("protoid", line[3].toLongLong());
+								r.setValue("hostid", line[4].toLongLong());
+								r.setValue("port", line[5].toInt());
+								r.setValue("varid", line[6].toLongLong());
+								r.setValue("cmdline", line[7]);
+								r.setValue("comments", line[8]);
 								modelC->insertRecord(-1, r);
 							}
 						}
