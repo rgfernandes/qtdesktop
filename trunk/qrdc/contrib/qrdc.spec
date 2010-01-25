@@ -37,15 +37,13 @@ Prefix:		/usr
 %setup -q
 
 %build
-#%{lrelease} i18n/*.ts
+%{lrelease} %{name}.pro
 %{qmake}
 make
 
 %install
 %{__rm} -rf %{buildroot}
 %{makeinstall} INSTALL_ROOT=%{buildroot}
-#install -D -m 644 %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/%{name}.desktop
-#install -D -m 644 system-run.png $RPM_BUILD_ROOT%{_datadir}/pixmaps/%{name}.png
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -54,7 +52,7 @@ make
 %doc doc/*
 %defattr(-,root,root,-)
 %{_bindir}/%{name}
-%{_datadir}/qrdc/i18n/%{name}_*.qm
+%{_qt4_translationdir}/%{name}_*.qm
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 

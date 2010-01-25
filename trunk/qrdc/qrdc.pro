@@ -36,7 +36,7 @@ SOURCES = src/mainwindowimpl.cpp \
 TRANSLATIONS += i18n/qrdc_ru.ts
 RESOURCES += qrdc.qrc
 target.path = /usr/bin
-translations.path = /usr/share/qrdc/i18n
+translations.path = $$[QT_INSTALL_TRANSLATIONS]
 translations.files = i18n/*.qm
 desktop.path = /usr/share/applications
 desktop.files = contrib/qrdc.desktop
@@ -45,17 +45,17 @@ icon.files = contrib/qrdc.png
 isEmpty(QMAKE_LRELEASE) {
  win32 {
   QMAKE_LRELEASE =   $$[QT_INSTALL_BINS]\lrelease.exe
- }
- else:QMAKE_LRELEASE =  $$[QT_INSTALL_BINS]/lrelease-qt4
+}
+else:QMAKE_LRELEASE =  $$[QT_INSTALL_BINS]/lrelease-qt4
 }
 isEmpty(TS_DIR) {
  TS_DIR =  i18n
 }
-TSQM.name = $$QMAKE_LRELEASE
-TSQM.input = TRANSLATIONS
-TSQM.output = $$TS_DIR/${QMAKE_FILE_BASE}.qm
-TSQM.commands = $$QMAKE_LRELEASE
-TSQM.CONFIG = no_link
-QMAKE_EXTRA_COMPILERS += TSQM
-PRE_TARGETDEPS += compiler_TSQM_make_all
+;TSQM.name = $$QMAKE_LRELEASE
+;TSQM.input = TRANSLATIONS
+;TSQM.output = $$TS_DIR/${QMAKE_FILE_BASE}.qm
+;TSQM.commands = $$QMAKE_LRELEASE
+;TSQM.CONFIG = no_link
+;QMAKE_EXTRA_COMPILERS += TSQM
+;PRE_TARGETDEPS += compiler_TSQM_make_all
 INSTALLS += target translations desktop icon

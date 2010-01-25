@@ -17,10 +17,10 @@
     <file>icons/qt4.gif</file>
     <file>icons/save.gif</file>
     <file>icons/stop.gif</file>
-    <file>icons/XP_16x16x8.gif</file>
-    <file>icons/XP_16x16x8.png</file>
-    <file>icons/RealVnc.gif</file>
-    <file>icons/Vnc.gif</file>
+    <file>icons/windows.gif</file>
+    <file>icons/logo_vnc.gif</file>
+    <file>icons/logo_realvnc.gif</file>
+    <file>icons/logo_xp.gif</file>
   </qresource>
   <qresource prefix="sql" >
     <file>sql/data.sql</file>

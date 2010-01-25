@@ -7,5 +7,7 @@
 	* Fixed: delete entry
 	* Added: settings: terminal call commandline
 	* Added: backup to text file (tab-separated)
-	* Added: starting restore
+	* Added: restore
+	* Fixed: i18n path (_qt4_translations or <workdir>/i18n)
 	* some fixes
+	* issue: freedesktop.org compatibility (qrdc.desktop, qrdc.png)
