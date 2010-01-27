@@ -102,14 +102,14 @@ void	MainWindowImpl::onActionRestore(void)
 								r.append(QSqlField("protoid", QVariant::LongLong));
 								r.append(QSqlField("hostid", QVariant::LongLong));
 								r.append(QSqlField("varid", QVariant::LongLong));
-								r.setValue("id", line[1].toLongLong());
-								r.setValue("name", line[2]);
-								r.setValue("protoid", line[3].toLongLong());
-								r.setValue("hostid", line[4].toLongLong());
-								r.setValue("port", line[5].toInt());
-								r.setValue("varid", line[6].toLongLong());
-								r.setValue("cmdline", line[7]);
-								r.setValue("comments", line[8]);
+								//r.setValue("id", line[1].toLongLong());
+								r.setValue("name", line[1]);
+								r.setValue("protoid", line[2].toLongLong());
+								r.setValue("hostid", line[3].toLongLong());
+								r.setValue("port", line[4].toInt());
+								r.setValue("varid", line[5].toLongLong());
+								r.setValue("cmdline", line[6]);
+								r.setValue("comments", line[7]);
 								modelC->insertRecord(-1, r);
 							}
 						}

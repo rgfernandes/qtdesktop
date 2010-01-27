@@ -1,6 +1,6 @@
 20100120: 0.0.1
 	* initial release
-2010012x: 0.0.2
+20100124: 0.0.2
 	* Changed: About
 	* Changed: sort models
 	* Changed: hide columns
@@ -11,3 +11,5 @@
 	* Fixed: i18n path (_qt4_translations or <workdir>/i18n)
 	* some fixes
 	* issue: freedesktop.org compatibility (qrdc.desktop, qrdc.png)
+20101026:
+	* Changed: removed connection.id from import/export

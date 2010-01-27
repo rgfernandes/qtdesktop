@@ -17,6 +17,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	dialogP = new DialogProtocolImpl(this);
 	dialogV = new DialogVarImpl(this);
 	settings = new DialogSettingsImpl(this);
+
+	currentList = PROTO;	// NOT connections
 }
 
 void	MainWindowImpl::setSlots(void) {
@@ -101,40 +103,52 @@ void	MainWindowImpl::onActionExit(void)
 
 void	MainWindowImpl::onActionConnections(void)
 {
-	currentList = CONNECTION;
-	tableView->setModel(modelC);
-	tableView->resizeColumnsToContents();
-	tableView->hideColumn(0);
-	tableView->hideColumn(5);
-	tableView->hideColumn(6);
+	if (currentList != CONNECTION) {
+		currentList = CONNECTION;
+		tableView->setModel(modelC);
+		tableView->resizeColumnsToContents();
+		tableView->hideColumn(0);
+		tableView->hideColumn(5);
+		tableView->hideColumn(6);
+		tableView->setCurrentIndex(tableView->model()->index(0, 1));
+	}
 }
 
 void	MainWindowImpl::onActionHosts(void)
 {
-	currentList = HOST;
-	tableView->setModel(modelH);
-	tableView->resizeColumnsToContents();
-	tableView->hideColumn(0);
+	if (currentList != HOST) {
+		currentList = HOST;
+		tableView->setModel(modelH);
+		tableView->resizeColumnsToContents();
+		tableView->hideColumn(0);
+		tableView->setCurrentIndex(tableView->model()->index(0, 1));
+	}
 }
 
 void	MainWindowImpl::onActionVariables(void)
 {
-	currentList = VAR;
-	tableView->setModel(modelV);
-	tableView->resizeColumnsToContents();
-	tableView->hideColumn(0);
+	if (currentList != VAR) {
+		currentList = VAR;
+		tableView->setModel(modelV);
+		tableView->resizeColumnsToContents();
+		tableView->hideColumn(0);
+		tableView->setCurrentIndex(tableView->model()->index(0, 1));
+	}
 }
 
 void	MainWindowImpl::onActionProtocols(void)
 {
-	currentList = PROTO;
-	tableView->setModel(modelP);
-	tableView->resizeColumnsToContents();
-	tableView->hideColumn(0);
-	tableView->hideColumn(2);
-	tableView->hideColumn(4);
-	tableView->hideColumn(5);
-	tableView->hideColumn(6);
+	if (currentList != PROTO) {
+		currentList = PROTO;
+		tableView->setModel(modelP);
+		tableView->resizeColumnsToContents();
+		tableView->hideColumn(0);
+		tableView->hideColumn(2);
+		tableView->hideColumn(4);
+		tableView->hideColumn(5);
+		tableView->hideColumn(6);
+		tableView->setCurrentIndex(tableView->model()->index(0, 1));
+	}
 }
 
 void	MainWindowImpl::onActionAdd(void)
@@ -164,42 +178,47 @@ void	MainWindowImpl::onActionAdd(void)
 void	MainWindowImpl::onActionEdit(void)
 {
 	QModelIndex idx = tableView->currentIndex();
-	switch (currentList) {
-		case CONNECTION:
-			dialogC->Edit(idx);
-			break;
-		case HOST:
-			dialogH->Edit(idx);
-			break;
-		case PROTO:
-			dialogP->Edit(idx);
-			break;
-		case VAR:
-			dialogV->Edit(idx);
-			break;
-		default:
-			break;
+	if (idx.isValid()) {
+		switch (currentList) {
+			case CONNECTION:
+				dialogC->Edit(idx);
+				break;
+			case HOST:
+				dialogH->Edit(idx);
+				break;
+			case PROTO:
+				dialogP->Edit(idx);
+				break;
+			case VAR:
+				dialogV->Edit(idx);
+				break;
+			default:
+				break;
+		}
 	}
 }
 
 void	MainWindowImpl::onActionDel(void) {
-	if (QMessageBox::question(this, tr("Deleting record"), tr("Are you sure?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
-		int row = tableView->currentIndex().row();
-		switch (currentList) {
-			case CONNECTION:
-				modelC->removeRows(row, 1);
-				break;
-			case HOST:
-				modelH->removeRows(row, 1);
-				break;
-			case PROTO:
-				modelP->removeRows(row, 1);
-				break;
-			case VAR:
-				modelV->removeRows(row, 1);
-				break;
-			default:
-				break;
+	QModelIndex idx = tableView->currentIndex();
+	if (idx.isValid()) {
+		if (QMessageBox::question(this, tr("Deleting record"), tr("Are you sure?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes) {
+			int row = idx.row();
+			switch (currentList) {
+				case CONNECTION:
+					modelC->removeRows(row, 1);
+					break;
+				case HOST:
+					modelH->removeRows(row, 1);
+					break;
+				case PROTO:
+					modelP->removeRows(row, 1);
+					break;
+				case VAR:
+					modelV->removeRows(row, 1);
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }
