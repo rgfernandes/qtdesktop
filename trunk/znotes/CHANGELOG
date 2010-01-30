@@ -1,9 +1,35 @@
+zNotes 0.4.0:
+* Major architectural changes
+* Optimized source code
+* Added clicable links
+* Added links' highlighting
+* Added support for html format of notes (text formating only now)
+* Added new shortcuts
+* Fixed problem with translation on unix
+ systems
+* Fixed problem with translation Script's table headers in configuration dialog
+* Fixed search
+* Fixed "KDE kogout was cancelled by zNotes" bug
+* Fixed problem with saving default settings
+* Added Czech translation
+* Fixed and updated russian translation
+* Some small fixes
+
+zNotes 0.3.9:
+* Fixed some problems in toolbar editor
+* Fixed tray icon on windows
+* Fixed application icon on windows
+* Fixed bug with segmentaion fault on removing note
+* Improved  toolbar editor
+* Added abilty to change application language
+* Updated russian translate
+
 zNotes 0.3.8
-- fixed problems saving toolbar's items
-- added program directory to translation's search paths
-- fixed desktop file (unix only)
-- fixed problems with window's frame hiding
-- removed ability to hide toolbar (If you need in this ability, tell me, please)
+* Fixed problems saving toolbar's items
+* Added program directory to translation's search paths
+* Fixed desktop file (unix only)
+* Fixed problems with window's frame hiding
+* Removed ability to hide toolbar (If you need in this ability, tell me, please)
 
 zNotes 0.3.7
 * Added ability to configure toolbar's elements

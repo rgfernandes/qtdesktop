@@ -1,12 +1,20 @@
 #include "settings.h"
+#include "toolbaraction.h"
 
 #include <QObject>
-#include <QtDebug>
+#include <QApplication>
+#include <QLibraryInfo>
+#include <QDir>
+
+Settings::Settings() : config("pDev", "zNotes")
+{
+}
 
 /*
-  Settings loading...
+  Loading settings...
 */
-Settings::Settings() : config("pDev", "zNotes")
+
+void Settings::load()
 {
 	if(config.allKeys().size()>0) //if exist - reading settings
 	{
@@ -17,16 +25,17 @@ Settings::Settings() : config("pDev", "zNotes")
 		DialogGeometry = config.value("DialogGeometry").toByteArray();
 		DialogState = config.value("DialogState").toByteArray();
 		//
-		//HideToolbar = config.value("HideToolbar").toBool();
 		HideFrame = config.value("HideFrame").toBool();
 		StayTop = config.value("StayTop").toBool();
 		//
 		NoteFont.fromString(config.value("NoteFont").toString());
+		NoteLinksHighlight = config.value("NoteLinksHighlight").toBool();
+		NoteLinksOpen = config.value("NoteLinksOpen").toBool();
 		//
 		int ScriptCount = config.value("ComandCount").toInt();
 		for(int i=0; i<ScriptCount; ++i)
 		{
-			smodel.append(
+			script_model.append(
 				config.value(QString("ComandName%1").arg(i)).toString(),
 				config.value(QString("ComandFile%1").arg(i)).toString(),
 				config.value(QString("ComandIcon%1").arg(i)).toString());
@@ -34,17 +43,22 @@ Settings::Settings() : config("pDev", "zNotes")
 		ScriptShowOutput = config.value("ScriptShowOutput").toBool();
 		ScriptCopyOutput = config.value("ScriptCopyOutput").toBool();
 		//
-		///TODO: remove this code, when in version 0.4.1:
+		LanguageCustom = config.value("LanguageCustom").toBool();
+		LanguageCurrent = QLocale(config.value("LanguageCurrent").toString()).language();
 		//
 		if(config.contains("Toolbar/itemCount"))
 		{
 			tb_items.resize(config.value("Toolbar/itemCount").toInt());
 			for(int i=itemAdd; i<itemMax; ++i)
 			{
-				int pos = config.value(getItemName(i), tb_items.size()).toInt();
-				if(pos<tb_items.size()) tb_items[pos] = i;
+				int pos = config.value(ToolbarAction(item_enum(i)).pref_name(), tb_items.size()).toInt();
+				if(pos<tb_items.size()) tb_items[pos] = i; //Item's position
 			}
 		}
+		//
+		///Deprecated:
+		///TODO: remove this code, when in version 0.4.1:
+		//
 		else
 		{
 			bool old_settings_exist = (
@@ -88,29 +102,44 @@ Settings::Settings() : config("pDev", "zNotes")
 				}
 				if(!config.value("tbHideExit").toBool()) tb_items.append(itemExit);
 			}
-			else //default toolbar's settings
-			{
-				tb_items.append(itemAdd);
-				tb_items.append(itemRemove);
-				tb_items.append(itemRename);
-				tb_items.append(itemSeparator);
-				tb_items.append(itemPrev);
-				tb_items.append(itemNext);
-				tb_items.append(itemSeparator);
-				tb_items.append(itemCopy);
-				tb_items.append(itemSeparator);
-				tb_items.append(itemSetup);
-				tb_items.append(itemInfo);
-				tb_items.append(itemSeparator);
-				tb_items.append(itemRun);
-				tb_items.append(itemSearch);
-				tb_items.append(itemSeparator);
-				tb_items.append(itemExit);
-			}
+		}
+	}//TODO:
+	//If settings don't exist - setup default settings
+#ifdef Q_WS_X11
+	//Setting default path to notes
+	if(NotesPath.isEmpty())
+	{
+		NotesPath = QDir::homePath()+"/.local/share/notes";
+		config.setValue("NotesPath", NotesPath);
+	}
+#endif
+	//Setting default note options
+	if(config.contains("NoteLinksHighlight"))
+	{
+		NoteLinksHighlight = true;
+		config.setValue("NoteLinksHighlight", NoteLinksHighlight);
+	}
+	if(config.contains("NoteLinksOpen"))
+	{
+		NoteLinksOpen = true;
+		config.setValue("NoteLinksOpen", NoteLinksOpen);
+	}
+	//Setting default scripts
+	if((script_model.rowCount()==0) && !config.contains("ComandCount"))
+	{
+		script_model.append("Print note's content", "cat", "");
+		script_model.append("Upload to pasterbin", "/usr/bin/pastebin", "");
+		config.setValue("ComandCount", script_model.rowCount());
+		for(int i=0; i<script_model.rowCount(); ++i)
+		{
+			config.setValue(QString("ComandName%1").arg(i), script_model.getName(i));
+			config.setValue(QString("ComandFile%1").arg(i), script_model.getFile(i));
+			config.setValue(QString("ComandIcon%1").arg(i), script_model.getIcon(i));
 		}
 	}
-	else //if settings don't exist - setup default settings
+	if((tb_items.size()==0) && !config.contains("Toolbar/itemCount"))
 	{
+		//Setting default toolbar items
 		tb_items.append(itemAdd);
 		tb_items.append(itemRemove);
 		tb_items.append(itemRename);
@@ -127,7 +156,66 @@ Settings::Settings() : config("pDev", "zNotes")
 		tb_items.append(itemSearch);
 		tb_items.append(itemSeparator);
 		tb_items.append(itemExit);
+		config.setValue("Toolbar/itemCount", tb_items.size());
+		for(int i=0; i<tb_items.size(); ++i)
+			if(tb_items[i]!=itemSeparator)
+				config.setValue(ToolbarAction(item_enum(tb_items[i])).pref_name(), i);
 	}
+	loadLanguages();
+	//
+#ifdef unix
+	//Fixing Qt's problem on unix systems...
+	QString system_lang(qgetenv("LANG").constData());
+	system_lang.truncate(system_lang.indexOf('.'));
+	if(system_lang.size()>0) system_language = QLocale(system_lang).language();
+	else system_language = QLocale::system().language();
+#else
+	system_language = QLocale::system().language();
+#endif
+	QLocale::Language lang = (LanguageCustom)?LanguageCurrent:system_language;
+	if(!translations.contains(lang)) lang = QLocale::English;
+	qtranslator.load("qt_"+QLocale(lang).name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	qApp->installTranslator(&qtranslator);
+	setLanguage(lang);
+	qApp->installTranslator(&translator);
+}
+
+/*
+  Loading list of qm-files...
+*/
+
+void Settings::loadLanguages()
+{
+	//adding translations search paths
+	QStringList translation_dirs;
+	translation_dirs << QCoreApplication::applicationDirPath();
+	translation_dirs << QCoreApplication::applicationDirPath()+"/translations";
+#ifdef PROGRAM_DATA_DIR
+	translation_dirs << QString(PROGRAM_DATA_DIR)+"/translations";
+#endif
+#ifdef Q_WS_MAC
+	translation_dirs << QCoreApplication::applicationDirPath()+"/../Resources";
+#endif
+	//looking for qm-files in translation directories
+	QStringListIterator dir_path(translation_dirs);
+	while(dir_path.hasNext())
+	{
+		QDir dir(dir_path.next());
+		QStringList fileNames = dir.entryList(QStringList("znotes_*.qm"));
+		for(int i=0; i < fileNames.size(); ++i)
+		{
+			QString filename(fileNames[i]);
+			QString fullpath(dir.absoluteFilePath(filename));
+			filename.remove(0, filename.indexOf('_') + 1);
+			filename.chop(3);
+			QLocale locale(filename);
+			if(!translations.contains(locale.language()))
+			{
+				translations[locale.language()]=fullpath;
+			}
+		}
+	}
+	translations[QLocale::English]="";
 }
 
 /*
@@ -167,19 +255,6 @@ void Settings::setHideStart(bool hide)
 	}
 }
 
-/*
-  Saving option (toolbar's showing)
-*/
-//void Settings::setHideToolbar(bool Hide, bool send_signal)
-//{
-//	if(HideToolbar != Hide)
-//	{
-//		HideToolbar = Hide;
-//		config.setValue("HideToolbar", HideToolbar);
-//		if(send_signal) emit ToolbarVisChanged();
-//	}
-//}
-//
 /*
   Saving option (hiding window decoration)
 */
@@ -234,6 +309,32 @@ void Settings::setNoteFont(const QFont& f)
 }
 
 /*
+  Saving notes's links highlight option
+*/
+void Settings::setNoteLinksHighlight(bool b)
+{
+	if(NoteLinksHighlight != b)
+	{
+		NoteLinksHighlight = b;
+		config.setValue("NoteLinksHighlight", NoteLinksHighlight);
+		emit NoteHighlightChanged();
+	}
+}
+
+/*
+  Saving notes's links highlight option
+*/
+void Settings::setNoteLinksOpen(bool b)
+{
+	if(NoteLinksOpen != b)
+	{
+		NoteLinksOpen = b;
+		config.setValue("NoteLinksOpen", NoteLinksOpen);
+		emit NoteLinkOpenChanged();
+	}
+}
+
+/*
   Saving script's options
 */
 void Settings::setScriptShowOutput(bool sso)
@@ -258,12 +359,12 @@ void Settings::setScriptCopyOutput(bool sco)
 */
 void Settings::setScripts()
 {
-	config.setValue("ComandCount", smodel.rowCount());
-	for(int i=0; i<smodel.rowCount(); ++i)
+	config.setValue("ComandCount", script_model.rowCount());
+	for(int i=0; i<script_model.rowCount(); ++i)
 	{
-		config.setValue(QString("ComandName%1").arg(i), smodel.getName(i));
-		config.setValue(QString("ComandFile%1").arg(i), smodel.getFile(i));
-		config.setValue(QString("ComandIcon%1").arg(i), smodel.getIcon(i));
+		config.setValue(QString("ComandName%1").arg(i), script_model.getName(i));
+		config.setValue(QString("ComandFile%1").arg(i), script_model.getFile(i));
+		config.setValue(QString("ComandIcon%1").arg(i), script_model.getIcon(i));
 	}
 }
 
@@ -276,14 +377,49 @@ void Settings::setToolbarItems(const QVector<int>& v)
 	//removing old settings
 	for(int i=0; i<tb_items.size(); ++i) if(tb_items[i]!=itemSeparator)
 	{
-		config.remove(getItemName(tb_items[i])); //dirty hack =(
+		config.remove(ToolbarAction(item_enum(tb_items[i])).pref_name()); //dirty hack =(
 	}
 	tb_items = v;
 	//saving settings
 	config.setValue("Toolbar/itemCount", tb_items.size());
 	for(int i=0; i<tb_items.size(); ++i) if(tb_items[i]!=itemSeparator)
 	{
-		config.setValue(getItemName(tb_items[i]), i);
+		config.setValue(ToolbarAction(item_enum(tb_items[i])).pref_name(), i);
 	}
 	emit ToolbarItemsChanged();
+}
+
+/*
+  Saving custom language
+*/
+void Settings::setLanguageCurrent(QLocale::Language l)
+{
+	if(LanguageCurrent != l)
+	{
+		LanguageCurrent = l;
+		config.setValue("LanguageCurrent", QLocale(LanguageCurrent).name());
+	}
+	if(LanguageCustom) setLanguage(LanguageCurrent);
+}
+
+/*
+  Saving option of using cusrom language
+*/
+void Settings::setLanguageCustom(bool b)
+{
+	if(LanguageCustom != b)
+	{
+		LanguageCustom = b;
+		config.setValue("LanguageCustom", LanguageCustom);
+		if(!LanguageCustom) setLanguage(QLocale(system_language).language());
+	}
+}
+
+/*
+  Setting language
+*/
+void Settings::setLanguage(QLocale::Language language)
+{
+	qtranslator.load("qt_"+QLocale(language).name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	translator.load(translations[language]);
 }

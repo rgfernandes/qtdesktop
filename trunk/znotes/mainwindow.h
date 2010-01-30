@@ -9,9 +9,11 @@
 #include <QSignalMapper>
 #include <QAction>
 #include <QShortcut>
+#include <QSessionManager>
 
-#include "note.h"
+#include "notelist.h"
 #include "settings.h"
+#include "toolbaraction.h"
 
 namespace Ui
 {
@@ -32,8 +34,9 @@ private:
 	Ui::MainWindow *ui;
 	//
 	QDir dir;
-	QVector<Note*> Notes;
-	int CurrentIndex;
+	NoteList Notes;
+	//QVector<Note*> Notes;
+
 	QSystemTrayIcon tray;
 	QMenu cmenu;
 	QMenu cmd_menu;
@@ -41,44 +44,47 @@ private:
 	QSignalMapper alt_mapper;
 	QTimer SaveTimer;
 	//
-	QAction *actAdd, *actRemove, *actRename, *actPrev, *actNext;
+	QAction *actAdd, *actAddHtml, *actRemove, *actRename, *actPrev, *actNext;
 	QAction *actCopy, *actSetup, *actRun, *actExit, *actInfo, *actSearch;
+	QAction *actFormatBold, *actFormatItalic, *actFormatStrikeout, *actFormatUnderline;
 	//
-	QShortcut *scAdd, *scRemove, *scPrev, *scNext, *scExit, *scSearch;
+	QAction *actShow, *actHide;
+	//
+	QShortcut *scAdd, *scRemove, *scRename, *scBack, *scForward, *scPrev, *scNext, *scExit, *scSearch;
+	QShortcut *scFormatBold, *scFormatItalic, *scFormatStrikeout, *scFormatUnderline;
 	//
 	void LoadNotes();
-	inline Note* currentNote()
-	{
-		return Notes[CurrentIndex];
-	}
-	int currentIndex;
-	void SaveNote(int i);
 	//
 	void Search(bool next);
 	inline QAction* getAction(int i)
 	{
 		switch(i)
 		{
-			case itemAdd: return actAdd;
-			case itemRemove: return actRemove;
-			case itemRename: return actRename;
-			case itemPrev: return actPrev;
-			case itemNext: return actNext;
-			case itemCopy: return actCopy;
-			case itemSetup: return actSetup;
-			case itemInfo: return actInfo;
-			case itemRun: return actRun;
-			case itemSearch: return actSearch;
-			case itemExit: return actExit;
+			case itemAdd:			return actAdd;
+			case itemAddHtml:		return actAddHtml;
+			case itemRemove:		return actRemove;
+			case itemRename:		return actRename;
+			case itemPrev:			return actPrev;
+			case itemNext:			return actNext;
+			case itemCopy:			return actCopy;
+			case itemSetup:			return actSetup;
+			case itemInfo:			return actInfo;
+			case itemRun:			return actRun;
+			case itemSearch:		return actSearch;
+			case itemExit:			return actExit;
+			case itemFormatBold:	return actFormatBold;
+			case itemFormatItalic:	return actFormatItalic;
+			case itemFormatStrikeout: return actFormatStrikeout;
+			case itemFormatUnderline: return actFormatUnderline;
 			default: return new QAction(this);
 		}
 	}
 	void changeEvent(QEvent *e);
 public slots:
-	void SaveCurrentNote();
 	void RemoveCurrentNote();
 	void RenameCurrentNote();
 	void NewNote();
+	void NewNoteHTML();
 	//
 	void PreviousNote();
 	void NextNote();
@@ -86,7 +92,6 @@ public slots:
 	//
 	void CopyNote();
 	//
-	void currentNoteChanged();
 	void on_tabs_currentChanged(int index);
 	//
 	void SaveAll();
@@ -98,6 +103,12 @@ public slots:
 	void showPrefDialog();
 	void showSearchBar();
 	//
+	void formatChanged(const QFont& font);
+	void formatBold();
+	void formatItalic();
+	void formatStrikeout();
+	void formatUnderline();
+	//
 	void actions_changed();
 	//
 	void cmd_changed();
@@ -105,8 +116,6 @@ public slots:
 	//
 	void notesPathChanged();
 	void windowStateChanged();
-	//void toolbarVisChanged();//TODO:think
-	void noteFontChanged();
 private slots:
 	void on_edSearch_returnPressed();
 	void on_edSearch_textChanged(QString text);

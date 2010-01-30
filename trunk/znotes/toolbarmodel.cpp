@@ -1,6 +1,14 @@
 #include "toolbarmodel.h"
 #include "toolbaraction.h"
 
+#include <QPalette>
+
+//------------------------------------------------------------------------------
+
+/*
+  This model contains all existing items
+*/
+
 ItemModel::ItemModel()
 {
 	v.resize(itemMax);
@@ -13,19 +21,24 @@ int ItemModel::rowCount(const QModelIndex &) const
 
 QVariant ItemModel::data(const QModelIndex &index, int role) const
 {
+	const int id = index.row();
+	QPalette::ColorGroup colorgroup = (isUsed(id))?QPalette::Disabled:QPalette::Normal;
 	switch(role)
 	{
-		case Qt::DisplayRole: return ToolbarAction(item_enum(index.row())).text();
-		case Qt::DecorationRole : return ToolbarAction(item_enum(index.row())).icon();
+		case Qt::DisplayRole: return ToolbarAction(item_enum(id)).text();
+		case Qt::DecorationRole: return ToolbarAction(item_enum(id)).icon();
+		case Qt::ForegroundRole: return QPalette().color(colorgroup, QPalette::Text);
 		default: return QVariant();
 	}
 }
 
 void ItemModel::setVector(const QVector<int>& nv)
 {
+	for(int i=0; i<v.size(); ++i) v[i]=false;
 	for(int i=0; i<nv.size(); ++i)
 	{
-		if(nv[i]!=itemSeparator) v[nv[i]] = true;
+		int id = nv[i];
+		if(id!=itemSeparator) v[id] = true;
 	}
 }
 
@@ -50,6 +63,9 @@ bool ItemModel::isUsed(int row) const
 
 
 //------------------------------------------------------------------------------
+/*
+  This model contains items, added on toolbar
+*/
 
 ItemToolbarModel::ItemToolbarModel()
 {
@@ -62,10 +78,11 @@ int ItemToolbarModel::rowCount(const QModelIndex &) const
 
 QVariant ItemToolbarModel::data(const QModelIndex &index, int role) const
 {
+	item_enum item = item_enum(v[index.row()]);
 	switch(role)
 	{
-		case Qt::DisplayRole: return ToolbarAction(item_enum(v[index.row()])).text();
-		case Qt::DecorationRole : return ToolbarAction(item_enum(v[index.row()])).icon();
+		case Qt::DisplayRole: return ToolbarAction(item).text();
+		case Qt::DecorationRole : return ToolbarAction(item).icon();
 		default: return QVariant();
 	}
 }
@@ -74,18 +91,16 @@ void ItemToolbarModel::up(const QModelIndex &index)
 {
 	int row = index.row();
 	if(row==0) return;
-	int i = v[row];
-	v[row] = v[row-1];
-	v[row-1] = i;
+	qSwap(v[row], v[row-1]);
+	emit reset();
 }
 
 void ItemToolbarModel::down(const QModelIndex &index)
 {
 	int row = index.row();
 	if(row==v.size()-1) return;
-	int i = v[row];
-	v[row] = v[row+1];
-	v[row+1] = i;
+	qSwap(v[row], v[row+1]);
+	emit reset();
 }
 
 void ItemToolbarModel::setVector(const QVector<int>& nv)

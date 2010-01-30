@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>349</width>
-    <height>298</height>
+    <width>343</width>
+    <height>292</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,6 +52,9 @@
          <property name="wordWrap">
           <bool>true</bool>
          </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+         </property>
         </widget>
        </item>
       </layout>
@@ -94,6 +97,16 @@ See the GNU General Public License for more details.
 The text of the license can can be found in the file LICENSE.</string>
          </property>
         </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tpHelp">
+      <attribute name="title">
+       <string>Help</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QTextBrowser" name="lbHelp"/>
        </item>
       </layout>
      </widget>
