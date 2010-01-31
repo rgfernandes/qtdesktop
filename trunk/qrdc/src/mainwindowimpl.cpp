@@ -10,6 +10,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	viewGroup->addAction(actionHosts);
 	viewGroup->addAction(actionVariables);
 	viewGroup->addAction(actionProtocols);
+	createTrayIcon();
 	setSlots();
 	// edit dialogs
 	dialogC = new DialogConnectionImpl(this);
@@ -19,6 +20,19 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	settings = new DialogSettingsImpl(this);
 
 	currentList = PROTO;	// NOT connections
+}
+
+void	MainWindowImpl::createTrayIcon(void) {
+	trayMenu = new QMenu(this);
+	actionHideRestore = new QAction(tr("&Hide"), this);
+	trayMenu->addAction(actionHideRestore);
+	trayMenu->addSeparator();
+	trayMenu->addAction(actionExit);
+
+	tray = new QSystemTrayIcon(this);
+	tray->setContextMenu(trayMenu);
+	tray->setIcon(QIcon(":/icons/icons/qrdc.png"));
+	tray->setToolTip(tr("QRDC"));
 }
 
 void	MainWindowImpl::setSlots(void) {
@@ -36,6 +50,8 @@ void	MainWindowImpl::setSlots(void) {
 	connect( actionRestoreDB,	SIGNAL( triggered() ),	this, SLOT( onActionRestore() ) );
 	connect( actionAbout,		SIGNAL( triggered() ),	this, SLOT( onActionAbout() ) );
 	connect( actionAboutQt,		SIGNAL( triggered() ),	this, SLOT( onActionAboutQt() ) );
+	connect( tray,			SIGNAL( activated ( QSystemTrayIcon::ActivationReason)), this, SLOT(onTray(QSystemTrayIcon::ActivationReason)));
+	connect( actionHideRestore,	SIGNAL( triggered() ),	this, SLOT(onHideRestore()));
 }
 
 void	MainWindowImpl::setModels(QSqlDatabase *d) {
@@ -94,6 +110,23 @@ void	MainWindowImpl::setModels(QSqlDatabase *d) {
 	dialogH->setModel(modelH);
 	dialogP->setModel(modelP);
 	dialogV->setModel(modelV);
+}
+
+void	MainWindowImpl::go(void) {
+	show();
+	doUpdate();
+	if (settings->startHidden)
+		setWindowState(Qt::WindowMinimized);
+}
+
+void	MainWindowImpl::doUpdate(void) {
+	if (settings->useTray) {
+		if (!tray->isVisible())
+			tray->show();
+	} else {
+		if (tray->isVisible())
+			tray->hide();
+	}
 }
 
 void	MainWindowImpl::onActionExit(void)
@@ -225,7 +258,8 @@ void	MainWindowImpl::onActionDel(void) {
 
 void	MainWindowImpl::onActionSettings(void)
 {
-	settings->Go();
+	if (settings->Go())
+		doUpdate();
 }
 
 void	MainWindowImpl::onActionAbout(void)
@@ -276,8 +310,32 @@ void	MainWindowImpl::onActionOpen(void)
 			}
 			if (!QProcess::startDetached(cmdline))
 				QMessageBox::critical(this, tr("Starting application error"), tr("Can't start application:\n\"%1\"").arg(cmdline));
+			else
+				if (settings->minOnOpen)
+					setWindowState(Qt::WindowMinimized);
 		}
 	}
+}
+
+void	MainWindowImpl::onTray(const QSystemTrayIcon::ActivationReason reason) {
+	if (reason == QSystemTrayIcon::Trigger)
+		onHideRestore();
+}
+
+void	MainWindowImpl::onHideRestore(void) {
+	if (isVisible()) {
+		hide();
+		actionHideRestore->setText(tr("&Restore"));
+	} else {
+		showNormal();
+		actionHideRestore->setText(tr("&Hide"));
+		doUpdate();
+	}
+}
+
+void	MainWindowImpl::hideEvent ( QHideEvent *event ) {
+	if (settings->useTray and settings->minToTray)
+		setVisible(false);
 }
 
 //

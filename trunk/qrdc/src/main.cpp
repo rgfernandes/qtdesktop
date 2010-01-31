@@ -82,7 +82,7 @@ int main(int argc, char ** argv)
 	// </db>
 	MainWindowImpl *win = new MainWindowImpl();
 	win->setModels(&db);
-	win->show(); 
+	win->go(); 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	int retvalue = app.exec();
 	delete win;

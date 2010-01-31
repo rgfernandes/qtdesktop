@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string notr="true">QRDC</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../qrdc.qrc">
+    <normaloff>:/icons/icons/qrdc.png</normaloff>:/icons/icons/qrdc.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>

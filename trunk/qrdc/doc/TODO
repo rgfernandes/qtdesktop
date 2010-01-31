@@ -4,7 +4,6 @@
 * bug: import: check column counts
 * bug: import: NULLs
 * bug: Dialog*: check data befor submition
-* issue: tray
 * issue: modelC: tooltip from comments
 * issue: Dialog*: OK and Cancel hotkeys
 * issue: Dialog*: tooltips

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>273</width>
-    <height>78</height>
+    <width>226</width>
+    <height>194</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QLabel" name="lTerm">
      <property name="text">
-      <string>Terminal:</string>
+      <string>&amp;Terminal:</string>
      </property>
      <property name="buddy">
       <cstring>leTerm</cstring>
@@ -28,6 +28,46 @@
     <widget class="QLineEdit" name="leTerm"/>
    </item>
    <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="cbMinOnOpen">
+     <property name="toolTip">
+      <string>Minimize on open connection</string>
+     </property>
+     <property name="text">
+      <string>Minimize on &amp;open</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="cbUseTray">
+     <property name="toolTip">
+      <string>Use system tray icon</string>
+     </property>
+     <property name="text">
+      <string>Use &amp;tray</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="cbStartHidden">
+     <property name="toolTip">
+      <string>Start programm in hidden mode</string>
+     </property>
+     <property name="text">
+      <string>Start &amp;hidden</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QCheckBox" name="cbMinToTray">
+     <property name="toolTip">
+      <string>Hide program to tray on minimize button</string>
+     </property>
+     <property name="text">
+      <string>&amp;Minimize to tray</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>

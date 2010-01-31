@@ -24,6 +24,7 @@ Q_OBJECT
 public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 	void				setModels(QSqlDatabase *);
+	void				go(void);
 private slots:
 	void				onActionExit(void);
 	void				onActionConnections(void);
@@ -40,16 +41,24 @@ private slots:
 	void				onActionAbout(void);
 	void				onActionAboutQt(void);
 	void				onActionHelp(void);
+	void				onTray(const QSystemTrayIcon::ActivationReason);
+	void				onHideRestore(void);
 private:
 	LISTTYPE			currentList;
+	void				setSlots(void);
+	void				doUpdate(void);
+	void				createTrayIcon(void);
+	void				hideEvent ( QHideEvent *);
 	QSqlDatabase			*db;
 	QSqlRelationalTableModel	*modelC;
 	QSqlTableModel			*modelP, *modelV, *modelH;
-	void				setSlots(void);
 	DialogConnectionImpl		*dialogC;
 	DialogHostImpl			*dialogH;
 	DialogProtocolImpl		*dialogP;
 	DialogVarImpl			*dialogV;
 	DialogSettingsImpl		*settings;
+	QSystemTrayIcon			*tray;
+	QMenu				*trayMenu;
+	QAction				*actionHideRestore;
 };
 #endif

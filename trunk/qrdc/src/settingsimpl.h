@@ -9,8 +9,9 @@ class DialogSettingsImpl : public QDialog, public Ui::DialogSettings
 Q_OBJECT
 public:
 	DialogSettingsImpl(QWidget * parent = 0, Qt::WFlags f = 0);
-	void		Go(void);
+	bool		Go(void);
 	QString		terminal;
+	bool		minOnOpen, useTray, startHidden, minToTray;
 private:
 	QSettings	*setfile;
 };
