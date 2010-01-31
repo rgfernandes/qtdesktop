@@ -10,6 +10,7 @@
 * issue: qrdc.spec
 * issue: qrdc.nsis?
 * issue: help
+* issue: single application mode
 ====
 Triggers:
 	* on not_connection - disable Open

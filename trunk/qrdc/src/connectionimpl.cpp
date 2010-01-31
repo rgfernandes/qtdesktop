@@ -49,6 +49,10 @@ bool	DialogConnectionImpl::Add(void) {
 
 bool	DialogConnectionImpl::addedit(QModelIndex idx) {
 	bool retvalue = false;
+	// update realtions
+	((QSqlTableModel *) cbProtocol->model())->select();
+	((QSqlTableModel *) cbHost->model())->select();
+	((QSqlTableModel *) cbVar->model())->select();
 	mapper->setCurrentModelIndex(idx);
 	leName->setFocus();
 	if (exec() == QDialog::Accepted) {

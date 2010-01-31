@@ -35,6 +35,10 @@ Prefix:		/usr
 %description
 %{summary}
 
+%if 0%{?mandriva_version} == 0
+	%debug_package
+%endif
+
 %prep
 %setup -q
 
