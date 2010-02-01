@@ -1,6 +1,5 @@
 * issue: set cursor after add/edit/del
 * issue: action triggers: enable/disable add/edit/del triggers on current model
-* bug: refresh DialogConnection submodel after editing host/var/proto
 * bug: import: check column counts
 * bug: import: NULLs
 * bug: Dialog*: check data befor submition
@@ -11,6 +10,7 @@
 * issue: qrdc.nsis?
 * issue: help
 * issue: single application mode
+* issue: Connections: group by proto/host/connection or host/proto/connection (or filters)
 ====
 Triggers:
 	* on not_connection - disable Open

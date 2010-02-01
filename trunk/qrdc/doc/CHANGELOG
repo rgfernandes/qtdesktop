@@ -15,3 +15,4 @@
 	* Changed: removed connection.id from import/export
 20100131:
 	* Added: tray
+	* refresh DialogConnection submodel after editing host/var/proto
