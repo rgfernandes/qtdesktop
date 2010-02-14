@@ -34,15 +34,15 @@ private:
 	Ui::MainWindow *ui;
 	//
 	QDir dir;
-	NoteList Notes;
-	//QVector<Note*> Notes;
-
+	NoteList* Notes;
+	//
 	QSystemTrayIcon tray;
 	QMenu cmenu;
 	QMenu cmd_menu;
 	QSignalMapper cmd_mapper;
 	QSignalMapper alt_mapper;
 	QTimer SaveTimer;
+	QTimer ScanTimer;
 	//
 	QAction *actAdd, *actAddHtml, *actRemove, *actRename, *actPrev, *actNext;
 	QAction *actCopy, *actSetup, *actRun, *actExit, *actInfo, *actSearch;
@@ -92,9 +92,7 @@ public slots:
 	//
 	void CopyNote();
 	//
-	void on_tabs_currentChanged(int index);
-	//
-	void SaveAll();
+	void currentNoteChanged(int old_index, int new_index);
 	//
 	void trayActivated(QSystemTrayIcon::ActivationReason reason);
 	//
@@ -115,7 +113,13 @@ public slots:
 	void cmdExec(const QString &);
 	//
 	void notesPathChanged();
+	void fileScannerEnChanged(bool);
+	void fileScannerTimeoutChanged(int);
 	void windowStateChanged();
+	//
+	void scanForNewFiles();
+	//
+	void warningSettingsChanged();
 private slots:
 	void on_edSearch_returnPressed();
 	void on_edSearch_textChanged(QString text);

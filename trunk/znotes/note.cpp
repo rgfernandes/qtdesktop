@@ -9,10 +9,7 @@ Note::Note(const QFileInfo& fileinfo)
 	: file_info(fileinfo), text_edit(0), content_changed(false)
 {
 	type = ((file_info.suffix()=="htm")||(file_info.suffix()=="html"))?type_html:type_text;//detecting note's type
-	file.setFileName(file_info.absoluteFilePath());
-	note_title = file_info.baseName();
-	if(note_title.isEmpty()) note_title = file_info.fileName(); //fix for filenames starting with dot
-	//
+	setTitle(settings.getShowExtensions());
 	load(); //loading note's content
 	switch(type)
 	{
@@ -40,6 +37,15 @@ Note::Note(const QFileInfo& fileinfo)
 Note::~Note()
 {
 	if(text_edit) delete text_edit;
+}
+
+//Setting note title
+void Note::setTitle(bool show_extensions)
+{
+	file.setFileName(file_info.absoluteFilePath());
+	note_title =
+		(show_extensions || (file_info.fileName()[0]=='.'))?
+			file_info.fileName() : file_info.baseName();
 }
 
 //Reading file
@@ -91,12 +97,10 @@ void Note::save(bool forced)
 void Note::rename(const QString& new_name)
 {
 	file.close();
-	note_title = new_name;
-	QString suffix = file_info.completeSuffix();
-	QString fullname = QString("%1.%2").arg(note_title).arg(suffix);
-	QString absolute_file_path = file_info.dir().absoluteFilePath(fullname);
+	QString absolute_file_path = file_info.dir().absoluteFilePath(new_name);
 	file.rename(absolute_file_path);
 	file_info.setFile(file);
+	setTitle(settings.getShowExtensions());
 }
 
 //Moving note to another folder

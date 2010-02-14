@@ -12,9 +12,11 @@
 #include <QTranslator>
 #include <QLocale>
 
-//#include <QtDebug>
+#include <QtDebug>
 
 #include "scriptmodel.h"
+
+enum TabPosition { North, South, West, East };
 
 class Settings : public QObject
 {
@@ -28,8 +30,13 @@ public:
 	inline bool getHideStart()						{ return HideStart; }
 	inline const QByteArray& getDialogGeometry()	{ return DialogGeometry; }
 	inline const QByteArray& getDialogState()		{ return DialogState; }
+	inline TabPosition getTabPosition()				{ return tab_position; }
+	inline bool getShowHidden()						{ return ShowHidden; }
+	inline bool getShowExtensions()					{ return ShowExtensions; }
 	inline bool getHideFrame()						{ return HideFrame; }
 	inline bool getStayTop()						{ return StayTop; }
+	inline bool getFileScanner()					{ return file_scanner; }
+	inline int getFileScannerTimeout()				{ return file_scanner_timeout; }
 	inline const QFont& getNoteFont()				{ return NoteFont; }
 	inline ScriptModel& getScriptModel()			{ return script_model; }
 	inline bool getScriptShowOutput()				{ return ScriptShowOutput; }
@@ -46,8 +53,13 @@ public:
 	void setHideStart(bool hide);
 	void setDialogGeometry(const QByteArray& g);
 	void setDialogState(const QByteArray& g);
+	void setTabPosition(TabPosition v);
+	void setShowHidden(bool s);
+	void setShowExtensions(bool s);
 	void setHideFrame(bool s);
 	void setStayTop(bool s);
+	void setFileScanner(bool v);
+	void setFileScannerTimeout(int v);
 	void setNoteFont(const QFont& f);
 	void setScriptShowOutput(bool b);
 	void setScriptCopyOutput(bool b);
@@ -78,8 +90,14 @@ private:
 	QByteArray DialogGeometry;
 	QByteArray DialogState;
 	//
+	TabPosition tab_position;
+	bool ShowHidden;
+	bool ShowExtensions;
 	bool HideFrame;
 	bool StayTop;
+	//
+	bool file_scanner;
+	int file_scanner_timeout;
 	//
 	QFont NoteFont;
 	bool NoteLinksHighlight;
@@ -94,6 +112,11 @@ private:
 	QLocale::Language system_language;
 signals:
 	void NotesPathChanged();
+	void FileScannerEnChanged(bool);
+	void FileScannerTimeoutChanged(int);
+	void ShowExtensionsChanged(bool show_extensions);
+	void ShowHiddenChanged();
+	void TabPositionChanged();
 	void WindowStateChanged();
 	void NoteFontChanged();
 	void NoteHighlightChanged();

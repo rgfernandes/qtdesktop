@@ -50,6 +50,12 @@ aboutDialog::aboutDialog(QWidget *parent) :
 		.arg("Nikita Lyalin (tinman321)").arg("tinman321@gmail.com")
 		.arg("ArchLinux"));
 	strCredits.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
+		.arg("Eugene Pivnev (ti.eugene)").arg("ti.eugene@gmail.com")
+		.arg("Fedora, Mandriva, OpenSuse, Ubuntu"));
+	strCredits.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
+		.arg("Veniamin Gvozdikov (zloidemon)").arg("g.veniamin@googlemail.com")
+		.arg("FreeBSD"));
+	strCredits.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
 		.arg("Oktay Cetinkaya (xelat)").arg("xelat09@yahoo.de")
 		.arg("Windows"));
 	strCredits.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
@@ -72,7 +78,7 @@ aboutDialog::aboutDialog(QWidget *parent) :
 	strHelp.append(QString("<b>%1</b> - %2<br/>").arg("Ctrl+U").arg(tr("Make selected text underline")));
 	strHelp.append(QString("<b>%1</b> - %2<br/>").arg("Ctrl+Q").arg(tr("Exit program")));
 	ui->lbHelp->setHtml(strHelp);
-	adjustSize();
+	//adjustSize();
 }
 
 aboutDialog::~aboutDialog()

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>508</width>
-    <height>263</height>
+    <width>502</width>
+    <height>264</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,24 +54,104 @@
         </layout>
        </item>
        <item>
-        <layout class="QFormLayout" name="formLayout">
-         <property name="labelAlignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <item>
+          <widget class="QCheckBox" name="cb_FileScan">
+           <property name="text">
+            <string>Scan for new files in directory every </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="sb_FileScanTimeout">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="suffix">
+            <string> ms</string>
+           </property>
+           <property name="maximum">
+            <number>100000</number>
+           </property>
+           <property name="value">
+            <number>500</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Tabs position:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="cmb_TabPosition">
+           <item>
+            <property name="text">
+             <string>North</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>South</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>West</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>East</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="cb_ShowHidden">
+           <property name="text">
+            <string>Show hidden files</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="cb_ShowExtensions">
+           <property name="text">
+            <string>Show files extensions</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <property name="formAlignment">
-          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
          </property>
+        </spacer>
+       </item>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
          <item row="0" column="0">
           <widget class="QCheckBox" name="cb_HideStart">
            <property name="text">
             <string>Hide in tray on start</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="cb_FrameHide">
-           <property name="text">
-            <string>Hide window's frame</string>
            </property>
           </widget>
          </item>
@@ -82,7 +162,27 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="cb_FrameHide">
+           <property name="text">
+            <string>Hide window's frame</string>
+           </property>
+          </widget>
+         </item>
         </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -330,12 +430,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>140</x>
-     <y>173</y>
+     <x>149</x>
+     <y>207</y>
     </hint>
     <hint type="destinationlabel">
-     <x>288</x>
-     <y>173</y>
+     <x>486</x>
+     <y>215</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cb_FileScan</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sb_FileScanTimeout</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>220</x>
+     <y>74</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>276</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>

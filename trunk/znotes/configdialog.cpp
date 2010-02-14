@@ -19,6 +19,11 @@ configDialog::configDialog(QWidget *parent) :
 	m_ui->listToolbarActions->setModel(&mt_items);
 	//
 	m_ui->ed_NotesPath->setText(settings.getNotesPath());
+	m_ui->cb_FileScan->setChecked(settings.getFileScanner());
+	m_ui->sb_FileScanTimeout->setValue(settings.getFileScannerTimeout());
+	m_ui->cmb_TabPosition->setCurrentIndex(settings.getTabPosition());
+	m_ui->cb_ShowHidden->setChecked(settings.getShowHidden());
+	m_ui->cb_ShowExtensions->setChecked(settings.getShowExtensions());
 	m_ui->cb_HideStart->setChecked(settings.getHideStart());
 	m_ui->cb_FrameHide->setChecked(settings.getHideFrame());
 	m_ui->cb_StayTop->setChecked(settings.getStayTop());
@@ -61,6 +66,11 @@ void configDialog::SaveSettings()
 {
 	settings.setHideStart(m_ui->cb_HideStart->checkState());
 	settings.setNotesPath(m_ui->ed_NotesPath->text());
+	settings.setFileScannerTimeout(m_ui->sb_FileScanTimeout->value());
+	settings.setFileScanner(m_ui->cb_FileScan->isChecked());
+	settings.setTabPosition(TabPosition(m_ui->cmb_TabPosition->currentIndex()));
+	settings.setShowHidden(m_ui->cb_ShowHidden->checkState());
+	settings.setShowExtensions(m_ui->cb_ShowExtensions->checkState());
 	settings.setHideFrame(m_ui->cb_FrameHide->checkState());
 	settings.setStayTop(m_ui->cb_StayTop->checkState());
 	settings.setNoteFont(m_ui->lb_FontExample->font());
@@ -113,7 +123,8 @@ void configDialog::on_btn_FontChange_clicked()
 void configDialog::on_btn_ScriptRemove_clicked()
 {
 	if(!m_ui->tabScripts->selectionModel()->hasSelection()) return;
-	settings.getScriptModel().removeRow(m_ui->tabScripts->selectionModel()->currentIndex().row());
+	int row = m_ui->tabScripts->selectionModel()->currentIndex().row();
+	settings.getScriptModel().removeRow(row);
 }
 
 void configDialog::on_btn_ScriptAdd_clicked()
@@ -142,13 +153,15 @@ void configDialog::on_butActionRemove_clicked()
 void configDialog::on_butActionTop_clicked()
 {
 	QModelIndex index(m_ui->listToolbarActions->currentIndex());
-	mt_items.up(index);
+	QModelIndex new_index = mt_items.up(index);
+	m_ui->listToolbarActions->setCurrentIndex(new_index);
 }
 
 void configDialog::on_butActionBottom_clicked()
 {
 	QModelIndex index(m_ui->listToolbarActions->currentIndex());
-	mt_items.down(index);
+	QModelIndex new_index = mt_items.down(index);
+	m_ui->listToolbarActions->setCurrentIndex(new_index);
 }
 
 //On changing selection in toolar actions list
@@ -182,6 +195,8 @@ void configDialog::changeEvent(QEvent *e)
 	switch (e->type()) {
 	case QEvent::LanguageChange:
 		m_ui->retranslateUi(this);
+		//retranslateUi() function changes current index of cmb_TabPosition
+		m_ui->cmb_TabPosition->setCurrentIndex(settings.getTabPosition());
 		break;
 	default:
 		break;
