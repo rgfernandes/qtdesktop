@@ -22,5 +22,6 @@
     <file>icons/16x16/qt4.png</file>
     <file>icons/16x16/remove.png</file>
     <file>icons/16x16/status_unknown.png</file>
+    <file>icons/etersoft_logo.png</file>
   </qresource>
 </RCC>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project QtSelta -->
-<!-- Saved: 2009-12-04, 20:13:57 -->
-<!-- Copyright (C) 2009 TI_Eugene, ti.eugene@gmail.com&gt; -->
+<!-- Saved: 2010-04-08, 23:45:20 -->
+<!-- Copyright (C) 2010 TI_Eugene, ti.eugene@gmail.com&gt; -->
 <Project version="4.6">
   <Language>en</Language>
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -12,6 +12,7 @@
   <Author>TI_Eugene</Author>
   <Email>ti.eugene@gmail.com&gt;</Email>
   <TranslationPattern>i18n/qtselta_%language%.tst</TranslationPattern>
+  <TranslationsBinPath>i18n</TranslationsBinPath>
   <Sources>
     <Source>src/qtselta.py</Source>
     <Source>src/Main.py</Source>
@@ -22,12 +23,14 @@
     <Source>src/SettingsDialog.py</Source>
     <Source>ui/Ui_settings.py</Source>
     <Source>src/MainWindow.py</Source>
+    <Source>src/Help.py</Source>
   </Sources>
   <Forms>
     <Form>ui/main.ui</Form>
     <Form>ui/settings.ui</Form>
   </Forms>
   <Translations>
+    <Translation>i18n/qtselta_ru.ts</Translation>
   </Translations>
   <Resources>
     <Resource>qtselta.qrc</Resource>
@@ -35,8 +38,9 @@
   <Interfaces>
   </Interfaces>
   <Others>
+    <Other>Makefile</Other>
     <Other>i18n/qtselta_ru.tst</Other>
-    <Other>ui/settings</Other>
+    <Other>i18n/qtselta_af.tst</Other>
   </Others>
   <MainScript>src/qtselta.py</MainScript>
   <Vcs>
