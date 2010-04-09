@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="icon" >
+  <qresource prefix="icon">
     <file>icons/16x16/add.png</file>
     <file>icons/16x16/cancel.png</file>
     <file>icons/16x16/configure.png</file>
@@ -23,5 +23,27 @@
     <file>icons/16x16/remove.png</file>
     <file>icons/16x16/status_unknown.png</file>
     <file>icons/etersoft_logo.png</file>
+  </qresource>
+  <qresource prefix="sql">
+    <file>sql/createdb.sql</file>
+    <file>sql/dropdb.sql</file>
+    <file>sql/getver.sql</file>
+    <file>sql/install.sql</file>
+    <file>sql/listdbs.sql</file>
+    <file>sql/mchar.sql</file>
+    <file>sql/renamedb.sql</file>
+    <file>sql/uninstall_mchar.sql</file>
+    <file>sql/uninstall.sql</file>
+    <file>sql/up_0_to_8300.sql</file>
+    <file>sql/up_90_to_91.sql</file>
+    <file>sql/up_91_to_92.sql</file>
+    <file>sql/up_92_to_100.sql</file>
+    <file>sql/up_100_to_101.sql</file>
+    <file>sql/up_101_to_102.sql</file>
+    <file>sql/up_102_to_103.sql</file>
+    <file>sql/up_103_to_104.sql</file>
+    <file>sql/up_104_to_105.sql</file>
+    <file>sql/up_105_to_106.sql</file>
+    <file>sql/up_106_to_107.sql</file>
   </qresource>
 </RCC>

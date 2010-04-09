@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-"""
-"""
+'''
+Main.py: main app loop
+'''
 
 import sys
 from PyQt4 import QtCore, QtGui, QtSql
@@ -25,7 +26,6 @@ def	Main():
 	trfile		= QtCore.QString('qtselta') + '_' + QtCore.QLocale.system().name().section('_', 0, 0)
 	if (not QtCore.QFile.exists(trpath + QtCore.QDir.separator() + trfile)):
 		trpath = QtCore.QString(Var.DirI18n)
-		#print trpath + QtCore.QDir.separator() + trfile
 	translator.load(trpath + QtCore.QDir.separator() + trfile)
 	a.installTranslator(translator)
 	# 4. dialogs

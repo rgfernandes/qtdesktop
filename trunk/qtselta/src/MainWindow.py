@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
+'''
+MainWindow: Main window
+'''
 
 from PyQt4 import QtCore, QtGui, QtSql
-import Var, Settings, SettingsDialog,  Help
+import Var, Settings, SettingsDialog,  Help,  DbMgr
 from Ui_main import Ui_MainWindow
 
 class	MainWindow(QtGui.QMainWindow, Ui_MainWindow):
-	maindb = None
+	self.maindb = None
 
 	def	__init__(self):
 		QtGui.QMainWindow.__init__(self)
@@ -13,6 +16,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 		self.setupUi(self)
 		self.__settingsDialog = SettingsDialog.SettingsDialog()
 		self.__setSlots()
+		self.dbmgr = DbMgr.DbMgr()
+		self.__dbdict = {}
 
 	def	letsgo(self):
 		self.show()
@@ -23,6 +28,14 @@ class	MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 		self.connect( self.actionAboutQt,	QtCore.SIGNAL( "triggered()" ), Help.AboutQt4 )
 		self.connect( self.actionHelp,	QtCore.SIGNAL( "triggered()" ), Help.Help )
 		self.connect( self.actionSettings,	QtCore.SIGNAL( "triggered()" ), self.__slSettings )
+		self.connect( self.actionDbCreate,	QtCore.SIGNAL( "triggered()" ), self.__slDbCreate )
+		self.connect( self.actionDbRename,	QtCore.SIGNAL( "triggered()" ), self.__slDbRename )
+		self.connect( self.actionDbDelete,	QtCore.SIGNAL( "triggered()" ), self.__slDbDelete )
+		self.connect( self.actionDbInit,	QtCore.SIGNAL( "triggered()" ), self.__slDbInit )
+		self.connect( self.actionDbUpgrade,	QtCore.SIGNAL( "triggered()" ), self.__slDbUpgrade )
+		self.connect( self.actionDbDeinit,	QtCore.SIGNAL( "triggered()" ), self.__slDbDeinit )
+		self.connect( self.actionDbBackup,	QtCore.SIGNAL( "triggered()" ), self.__slDbBackup )
+		self.connect( self.actionDbRestore,	QtCore.SIGNAL( "triggered()" ), self.__slDbRestore )
 
 	def	__slSettings(self):
 		'''
@@ -30,6 +43,18 @@ class	MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 		'''
 		if self.__settingsDialog.slDialog():
 			self.__refreshDB()
+
+	def	__addDB(self,  dbname):
+		'''
+		Add new DB to db list
+		'''
+		db = QtSql.QSqlDatabase.addDatabase("QPSQL", dbname)
+		db.setDatabaseName(dbname)
+		db.setHostName(Var.Setting.Host)
+		db.setUserName(Var.Setting.Login)
+		db.setPassword(Var.Setting.Password)
+		self.__dbdict[dbname] = db
+		return db
 
 	def	__doquery(self, q, s):
 		'''
@@ -53,39 +78,35 @@ class	MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 		Creates db connection
 		@return - bool: True if success
 		'''
-		self.maindb = QtSql.QSqlDatabase.addDatabase("QPSQL", "pg_database")
-		self.maindb.setHostName(Var.Setting.Host)	# Var.Setting.Host
-		self.maindb.setDatabaseName('postgres')
-		self.maindb.setUserName(Var.Setting.Login)
-		self.maindb.setPassword(Var.Setting.Password)
+		self.maindb = self.__addDB('postgres')
 		if not self.maindb.open():
 			err = self.maindb.lastError()
 			QtGui.QMessageBox.critical(self,
 				QtGui.QApplication.translate("Main", "Opening database error"),
 				QtGui.QApplication.translate("Main", "Err no: %1\nDriver err: %2\nDB err: %3").arg(err.number()).arg(err.driverText()).arg(err.databaseText()),
 				QtGui.QMessageBox.Ok, QtGui.QMessageBox.NoButton)	#Unable to establish a database connection: $1
-			self.maindb.removeDatabase("pg_database")
+			self.maindb.removeDatabase("postgres")
 			return False
 		return True
 
 	def	__refreshDB(self):
-		self.twMain = False
+		self.twMain.setEnabled(False)
 		if self.__createConnection():
-			self.twMain = True
+			self.twMain.setEnabled(True)
 			self.__refreshList()
 
 	def	__refreshList(self):
 		q = QtSql.QSqlQuery(self.maindb)
 		row = 0;
 		if q.exec_('SELECT datname FROM pg_database WHERE NOT datistemplate ORDER BY datname'):
+			# ":/sql/sql/listdbs.sql"
 			while q.next():
 				dbname = q.value(0).toString()
-				print dbname
-				db = QtSql.QSqlDatabase.addDatabase("QPSQL", dbname)
-				db.setHostName(Var.Setting.Host)	# Var.Setting.Host
-				db.setDatabaseName(dbname)
-				db.setUserName(Var.Setting.User)
-				db.setPassword(Var.Setting.Password)
+				if (dbname != 'postgres'):
+					db = self.__addDB(dbname)
+				else:
+					db = self.maindb
+				# check ver
 				ver = ''
 				if db.open():
 					q1 = QtSql.QSqlQuery(db)
@@ -93,10 +114,53 @@ class	MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 						if q1.next():
 							ver = q1.value(0).toString()
 					db.close()
-				#else:
-				#	print "Can't open db"
+				else:
+					print "Can't open db"
+				# /check ver
 				self.twMain.insertRow(row)
 				self.twMain.setItem(row, 0, QtGui.QTableWidgetItem(dbname))
 				self.twMain.setItem(row, 1, QtGui.QTableWidgetItem(ver))
 				row += 1
 				#print dbname, ver
+
+	def	__slDbCreate(self):
+		dbname,  result = QtGui.QInputDialog.getText(
+			self,
+			QtGui.QApplication.translate("Main", "New database name"),
+			QtGui.QApplication.translate("Main", "Database name")
+		)
+		if result:
+			if self.maindb.open():
+				#q = QtSql.QSqlQuery()
+				if self.maindb.exec_("CREATE DATABASE %s WITH OWNER %s;" % (dbname,  Var.Setting.Login)):
+					# FIXME: lastErr
+					self.__addDB(dbname)
+					row = self.twMain.rowCount()
+					self.twMain.insertRow(row)
+					self.twMain.setItem(row, 0, QtGui.QTableWidgetItem(dbname))
+				else:
+					print "Can't create db"
+				self.maindb.close()
+			else:
+				print "Can't open maindb"
+
+	def	__slDbRename(self):
+		pass
+
+	def	__slDbDelete(self):
+		pass
+
+	def	__slDbInit(self):
+		pass
+
+	def	__slDbUpgrade(self):
+		pass
+
+	def	__slDbDeinit(self):
+		pass
+
+	def	__slDbBackup(self):
+		pass
+
+	def	__slDbRestore(self):
+		pass

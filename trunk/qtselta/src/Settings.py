@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-"""
-"""
+'''
+Settings: settings handling
+'''
 
 from PyQt4 import QtCore, QtGui
 import Var

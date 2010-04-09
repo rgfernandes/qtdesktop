@@ -57,6 +57,9 @@
     <addaction name="actionDbInit"/>
     <addaction name="actionDbUpgrade"/>
     <addaction name="actionDbDeinit"/>
+    <addaction name="separator"/>
+    <addaction name="actionDbBackup"/>
+    <addaction name="actionDbRestore"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -139,6 +142,9 @@
    <property name="text">
     <string>&amp;Create DB</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Ins</string>
+   </property>
   </action>
   <action name="actionDbDelete">
    <property name="icon">
@@ -147,6 +153,9 @@
    </property>
    <property name="text">
     <string>De&amp;lete DB</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Del</string>
    </property>
   </action>
   <action name="actionDbRename">
@@ -174,7 +183,7 @@
   </action>
   <action name="actionDbUpgrade">
    <property name="text">
-    <string>Upgrade DB</string>
+    <string>Up&amp;grade DB</string>
    </property>
   </action>
   <action name="actionSettings">
@@ -184,6 +193,16 @@
    </property>
    <property name="text">
     <string>&amp;Settings</string>
+   </property>
+  </action>
+  <action name="actionDbBackup">
+   <property name="text">
+    <string>&amp;Backup DB</string>
+   </property>
+  </action>
+  <action name="actionDbRestore">
+   <property name="text">
+    <string>&amp;Restore DB</string>
    </property>
   </action>
  </widget>
