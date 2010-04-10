@@ -21,6 +21,7 @@ def	Main():
 	# 2. load settings
 	Settings.Load()
 	# 3. Translations
+	# FIXME: add qt std transaltions
 	translator	= QtCore.QTranslator()
 	trpath		= QtCore.QLibraryInfo.location(QtCore.QLibraryInfo.TranslationsPath)
 	trfile		= QtCore.QString('qtselta') + '_' + QtCore.QLocale.system().name().section('_', 0, 0)

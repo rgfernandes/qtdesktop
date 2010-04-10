@@ -17,6 +17,24 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTableWidget" name="twMain">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::SingleSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
       <column>
        <property name="text">
         <string>db</string>
@@ -143,7 +161,7 @@
     <string>&amp;Create DB</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Ins</string>
+    <string notr="true">Ctrl+Ins</string>
    </property>
   </action>
   <action name="actionDbDelete">
@@ -155,7 +173,7 @@
     <string>De&amp;lete DB</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Del</string>
+    <string notr="true">Ctrl+Del</string>
    </property>
   </action>
   <action name="actionDbRename">
@@ -164,6 +182,9 @@
    </property>
   </action>
   <action name="actionDbInit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../qtselta.qrc">
      <normaloff>:/icon/icons/16x16/db_commit.png</normaloff>:/icon/icons/16x16/db_commit.png</iconset>
@@ -173,6 +194,9 @@
    </property>
   </action>
   <action name="actionDbDeinit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../qtselta.qrc">
      <normaloff>:/icon/icons/16x16/db_update.png</normaloff>:/icon/icons/16x16/db_update.png</iconset>
@@ -182,6 +206,9 @@
    </property>
   </action>
   <action name="actionDbUpgrade">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Up&amp;grade DB</string>
    </property>
@@ -196,11 +223,17 @@
    </property>
   </action>
   <action name="actionDbBackup">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Backup DB</string>
    </property>
   </action>
   <action name="actionDbRestore">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>&amp;Restore DB</string>
    </property>

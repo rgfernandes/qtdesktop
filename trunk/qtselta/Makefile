@@ -6,7 +6,7 @@ clean:
 	rm -f ui/*.py*
 	rm -f src/*.pyc
 
-run:
+exec:
 	# 0. clean all
 	rm -rf run
 	mkdir $(RUN)
@@ -39,7 +39,7 @@ ln:
 	for i in `ls i18n/*qm`; do ln -s ../$$i run/`basename $$i`; done
 
 tar:
-	cd $(RUN) && tar zcf ../qtselta.`date +%y%m%d%H%M%S`.tar.gz insupol.py *.pyc *.qm *.html && cd ..
+	tar zcf ../qtselta.`date +%y%m%d%H%M%S`.tar.gz insupol.py *.pyc *.qm *.html && cd ..
 
 zip:
 	cd $(RUN) && zip ../qtselta.`date +%y%m%d%H%M%S`.zip insupol.py *.pyc *.qm *.html && cd ..

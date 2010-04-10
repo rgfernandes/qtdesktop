@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project QtSelta -->
-<!-- Saved: 2010-04-10, 01:08:33 -->
+<!-- Saved: 2010-04-10, 03:22:25 -->
 <!-- Copyright (C) 2010 TI_Eugene, ti.eugene@gmail.com&gt; -->
 <Project version="4.6">
   <Language>en</Language>
@@ -40,6 +40,10 @@
   </Interfaces>
   <Others>
     <Other>Makefile</Other>
+    <Other>README</Other>
+    <Other>AUTHORS</Other>
+    <Other>ChangeLog</Other>
+    <Other>TODO</Other>
   </Others>
   <MainScript>src/qtselta.py</MainScript>
   <Vcs>
