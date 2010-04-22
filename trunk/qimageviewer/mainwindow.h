@@ -38,7 +38,7 @@ private Q_SLOTS:
 
 private:
     Ui::MainWindow *ui;    
-    QFutureWatcher<QPixmap> *imagesShow_;    
+    QFutureWatcher<QImage> *imagesShow_;
 
     void ShowImageIconFile(QString dirPath);
     void WaitFuture();
@@ -51,6 +51,7 @@ private:
 };
 
 QPixmap prepareIcon(const QFileInfo &infoFile);
-QPixmap prepareImage(const QFileInfo &infoFile);
+//QPixmap prepareImage(const QFileInfo &infoFile);
+QImage prepareImage(const QFileInfo &infoFile);
 
 #endif // MAINWINDOW_H

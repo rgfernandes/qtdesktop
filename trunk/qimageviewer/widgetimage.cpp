@@ -30,9 +30,9 @@ WidgetImage::WidgetImage(QWidget* parent)
 
 
 
-    QIcon icon_left(":Images/NavigationLeft_SelectionSubpicture.png");
+    QIcon icon_left(":Images/LeftArrow.png");
     QIcon icon_sizefit(":Images/Image_2.png");
-    QIcon icon_right(":Images/NavigationRight_SelectionSubpicture.png");
+    QIcon icon_right(":Images/RightArrow.png");
 
 
 
@@ -284,6 +284,7 @@ QString WidgetImage::GetInfoAboutImage(QString fileImage)
         image_width = size.width();
         image_height = size.height();
     }
+
 
 
     QFileInfo fi = QFileInfo(fileImage);

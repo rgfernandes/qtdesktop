@@ -37,8 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->tabMain->removeTab(1);
-    //ui->tabMain->setMovable(true);
+    ui->tabMain->removeTab(1);    
 
 
     QObject::connect(ui->treeWidgetFileSystem, SIGNAL(itemExpanded(QTreeWidgetItem*)), this, SLOT(treeWidget_itemExpanded(QTreeWidgetItem*)));
@@ -47,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(ui->tabMain, SIGNAL(tabCloseRequested(int)), this, SLOT(tabMain_tabCloseRequested(int)));
     QObject::connect(ui->tabMain, SIGNAL(currentChanged(int)), this, SLOT(tabMain_currentChanged(int)));
 
-    imagesShow_ = new QFutureWatcher<QPixmap>(this);
+    imagesShow_ = new QFutureWatcher<QImage>(this);
     connect(imagesShow_, SIGNAL(resultReadyAt(int)), SLOT(setItemInList(int)));
     connect(imagesShow_, SIGNAL(finished()), SLOT(finished()));
 
@@ -134,7 +133,7 @@ QPixmap prepareIcon(const QFileInfo &infoFile)
 
 
 
-QPixmap prepareImage(const QFileInfo &infoFile)
+QImage prepareImage(const QFileInfo &infoFile)
 {
     QImageReader imageReader(infoFile.filePath());
     QSize size;
@@ -172,8 +171,8 @@ QPixmap prepareImage(const QFileInfo &infoFile)
     QRectF source(0, 0, image_width, image_height);
 
 
-    QPixmap pixDraw(QSize(WIDTH_ICON, HEIGHT_ICON));
-    QPainter painter(&pixDraw);
+    QImage imgDraw(QSize(WIDTH_ICON, HEIGHT_ICON), QImage::Format_RGB32);
+    QPainter painter(&imgDraw);
 
     painter.setBrush(Qt::NoBrush);
     painter.fillRect(QRect(0, 0, WIDTH_ICON, HEIGHT_ICON), Qt::white);
@@ -190,14 +189,16 @@ QPixmap prepareImage(const QFileInfo &infoFile)
     QString elideText = font_metrics.elidedText(infoFile.completeBaseName(), Qt::ElideRight, WIDTH_IMAGE);
     painter.drawText(rect, Qt::AlignCenter | Qt::ElideRight, elideText);
 
-    return pixDraw;
+    return (imgDraw);
 }
 
 
 
+
 void MainWindow::setItemInList(int index)
-{
-    ui->listWidget->item(index)->setIcon(QIcon(imagesShow_->resultAt(index)));
+{    
+    ui->listWidget->item(index)->setIcon(QIcon(QPixmap::fromImage(imagesShow_->resultAt(index))));
+
 }
 
 void MainWindow::finished()
@@ -327,7 +328,7 @@ void MainWindow::tabMain_currentChanged(int index_tab)
 {
     if (index_tab == 0)
     {
-        statusBar()->showMessage(tr("Готово"));
+        statusBar()->showMessage(tr("Ready"));
     }
     else
     {
