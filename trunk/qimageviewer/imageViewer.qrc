@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/Image.png</file>
+        <file>Images/Image_2.png</file>
+        <file>Images/btn-next-static.png</file>
+        <file>Images/btn-previous-static.png</file>
+        <file>Images/nav_leftarrow.png</file>
+        <file>Images/nav_rightarrow.png</file>
+        <file>Images/NavigationLeft_SelectionSubpicture.png</file>
+        <file>Images/NavigationRight_SelectionSubpicture.png</file>
+        <file>Images/NextMenuButtonIcon.png</file>
+        <file>Images/Pets_btn-next-static.png</file>
+        <file>Images/Pets_btn-previous-static.png</file>
+        <file>Images/PreviousMenuButtonIcon.png</file>
+    </qresource>
+</RCC>
