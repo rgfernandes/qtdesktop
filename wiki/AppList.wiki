@@ -65,7 +65,7 @@ This is list of current qt applications
 || vlc || [http://www.videolan.org/vlc VLC] || Video player || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || webdavdir || [http://code.google.com/p/qtwdav QT WebDav Explorer] || WebDAV client || [mailto:ppkciz@gmail.com Patrik Hohl] ||  ||  ||  ||  ||  ||  ||  ||
 || zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| Alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] ||  ||  ||  ||  ||  ||  ||  ||
+|| Alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] || 0.6.0 || 0.6.0 || * || - || * || - || - ||
 
 ----
 
