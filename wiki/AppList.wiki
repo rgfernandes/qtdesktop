@@ -20,13 +20,13 @@ This is list of current qt applications
 || edyuk || [http://edyuk.org Edyuk] || Development.C++ ||  || 1.1.1 || 1.1.1 || + ||  ||  ||  ||  || + || q || 20110107 ||
 || eric4 || [http://eric-ide.python-projects.org/ Eric] || Development.Python || [mailto:detlev@die-offenbachs.de Detlev Offenbach] || 4.4.11 || - || 4.4.8 ||  ||  ||  ||  ||  ||  || 20110107 ||
 || flo || [http://trac.geiseri.com/wiki/FloMain Flo] || Mind mapping || [mailto:geisery@yahoo.com Ian Reinhart Geiser] || 1.0 || 1.0 || + || + ||  ||  ||  || + || q || 20110107 ||
-|| haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto:Jeremy.Magland@gmail.com Jeremy.Magland] || 0.1 beta || 0.1 beta ||  ||  ||  ||  ||  || - || q || 20110107 ||
+|| haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto:Jeremy.Magland@gmail.com Jeremy.Magland] || 0.1 beta || 0.1 beta || + ||  ||  ||  ||  || - || q || 20110107 ||
 || heytrack || [https://github.com/mosra/heytrack HeyTrack] || Internet radio || [mailto:mosra@centrum.cz Vladimír Vondruš] || 0.99.71 || 0.99.71 || + ||  ||  ||  ||  ||  || c || 20110107 ||
 || juffed || [http://sourceforge.net/projects/juffed JuffEd] || Text editor || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.9.1087 || 0.9.1087 || + || + || + ||  ||  || + || c || 20110107 ||
 || kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto:kchmviewer@ulduzsoft.com George Yunaev] || 5.2 || 5.2 || + || + || + ||  ||  || + || q || 20110107 ||
 || kontakter || [http://sourceforge.net/projects/kontakter/ Kontakter] || Contacts || [mailto:g.wicklein@giowisys.com Giorgio Wicklein] || 0.1 || 0.1 || + || + ||  ||  ||  ||  || q || 20110107 ||
 || lyx || [http://www.lyx.org LyX] || Text processor ||  || 2.0.0 beta2 || - || 2.0.0 beta2 ||  ||  ||  ||  || + ||  || 20110107 ||
-|| leechcraft || [http://leechcraft.org LeechCraft] || Internet client ||  || 0.4.55 || 0.4.55 ||  ||  ||  ||  ||  || + || c || 20110107 ||
+|| leechcraft || [http://leechcraft.org LeechCraft] || Internet client ||  || 0.4.55 || 0.4.55 || + ||  ||  ||  ||  || + || c || 20110107 ||
 || mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
 || monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.4.0 || - || 1.8.4.0 ||  ||  ||  ||  || + ||  || 20110107 ||
 || nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  || - || q || 20110107 ||
