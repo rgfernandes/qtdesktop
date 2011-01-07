@@ -6,12 +6,13 @@ This is list of current qt applications
 
 = Details =
 
-|| *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
+|| *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* || *W* ||
 || alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] || 0.6.0 || 0.6.0 || + || - || + || - || - ||
 || arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.11.0 || 0.11.0 || r || + || - ||  ||  ||
 || avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor ||  || 2.5.4 || 2.5.4 || r ||  ||  ||  ||  ||
 || avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific ||  || 1.0.1 || 1.0.1 || r ||  ||  ||  ||  ||
 || axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  ||
+|| basqet || [http://code.google.com/p/basqet/ Basqet] || Note-taker ||  || 0.1.4 || 0.1.4 || + || + || - ||  ||  ||
 || beediff || [http://www.beesoft.org BeeDiff] || Diff frontend || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 1.9 || 1.9 || r ||  ||  ||  ||  ||
 || bsc || [http://www.beesoft.org Beesoft Commander] || File manager || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 4.1.0 || 4.1.0 ||  ||  ||  ||  ||  ||
 || cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 0.1.0 || 0.1.0 || + || + || - ||  ||  ||
@@ -58,11 +59,11 @@ This is list of current qt applications
 || scribus || [http://www.scribus.net Scribus] || Text processor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || smplayer || [http://smplayer.sourceforge.net SMPlayer] || Video player || [mailto:rvm@escomposlinux.org Ricardo Villalba] ||  || 0.6.6 || r || + || + ||  ||  ||
 || socnetv || [http://socnetv.sourceforge.net SocNetV] || Graph || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||  || 0.51 || + || + || + ||  ||  ||
-|| speedcrunch || [http://speedcrunch.org SpeedCrunch] || Calc || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
-|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] ||  || 1.2.0 || r || + || + ||  ||  ||
+|| speedcrunch || [http://speedcrunch.org SpeedCrunch] || Calc ||  ||  ||  || r ||  ||  ||  ||  ||
+|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] ||  || 1.2.0 || r ||  ||  ||  ||  ||
 || surfer || [http://www.qt-apps.org/content/show.php/Surfer Surfer] || Web-browser || [mailto:payableondeath90@gmail.com Ivan Andrianov] ||  ||  ||  ||  ||  ||  ||  ||
 || texmaker || [http://www.xm1math.net/texmaker TeXMaker] || Text processor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
-|| vlc || [http://www.videolan.org/vlc VLC] || Video player || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
+|| vlc || [http://www.videolan.org/vlc VLC] || Video player ||  ||  ||  || r ||  ||  ||  ||  ||
 || webdavdir || [http://code.google.com/p/qtwdav QT WebDav Explorer] || WebDAV client || [mailto:ppkciz@gmail.com Patrik Hohl] ||  ||  ||  ||  ||  ||  ||  ||
 || zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
 
@@ -70,11 +71,12 @@ This is list of current qt applications
 
  * Ver - current version
  * Build ver - current pkg version
- * F - Fedora 10 rpm
- * M - Mandriva 2009 rpm
- * S - OpenSUSE 11.1 rpm
+ * F - Fedora 14 rpm
+ * M - Mandriva 2010.1 rpm
+ * S - OpenSUSE 11.3 rpm
  * D - Debian 5.0 "Lenny" deb
- * U - xUbuntu 9.04 deb
+ * U - xUbuntu 10.10 deb
+ * W - Windows installer
  * + - built ok
  * - - building failed
  * x - building disabled
