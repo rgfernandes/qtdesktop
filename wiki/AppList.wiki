@@ -32,14 +32,14 @@ This is list of current qt applications
 || nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  || - || q || 20110107 ||
 || pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor ||  || 0.4.5 || - || 0.4.5 || - || - ||  ||  ||  ||  || 20110107 ||
 || psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] || 0.14 || - || 0.14 ||  ||  ||  ||  || + ||  || 20110107 ||
-|| q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] || ? || - || 0.120 || + || + ||  ||  ||
-|| q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] || 0.8.0 ||  ||  ||  ||  ||  ||  ||
-|| qdevelop || [http://qdevelop.org QDevelop] || Development.C++ || [mailto:jl.biord@free.fr Jean-Luc Biord] || ? ||  || 0.28 ||  ||  ||  ||  ||
-|| qgmailnotifier || [http://www.qt-apps.org/content/show.php/QGMailNotifier?content=85979 QGmailNotifier] || Mail notifier || "Evan Teran" || 2008.2 ||  ||  ||  ||  ||  ||  ||
-|| qmmp || [http://qmmp.ylsoftware.com Qmmp] || Audio player || [mailto:forkotov02@hotmail.ru Ilya Kotov] || ? ||  || 0.4.3 ||  ||  ||  ||  ||
-|| qstardict || [http://qstardict.ylsoftware.com QStarDict] || Dictionary || [mailto:rodin.alexander@gmail.com Alexander Rodin] || ? ||  || 0.13.1 ||  ||  ||  ||  ||
-|| qsvn || [http://www.anrichter.net/projects/qsvn Qsvn] || SVN client || [mailto:ar@anrichter.net Andreas Richter] ||  || 0.8.1 || + || + || - ||  ||  ||
-|| qtagconvert || [http://sourceforge.net/projects/qtagconvert QTagConvert] || Mp3 tag editor || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  || 2.0.0 || + || + || - ||  ||  ||
+|| q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] || 0.120 || - || 0.120 || + || + ||  ||  || - ||  || 20110107 ||
+|| q7z || [http://k7z.sourceforge.net/7Z/Q7Z Q7z] || Archiver || [mailto:chris@giles.name Chris Giles] || 0.9.0 ||  ||  ||  ||  ||  ||  || + ||  || 20110107 ||
+|| qdevelop || [http://code.google.com/p/qdevelop/ QDevelop] || Development.C++ || [mailto:jl.biord@free.fr Jean-Luc Biord] || 0.28 || - || 0.28 ||  ||  ||  ||  || + ||  || 20110107 ||
+|| qgmailnotifier || [http://www.qt-apps.org/content/show.php/QGMailNotifier?content=85979 QGmailNotifier] || Mail notifier || "Evan Teran" || 2008.2 || 2008.2 ||  ||  ||  ||  ||  ||
+|| qmmp || [http://qmmp.ylsoftware.com Qmmp] || Audio player || [mailto:forkotov02@hotmail.ru Ilya Kotov] || 0.4.3 ||  || 0.4.3 ||  ||  ||  ||  || - ||  || 20110107 ||
+|| qstardict || [http://qstardict.ylsoftware.com QStarDict] || Dictionary || [mailto:rodin.alexander@gmail.com Alexander Rodin] || 0.13.1 ||  || 0.13.1 ||  ||  ||  ||  || - ||  || 20110107 ||
+|| qsvn || [http://www.anrichter.net/projects/qsvn Qsvn] || SVN client || [mailto:ar@anrichter.net Andreas Richter] || 0.8.3 || 0.8.3 || ... || ... || ... ||  ||  || + || c || 20110107 ||
+|| qtagconvert || [http://sourceforge.net/projects/qtagconvert QTagConvert] || Mp3 tag editor || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 2.0.0 || 2.0.0 || + || + || - ||  ||  || + || q || 20110107 ||
 || qtcmd || [http://qtcmd.nes.pl QtCommander] || File manager || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||  || 0.8 || + || + || - ||  ||  ||
 || qt-creator || [http://www.qtsoftware.com/developer/qt-creator QtCreator] || Development.C++ ||  ||  ||  || 2.1.0 ||  ||  ||  ||  ||
 || qtdbf || [qtDbf] || DBF viewer/editor || [mailto:hevele@juniorcom.ro Hevele Hegyi Istvan] || 0.9.1 || 0.9.0 || + || + || + ||  ||  ||
