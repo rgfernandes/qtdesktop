@@ -27,7 +27,7 @@ This is list of current qt applications
 || kontakter || [http://sourceforge.net/projects/kontakter/ Kontakter] || Contacts || [mailto:g.wicklein@giowisys.com Giorgio Wicklein] || 0.1 || 0.1 || + || + ||  ||  ||  ||  || q || 20110107 ||
 || lyx || [http://www.lyx.org LyX] || Text processor ||  || 2.0.0 beta2 || - || 2.0.0 beta2 ||  ||  ||  ||  || + ||  || 20110107 ||
 || leechcraft || [http://leechcraft.org LeechCraft] || Internet client ||  || 0.4.55 || 0.4.55 || + ||  ||  ||  ||  || + || c || 20110107 ||
-|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
+|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 1.0.2 ||  ||  ||  ||  ||  ||  || + ||  || 20110107 ||
 || monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.4.0 || - || 1.8.4.0 ||  ||  ||  ||  || + ||  || 20110107 ||
 || nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  || - || q || 20110107 ||
 || pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor ||  || 0.4.5 || - || 0.4.5 || - || - ||  ||  ||  ||  || 20110107 ||
