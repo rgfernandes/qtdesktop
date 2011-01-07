@@ -41,7 +41,7 @@ This is list of current qt applications
 || qsvn || [http://www.anrichter.net/projects/qsvn Qsvn] || SVN client || [mailto:ar@anrichter.net Andreas Richter] ||  || 0.8.1 || + || + || - ||  ||  ||
 || qtagconvert || [http://sourceforge.net/projects/qtagconvert QTagConvert] || Mp3 tag editor || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] ||  || 2.0.0 || + || + || - ||  ||  ||
 || qtcmd || [http://qtcmd.nes.pl QtCommander] || File manager || [mailto:piom@qtcmd.nes.pl Piotr Mierzwiński] ||  || 0.8 || + || + || - ||  ||  ||
-|| qtcreator || [http://www.qtsoftware.com/developer/qt-creator QtCreator] || Development.C++ || [mailto: ] ||  || 0.1.2 ||  ||  ||  ||  ||  ||
+|| qt-creator || [http://www.qtsoftware.com/developer/qt-creator QtCreator] || Development.C++ ||  ||  ||  || 2.1.0 ||  ||  ||  ||  ||
 || qtdbf || [qtDbf] || DBF viewer/editor || [mailto:hevele@juniorcom.ro Hevele Hegyi Istvan] || 0.9.1 || 0.9.0 || + || + || + ||  ||  ||
 || qtemu || [http://qtemu.org QtEmu] || Emulator || [mailto:uwolfer@fwo.ch Urs Wolfer] ||  || 1.0.5 || + || + || + ||  ||  ||
 || qterminal || [http://qterminal.sourceforge.net QTerminal] || Terminal || [mailto:vovanec@gmail.com Vladimir Kuznetsov] ||  || 0.1.4 || + || + || + ||  ||  ||
