@@ -24,10 +24,10 @@ This is list of current qt applications
 || haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] || 1.0-beta ||  ||  ||  ||  ||  ||  ||
 || juffed || [http://sourceforge.net/projects/juffed JuffEd] || Text editor || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.9.1087 || 0.9.1087 || + || + || + ||  ||  || + || c || 20110107 ||
 || kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto:kchmviewer@ulduzsoft.com George Yunaev] || 5.2 || 5.2 || + || + || + ||  ||  || + || q || 20110107 ||
-|| lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
-|| lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] || 1.6.3 ||  || r ||  ||  ||  ||  ||
+|| lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific ||  ||  ||  || 1.3.2 ||  ||  ||  ||  ||
+|| lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] ||  ||  || 2.0.0 ||  ||  ||  ||  ||
 || kontakter || [http://sourceforge.net/projects/kontakter/ Kontakter] || Contacts || [mailto:g.wicklein@giowisys.com Giorgio Wicklein] || 0.1 || 0.1 || + || + ||  ||  ||  ||  || q || 20110107 ||
-|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
+|| mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  || 1.8.4.0 ||  ||  ||  ||  ||
 || monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.3.3 || 1.8.3.2 || + || - || - ||  ||  ||
 || nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  ||
 || pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor || [mailto: ] || 0.4.2 || 0.4.2 || r || - || - ||  ||  ||
