@@ -19,7 +19,7 @@ This is list of current qt applications
 || cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] || 0.1.2 || 0.1.2 || + || + || - ||  ||  || - || q || 20110107 ||
 || edyuk || [http://edyuk.org Edyuk] || Development.C++ ||  || 1.1.1 || 1.1.1 || + ||  ||  ||  ||  || + || q || 20110107 ||
 || eric4 || [http://eric-ide.python-projects.org/ Eric] || Development.Python || [mailto:detlev@die-offenbachs.de Detlev Offenbach] || 4.4.11 || - || 4.4.8 ||  ||  ||  ||  ||  ||  || 20110107 ||
-|| flo || [http://trac.geiseri.com/wiki/FloMain Flo] || Mind mapping || [mailto:geisery@yahoo.com Ian Reinhart Geiser] ||  ||  ||  ||  ||  ||  ||  || + || q || 20110107 ||
+|| flo || [http://trac.geiseri.com/wiki/FloMain Flo] || Mind mapping || [mailto:geisery@yahoo.com Ian Reinhart Geiser] || 1.0 || 1.0 ||  ||  ||  ||  ||  || + || q || 20110107 ||
 || heytrack || [https://github.com/mosra/heytrack HeyTrack] || Internet radio || [mailto:mosra@centrum.cz Vladimír Vondruš] || 0.99.71 || 0.99.71 || + ||  ||  ||  ||  ||  || c || 20110107 ||
 || haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] || 1.0-beta ||  ||  ||  ||  ||  ||  ||
 || juffed || [http://sourceforge.net/projects/juffed JuffEd] || Text editor || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.9.1087 || 0.9.1087 || + || + || + ||  ||  || + || c || 20110107 ||
