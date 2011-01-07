@@ -22,7 +22,7 @@ This is list of current qt applications
 || flo || [http://trac.geiseri.com/wiki/FloMain Flo] || Mind mapping || [mailto:geisery@yahoo.com Ian Reinhart Geiser] ||  ||  ||  ||  ||  ||  ||  ||
 || heytrack || [https://github.com/mosra/heytrack HeyTrack] || Internet radio || [mailto:mosra@centrum.cz Vladimír Vondruš] || 0.99.71 || 0.99.71 || + ||  ||  ||  ||  ||  || c || 20110107 ||
 || haiq || [http://groups.google.com/group/haiq HaiQ] || Development.C++ || [mailto: ] || 1.0-beta ||  ||  ||  ||  ||  ||  ||
-|| juffed || [http://sourceforge.net/projects/juffed JuffEd] || Text editor || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.8.1 || 0.7.551 || + || x || + ||  ||  ||
+|| juffed || [http://sourceforge.net/projects/juffed JuffEd] || Text editor || [mailto:mezomish@gmail.com Mikhail Murzin] || 0.9.1087 || 0.9.1087 || + || + || + ||  ||  || + || c || 20110107 ||
 || kchmviewer || [http://www.kchmviewer.net KchmViewer] || CHM viewer || [mailto:kchmviewer@ulduzsoft.com George Yunaev] || 5.2 || 5.2 || + || + || - ||  ||  || + || c || 20110107 ||
 || lybniz || [http://www.geocities.com/thomasfuhringer/lybniz Lybniz] || Scientific || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || lyx || [http://www.lyx.org LyX] || Text processor || [mailto: ] || 1.6.3 ||  || r ||  ||  ||  ||  ||
