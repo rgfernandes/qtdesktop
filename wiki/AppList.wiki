@@ -9,7 +9,7 @@ This is list of current qt applications
 || *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
 || alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] || 0.6.0 || 0.6.0 || + || - || + || - || - ||
 || arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.11.0 || 0.11.0 || r || + || - ||  ||  ||
-|| avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
+|| avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] || 2.5.4 || 2.5.4 || r ||  ||  ||  ||  ||
 || avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] || 0.9.6 ||  || r ||  ||  ||  ||  ||
 || axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  ||
 || beediff || [http://www.beesoft.org BeeDiff] || Diff frontend || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 1.9 || 1.9 || r ||  ||  ||  ||  ||
