@@ -8,7 +8,7 @@ This is list of current qt applications
 
 || *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* || *W* || *B* || *Date* ||
 || alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] || 0.6.0 || 0.6.0 || + || - || + || - || - || - || c || 20110107 ||
-|| arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.11.0 || - || 0.11.0 || + || - ||  ||  || + ||  || 20110107 ||
+|| arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.11.0 || - || 0.11.0 || + || - ||  ||  || + || q || 20110107 ||
 || avidemux_qt || [http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor ||  || 2.5.4 || - || 2.5.4 ||  ||  ||  ||  || + ||  || 20110107 ||
 || avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific ||  || 1.0.1 || - || 1.0.1 ||  ||  ||  ||  || + ||  || 20110107 ||
 || axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  || - || q ||  20110107 ||
