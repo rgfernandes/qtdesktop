@@ -7,14 +7,14 @@ This is list of current qt applications
 = Details =
 
 || *Package* || *Application* || *Category* || *Contact* || *Ver* || *Built ver* || *F* || *M* || *S* || *D* || *U* ||
-|| antico-deluxe || [http://v4fproject.wordpress.com/anticodeluxe Antico-Deluxe] || DE || [mailto:ludmiloff@gmail.com Svetoslav Ludmiloff] || 0.2 || 0.2 || + || + || + ||  ||  ||
+|| alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] || 0.6.0 || 0.6.0 || + || - || + || - || - ||
 || arora || [http://code.google.com/p/arora Arora] || Web-browser || [mailto:ben@meyerhome.net Benjamin Meyer] || 0.7.1 || 0.7.0 || r || + || - ||  ||  ||
 || avidemux_qt || [http://http://fixounet.free.fr/avidemux Avidemux_QT] || Video editor || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || avogadro || [http://avogadro.openmolecules.net Avogadro] || Scientific || [mailto: ] || 0.9.6 ||  || r ||  ||  ||  ||  ||
 || axkb || [http://www.php-developer.com.ua/antico Antico XKB] || Kbd switch || [mailto:disels@gmail.com Phoudor Ch] || 0.4.2 || 0.4.2 || + || + || - ||  ||  ||
-|| beediff || [http://www.beesoft.org BeeDiff] || Diff frontend || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 1.9 || 1.9 ||  ||  ||  ||  ||  ||
+|| beediff || [http://www.beesoft.org BeeDiff] || Diff frontend || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 1.9 || 1.9 || r ||  ||  ||  ||  ||
 || bsc || [http://www.beesoft.org Beesoft Commander] || File manager || [mailto:piotr@beesoft.org Piotr Pszczolkowski] || 4.1.0 || 4.1.0 ||  ||  ||  ||  ||  ||
-|| cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 0.0.10 || 0.0.10 || + || + || - ||  ||  ||
+|| cuberok || [http://code.google.com/p/cuberok Cuberok] || Audio player || [mailto:drmoriarty.0@gmail.com Vasiliy Makarov] || 0.1.0 || 0.1.0 || + || + || - ||  ||  ||
 || cuneiform-qt || [http://www.altlinux.org/Cuneiform-Qt Cuneiform-Qt] || OCR frontend || [mailto:cas@altlinux.ru Andrew Tsherepanov] || 0.1.2 || 0.1.2 || + || + || - ||  ||  ||
 || edyuk || [http://edyuk.org Edyuk] || Development.C++ || [mailto: ] || 1.1.0 ||  ||  ||  ||  ||  ||  ||
 || eric || [http://eric-ide.python-projects.org/ Eric] || Development.Python || [mailto:detlev@die-offenbachs.de Detlev Offenbach] || 4.3.4 ||  || r ||  ||  ||  ||  ||
@@ -65,7 +65,6 @@ This is list of current qt applications
 || vlc || [http://www.videolan.org/vlc VLC] || Video player || [mailto: ] ||  ||  || r ||  ||  ||  ||  ||
 || webdavdir || [http://code.google.com/p/qtwdav QT WebDav Explorer] || WebDAV client || [mailto:ppkciz@gmail.com Patrik Hohl] ||  ||  ||  ||  ||  ||  ||  ||
 || zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
-|| Alsamixer-qt4 || [http://www.xwmw.org/alsamixer-qt4/ Alsamixer-Qt4] || Audio || [mailto:sebholt@xwmw.org Sebastian Holtermann] || 0.6.0 || 0.6.0 || + || - || + || - || - ||
 
 ----
 
