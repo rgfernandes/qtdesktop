@@ -28,7 +28,7 @@ This is list of current qt applications
 || lyx || [http://www.lyx.org LyX] || Text processor ||  || 2.0.0 beta2 || - || 2.0.0 beta2 ||  ||  ||  ||  || + ||  || 20110107 ||
 || mantoi-mail || [http://www.manitou-mail.org Mantoi-Mail] || Networking.Mail || [mailto:daniel@mantoi-mail.org Daniel V.rit.] || 0.9.11 ||  ||  ||  ||  ||  ||  ||
 || monkeystudio || [http://monkeystudio.org Monkey Studio] || Development.C++ || [mailto:pasnox@gmail.com Azevedo Filipe] || 1.8.4.0 || - || 1.8.4.0 ||  ||  ||  ||  || + ||  || 20110107 ||
-|| nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  ||
+|| nuntiusleo || [http://http://nlcreator.sourceforge.net NuntiusLeo] || Networking.Mail || [mailto:m_kistler@gmx.ch Martin Kistler] || 0.2.1 || 0.2.1 || + || + || + ||  ||  || - || q || 20110107 ||
 || pdfedit || [http://pdfedit.petricek.net PDFedit] || PDF editor ||  || 0.4.5 || - || 0.4.5 || - || - ||  ||  ||  ||  || 20110107 ||
 || psi || [http://psi-im.org Psi] || IM.XMPP || [mailto:kismith@psi-im.org Kevin Smith] || 0.14 || - || 0.14 ||  ||  ||  ||  || + ||  || 20110107 ||
 || q4wine || [http://sourceforge.net/projects/q4wine Q4wine] || Emulator || [mailto:brezerk@gmail.com Alexey Malakhov] || 0.112 || 0.112 || + || + || + ||  ||  ||
