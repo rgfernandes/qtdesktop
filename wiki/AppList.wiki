@@ -96,9 +96,8 @@ This is list of current qt applications
   * znotes
 == Addons: ==
   * qjson
-  * juffed (0.8)
-  * juffed-plugins (0.8)
-  * qtermwidget (0.8)
-  * rb_libtorrent (0.8)
   * qxt (0.8)
   * qmailengine (0.8)
+== etc ==
+  * juffed (0.8)
+  * juffed-plugins (0.8)
