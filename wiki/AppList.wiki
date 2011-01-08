@@ -98,6 +98,3 @@ This is list of current qt applications
   * qjson
   * qxt (0.8)
   * qmailengine (0.8)
-== etc ==
-  * juffed (0.8)
-  * juffed-plugins (0.8)
