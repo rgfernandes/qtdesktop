@@ -61,10 +61,10 @@ This is list of current qt applications
 || scribus || [http://www.scribus.net Scribus] || Text processor ||  || 1.3.9 || - || 1.3.9 ||  ||  ||  ||  || + ||  || 20110107 ||
 || smplayer || [http://smplayer.sourceforge.net SMPlayer] || Video player || [mailto:rvm@escomposlinux.org Ricardo Villalba] || 0.6.9 || - || 0.6.9 ||  ||  ||  ||  || + ||  || 20110107 ||
 || socnetv || [http://socnetv.sourceforge.net SocNetV] || Graph || [mailto:dimitris.kalamaras@gmail.com Dimitris Kalamaras] ||  || 0.51 || + || + || + ||  ||  ||
-|| speedcrunch || [http://speedcrunch.org SpeedCrunch] || Calc ||  || 0.10.1 ||  || 0.11 ||  ||  ||  ||  || + ||  || 20110107 ||
-|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] || 1.2.2 ||  || 1.2.1 ||  ||  ||  ||  || + ||  || 20110107 ||
+|| speedcrunch || [http://speedcrunch.org SpeedCrunch] || Calc ||  || 0.10.1 || - || 0.11 ||  ||  ||  ||  || + ||  || 20110107 ||
+|| sqliteman || [http://sqliteman.com Sqliteman] || Development.DB || [mailto:petr@scribus.info Petr Vanek] || 1.2.2 || - || 1.2.1 ||  ||  ||  ||  || + ||  || 20110107 ||
 || surfer || [http://www.qt-apps.org/content/show.php/Surfer Surfer] || Web-browser || [mailto:payableondeath90@gmail.com Ivan Andrianov] ||  ||  ||  ||  ||  ||  ||  ||
-|| texmaker || [http://www.xm1math.net/texmaker TeXMaker] || Text processor ||  || 2.1 ||  || 2.0 ||  ||  ||  ||  || + ||  || 20110107 ||
+|| texmaker || [http://www.xm1math.net/texmaker TeXMaker] || Text processor ||  || 2.1 || - || 2.0 ||  ||  ||  ||  || + ||  || 20110107 ||
 || vlc || [http://www.videolan.org/vlc VLC] || Video player ||  || 1.1.5 || - || 1.1.5 ||  ||  ||  ||  || + ||  || 20110107 ||
 || webdavdir || [http://code.google.com/p/qtwdav QT WebDav Explorer] || WebDAV client || [mailto:ppkciz@gmail.com Patrik Hohl] ||  ||  ||  ||  ||  ||  ||  ||
 || zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
