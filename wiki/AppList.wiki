@@ -54,7 +54,7 @@ This is list of current qt applications
 || qwriter || [http://www.qt-apps.org/content/show.php/QWriter QWriter] || Notepad || [mailto:kossne@mail.ru Konstantin Gancov] ||  || 0.1 || + || + || - ||  ||  ||
 || qxmledit || [http://code.google.com/p/qxmledit/ QXmlEdit] || XML-editor || [mailto:lbellonda@gmail.com Luca Vellonda] || 0.4.9.1 || *0.3.0* || + ||  || + ||  ||  || + || q || 20110107 ||
 || rassistant || [http://sourceforge.net/projects/rassistant Research Assistant] || Html editor || [mailto:24pm@mail.ru Pavel Malakhov] ||  ||  ||  ||  ||  ||  ||  ||
-|| rplayer || [http://rniamo.is-a-geek.com/mu RPlayer] || Audio player || [mailto:rniamo@gmail.com ] || ? || ? || - || - || - ||  ||  || - ||  || q || 20110107 ||
+|| rplayer || [http://rniamo.is-a-geek.com/mu RPlayer] || Audio player || [mailto:rniamo@gmail.com ] || ? || ? || - || - || - ||  ||  || - || q || 20110107 ||
 || rviewer || [http://rniamo.is-a-geek.com/mu RViewer] || Image viewer || [mailto:rniamo@gmail.com ] || ? || 0.5 || + || + || + ||  ||  || - || q || 20110107 ||
 || scantailor || [http://scantailor.sourceforge.net Scantailor] || Scanning || [mailto:joseph_a@mail.ru Joseph Artsimovich] || 0.9.9.2 || - || 0.9.9.2 ||  ||  ||  ||  || + ||  || 20110107 ||
 || scidavis || [http://scidavis.sourceforge.net SciDAVis] || Scientific ||  || 0.2.4 || - || 0.2.4 ||  ||  ||  ||  || - ||  || 20110107 ||
@@ -70,18 +70,35 @@ This is list of current qt applications
 || zhu3d || [http://sourceforge.net/projects/zhu3d/ zhu3D] || Scientific || [mailto: ] ||  ||  ||  ||  ||  ||  ||  ||
 
 ----
-
- * Ver - current version
- * Build ver - current pkg version
- * F - Fedora 14 rpm
- * M - Mandriva 2010.1 rpm
- * S - OpenSUSE 11.3 rpm
- * D - Debian 5.0 "Lenny" deb
- * U - xUbuntu 10.10 deb
- * W - Windows installer
- * B - build system (cmake/qmake)
- * Date - actuality date
- * + - built ok
- * - - building failed
- * x - building disabled
- * r - in official repo
+== Legend: ==
+  * Ver - current version
+  * Build ver - current pkg version
+  * F - Fedora 14 rpm
+  * M - Mandriva 2010.1 rpm
+  * S - OpenSUSE 11.3 rpm
+  * D - Debian 5.0 "Lenny" deb
+  * U - xUbuntu 10.10 deb
+  * W - Windows installer
+  * B - build system (cmake/qmake)
+  * Date - actuality date
+  * + - built ok
+  * - - building failed
+  * x - building disabled
+  * r - in official repo
+== New: ==
+  * mdc
+  * qmailclient
+  * qrdc
+  * qrss
+  * qtrun
+  * razor
+  * screengrab
+  * znotes
+== Addons: ==
+  * qjson
+  * juffed (0.8)
+  * juffed-plugins (0.8)
+  * qtermwidget (0.8)
+  * rb_libtorrent (0.8)
+  * qxt (0.8)
+  * qmailengine (0.8)
