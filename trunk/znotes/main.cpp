@@ -1,21 +1,16 @@
-#include <QtGui/QApplication>
+#include "application.h"
 #include "mainwindow.h"
-
-class zApplication: public QApplication
-{
-public:
-	zApplication(int &argc, char **argv) : QApplication(argc, argv) {}
-	~zApplication() {}
-	void commitData(QSessionManager &)//fixing "KDE kogout was cancelled by zNotes" bug
-	{
-		settings.save();
-	}
-};
+#include "settings.h"
 
 int main(int argc, char *argv[])
 {
 	zApplication a(argc, argv);
+	settings.load();
+	//if another copy is startes
+	if(a.sendMessage("proton is our god!") && settings.getSingleInstance())
+		return 0;
 	a.setQuitOnLastWindowClosed(false);
 	MainWindow w;
+	a.setMainWindow(&w);
 	return a.exec();
 }

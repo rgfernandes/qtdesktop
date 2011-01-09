@@ -3,13 +3,14 @@
 #include "settings.h"
 #include "configdialog.h"
 #include "aboutDialog.h"
+#include "note_html.h"
 
-#include <QInputDialog>
 #include <QMessageBox>
-#include <QFileDialog>
 #include <QClipboard>
 #include <QProcess>
 #include <QCloseEvent>
+#include <QTextCharFormat>
+#include <QColorDialog>
 
 /*
 	Tray icon on windows is very small
@@ -22,121 +23,43 @@
 
 Settings settings;
 
-void MainWindow::RemoveCurrentNote()
+void MainWindow::NewNotePlain()
 {
-	if(Notes->empty()) return;
-	Note* note = Notes->current();
-	QMessageBox msgBox(QMessageBox::Question, tr("Delete Note"),
-		tr("Do you realy want to delete note %1 ?").arg(note->title()),
-		QMessageBox::Yes | QMessageBox::No);
-	int ret = msgBox.exec();
-	if(ret == QMessageBox::Yes && note->remove())
-	{
-		Notes->remove(Notes->currentIndex());
-		if(Notes->empty())
-		{
-			actRemove->setDisabled(true);
-			actRename->setDisabled(true);
-		}
-	}
-}
-
-void MainWindow::RenameCurrentNote()
-{
-	if(Notes->empty()) return;
-	//
-	QString filename = Notes->current()->fileName();
-	bool ok;
-	QString new_name = QInputDialog::getText(this, tr("Rename note"), tr("New name:"), QLineEdit::Normal, filename, &ok);
-	if(ok && !new_name.isEmpty())
-	{
-		Notes->rename(Notes->currentIndex(), new_name);
-	}
-}
-
-void MainWindow::NewNote()
-{
-	int n = 0;
-	QString filename = QString::number(n);
-	QFile file(dir.absoluteFilePath(filename));
-	while(file.exists()) //Searching for free filename
-	{
-		filename = QString::number(++n);
-		file.setFileName(dir.absoluteFilePath(filename));
-	}
-	Notes->add(file);
-	if(!Notes->empty())
-	{
-		actRemove->setEnabled(true);
-		actRename->setEnabled(true);
-	}
+	notes->create("%1");
 }
 
 void MainWindow::NewNoteHTML()
 {
-	int n = 0;
-	QString filename = QString("%1.htm").arg(n);
-	QFile file(dir.absoluteFilePath(filename));
-	while(file.exists()) //Searching for free filename
-	{
-		filename = QString("%1.htm").arg(++n);
-		file.setFileName(dir.absoluteFilePath(filename));
-	}
-	Notes->add(file);
-	if(!Notes->empty())
-	{
-		actRemove->setEnabled(true);
-		actRename->setEnabled(true);
-	}
+	notes->create("%1.htm");
+}
+
+void MainWindow::NewNoteTODO()
+{
+	notes->create("%1.ztodo");
 }
 
 void MainWindow::PreviousNote()
 {
-	Notes->getWidget()->setCurrentIndex(Notes->currentIndex()-1);
+	if(notes->empty()) return;
+	notes->getWidget()->setCurrentIndex(notes->currentIndex()-1);
 }
 
 void MainWindow::NextNote()
 {
-	Notes->getWidget()->setCurrentIndex(Notes->currentIndex()+1);
+	if(notes->empty()) return;
+	notes->getWidget()->setCurrentIndex(notes->currentIndex()+1);
 }
 
 void MainWindow::ToNote(int n)
 {
-	if(n>=Notes->count()) return;
-	Notes->getWidget()->setCurrentIndex(n);
+	if(n>=notes->count()) return;
+	notes->getWidget()->setCurrentIndex(n);
 }
 
 void MainWindow::CopyNote()
 {
-	Notes->current()->copy();
-}
-
-void MainWindow::LoadNotes()
-{
-	//Setting directory
-	dir.setPath(settings.getNotesPath());
-	if(!dir.exists()) if(!dir.mkpath(dir.path())) dir.setPath("");
-	if(!dir.isReadable()) dir.setPath("");
-	while(dir.path().isEmpty())
-	{
-		dir.setPath(QFileDialog::getExistingDirectory(0,
-			tr("Select notes directory"), QDir::homePath(),
-			QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks));
-		if(!dir.path().isEmpty()) settings.setNotesPath(dir.path());
-	}
-	//Loading files' list
-	if(settings.getShowHidden()) dir.setFilter(QDir::Files | QDir::Hidden | QDir::Readable);
-	else dir.setFilter(QDir::Files | QDir::Readable);
-	QFileInfoList flist = dir.entryInfoList();
-	const QString& old_note = settings.getLastNote();
-	int old_index=-1;
-	for(int i=0; i<flist.size(); ++i)
-	{
-		//Loading note
-		bool is_old = Notes->load(flist.at(i), old_note);
-		if(is_old) old_index = i;
-	}
-	if(old_index!=-1) Notes->setCurrent(old_index);
+	if(notes->empty()) return;
+	notes->current()->copy();
 }
 
 void MainWindow::trayActivated(QSystemTrayIcon::ActivationReason reason)
@@ -155,17 +78,17 @@ void MainWindow::trayActivated(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::hideEvent(QHideEvent */*event*/)
 {
+	settings.setDialogGeometry(saveGeometry());
 	actShow->setEnabled(true);
 	actHide->setDisabled(true);
-	settings.setDialogGeometry(saveGeometry());
-	if(Notes->current()!=0) Notes->SaveAll();
+	if(notes->current()) notes->saveAll();
 }
 
 void MainWindow::showEvent(QShowEvent */*event*/)
 {
+	restoreGeometry(settings.getDialogGeometry());
 	actShow->setEnabled(false);
 	actHide->setDisabled(false);
-	restoreGeometry(settings.getDialogGeometry());
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -189,33 +112,6 @@ void MainWindow::showPrefDialog()
 	dlg.exec();
 }
 
-void MainWindow::notesPathChanged()
-{
-	QMessageBox msgBox(QMessageBox::Question, tr("Move Notes"),
-		tr("Notes path changed!\nDo you want to move your notes to new place ?"),
-		QMessageBox::Yes | QMessageBox::No);
-	int ret = msgBox.exec();
-	if(ret == QMessageBox::Yes)
-	{
-		dir.setPath(settings.getNotesPath());
-		QString dir_path = dir.absolutePath();
-		Notes->move(dir_path);
-	}
-	else QMessageBox::information(this, tr("Notes path change"),
-		tr("You need restart application to get effect."));
-}
-
-void MainWindow::fileScannerEnChanged(bool enabled)
-{
-	if(enabled) ScanTimer.start();
-	else ScanTimer.stop();
-}
-
-void MainWindow::fileScannerTimeoutChanged(int period)
-{
-	ScanTimer.setInterval(period);
-}
-
 void MainWindow::windowStateChanged()
 {
 	Qt::WindowFlags flags = Qt::Window;
@@ -224,20 +120,6 @@ void MainWindow::windowStateChanged()
 	bool window_is_visible = isVisible();
 	setWindowFlags(flags);
 	if(window_is_visible) show();
-}
-
-void MainWindow::scanForNewFiles()
-{
-	if(settings.getShowHidden()) dir.setFilter(QDir::Files | QDir::Hidden | QDir::Readable);
-	else dir.setFilter(QDir::Files | QDir::Readable);
-	dir.refresh();
-	QFileInfoList flist = dir.entryInfoList();
-	for(int i=0; i<flist.size(); ++i)
-	{
-		//Loading note
-		bool exists = Notes->has(flist.at(i).fileName());
-		if(!exists) Notes->add(flist.at(i));
-	}
 }
 
 void MainWindow::warningSettingsChanged()
@@ -250,7 +132,7 @@ void MainWindow::commandMenu()
 {
 	if(cmd_menu.actions().size()>0)
 	{
-		QPoint p = ui->mainToolBar->actionGeometry(actRun).center()+pos();
+		QPoint p = ui->mainToolBar->actionGeometry(actions[itemRun]).center()+pos();
 		cmd_menu.exec(p);
 	}
 	else
@@ -261,9 +143,10 @@ void MainWindow::commandMenu()
 
 void MainWindow::cmdExec(const QString & command)
 {
+	if(notes->empty()) return;
 	QProcess p;
 	QStringList args;
-	args << Notes->current()->absolutePath();
+	args << notes->current()->absolutePath();
 	p.start(command, args);
 	if(p.waitForStarted())
 	{
@@ -295,141 +178,150 @@ void MainWindow::actions_changed()
 	for(int i=0; i<items.size(); ++i)
 	{
 		if(items[i]==itemSeparator) ui->mainToolBar->addSeparator();
-		else ui->mainToolBar->addAction(getAction(items[i]));
+		else ui->mainToolBar->addAction(actions[items[i]]);
 	}
 }
 
 void MainWindow::formatChanged(const QFont& font)
 {
-	actFormatBold->setChecked(font.bold());
-	actFormatItalic->setChecked(font.italic());
-	actFormatStrikeout->setChecked(font.strikeOut());
-	actFormatUnderline->setChecked(font.underline());
+	actions[itemFormatBold]->setChecked(font.bold());
+	actions[itemFormatItalic]->setChecked(font.italic());
+	actions[itemFormatStrikeout]->setChecked(font.strikeOut());
+	actions[itemFormatUnderline]->setChecked(font.underline());
 }
 
 void MainWindow::formatBold()
 {
-	if(Notes->empty()) return;
-	if(Notes->current()->noteType()!=Note::type_html) return;
+	if(notes->empty()) return;
+	if(notes->current()->type()!=Note::type_html) return;
 	QTextCharFormat format;
-	bool is_bold = actFormatBold->isChecked();
+	bool is_bold = actions[itemFormatBold]->isChecked();
 	format.setFontWeight(is_bold?QFont::Bold : QFont::Normal);
-	Notes->current()->setSelFormat(format);
+	notes->current()->setSelFormat(format);
 }
 
 void MainWindow::formatItalic()
 {
-	if(Notes->empty()) return;
-	if(Notes->current()->noteType()!=Note::type_html) return;
+	if(notes->empty()) return;
+	if(notes->current()->type()!=Note::type_html) return;
 	QTextCharFormat format;
-	bool is_italic = actFormatItalic->isChecked();
+	bool is_italic = actions[itemFormatItalic]->isChecked();
 	format.setFontItalic(is_italic);
-	Notes->current()->setSelFormat(format);
+	notes->current()->setSelFormat(format);
 }
 
 void MainWindow::formatStrikeout()
 {
-	if(Notes->empty()) return;
-	if(Notes->current()->noteType()!=Note::type_html) return;
+	if(notes->empty()) return;
+	if(notes->current()->type()!=Note::type_html) return;
 	QTextCharFormat format;
-	bool is_strikeout = actFormatStrikeout->isChecked();
+	bool is_strikeout = actions[itemFormatStrikeout]->isChecked();
 	format.setFontStrikeOut(is_strikeout);
-	Notes->current()->setSelFormat(format);
+	notes->current()->setSelFormat(format);
 }
 
 void MainWindow::formatUnderline()
 {
-	if(Notes->empty()) return;
-	if(Notes->current()->noteType()!=Note::type_html) return;
+	if(notes->empty()) return;
+	if(notes->current()->type()!=Note::type_html) return;
 	QTextCharFormat format;
-	bool is_underline = actFormatUnderline->isChecked();
+	bool is_underline = actions[itemFormatUnderline]->isChecked();
 	format.setFontUnderline(is_underline);
-	Notes->current()->setSelFormat(format);
+	notes->current()->setSelFormat(format);
+}
+
+void MainWindow::formatTextColor()
+{
+	if(notes->empty()) return;
+	Note* note = notes->current();
+	if(note->type()!=Note::type_html) return;
+	QTextCharFormat format = note->getSelFormat();
+	QColor color = format.foreground().color();
+	QColorDialog dlg(color);
+	if(dlg.exec()==QDialog::Accepted)
+	{
+		color = dlg.currentColor();
+		format.setForeground(color);
+		note->setSelFormat(format);
+	}
 }
 
 //------------------------------------------------------------------------------
 
 //Function for fast generating actions
-inline QAction* GenerateAction(item_enum item, bool checkable = false)
+inline QAction* GenerateAction(int item_id /*, bool checkable = false*/)
 {
+	item_enum item = item_enum(item_id);
 	ToolbarAction toolbar_action(item);
 	QAction* action = new QAction(toolbar_action.icon(), toolbar_action.text(), 0);
-	action->setCheckable(checkable);
+	action->setCheckable(toolbar_action.isCheckable());
 	return action;
 }
 
 MainWindow::MainWindow(QWidget *parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow)
 {
-	settings.load();
 	ui->setupUi(this);
-	Notes = new NoteList(ui->centralWidget);
-	ui->layout->addWidget(Notes->getWidget());
-	connect(Notes, SIGNAL(currentNoteChanged(int,int)), this, SLOT(currentNoteChanged(int,int)));
 	ui->wSearch->hide();
 	//restoring window state
 	restoreGeometry(settings.getDialogGeometry());
 	restoreState(settings.getDialogState());
 	windowStateChanged();
+
+	notes = new NoteList(ui->centralWidget);
+	ui->layout->addWidget(notes->getWidget());
+	connect(notes, SIGNAL(currentNoteChanged(int,int)), this, SLOT(currentNoteChanged(int,int)));
+
 	//Creating toolbar/menu actions
-	actAdd = GenerateAction(itemAdd);
-	actAddHtml = GenerateAction(itemAddHtml);
-	actRemove = GenerateAction(itemRemove);
-	actRename = GenerateAction(itemRename);
-	actPrev = GenerateAction(itemPrev);
-	actNext = GenerateAction(itemNext);
-	actCopy = GenerateAction(itemCopy);
-	actSetup = GenerateAction(itemSetup);
-	actInfo = GenerateAction(itemInfo);
-	actRun = GenerateAction(itemRun);
-	actSearch = GenerateAction(itemSearch);
-	actExit = GenerateAction(itemExit);
-	actFormatBold = GenerateAction(itemFormatBold, true);
-	actFormatItalic = GenerateAction(itemFormatItalic, true);
-	actFormatStrikeout = GenerateAction(itemFormatStrikeout, true);
-	actFormatUnderline = GenerateAction(itemFormatUnderline, true);
+	for(int i=0; i<itemMax ; ++i) actions[i] = GenerateAction(i);
 	actShow =	new QAction(tr("Show"),	parent);
 	actHide =	new QAction(tr("Hide"),	parent);
 	//Connecting actions with slots
-	connect(actAdd,		SIGNAL(triggered()), this, SLOT(NewNote()));
-	connect(actAddHtml,	SIGNAL(triggered()), this, SLOT(NewNoteHTML()));
-	connect(actRemove,	SIGNAL(triggered()), this, SLOT(RemoveCurrentNote()));
-	connect(actRename,	SIGNAL(triggered()), this, SLOT(RenameCurrentNote()));
-	connect(actPrev,	SIGNAL(triggered()), this, SLOT(PreviousNote()));
-	connect(actNext,	SIGNAL(triggered()), this, SLOT(NextNote()));
-	connect(actCopy,	SIGNAL(triggered()), this, SLOT(CopyNote()));
-	connect(actSetup,	SIGNAL(triggered()), this, SLOT(showPrefDialog()));
-	connect(actInfo,	SIGNAL(triggered()), this, SLOT(showAboutDialog()));
-	connect(actRun,		SIGNAL(triggered()), this, SLOT(commandMenu()));
-	connect(actSearch,	SIGNAL(triggered()), this, SLOT(showSearchBar()));
-	connect(actExit,	SIGNAL(triggered()), qApp, SLOT(quit()));
-	connect(actFormatBold,	SIGNAL(triggered()), this, SLOT(formatBold()));
-	connect(actFormatItalic,	SIGNAL(triggered()), this, SLOT(formatItalic()));
-	connect(actFormatStrikeout,	SIGNAL(triggered()), this, SLOT(formatStrikeout()));
-	connect(actFormatUnderline,	SIGNAL(triggered()), this, SLOT(formatUnderline()));
+	connect(actions[itemAdd],		SIGNAL(triggered()), this, SLOT(NewNotePlain()));
+	connect(actions[itemAddHtml],	SIGNAL(triggered()), this, SLOT(NewNoteHTML()));
+	connect(actions[itemAddTodo],	SIGNAL(triggered()), this, SLOT(NewNoteTODO()));
+	connect(actions[itemRemove],	SIGNAL(triggered()), notes, SLOT(removeCurrentNote()));
+	connect(actions[itemRename],	SIGNAL(triggered()), notes, SLOT(renameCurrentNote()));
+	connect(actions[itemPrev],	SIGNAL(triggered()), this, SLOT(PreviousNote()));
+	connect(actions[itemNext],	SIGNAL(triggered()), this, SLOT(NextNote()));
+	connect(actions[itemBack],	SIGNAL(triggered()), notes, SLOT(historyBack()));
+	connect(actions[itemForward],	SIGNAL(triggered()), notes, SLOT(historyForward()));
+	connect(actions[itemCopy],	SIGNAL(triggered()), this, SLOT(CopyNote()));
+	connect(actions[itemSetup],	SIGNAL(triggered()), this, SLOT(showPrefDialog()));
+	connect(actions[itemInfo],	SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+	connect(actions[itemRun],		SIGNAL(triggered()), this, SLOT(commandMenu()));
+	connect(actions[itemSearch],	SIGNAL(toggled(bool)), this, SLOT(showSearchBar(bool)));
+	connect(actions[itemExit],	SIGNAL(triggered()), qApp, SLOT(quit()));
+	connect(actions[itemFormatBold],	SIGNAL(triggered()), this, SLOT(formatBold()));
+	connect(actions[itemFormatItalic],	SIGNAL(triggered()), this, SLOT(formatItalic()));
+	connect(actions[itemFormatStrikeout],	SIGNAL(triggered()), this, SLOT(formatStrikeout()));
+	connect(actions[itemFormatUnderline],	SIGNAL(triggered()), this, SLOT(formatUnderline()));
+	connect(actions[itemFormatColor],	SIGNAL(triggered()), this, SLOT(formatTextColor()));
 	//
 	connect(actShow,	SIGNAL(triggered()), this, SLOT(show()));
 	connect(actHide,	SIGNAL(triggered()), this, SLOT(hide()));
 	//
 	actions_changed(); //Adding toolbar's actions
 	cmd_changed(); //Adding scripts
+
 	//Adding menu actions
 	cmenu.addAction(actShow);
 	cmenu.addAction(actHide);
 	cmenu.addSeparator();
-	cmenu.addAction(actAdd);
-	cmenu.addAction(actRemove);
-	cmenu.addAction(actRename);
+	cmenu.addAction(actions[itemAdd]);
+	cmenu.addAction(actions[itemRemove]);
+	cmenu.addAction(actions[itemRename]);
 	cmenu.addSeparator();
-	cmenu.addAction(actSetup);
-	cmenu.addAction(actInfo);
+	cmenu.addAction(actions[itemSetup]);
+	cmenu.addAction(actions[itemInfo]);
 	cmenu.addSeparator();
-	cmenu.addAction(actExit);
+	cmenu.addAction(actions[itemExit]);
 	tray.setIcon(QIcon(TRAY_ICON_FILE_NAME));
 	tray.setContextMenu(&cmenu);
 	connect(&tray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
 			this, SLOT(trayActivated(QSystemTrayIcon::ActivationReason)));
 	tray.show();
+
 	//Creating shortcuts
 	scAdd	=	new QShortcut(QKeySequence::New,	this);
 	scRemove =	new QShortcut(QKeySequence::Delete,	this);
@@ -439,20 +331,22 @@ MainWindow::MainWindow(QWidget *parent)
 	scPrev =	new QShortcut(QKeySequence::PreviousChild,	this);
 	scNext =	new QShortcut(QKeySequence::NextChild,this);
 	scSearch =	new QShortcut(QKeySequence::Find,	this);
+	scSearchEsc = new QShortcut(Qt::Key_Escape, ui->edSearch, 0, 0, Qt::WidgetShortcut);
 	scExit =	new QShortcut(QKeySequence::Close,	this);
 	scFormatBold =		new QShortcut(Qt::CTRL + Qt::Key_B,	this);
 	scFormatItalic =	new QShortcut(Qt::CTRL + Qt::Key_I,	this);
 	scFormatStrikeout = new QShortcut(Qt::CTRL + Qt::Key_S,	this);
 	scFormatUnderline = new QShortcut(Qt::CTRL + Qt::Key_U,	this);
 	//Connecting shortcuts with slots
-	connect(scAdd,		SIGNAL(activated()), this, SLOT(NewNote()));
-	connect(scRemove,	SIGNAL(activated()), this, SLOT(RemoveCurrentNote()));
-	connect(scRename,	SIGNAL(activated()), this, SLOT(RenameCurrentNote()));
-	connect(scBack,		SIGNAL(activated()), this, SLOT(PreviousNote()));
-	connect(scForward,	SIGNAL(activated()), this, SLOT(NextNote()));
+	connect(scAdd,		SIGNAL(activated()), this, SLOT(NewNotePlain()));
+	connect(scRemove,	SIGNAL(activated()), notes, SLOT(removeCurrentNote()));
+	connect(scRename,	SIGNAL(activated()), notes, SLOT(renameCurrentNote()));
 	connect(scPrev,		SIGNAL(activated()), this, SLOT(PreviousNote()));
 	connect(scNext,		SIGNAL(activated()), this, SLOT(NextNote()));
-	connect(scSearch,	SIGNAL(activated()), this, SLOT(showSearchBar()));
+	connect(scBack,		SIGNAL(activated()), notes, SLOT(historyBack()));
+	connect(scForward,	SIGNAL(activated()), notes, SLOT(historyForward()));
+	connect(scSearch,	SIGNAL(activated()), actions[itemSearch], SLOT(toggle()));
+	connect(scSearchEsc,	SIGNAL(activated()), actions[itemSearch], SLOT(toggle()));
 	connect(scExit,		SIGNAL(activated()), qApp, SLOT(quit()));
 	connect(scFormatBold,	SIGNAL(activated()), this, SLOT(formatBold()));
 	connect(scFormatItalic,	SIGNAL(activated()), this, SLOT(formatItalic()));
@@ -467,80 +361,97 @@ MainWindow::MainWindow(QWidget *parent)
 	}
 	connect(&alt_mapper, SIGNAL(mapped(int)), this, SLOT(ToNote(int)));
 	//
-	LoadNotes();
-	if(Notes->empty()) NewNote();
-	//
-	connect(&SaveTimer, SIGNAL(timeout()), Notes, SLOT(SaveAll()));
-	SaveTimer.start(15000);
-	if(settings.getFileScanner())
-	{
-		connect(&ScanTimer, SIGNAL(timeout()), this, SLOT(scanForNewFiles()));
-		ScanTimer.start(settings.getFileScannerTimeout());
-	}
-	connect(&settings, SIGNAL(FileScannerEnChanged(bool)), this, SLOT(fileScannerEnChanged(bool)));
-	connect(&settings, SIGNAL(FileScannerTimeoutChanged(int)), this, SLOT(fileScannerTimeoutChanged(int)));
-	//
-	connect(&settings, SIGNAL(NotesPathChanged()), this, SLOT(notesPathChanged()));
 	connect(&settings, SIGNAL(ShowHiddenChanged()), this, SLOT(warningSettingsChanged()));
 	connect(&settings, SIGNAL(WindowStateChanged()), this, SLOT(windowStateChanged()));
 	connect(&settings, SIGNAL(ToolbarItemsChanged()), this, SLOT(actions_changed()));
-	connect(&settings.getScriptModel(), SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)),
+	connect(&settings.getScriptModel(), SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
 		this, SLOT(cmd_changed()));
 	if(!settings.getHideStart()) show();
+	//
+	currentNoteChanged(-1, notes->currentIndex());
 }
 
 MainWindow::~MainWindow()
 {
-	delete ui;
 	//saving notes
-	Notes->SaveAll();
+	notes->saveAll();
 	//saving title of last note
-	settings.setLastNote(Notes->current()->title());
+	if(notes->current()) settings.setLastNote(notes->current()->fileName());
 	//saving dialog's params
 	settings.setDialogGeometry(saveGeometry());
 	settings.setDialogState(saveState());
 	//saving scrits
 	settings.setScripts();
+	//syncing settings
+	settings.save();
 }
 
 void MainWindow::currentNoteChanged(int old_index, int new_index)
 {
-	if(old_index!=-1) disconnect(Notes->get(old_index), SIGNAL(formatChanged(QFont)), 0, 0); //disconnecting old note
-	//
-	actPrev->setDisabled(new_index==0); //if first note
-	actNext->setDisabled(new_index==Notes->last()); //if last note
-	//
-	switch(Notes->current()->noteType())
+	if(old_index!=-1)
 	{
- case Note::type_html:
+		Note* note = notes->get(old_index);
+		if(note->type()==Note::type_html) disconnect(note, SIGNAL(formatChanged(QFont)), 0, 0); //disconnecting old note
+	}
+	//
+	bool not_empty = !notes->empty();
+	actions[itemPrev]->setEnabled(not_empty && new_index!=0); //if first note
+	actions[itemNext]->setEnabled(not_empty && new_index!=notes->last()); //if last note
+	actions[itemBack]->setEnabled(not_empty && notes->historyHasBack());
+	actions[itemForward]->setEnabled(not_empty && notes->historyHasForward());
+	actions[itemRemove]->setEnabled(not_empty);
+	//
+	Note* note = notes->current();
+	if(note)
+	{
+		switch(note->type())
 		{
-			QFont font(Notes->current()->getSelFormat().font());
-			actFormatBold->setChecked(font.bold());
-			actFormatItalic->setChecked(font.italic());
-			actFormatStrikeout->setChecked(font.strikeOut());
-			actFormatUnderline->setChecked(font.underline());
-			connect(Notes->current(), SIGNAL(formatChanged(QFont)), this, SLOT(formatChanged(QFont))); //connecting old note
-			actFormatBold->setEnabled(true);
-			actFormatItalic->setEnabled(true);
-			actFormatStrikeout->setEnabled(true);
-			actFormatUnderline->setEnabled(true);
+	 case Note::type_html:
+			{
+				HtmlNote* htmlnote = dynamic_cast<HtmlNote*> (note);
+				QFont font(htmlnote->getSelFormat().font());
+				actions[itemFormatBold]->setChecked(font.bold());
+				actions[itemFormatItalic]->setChecked(font.italic());
+				actions[itemFormatStrikeout]->setChecked(font.strikeOut());
+				actions[itemFormatUnderline]->setChecked(font.underline());
+				connect(htmlnote, SIGNAL(formatChanged(QFont)), this, SLOT(formatChanged(QFont))); //connecting old note
+				actions[itemFormatBold]->setEnabled(true);
+				actions[itemFormatItalic]->setEnabled(true);
+				actions[itemFormatStrikeout]->setEnabled(true);
+				actions[itemFormatUnderline]->setEnabled(true);
+				actions[itemFormatColor]->setEnabled(true);
+			}
+			break;
+	 default:
+			{
+				actions[itemFormatBold]->setEnabled(false);
+				actions[itemFormatItalic]->setEnabled(false);
+				actions[itemFormatStrikeout]->setEnabled(false);
+				actions[itemFormatUnderline]->setEnabled(false);
+				actions[itemFormatColor]->setEnabled(false);
+			}
+			break;
 		}
-		break;
- default:
-		{
-			actFormatBold->setEnabled(false);
-			actFormatItalic->setEnabled(false);
-			actFormatStrikeout->setEnabled(false);
-			actFormatUnderline->setEnabled(false);
-		}
-		break;
+	}
+	else
+	{
+		actions[itemFormatBold]->setEnabled(false);
+		actions[itemFormatItalic]->setEnabled(false);
+		actions[itemFormatStrikeout]->setEnabled(false);
+		actions[itemFormatUnderline]->setEnabled(false);
+		actions[itemFormatColor]->setEnabled(false);
 	}
 }
 
-void MainWindow::showSearchBar()
+void MainWindow::showSearchBar(bool show)
 {
-	ui->wSearch->show();
-	ui->edSearch->setFocus();
+	ui->wSearch->setVisible(show);
+	if(show)
+	{
+		ui->edSearch->setFocus();
+		if(!actions[itemSearch]->isChecked()) actions[itemSearch]->setChecked(true);
+	}
+	else ui->edSearch->clear();
 }
 
 /*
@@ -549,10 +460,10 @@ void MainWindow::showSearchBar()
 void MainWindow::Search(bool next)
 {
 	Q_UNUSED(next);
-	if(Notes->empty()) return;
+	if(notes->empty()) return;
 	QString text(ui->edSearch->text());
 	if(text.isEmpty()) return;
-	Notes->search(text);
+	notes->search(text);
 }
 
 void MainWindow::on_edSearch_textChanged(QString text)
@@ -575,21 +486,27 @@ void MainWindow::changeEvent(QEvent *e)
 	case QEvent::LanguageChange:
 		ui->retranslateUi(this);
 		//
-		actAdd->setText(ToolbarAction(itemAdd).text());
-		actRemove->setText(ToolbarAction(itemRemove).text());
-		actRename->setText(ToolbarAction(itemRename).text());
-		actPrev->setText(ToolbarAction(itemPrev).text());
-		actNext->setText(ToolbarAction(itemNext).text());
-		actCopy->setText(ToolbarAction(itemCopy).text());
-		actSetup->setText(ToolbarAction(itemSetup).text());
-		actInfo->setText(ToolbarAction(itemInfo).text());
-		actRun->setText(ToolbarAction(itemRun).text());
-		actSearch->setText(ToolbarAction(itemSearch).text());
-		actExit->setText(ToolbarAction(itemExit).text());
+		actions[itemAdd]->setText(ToolbarAction(itemAdd).text());
+		actions[itemRemove]->setText(ToolbarAction(itemRemove).text());
+		actions[itemRename]->setText(ToolbarAction(itemRename).text());
+		actions[itemPrev]->setText(ToolbarAction(itemPrev).text());
+		actions[itemNext]->setText(ToolbarAction(itemNext).text());
+		actions[itemCopy]->setText(ToolbarAction(itemCopy).text());
+		actions[itemSetup]->setText(ToolbarAction(itemSetup).text());
+		actions[itemInfo]->setText(ToolbarAction(itemInfo).text());
+		actions[itemRun]->setText(ToolbarAction(itemRun).text());
+		actions[itemSearch]->setText(ToolbarAction(itemSearch).text());
+		actions[itemExit]->setText(ToolbarAction(itemExit).text());
 		actShow->setText(tr("Show"));
 		actHide->setText(tr("Hide"));
 		//
+		notes->retranslate(settings.getLocaleCurrent());
 		break;
 	default: break;
 	}
+}
+
+void MainWindow::on_btSearchClose_clicked()
+{
+	actions[itemSearch]->setChecked(false);
 }

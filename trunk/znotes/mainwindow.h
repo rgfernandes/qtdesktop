@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
-#include <QDir>
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include <QTimer>
@@ -33,8 +32,7 @@ protected:
 private:
 	Ui::MainWindow *ui;
 	//
-	QDir dir;
-	NoteList* Notes;
+	NoteList* notes;
 	//
 	QSystemTrayIcon tray;
 	QMenu cmenu;
@@ -44,47 +42,22 @@ private:
 	QTimer SaveTimer;
 	QTimer ScanTimer;
 	//
-	QAction *actAdd, *actAddHtml, *actRemove, *actRename, *actPrev, *actNext;
-	QAction *actCopy, *actSetup, *actRun, *actExit, *actInfo, *actSearch;
-	QAction *actFormatBold, *actFormatItalic, *actFormatStrikeout, *actFormatUnderline;
-	//
+	QAction* actions[itemMax];
+//	//
 	QAction *actShow, *actHide;
-	//
+//	//
 	QShortcut *scAdd, *scRemove, *scRename, *scBack, *scForward, *scPrev, *scNext, *scExit, *scSearch;
 	QShortcut *scFormatBold, *scFormatItalic, *scFormatStrikeout, *scFormatUnderline;
+	QShortcut *scSearchEsc;
 	//
 	void LoadNotes();
 	//
 	void Search(bool next);
-	inline QAction* getAction(int i)
-	{
-		switch(i)
-		{
-			case itemAdd:			return actAdd;
-			case itemAddHtml:		return actAddHtml;
-			case itemRemove:		return actRemove;
-			case itemRename:		return actRename;
-			case itemPrev:			return actPrev;
-			case itemNext:			return actNext;
-			case itemCopy:			return actCopy;
-			case itemSetup:			return actSetup;
-			case itemInfo:			return actInfo;
-			case itemRun:			return actRun;
-			case itemSearch:		return actSearch;
-			case itemExit:			return actExit;
-			case itemFormatBold:	return actFormatBold;
-			case itemFormatItalic:	return actFormatItalic;
-			case itemFormatStrikeout: return actFormatStrikeout;
-			case itemFormatUnderline: return actFormatUnderline;
-			default: return new QAction(this);
-		}
-	}
 	void changeEvent(QEvent *e);
 public slots:
-	void RemoveCurrentNote();
-	void RenameCurrentNote();
-	void NewNote();
+	void NewNotePlain();
 	void NewNoteHTML();
+	void NewNoteTODO();
 	//
 	void PreviousNote();
 	void NextNote();
@@ -99,28 +72,27 @@ public slots:
 	void commandMenu();
 	void showAboutDialog();
 	void showPrefDialog();
-	void showSearchBar();
+	void showSearchBar(bool show = true);
 	//
 	void formatChanged(const QFont& font);
 	void formatBold();
 	void formatItalic();
 	void formatStrikeout();
 	void formatUnderline();
+	void formatTextColor();
 	//
 	void actions_changed();
 	//
 	void cmd_changed();
 	void cmdExec(const QString &);
 	//
-	void notesPathChanged();
-	void fileScannerEnChanged(bool);
-	void fileScannerTimeoutChanged(int);
 	void windowStateChanged();
 	//
-	void scanForNewFiles();
+//	void scanForNewFiles();
 	//
 	void warningSettingsChanged();
 private slots:
+	void on_btSearchClose_clicked();
 	void on_edSearch_returnPressed();
 	void on_edSearch_textChanged(QString text);
 };

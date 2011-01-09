@@ -1,3 +1,33 @@
+zNotes 0.4.4:
+* Fixed segfault on removing last note
+* HTTPS and FTP links may be highlighted now
+* Added toolbar actions for navigation by history
+* Fixed problem with note renaming
+* Fixed problem with NoteTodo translation
+* Added drag and drop support for toolbar items configuration dialog
+* Major architectural changes
+
+zNotes 0.4.3:
+* Fixed problem with compilation on not UNIX systems
+* Fixed problem with saving user language
+* Fixed problem with unchecking search action on closing search bar
+* Improved search usability
+
+zNotes 0.4.2:
+* Changed arhitecure of the note class
+* Added picture format support
+* Some ui improvements
+* Added ability to change text color in html notes
+* Added ability to use only one running instance of application.
+* Added default notes directory for all platforms
+* Added option for converting rich text insertions to plain text in HTML notes
+* Fixed problem with saving last note's name
+* Fixed bug with opening links in about dialog
+* Fixed bug with the inability to edit notes content after unsuccessful search
+* Added Brazilian Portuguese translation
+* Added Ukranian translation
+* Improved translations support
+
 zNotes 0.4.1:
 * Added automatic scaning for new files
 * Some arhitecture changes
@@ -33,7 +63,6 @@ zNotes 0.3.9:
 * Fixed bug with segmentaion fault on removing note
 * Improved  toolbar editor
 * Added abilty to change application language
-* Updated russian translate
 
 zNotes 0.3.8
 * Fixed problems saving toolbar's items
@@ -45,29 +74,24 @@ zNotes 0.3.8
 zNotes 0.3.7
 * Added ability to configure toolbar's elements
 * Added tab's switch via Alt+n (1<n<=9)
-* Updated russian translate
 
 zNotes 0.3.6
 * Fixed bug with showing notes' path in settings
 * Fixed bug with not working shortcuts
 * Added search in a notes' text
 * Some fixes
-* Updated russian translate
 
 zNotes 0.3.5
 * Fixed bug with compilation on not "unix" operation systems
 * Added icon to application (for OS/2 and Windows)
 * Updated about dialog
 * Some fixes
-* Updated russian translate
 
 zNotes 0.3.4
 * Added ability to hide some parts of toolbar's elements
-* Updated russian translate
 
 zNotes 0.3.3
 * Added saving toolbar's place on quit
-* Updated russian translate
 
 zNotes 0.3.2
 * Added Exit button to toolbar
@@ -77,15 +101,12 @@ zNotes 0.3.1
 
 zNotes 0.3.0
 * Added ability to execute commands on scripts (such as upload to pasterbin)
-* Updated russian translate
 
 zNotes 0.2.9
 * Fixed toolbar
-* Updated russian translate
 
 zNotes 0.2.8
 * Added ability to change note's font
-* Updated russian translate
 
 zNotes 0.2.7
 * Fixed bug with hiding on preferences's changing

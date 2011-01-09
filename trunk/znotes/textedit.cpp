@@ -18,22 +18,27 @@ inline bool isOnLink(const QTextDocument& document, const QTextCursor& cursor, i
 		pos_end = position;
 		while(pos_end<characterCount && !document.characterAt(pos_end).isSpace()) ++pos_end; //Detecting end on the word
 		//
-		const QString priznak("http://");
+		QStringList signlist;
+		signlist << "http://" << "https://" << "ftp://";
 		const int link_lenght = pos_end-pos_start;
-		if(link_lenght>priznak.size())
+		QStringList::const_iterator sign_it;
+		for(sign_it=signlist.constBegin(); sign_it!=signlist.constEnd(); ++sign_it)
 		{
-			bool isLink = true;
-			int i = 0;
-			while(i<priznak.size())
+			if(link_lenght>sign_it->size())
 			{
-				if(document.characterAt(pos_start+i)!=priznak.at(i))
+				bool isLink = true;
+				int i = 0;
+				while(i<sign_it->size())
 				{
-					isLink = false;
-					break;
+					if(document.characterAt(pos_start+i)!=sign_it->at(i))
+					{
+						isLink = false;
+						break;
+					}
+					++i;
 				}
-				++i;
+				if(isLink) return true;
 			}
-			if(isLink) return true;
 		}
 	}
 	return false;
@@ -41,12 +46,15 @@ inline bool isOnLink(const QTextDocument& document, const QTextCursor& cursor, i
 
 //------------------------------------------------------------------------------
 
-TextEdit::TextEdit(TextType new_type)
-	: QTextEdit(), type(new_type)
+TextEdit::TextEdit()
+	: QTextEdit()
 {
-	setAcceptRichText(type==type_html);
 	highlighter = new Highlighter(document());
 	connect(&settings, SIGNAL(NoteHighlightChanged()), highlighter, SLOT(rehighlight()));
+	setFont(settings.getNoteFont());
+	connect(&settings, SIGNAL(NoteFontChanged()), this, SLOT(fontChanged()));
+	setMouseTracking(settings.getNoteLinksOpen());
+	connect(&settings, SIGNAL(NoteLinkOpenChanged()), this, SLOT(linkOpenChanged()));
 }
 
 //Mouse pressing
@@ -102,3 +110,33 @@ void TextEdit::focusOutEvent(QFocusEvent*)
 {
 	setExtraSelections(QList<QTextEdit::ExtraSelection>()); //Clearing
 }
+
+//If notes' font changed in the preferences, applying font to note
+void TextEdit::fontChanged()
+{
+	setFont(settings.getNoteFont());
+}
+
+void TextEdit::linkOpenChanged()
+{
+	bool is_link_open = settings.getNoteLinksOpen();
+	setMouseTracking(is_link_open);
+	if(!is_link_open)
+	{
+		setExtraSelections(QList<QTextEdit::ExtraSelection>());
+		viewport()->setCursor(Qt::IBeamCursor);
+	}
+}
+
+//Searching
+bool TextEdit::search(const QString& text, bool next)
+{
+	if(next) //search next
+	{
+		QTextCursor cursor(textCursor().block().next());
+		setTextCursor(cursor);
+	}
+	else unsetCursor(); //new search
+	return find(text);
+}
+
