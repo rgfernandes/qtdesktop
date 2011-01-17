@@ -33,22 +33,18 @@
 *
 *****************************************************************************/
 
-#include "configdialogimpl.h"
-//
-#ifdef Q_WS_X11
-	#define MAIL_PATH "/.qmailclient/mails"
-#else
-	#define MAIL_PATH "/QMailClient/Mails"
-#endif
+#include <QtCore>
+#include <QtGui>
 
+#include "configdialogimpl.h"
 
 ConfigDialogImpl::ConfigDialogImpl(QWidget *parent) 
 	: QDialog(parent)
 {
 	setupUi(this);
 	
-	QSettings s("KiSoft","Nuntius Leo");
-	mailBoxRootFolder->setText(s.value("mailBoxRootFolder",QDir::homePath()+MAIL_PATH).toString());
+	QSettings s(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	mailBoxRootFolder->setText(s.value("mailBoxRootFolder", QDesktopServices::storageLocation(QDesktopServices::DataLocation)).toString());
 	s.beginGroup("pop");
 	popHost->setText(s.value("host","").toString());
 	popPort->setValue(s.value("port",110).toInt());
@@ -77,7 +73,7 @@ void ConfigDialogImpl::on_editMailBoxFolder_clicked()
 
 void ConfigDialogImpl::writeSettings()
 {
-	QSettings s("TI_Eugene","QMailClient");
+	QSettings s(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 	s.setValue("mailBoxRootFolder",mailBoxRootFolder->text());
 	s.beginGroup("pop");
 	s.setValue("host",popHost->text());
@@ -94,4 +90,3 @@ void ConfigDialogImpl::writeSettings()
 	s.setValue("port",smtpPort->value());
 	s.endGroup();
 }
-
