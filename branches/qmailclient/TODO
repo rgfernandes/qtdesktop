@@ -1,0 +1,4 @@
+vmime:
+* POP3, IMAP, SMTP, maildir and sendmail
+* SSL/TLS security layer and X.509 certificates (using GNU TLS)
+* SASL authentication (using GNU SASL)
