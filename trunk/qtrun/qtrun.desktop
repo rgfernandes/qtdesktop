@@ -1,0 +1,9 @@
+[Desktop Entry]
+X-SuSE-translate=true
+Type=Application
+Name=QtRun
+GenericName=Qt4 runing something utility
+Icon=qtrun
+Exec=qtrun
+Terminal=false
+Categories=Qt;System;

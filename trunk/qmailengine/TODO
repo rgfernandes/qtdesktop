@@ -1,0 +1,5 @@
+* make as qt-component
+* tune make install
+* add pop3 encryption (ssl?)
+* add smtp encryption (ssl?) - see QwwSmtpClient (http://blog.wysota.eu.org/)
+* add imap - see Trojita (http://trojita.flaska.net/)

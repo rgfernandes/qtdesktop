@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogRDP</class>
+ <widget class="QDialog" name="DialogRDP">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>460</width>
+    <height>578</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="1">
+    <widget class="QLabel" name="lExec">
+     <property name="text">
+      <string>E&amp;xecutable:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="lHost">
+     <property name="text">
+      <string>&amp;Host:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_2</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="lineEdit_2"/>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="lPort">
+     <property name="text">
+      <string>&amp;Port:</string>
+     </property>
+     <property name="buddy">
+      <cstring>spinBox</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QSpinBox" name="spinBox"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="l_u">
+     <property name="text">
+      <string>&amp;User:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_3</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLineEdit" name="lineEdit_3"/>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLabel" name="l_p">
+     <property name="text">
+      <string>Password:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_4</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QLineEdit" name="lineEdit_4"/>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="l_d">
+     <property name="text">
+      <string>&amp;Domain:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_5</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLineEdit" name="lineEdit_5"/>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="l_s">
+     <property name="text">
+      <string>Shell:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_6</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLineEdit" name="lineEdit_6"/>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLabel" name="l_c">
+     <property name="text">
+      <string>Directory:</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_7</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLineEdit" name="lineEdit_7"/>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLabel" name="l_k">
+     <property name="text">
+      <string>KeyMap:</string>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLabel" name="label_33">
+     <property name="text">
+      <string>Button size:</string>
+     </property>
+     <property name="buddy">
+      <cstring>spinBox_4</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2">
+    <widget class="QSpinBox" name="spinBox_4"/>
+   </item>
+   <item row="15" column="1">
+    <widget class="QLabel" name="l_x">
+     <property name="text">
+      <string>Bandwidth</string>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox_4</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="2">
+    <widget class="QComboBox" name="comboBox_4"/>
+   </item>
+   <item row="16" column="1">
+    <widget class="QLabel" name="l_rdplevel">
+     <property name="text">
+      <string>RDP level:</string>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox_5</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="2">
+    <widget class="QComboBox" name="comboBox_5"/>
+   </item>
+   <item row="18" column="1">
+    <widget class="QLabel" name="label_23">
+     <property name="text">
+      <string>Geometry.X:</string>
+     </property>
+     <property name="buddy">
+      <cstring>spinBox_2</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="2">
+    <widget class="QSpinBox" name="spinBox_2"/>
+   </item>
+   <item row="19" column="1">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Geometry.Y:</string>
+     </property>
+     <property name="buddy">
+      <cstring>spinBox_3</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="19" column="2">
+    <widget class="QSpinBox" name="spinBox_3"/>
+   </item>
+   <item row="20" column="0" colspan="5">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QCheckBox" name="checkBox_14">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="checkBox_15">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="checkBox_16">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="checkBox_17">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QCheckBox" name="checkBox_18">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QCheckBox" name="checkBox_19">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QCheckBox" name="checkBox_20">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0">
+    <widget class="QCheckBox" name="checkBox_21">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QCheckBox" name="checkBox_22">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QCheckBox" name="checkBox_23">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="0">
+    <widget class="QCheckBox" name="checkBox_26">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QCheckBox" name="checkBox_27">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="0" rowspan="2">
+    <widget class="QCheckBox" name="checkBox_28">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="4">
+    <widget class="QCheckBox" name="checkBox_13">
+     <property name="text">
+      <string>Console</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="4">
+    <widget class="QCheckBox" name="checkBox_12">
+     <property name="text">
+      <string>Chashe bitmaps</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="4">
+    <widget class="QCheckBox" name="checkBox_9">
+     <property name="text">
+      <string>Not over keys</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="4">
+    <widget class="QCheckBox" name="checkBox_8">
+     <property name="text">
+      <string>Hide WM deco</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="4">
+    <widget class="QCheckBox" name="checkBox_7">
+     <property name="text">
+      <string>Private colors</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="4">
+    <widget class="QCheckBox" name="checkBox_6">
+     <property name="text">
+      <string>Unmouse</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="4">
+    <widget class="QCheckBox" name="checkBox_5">
+     <property name="text">
+      <string>Uncrypted</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4">
+    <widget class="QCheckBox" name="checkBox_4">
+     <property name="text">
+      <string>BackingStore</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QCheckBox" name="checkBox_3">
+     <property name="text">
+      <string>Seemless</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <widget class="QCheckBox" name="checkBox_2">
+     <property name="text">
+      <string>Bitmap</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>Full screen</string>
+     </property>
+    </widget>
+   </item>
+   <item row="18" column="3" rowspan="2" colspan="2">
+    <widget class="QComboBox" name="comboBox_2"/>
+   </item>
+   <item row="1" column="3">
+    <widget class="QCheckBox" name="checkBox_30">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3" colspan="2">
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>&amp;Find</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QCheckBox" name="checkBox_31">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QCheckBox" name="checkBox_32">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="3">
+    <widget class="QCheckBox" name="checkBox_33">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3">
+    <widget class="QCheckBox" name="checkBox_34">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3">
+    <widget class="QCheckBox" name="checkBox_35">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="3">
+    <widget class="QCheckBox" name="checkBox_36">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="3">
+    <widget class="QCheckBox" name="checkBox_37">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="3">
+    <widget class="QCheckBox" name="checkBox_38">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="3">
+    <widget class="QCheckBox" name="checkBox_41">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="3">
+    <widget class="QCheckBox" name="checkBox_42">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="2">
+    <widget class="QLineEdit" name="lineEdit_8"/>
+   </item>
+   <item row="12" column="1">
+    <widget class="QLabel" name="l_T">
+     <property name="text">
+      <string>Title</string>
+     </property>
+     <property name="buddy">
+      <cstring>lineEdit_8</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QCheckBox" name="checkBox_24">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="3">
+    <widget class="QCheckBox" name="checkBox_39">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="4">
+    <widget class="QCheckBox" name="checkBox_10">
+     <property name="text">
+      <string>NumLock</string>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="1">
+    <widget class="QLabel" name="l_a">
+     <property name="text">
+      <string>BPP</string>
+     </property>
+     <property name="buddy">
+      <cstring>comboBox_3</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="0">
+    <widget class="QCheckBox" name="checkBox_25">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="2">
+    <widget class="QComboBox" name="comboBox_3"/>
+   </item>
+   <item row="13" column="3">
+    <widget class="QCheckBox" name="checkBox_40">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="13" column="4">
+    <widget class="QCheckBox" name="checkBox_11">
+     <property name="text">
+      <string>Compression</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,447 @@
+<ui version="4.0" >
+ <class>Main</class>
+ <widget class="QMainWindow" name="Main" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>298</width>
+    <height>286</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>7</hsizetype>
+    <vsizetype>7</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>QEN</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="Main.qrc" >:/apps/icons/apps/infolog.png</iconset>
+  </property>
+  <widget class="QWidget" name="cwMain" >
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="0" column="0" >
+     <widget class="QTableWidget" name="twTasks" >
+      <property name="contextMenuPolicy" >
+       <enum>Qt::ActionsContextMenu</enum>
+      </property>
+      <property name="editTriggers" >
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="columnCount" >
+       <number>2</number>
+      </property>
+      <column/>
+      <column/>
+     </widget>
+    </item>
+    <item row="1" column="0" >
+     <layout class="QHBoxLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pbOnline" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>O&amp;ffline</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="Main.qrc" >:/actions/icons/actions/led-red.png</iconset>
+        </property>
+        <property name="checkable" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pbExit" >
+        <property name="text" >
+         <string>E&amp;xit</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="Main.qrc" >:/actions/icons/actions/exit.png</iconset>
+        </property>
+        <property name="shortcut" >
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="sbMain" >
+   <property name="sizeGripEnabled" >
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="mbMain" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>298</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mOption" >
+    <property name="title" >
+     <string>&amp;Option</string>
+    </property>
+    <addaction name="aOptSettings" />
+   </widget>
+   <widget class="QMenu" name="mStatus" >
+    <property name="title" >
+     <string>&amp;Status</string>
+    </property>
+    <addaction name="aStaConnect" />
+    <addaction name="aStaDisconnect" />
+    <addaction name="separator" />
+    <addaction name="aStaExit" />
+   </widget>
+   <widget class="QMenu" name="mHelp" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <widget class="QMenu" name="mHome" >
+     <property name="title" >
+      <string>&amp;URL</string>
+     </property>
+     <addaction name="aUQEN" />
+     <addaction name="aUQt4" />
+     <addaction name="aUPyQt4" />
+     <addaction name="aUPython" />
+     <addaction name="aUEGroupWare" />
+    </widget>
+    <widget class="QMenu" name="mAbout" >
+     <property name="title" >
+      <string>&amp;About</string>
+     </property>
+     <addaction name="aAQEN" />
+     <addaction name="separator" />
+     <addaction name="aAQt4" />
+    </widget>
+    <addaction name="mHome" />
+    <addaction name="mAbout" />
+   </widget>
+   <addaction name="mStatus" />
+   <addaction name="mOption" />
+   <addaction name="mHelp" />
+  </widget>
+  <action name="aStaExit" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/actions/icons/actions/exit.png</iconset>
+   </property>
+   <property name="text" >
+    <string>E&amp;xit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="aStaDisconnect" >
+   <property name="enabled" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/actions/icons/actions/led-red.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Disconnect</string>
+   </property>
+  </action>
+  <action name="aOptSettings" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/package_settings.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Settings</string>
+   </property>
+   <property name="toolTip" >
+    <string>Open Settings dialog</string>
+   </property>
+  </action>
+  <action name="aAQEN" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/infolog.png</iconset>
+   </property>
+   <property name="text" >
+    <string>QEN</string>
+   </property>
+  </action>
+  <action name="aAQt4" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/qt4-logo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Qt4</string>
+   </property>
+  </action>
+  <action name="aUQuamachi" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/Quamachi.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Quamachi</string>
+   </property>
+  </action>
+  <action name="aUQt4" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/qt4-logo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Qt4</string>
+   </property>
+  </action>
+  <action name="aUPyQt4" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/pyqt-logo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>PyQt4</string>
+   </property>
+  </action>
+  <action name="aUPython" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/python-logo.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Python</string>
+   </property>
+  </action>
+  <action name="aDAuthors" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Authors</string>
+   </property>
+  </action>
+  <action name="aDChanges" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Changes</string>
+   </property>
+  </action>
+  <action name="aDCopying" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Copying</string>
+   </property>
+  </action>
+  <action name="aDInstall" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Install</string>
+   </property>
+  </action>
+  <action name="aDIssues" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Issues</string>
+   </property>
+  </action>
+  <action name="aDLicence" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Licence</string>
+   </property>
+  </action>
+  <action name="aDNews" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>News</string>
+   </property>
+  </action>
+  <action name="aDIntroduction" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Introduction</string>
+   </property>
+  </action>
+  <action name="aDRequests" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/mimetypes/icons/mimetypes/txt.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Requests</string>
+   </property>
+  </action>
+  <action name="aUCheckInstall" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/ckhome2.png</iconset>
+   </property>
+   <property name="text" >
+    <string>CheckInstall</string>
+   </property>
+  </action>
+  <action name="aUMake" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/gnu-head-sm.jpg</iconset>
+   </property>
+   <property name="text" >
+    <string>Make</string>
+   </property>
+  </action>
+  <action name="aUMinGW" >
+   <property name="text" >
+    <string>MinGW</string>
+   </property>
+  </action>
+  <action name="aStaConnect" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/actions/icons/actions/led-green.png</iconset>
+   </property>
+   <property name="text" >
+    <string>&amp;Connect</string>
+   </property>
+  </action>
+  <action name="aSep1" >
+   <property name="text" >
+    <string>Separator</string>
+   </property>
+  </action>
+  <action name="aSep2" >
+   <property name="text" >
+    <string>Separator</string>
+   </property>
+  </action>
+  <action name="aSep3" >
+   <property name="text" >
+    <string>Separator</string>
+   </property>
+  </action>
+  <action name="aOptHideOfflinePeers" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Hide Offline Peers</string>
+   </property>
+  </action>
+  <action name="aUEGroupWare" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/egw.png</iconset>
+   </property>
+   <property name="text" >
+    <string>eGroupWare</string>
+   </property>
+  </action>
+  <action name="aUQEN" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/apps/icons/apps/infolog.png</iconset>
+   </property>
+   <property name="text" >
+    <string>QEN</string>
+   </property>
+  </action>
+  <action name="aTaskAccept" >
+   <property name="icon" >
+    <iconset resource="Main.qrc" >:/actions/icons/actions/button_ok.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Accept</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>pbExit</tabstop>
+  <tabstop>pbOnline</tabstop>
+ </tabstops>
+ <resources>
+  <include location="Main.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>pbExit</sender>
+   <signal>clicked()</signal>
+   <receiver>aStaExit</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>419</x>
+     <y>434</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>twTasks</sender>
+   <signal>itemDoubleClicked(QTableWidgetItem*)</signal>
+   <receiver>aTaskAccept</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>148</x>
+     <y>125</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

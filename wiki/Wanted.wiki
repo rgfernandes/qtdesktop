@@ -1,0 +1,28 @@
+#summary Wanted software.
+
+= Introduction =
+
+Wanted software for QtDesktop.
+
+= Details =
+  * Utility:
+    * Audio mixer
+    * CD recorder (like k3b)
+    * Calculator
+    * Sreen locker
+  * Internet:
+    * RSS-reader
+    * FTP client
+    * Blogger client
+    * News client
+  * PIM:
+    * Contacts
+    * Tasks
+    * Todo
+    * Event
+    * Notes
+  * Office:
+    * Word processor
+    * Spreadsheet
+    * Presentation
+  * DB RAD

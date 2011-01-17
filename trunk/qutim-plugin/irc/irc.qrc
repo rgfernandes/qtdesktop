@@ -1,0 +1,23 @@
+<RCC>
+	<qresource prefix="/" >
+		<file>icons/irc-away.png</file>
+		<file>icons/irc-black.png</file>
+		<file>icons/irc-blue.png</file>
+		<file>icons/irc-chat.png</file>
+		<file>icons/irc-connecting.png</file>
+		<file>icons/irc-gray.png</file>
+		<file>icons/irc-green.png</file>
+		<file>icons/irc-normal.png</file>
+		<file>icons/irc-offline.png</file>
+		<file>icons/irc-online.png</file>
+		<file>icons/irc-orange.png</file>
+		<file>icons/irc-pink.png</file>
+		<file>icons/irc-red.png</file>
+		<file>icons/irc-white.png</file>
+		<file>icons/irc-message.png</file>
+		<file>icons/irc-info.png</file>
+		<file>icons/irc-ques.png</file>
+		<file>icons/irc_protocol.png</file>
+		<file>icons/irc-loading.gif</file>
+	</qresource>
+</RCC>

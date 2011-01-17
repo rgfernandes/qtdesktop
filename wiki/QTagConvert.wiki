@@ -1,0 +1,100 @@
+#summary QTagConvert requirements
+
+= QTagConvert =
+
+Qt-based mp3 tag converter
+
+== Features ==
+
+ * Just convert tags - and nothing else;
+ * convert encodings of ID3v1 and ID3v2 tags;
+ * convert tags between from ID3v1 to ID3v2 and vice versa - and IDv2 from one version to another: [http://www.id3.org/id3v2-00 2.2], [http://www.id3.org/id3v2.3.0 2.3], [ 2.4];
+ * delete unused tags;
+ * workflow-like processing
+ * encodings - for all of the fields
+
+== Options ==
+
+ * Autosave last path
+ * Autorefresh Filelist on load
+ * Defaults:
+  * IDv2 ver
+  * Fill char on xcoding
+
+== [http://qtdesktop.googlecode.com/files/qtagconvert.ui Main Screen] ==
+
+ * Dir tree
+  Tree of directories - w/ "recurse" checkbox (find files in selected dir only - or below too)
+ * Filelist
+  List of processing files - w/ Refresh/Stop button and "processed" flag lefter filename (to prepend double conversion);
+ * Source
+  id3v1 tags (if exists, encoding), id3v2 tags (if exists, ver, encoding)
+ * Workflow
+  What to do w/ tags
+ * Dest
+  Preview of converted tags
+ * Buttons
+  Next, Convert (w/ warning if we try convert yet converted files)
+ * Statusbar
+  Current file etc
+
+== Encodings ==
+
+ * Ascii
+ * Transcoding
+ * koi7
+ * koi8-r/u/ru
+ * cp866
+ * cp1251
+ * utf8
+ * utf16
+
+== Workflow ==
+
+=== ID3v1 ===
+
+ # What to do:
+  # Don't tought
+  # Delete
+  # Convert encoding
+  # Fill from IDv2
+ # Fields:
+   * ...
+ # From encoding:
+  # Std/defined in tag
+  # Force:
+   * ...
+  # Auto (try std => enca)
+ # To encoding:
+   * ...
+
+=== ID3v2 ===
+
+ # What to do:
+  # Don't tought
+  # Delete
+  # Convert version (???):
+   # From:
+    * ...
+   # To:
+    * ...
+  # Convert encoding:
+  # Fill from IDv1:
+ # Fields:
+  * ...
+ # From encoding:
+  * Std/defined in tag
+  * Force:
+   * ...
+  * Auto (try std => enca)
+ # To encoding:
+  * Std:
+   * ...
+  * Force:
+   * ...
+ # From version ? ...
+
+== Notes ==
+
+ * Inexisted/deleted tags/fields - disabled
+ * All fields - readonly, but selectable
