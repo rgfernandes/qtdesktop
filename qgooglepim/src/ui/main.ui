@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>411</width>
+    <height>322</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>GooglePIM</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/img/ui/img/35x35/google.gif</normaloff>:/img/ui/img/35x35/google.gif</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>411</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuService">
+    <property name="title">
+     <string>&amp;Service</string>
+    </property>
+    <addaction name="actionBase"/>
+    <addaction name="actionBlog"/>
+    <addaction name="actionCalendar"/>
+    <addaction name="actionContacts"/>
+    <addaction name="actionDocs"/>
+    <addaction name="actionNotebook"/>
+    <addaction name="actionMail"/>
+    <addaction name="actionPicasa"/>
+    <addaction name="actionCode"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="actionConnect"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuService"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionBase">
+   <property name="text">
+    <string>&amp;Base</string>
+   </property>
+  </action>
+  <action name="actionBlog">
+   <property name="icon">
+    <iconset resource="../googlepim.qrc">
+     <normaloff>:/img/ui/img/google/blogger.png</normaloff>:/img/ui/img/google/blogger.png</iconset>
+   </property>
+   <property name="text">
+    <string>B&amp;log</string>
+   </property>
+  </action>
+  <action name="actionCalendar">
+   <property name="icon">
+    <iconset resource="../googlepim.qrc">
+     <normaloff>:/img/ui/img/google/calendar.png</normaloff>:/img/ui/img/google/calendar.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Calendar</string>
+   </property>
+  </action>
+  <action name="actionDocs">
+   <property name="icon">
+    <iconset resource="../googlepim.qrc">
+     <normaloff>:/img/ui/img/google/docs.png</normaloff>:/img/ui/img/google/docs.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Docs</string>
+   </property>
+  </action>
+  <action name="actionMail">
+   <property name="icon">
+    <iconset resource="../googlepim.qrc">
+     <normaloff>:/img/ui/img/google/mail.png</normaloff>:/img/ui/img/google/mail.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Mail</string>
+   </property>
+  </action>
+  <action name="actionPicasa">
+   <property name="icon">
+    <iconset resource="../googlepim.qrc">
+     <normaloff>:/img/ui/img/google/picasa.png</normaloff>:/img/ui/img/google/picasa.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Picasa</string>
+   </property>
+  </action>
+  <action name="actionContacts">
+   <property name="text">
+    <string>&amp;Contacts</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>&amp;Settings</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Co&amp;nnect</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="actionNotebook">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/img/ui/img/35x35/notebook.gif</normaloff>:/img/ui/img/35x35/notebook.gif</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Notebook</string>
+   </property>
+  </action>
+  <action name="actionCode">
+   <property name="icon">
+    <iconset resource="../googlepim.qrc">
+     <normaloff>:/img/ui/img/google/code.png</normaloff>:/img/ui/img/google/code.png</iconset>
+   </property>
+   <property name="text">
+    <string>Code</string>
+   </property>
+   <property name="toolTip">
+    <string>Google Code Issues</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../googlepim.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>205</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

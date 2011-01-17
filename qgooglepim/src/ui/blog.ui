@@ -1,0 +1,219 @@
+<ui version="4.0" >
+ <class>BlogDialog</class>
+ <widget class="QDialog" name="BlogDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>554</width>
+    <height>402</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset>../../../../../../home/eugene/Projects/GooglePIM/src/ui/img/35x35/blogger.gif</iconset>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QSplitter" name="splitter_2" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QSplitter" name="splitter" >
+      <property name="orientation" >
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QTreeView" name="treeView" />
+      <widget class="QTextBrowser" name="tbContent" />
+     </widget>
+     <widget class="QWidget" name="layoutWidget" >
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QLabel" name="labelId" >
+         <property name="text" >
+          <string>IId:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>lineEditId</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QLineEdit" name="lineEditId" />
+       </item>
+       <item row="1" column="0" >
+        <widget class="QLabel" name="labelTitle" >
+         <property name="text" >
+          <string>&amp;Title:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>lineEditTitle</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QLineEdit" name="lineEditTitle" />
+       </item>
+       <item row="2" column="0" >
+        <widget class="QLabel" name="labelPublished" >
+         <property name="text" >
+          <string>&amp;Published:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>dateTimeEditPublished</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" >
+        <widget class="QLabel" name="labelUpdated" >
+         <property name="text" >
+          <string>&amp;Updated:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>dateTimeEditUpdated</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" >
+        <widget class="QLabel" name="labelAuthor" >
+         <property name="text" >
+          <string>&amp;Authors:</string>
+         </property>
+         <property name="buddy" >
+          <cstring>twAuthor</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" >
+        <widget class="QCheckBox" name="checkBoxDraft" >
+         <property name="text" >
+          <string>&amp;Draft</string>
+         </property>
+        </widget>
+       </item>
+       <item rowspan="2" row="5" column="0" colspan="2" >
+        <widget class="QTableWidget" name="twAuthor" >
+         <column>
+          <property name="text" >
+           <string>Name</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <widget class="QDateTimeEdit" name="dateTimeEditPublished" />
+       </item>
+       <item row="3" column="1" >
+        <widget class="QDateTimeEdit" name="dateTimeEditUpdated" />
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushButtonAdd" >
+       <property name="text" >
+        <string>&amp;Add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonDelete" >
+       <property name="text" >
+        <string>&amp;Delete</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonSubmit" >
+       <property name="text" >
+        <string>&amp;Submit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>131</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="okButton" >
+       <property name="text" >
+        <string>&amp;OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton" >
+       <property name="text" >
+        <string>&amp;Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BlogDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>278</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>96</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BlogDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>369</x>
+     <y>253</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>179</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

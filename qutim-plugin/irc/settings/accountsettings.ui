@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ircAccountSettingsClass</class>
+ <widget class="QWidget" name="ircAccountSettingsClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>391</width>
+    <height>273</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>273</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>IRC Account Settings</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../irc.qrc">
+    <normaloff>:/icons/irc_protocol.png</normaloff>:/icons/irc_protocol.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabAdvanced">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabGeneral">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Nick:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="editNick"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Alternate Nick:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="editNick2"/>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Real Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="editRealName">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="cbAutologin">
+           <property name="text">
+            <string>Autologin on start</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Server:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="editServer">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Port:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="editPort">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Codepage:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="cbCodepage">
+           <property name="currentIndex">
+            <number>47</number>
+           </property>
+           <item>
+            <property name="text">
+             <string>Apple Roman</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Big5</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Big5-HKSCS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>EUC-JP</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>EUC-KR</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>GB18030-0</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>IBM 850</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>IBM 866</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>IBM 874</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 2022-JP</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-2</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-3</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-4</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-5</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-6</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-7</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-8</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-9</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-10</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-13</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-14</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-15</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ISO 8859-16</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Bng</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Dev</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Gjr</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Knd</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Mlm</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Ori</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Pnj</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Tlg</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Iscii-Tml</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>JIS X 0201</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>JIS X 0208</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>KOI8-R</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>KOI8-U</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>MuleLao-1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>ROMAN8</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Shift-JIS</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>TIS-620</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>TSCII</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>UTF-8</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>UTF-16</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>UTF-16BE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>UTF-16LE</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1250</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1251</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1252</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1253</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1254</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1255</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1256</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1257</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Windows-1258</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>WINSAMI2</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabIdentify">
+      <attribute name="title">
+       <string>Identify</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Age:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="cbAge"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Gender:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="cbGender">
+           <item>
+            <property name="text">
+             <string>Unspecified</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Male</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Female</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Location</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="editLocation"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Languages:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="editLanguages"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Avatar URL:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="editAvatar"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Other:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLineEdit" name="editOther"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabAdvanced">
+      <attribute name="title">
+       <string>Advanced</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Part message:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="editMsgPart"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Quit message:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="editMsgQuit"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Autosend commands after connect:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="editAutoCmds"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>138</width>
+         <height>25</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnOK">
+       <property name="text">
+        <string>OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnApply">
+       <property name="text">
+        <string>Apply</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../irc.qrc"/>
+ </resources>
+ <connections/>
+</ui>

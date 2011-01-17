@@ -1,0 +1,5 @@
+Services -> Levels
+Principals:
+* Permanently journal actions
+* XMPP as server/client notification
+* Services as plugins

@@ -1,0 +1,24 @@
+Change Log for Nuntius Leo 0.2.1
+
+Features:
+	- Mailbox folder can be set by user
+
+Resolved bugs:
+	- Font size now is displayed and set correctly in mail editor
+	- Settings-dialog is displayed again (bug 2122398)
+	- Mails now are correctly sorted by date, not by day of week (bug 2122407)
+
+
+Change Log for 0.2:
+
+Features:
+	- Forward, Reply and Reply All a message
+	- Multipart support
+	- Support for attachments
+
+Resolved bugs:
+	- Configurations are updated without restart Nuntius Leo
+	- Mailfolder now should work for Windows as well
+
+
+

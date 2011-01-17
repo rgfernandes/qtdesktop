@@ -1,0 +1,77 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 2.6)
+project(msn) 
+
+LIST (APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+find_path(LIBMSN_PATH "msn" "${CMAKE_CURRENT_SOURCE_DIR}")
+
+file( GLOB_RECURSE QUTIM_H core/*.h)
+file( GLOB_RECURSE QUTIM_CPP core/*.cpp)
+file( GLOB_RECURSE QUTIM_UI core/*.ui )
+file( GLOB LIBMSN_CPP msn/*.cpp )
+file( GLOB LIBMSN_H msn/*.h )
+SET (QT_USE_QTNETWORK true)
+SET (QT_USE_QTGUI true)
+FIND_PACKAGE (Qt4 REQUIRED)
+find_package(OpenSSL REQUIRED)
+
+
+INCLUDE (${CMAKE_ROOT}/Modules/UseQt4.cmake)
+FIND_PATH( QUTIM_INCLUDE_DIRS qutim/protocolinterface.h ../../include )
+if( QUTIM_INCLUDE_DIRS )
+	MESSAGE( STATUS "Found qutIM headers: ${QUTIM_INCLUDE_DIRS}" )
+	INCLUDE_DIRECTORIES( ${QUTIM_INCLUDE_DIRS} )
+else( QUTIM_INCLUDE_DIRS )
+	MESSAGE( SEND_ERROR "Could NOT find qutIM development headers" )
+endif( QUTIM_INCLUDE_DIRS )
+if( APPLE )
+	INCLUDE_DIRECTORIES ( /opt/local/include )
+endif( APPLE )
+#if( UNIX )
+#INCLUDE_DIRECTORIES ( /usr/include )
+#endif( UNIX )
+
+INCLUDE_DIRECTORIES (${QT_QTGUI_INCLUDE_DIR}
+	${QT_QTCORE_INCLUDE_DIR}
+	${CMAKE_CURRENT_BINARY_DIR}
+	.
+		core
+		msn
+	)
+
+SET(HEADERS
+${QUTIM_H}
+${LIBMSN_H}
+)
+
+SET (SOURCES
+${QUTIM_CPP}
+${LIBMSN_CPP}
+)
+
+SET (RESOURCES
+./msn.qrc
+)
+
+SET (FORMS
+${QUTIM_UI}
+)
+
+QT4_WRAP_CPP (MOC_SRCS ${QUTIM_H})
+QT4_WRAP_UI (UIS_H ${FORMS})
+QT4_ADD_RESOURCES (RCC ${RESOURCES})
+
+ADD_LIBRARY (msn SHARED ${SOURCES} ${MOC_SRCS} ${UIS_H} ${RCC})
+
+if(NOT WIN32)
+ target_link_libraries(msn ${QT_LIBRARIES} crypto)
+else(NOT WIN32)
+ target_link_libraries(msn ${QT_LIBRARIES} ${OPENSSL_EAY_LIBRARIES})
+endif(NOT WIN32)
+
+SET_TARGET_PROPERTIES(msn
+PROPERTIES
+PREFIX "../../"
+) 
+
+INSTALL (TARGETS msn DESTINATION lib/qutim )
