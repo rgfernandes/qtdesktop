@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/" >
-		 <file>icons/protocolicon.png</file>
-    </qresource>
-</RCC>
-

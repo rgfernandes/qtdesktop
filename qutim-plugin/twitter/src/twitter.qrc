@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/" >
-        <file>icons/twitter.png</file>
-        <file>icons/twitter-online.png</file>
-        <file>icons/twitter-offline.png</file>
-    </qresource>
-</RCC>
