@@ -3,6 +3,10 @@
 #include <QLocale>
 #include "mainwinimpl.h"
 //
+
+#include <vmime/vmime.hpp>
+#include <vmime/platforms/posix/posixHandler.hpp>
+
 int main(int argc, char ** argv)
 {
 	QApplication app( argc, argv );
@@ -17,6 +21,7 @@ int main(int argc, char ** argv)
 
 	app.installTranslator(&myappTranslator);
 	*/
+	vmime::platform::setHandler <vmime::platforms::posix::posixHandler>();
 	
 	MainWinImpl win;
 	win.show();

@@ -39,10 +39,7 @@
 #include "ui_MainWin.h"
 #include <QtGui>
 
-//#include "smtp.h"
-//#include "mail.h"
-//#include "pop3.h"
-#include <QMailEngine>
+#include "dummy.h"
 
 //MailTreeWidgetItem is used to enable adding Mails to a TreeWidget
 class MailTreeWidgetItem : public QTreeWidgetItem

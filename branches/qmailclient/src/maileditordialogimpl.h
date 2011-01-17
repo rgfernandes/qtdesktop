@@ -37,7 +37,7 @@
 #define MAILEDITORDIALOGIMPL_H
 //
 #include "ui_MailEditorDialog.h"
-#include <QMailEngine>
+#include "dummy.h"
 #include <QtGui>
 
 class AttachmentTreeWidgetItem : public QTreeWidgetItem
