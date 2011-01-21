@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>486</width>
-    <height>368</height>
+    <width>428</width>
+    <height>276</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,18 +17,18 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tabGeneral">
       <attribute name="title">
        <string>&amp;General</string>
       </attribute>
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="lName">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>9</y>
-         <width>129</width>
+         <x>10</x>
+         <y>70</y>
+         <width>51</width>
          <height>16</height>
         </rect>
        </property>
@@ -36,210 +36,59 @@
         <enum>Qt::NoContextMenu</enum>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Path to mailbox Folder:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Name:</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLineEdit" name="leName">
        <property name="geometry">
         <rect>
-         <x>9</x>
-         <y>69</y>
-         <width>62</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::NoContextMenu</enum>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Your Name:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="name">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
+         <x>90</x>
          <y>60</y>
          <width>146</width>
          <height>27</height>
         </rect>
        </property>
       </widget>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="lMail">
        <property name="geometry">
         <rect>
-         <x>-1</x>
-         <y>91</y>
-         <width>74</width>
-         <height>16</height>
+         <x>10</x>
+         <y>90</y>
+         <width>61</width>
+         <height>21</height>
         </rect>
        </property>
        <property name="contextMenuPolicy">
         <enum>Qt::NoContextMenu</enum>
        </property>
        <property name="text">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Mail address:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Mail:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="mail">
+      <widget class="QLineEdit" name="leMail">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>90</x>
          <y>90</y>
          <width>146</width>
          <height>27</height>
         </rect>
        </property>
       </widget>
-      <widget class="QWidget" name="">
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLineEdit" name="mailBoxRootFolder"/>
-        </item>
-        <item>
-         <widget class="QToolButton" name="editMailBoxFolder">
-          <property name="text">
-           <string>...</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="tab">
-      <attribute name="title">
-       <string>&amp;Inbox</string>
-      </attribute>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>90</y>
-         <width>59</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::NoContextMenu</enum>
-       </property>
-       <property name="text">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Username:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="usr">
+      <widget class="QComboBox" name="cbService">
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>80</y>
-         <width>146</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>120</y>
-         <width>71</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::NoContextMenu</enum>
-       </property>
-       <property name="text">
-        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:600;&quot;&gt;Password&lt;/span&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="pwd">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>110</y>
-         <width>146</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>155</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="contextMenuPolicy">
-        <enum>Qt::NoContextMenu</enum>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Incoming Mailserver (POP3):&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="smtpPort">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>200</y>
-         <width>67</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <number>0</number>
-       </property>
-       <property name="maximum">
-        <number>65535</number>
-       </property>
-       <property name="value">
-        <number>25</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_5">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>200</y>
-         <width>34</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Port:</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>10</y>
+         <y>0</y>
          <width>85</width>
          <height>27</height>
         </rect>
        </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
        <item>
         <property name="text">
          <string>POP3</string>
@@ -250,112 +99,74 @@ p, li { white-space: pre-wrap; }
          <string>IMAP</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>MailDir</string>
+        </property>
+       </item>
       </widget>
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="lService">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>10</y>
          <width>66</width>
-         <height>17</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>Service:</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>50</y>
-         <width>66</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="comboBox_2">
+      <widget class="QComboBox" name="cbTransport">
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>50</y>
+         <y>30</y>
          <width>85</width>
          <height>27</height>
         </rect>
        </property>
        <item>
         <property name="text">
-         <string>no</string>
+         <string>None</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>TLS</string>
+         <string>SMTP</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>SSL</string>
+         <string>Sendmail</string>
         </property>
        </item>
       </widget>
-      <widget class="QComboBox" name="comboBox_3">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>140</y>
-         <width>85</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <item>
-        <property name="text">
-         <string>password</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>SASL</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QLabel" name="label_12">
+      <widget class="QLabel" name="lTransport">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>40</y>
          <width>66</width>
          <height>17</height>
         </rect>
        </property>
        <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="smtpHost">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>170</y>
-         <width>146</width>
-         <height>27</height>
-        </rect>
+        <string>Transport:</string>
        </property>
       </widget>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="tabPOP3">
       <attribute name="title">
-       <string>&amp;Outbox</string>
+       <string>&amp;POP3</string>
       </attribute>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="lPOP3Login">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
-         <width>157</width>
+         <y>80</y>
+         <width>59</width>
          <height>16</height>
         </rect>
        </property>
@@ -363,17 +174,66 @@ p, li { white-space: pre-wrap; }
         <enum>Qt::NoContextMenu</enum>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:8pt;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Outgoing Mailserver (SMTP):&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Login:</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="popPort">
+      <widget class="QLineEdit" name="lePOP3Login">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>50</y>
+         <x>90</x>
+         <y>70</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lPOP3Password">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lePOP3Password">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>100</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lPOP3Host">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Host:</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="sbPOP3Port">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>40</y>
          <width>67</width>
          <height>27</height>
         </rect>
@@ -388,27 +248,606 @@ p, li { white-space: pre-wrap; }
         <number>110</number>
        </property>
       </widget>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="lPOP3Port">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>50</y>
+         <x>10</x>
+         <y>40</y>
          <width>34</width>
-         <height>17</height>
+         <height>27</height>
         </rect>
        </property>
        <property name="text">
         <string>Port:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="popHost">
+      <widget class="QLabel" name="lPOP3Crypto">
        <property name="geometry">
         <rect>
-         <x>172</x>
-         <y>20</y>
+         <x>10</x>
+         <y>140</y>
+         <width>66</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Crypto:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="cbPOP3Crypto">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>130</y>
+         <width>151</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SSL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TLS &gt; None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TLS</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="cbPOP3Auth">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>160</y>
+         <width>151</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>APOP &gt; password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>APOP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL &gt; APOP &gt; password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL &gt; APOP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="lPOP3Auth">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>66</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Auth:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lePOP3Host">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>10</y>
          <width>146</width>
          <height>27</height>
         </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabIMAP">
+      <attribute name="title">
+       <string>&amp;IMAP</string>
+      </attribute>
+      <widget class="QLineEdit" name="leIMAPPassword">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>100</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lIMAPLogin">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>59</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Login:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lIMAPAuth">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>66</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Auth:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lIMAPPassword">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leIMAPHost">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>10</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lIMAPCrypto">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>66</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Crypto:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leIMAPLogin">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>70</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lIMAPHost">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Host:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="cbIMAPAuth">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>160</y>
+         <width>151</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL &gt; password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="lIMAPPort">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>34</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Port:</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="sbIMAPPort">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>40</y>
+         <width>67</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+       <property name="value">
+        <number>143</number>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="cbIMAPCrypto">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>130</y>
+         <width>151</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SSL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TLS &gt; None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TLS</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabMailDir">
+      <attribute name="title">
+       <string>&amp;MailDir</string>
+      </attribute>
+      <widget class="QLabel" name="lMailDirFolder">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>129</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Maildir Folder:</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>0</y>
+         <width>241</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="hlMailDirFolder">
+        <item>
+         <widget class="QLineEdit" name="leMailDirFolder"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="tbMailDirFolder">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabSMTP">
+      <attribute name="title">
+       <string>&amp;SMTP</string>
+      </attribute>
+      <widget class="QSpinBox" name="sbSMTPPort">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>40</y>
+         <width>67</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>65535</number>
+       </property>
+       <property name="value">
+        <number>25</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lSMTPPassword">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="cbSMTPCrypto">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>130</y>
+         <width>151</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SSL</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TLS &gt; None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>TLS</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="lSMTPLogin">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>59</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Login:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lSMTPAuth">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>66</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Auth:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lSMTPHost">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Host:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leSMTPLogin">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>70</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="cbSMTPAuth">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>160</y>
+         <width>151</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>None</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL &gt; password</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SASL</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLineEdit" name="leSMTPHost">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>10</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lSMTPPort">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>34</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Port:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lSMTPCrypto">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>66</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Crypto:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="leSMTPPassword">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>100</y>
+         <width>146</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabSendmail">
+      <attribute name="title">
+       <string>Sendmail</string>
+      </attribute>
+      <widget class="QWidget" name="layoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>10</y>
+         <width>251</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="hlSendmailPath">
+        <item>
+         <widget class="QLineEdit" name="leSendmailPath"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="tbSendmailPath">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="lSendmailPath">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>129</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="contextMenuPolicy">
+        <enum>Qt::NoContextMenu</enum>
+       </property>
+       <property name="text">
+        <string>Maildir Folder:</string>
        </property>
       </widget>
      </widget>

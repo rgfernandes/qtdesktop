@@ -37,12 +37,6 @@
 #include "configdialogimpl.h"
 #include "maileditordialogimpl.h"
 
-#ifdef Q_WS_X11
-	#define MAIL_PATH "/.qmailengine/mails"
-#else
-	#define MAIL_PATH "/QMailEngine/Mails"
-#endif
-//
 MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
 {
@@ -51,13 +45,13 @@ MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f)
 	currentMail=0;
 
 	setupUi(this);
-	
+
 	mailBrowser->setOpenLinks(false);
-	
+
 	readSettings();
 	iniMailFolders();
 	iniMailEngine();
-	
+
 	connect(smtp,SIGNAL(status(QString)),this,SLOT(displayState(QString)));
 	connect(smtp,SIGNAL(mailSent(Mail*)),this,SLOT(mailSent(Mail*)));
 	connect(p,SIGNAL(newMail(Mail*)),this,SLOT(newMail(Mail*)));
@@ -65,7 +59,6 @@ MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f)
 	//downloadMails();
 	connect(actionDownloadMails,SIGNAL(triggered()),this,SLOT(downloadMails()));
 	//loadMails();
-	
 }
 
 void MainWinImpl::addMailPartsToList(QTreeWidgetItem*parent, Mail *m)
@@ -116,9 +109,9 @@ QString MainWinImpl::generateMailName(QString dir)
 	while(1)
 	{
 #ifdef Q_OS_WIN32
-		rand_name = QString("%1").arg(rand());
+	rand_name = QString("%1").arg(rand());
 #else
-        rand_name = QString("%1").arg(random());
+	rand_name = QString("%1").arg(random());
 #endif		
 		f.setFile(dir + QDir::separator () + rand_name);
 		
@@ -128,7 +121,6 @@ QString MainWinImpl::generateMailName(QString dir)
 			break;
 		}
 	}
-	
 	return rand_name;
 }
 
@@ -139,7 +131,7 @@ void MainWinImpl::iniMailEngine()
 	p=new Pop3(popUsr,popPass,popHost,this);
 	smtp=new Smtp(smtpUsr,smtpPass,smtpHost,this);
 	smtp->setPreserveMails(true);
-qDebug()<<"mail engine initialised";
+	qDebug()<<"mail engine initialised";
 }
 
 void MainWinImpl::iniMailFolders()
@@ -374,7 +366,7 @@ void MainWinImpl::on_mailParts_currentItemChanged(QTreeWidgetItem * current, QTr
 
 void MainWinImpl::readSettings()
 {
-	QSettings s("KiSoft","Nuntius Leo");
+	QSettings s(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
 	username=s.value("pop/name","").toString();
 	mailAddress=s.value("pop/mail","").toString();
 	popHost=s.value("pop/host").toString();
@@ -383,7 +375,7 @@ void MainWinImpl::readSettings()
 	smtpUsr=s.value("smtp/usr").toString();
 	smtpPass=s.value("smtp/pwd").toString();
 	smtpHost=s.value("smtp/host").toString();
-	mailBoxRootPath=s.value("mailBoxRootFolder",QDir::homePath()+MAIL_PATH).toString();
+	//mailBoxRootFolder->setText(s.value("mailBoxRootFolder", QDesktopServices::storageLocation(QDesktopServices::DataLocation)).toString());
 }
 
 void MainWinImpl::sendMail(Mail *m)

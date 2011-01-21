@@ -49,6 +49,6 @@ public:
 	~ConfigDialogImpl();
 private slots:
 	void writeSettings();
-	void on_editMailBoxFolder_clicked();
+	void on_tbMailDirFolder_clicked();
 };
 #endif

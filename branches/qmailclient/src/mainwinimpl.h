@@ -40,6 +40,7 @@
 #include <QtGui>
 
 #include "dummy.h"
+//#include "mailbox.h"
 
 //MailTreeWidgetItem is used to enable adding Mails to a TreeWidget
 class MailTreeWidgetItem : public QTreeWidgetItem
@@ -144,7 +145,3 @@ private:
 	QString smtpPass;
 };
 #endif
-
-
-
-

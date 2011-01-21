@@ -6,8 +6,13 @@ SOURCES += src/main.cpp \
  src/mainwinimpl.cpp \
  src/configdialogimpl.cpp \
  src/maileditordialogimpl.cpp \
- src/dummy.cpp
-HEADERS += src/mainwinimpl.h src/configdialogimpl.h src/maileditordialogimpl.h src/dummy.h
+ src/dummy.cpp \
+ src/mailbox.cpp
+HEADERS += src/mainwinimpl.h \
+ src/configdialogimpl.h \
+ src/maileditordialogimpl.h \
+ src/dummy.h \
+ src/mailbox.h
 LIBS += `pkg-config --libs vmime`
 FORMS += ui/MailEditorDialog.ui ui/MainWin.ui ui/ConfigDialog.ui
 TARGET = qmailclient
