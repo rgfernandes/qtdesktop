@@ -13,10 +13,30 @@
   * UserData: кеши мыльниц + настройки каждой мыльницы
 
 База (sqlite):
-  * папки (иерархический список)
-  * сообщения (заголовки)
-  * 
+  * folder (иерархический список)
+  * message (заголовки)
+  * folder-message (m2m)
 
 Файлы: одним плоским списком.
 
 = Порядок обновления =
+
+== Download ==
+
+  * скачивать по одному, в thread'е, с индикатором
+  * msg выкачивать только по запросу
+
+  # get msg count
+  # get uids (tmp table)
+  # download new
+  # del absent
+
+== Upload ==
+
+= Test =
+
+  * time: fetchall vs fetchone
+  * time: fetchall(header) vs fetchall (uid)
+  * 
+
+= Ideas =
