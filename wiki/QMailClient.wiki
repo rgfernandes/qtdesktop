@@ -26,11 +26,17 @@
   * скачивать по одному, в thread'е, с индикатором
   * msg выкачивать только по запросу
 
-  # get msg count
-  # get uids (tmp table)
-  # download new (headers)
-  # del absent (msgs)
-  # load whole msg on demand
+  # folders:
+    # get folder list
+    # insert new
+    # remove deleted
+    # recuring
+  # msgs:
+    # get msg count
+    # get uids (tmp table)
+    # download new (headers)
+    # del absent (msgs) ???
+    # load whole msg on demand
 
 == Upload ==
 
