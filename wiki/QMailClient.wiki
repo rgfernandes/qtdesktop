@@ -28,8 +28,9 @@
 
   # get msg count
   # get uids (tmp table)
-  # download new
-  # del absent
+  # download new (headers)
+  # del absent (msgs)
+  # load whole msg on demand
 
 == Upload ==
 
