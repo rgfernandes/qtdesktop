@@ -35,7 +35,7 @@
 
 = Test =
 
-  * time: fetchall vs fetchone
+  * time: fetchall vs fetchone: fetchall 40% faster
   * time: fetchall(header) vs fetchall (uid)
   * 
 
