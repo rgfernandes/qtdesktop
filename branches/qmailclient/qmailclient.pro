@@ -1,5 +1,4 @@
 VERSION = 0.1.0
-CONFIG += release
 TEMPLATE = app
 QT += gui core network
 SOURCES += src/main.cpp \
@@ -7,14 +6,20 @@ SOURCES += src/main.cpp \
  src/configdialogimpl.cpp \
  src/maileditordialogimpl.cpp \
  src/dummy.cpp \
- src/mailbox.cpp
+ src/mailbox.cpp \
+ src/accountsdialogimpl.cpp
 HEADERS += src/mainwinimpl.h \
  src/configdialogimpl.h \
  src/maileditordialogimpl.h \
  src/dummy.h \
- src/mailbox.h
+ src/mailbox.h \
+ src/accountsdialogimpl.h
 LIBS += `pkg-config --libs vmime`
-FORMS += ui/MailEditorDialog.ui ui/MainWin.ui ui/ConfigDialog.ui
+FORMS += ui/MailEditorDialog.ui \
+ ui/MainWin.ui \
+ ui/ConfigDialog.ui \
+ ui/SettingsDialog.ui \
+ ui/AccountsDialog.ui
 TARGET = qmailclient
 PROJECTNAME = qmailclient
 MOC_DIR = build
@@ -45,3 +50,4 @@ unix {
  translations.path =  $$DATAROOT/qmailclient/translations
  INSTALLS +=  target  desktop  icons  translations
 }
+CONFIG += debug_and_release

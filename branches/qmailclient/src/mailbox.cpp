@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QTime>
 
 #include <iostream>
 #include <sstream>
@@ -28,23 +29,33 @@ bool	MailBox::setSession(void) {
 }
 
 void	listFolder(vmime::ref <vmime::net::folder> folder) {
-	std::vector <vmime::ref <vmime::net::message> > allMessages = folder->getMessages();
-	//std::cerr << "Capabilities: " << folder->getFetchCapabilities();	// ENVELOPE, CONTENT_INFO, SIZE, FULL_HEADER, UID, IMPORTANCE
+	QTime ct = QTime::currentTime();
+	std::cerr << "Start mail" << std::endl;
+	std::vector <vmime::ref <vmime::net::message> > allMessages = folder->getMessages();	// just ask
+	int foptions = folder->getFetchCapabilities();
+	// Mail.ru: ENVELOPE, CONTENT_INFO, SIZE, FULL_HEADER, UID, IMPORTANCE
 	std::cerr << "Messages:" << folder->getMessageCount() << std::endl;
 	//folder->fetchMessages(allMessages, vmime::net::folder::FETCH_FLAGS|vmime::net::folder::FETCH_ENVELOPE);
-	folder->fetchMessages(allMessages, vmime::net::folder::FETCH_FULL_HEADER);
+	std::cerr << "fetch all start: " << ct.msecsTo(QTime::currentTime()) << std::endl;
+	//folder->fetchMessages(allMessages, foptions);
+	folder->fetchMessages(allMessages, vmime::net::folder::FETCH_UID);
+	std::cerr << "fetch all ok: " << ct.msecsTo(QTime::currentTime()) << std::endl;
 	for (unsigned int i = 0; i < allMessages.size(); ++i) {
 		vmime::ref <vmime::net::message> msg = allMessages[i];
 		const int flags = msg->getFlags();
-		std::cerr << "Message " << i << " : " << std::endl;
+		std::cerr << "Message " << i << ": ";
 		if (flags & vmime::net::message::FLAG_SEEN)
-			std::cerr << " - is read" << std::endl;
+			std::cerr << "\t - read, ";
 		if (flags & vmime::net::message::FLAG_DELETED)
-			std::cerr << " - is deleted" << std::endl;
-		//folder->fetchMessage(msg, vmime::net::folder::FETCH_FULL_HEADER);
-		vmime::ref <const vmime::header> hdr = msg->getHeader();
-		std::cerr << " - sent on " << hdr->Date()->generate() << std::endl;
-		std::cerr << " - sent by " << hdr->From()->generate() << std::endl;
+			std::cerr << "\t - deleted, ";
+		//folder->fetchMessage(msg, foptions);
+		std::cerr << "\tUID: " << msg->getUniqueId();
+	//	vmime::ref <const vmime::header> hdr = msg->getHeader();
+	//	std::cerr << "\tSent on: " << hdr->Date()->generate() << std::endl;
+		//std::cerr << "\tSent by: " << hdr->From()->generate() << std::endl;
+		//vmime::text txt = vmime::text::decodeAndUnfold(hdr->From()->getValue());
+		//std::cerr << "\tSent by: " << txt << std::endl;
+		//std::cerr << hdr->From()->getValue().getConvertedText(vmime::charset("utf-8"));
 	}
 }
 

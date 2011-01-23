@@ -34,6 +34,7 @@
 *****************************************************************************/
 
 #include "mainwinimpl.h"
+#include "accountsdialogimpl.h"
 #include "configdialogimpl.h"
 #include "maileditordialogimpl.h"
 
@@ -131,7 +132,7 @@ void MainWinImpl::iniMailEngine()
 	p=new Pop3(popUsr,popPass,popHost,this);
 	smtp=new Smtp(smtpUsr,smtpPass,smtpHost,this);
 	smtp->setPreserveMails(true);
-	qDebug()<<"mail engine initialised";
+	//qDebug()<<"mail engine initialised";
 }
 
 void MainWinImpl::iniMailFolders()
@@ -214,6 +215,16 @@ void MainWinImpl::on_actionDeleteMail_triggered()
 		f.rename(trashDir.absolutePath()+"/"+fileName);
 	}
 	lstMails->removeRow(lstMails->currentRow());
+}
+
+void MainWinImpl::on_actionAccounts_triggered()
+{
+	AccountsDialogImpl dialog;
+	dialog.exec();
+//	if(dialog.result()){
+//		readSettings();
+//		iniMailEngine();
+//	}
 }
 
 void MainWinImpl::on_actionEditConfiguration_triggered()

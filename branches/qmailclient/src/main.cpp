@@ -91,9 +91,8 @@ int main(int argc, char ** argv)
 	// </tr>
 
 	MainWinImpl win;
-	MailBox *mb = openMailBox();
+	//MailBox *mb = openMailBox();
 	win.show();
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
-	
 }

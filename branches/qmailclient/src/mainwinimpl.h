@@ -103,8 +103,9 @@ private slots:
 	void newMail(Mail *mail);	//this slot is used to take handle of newly received mails
 	void displayState(QString s); //display message in the statebar
 	void loadMails(QString path); //load local mails i the list of mails; for each mail in a folder addMailToList is called
-	void on_actionDeleteMail_triggered();
 	void on_actionEditConfiguration_triggered();
+	void on_actionAccounts_triggered();
+	void on_actionDeleteMail_triggered();
 	void on_actionEditMail_triggered();
 	void on_actionExit_triggered(){close();};
 	void on_actionForwardMail_triggered();
