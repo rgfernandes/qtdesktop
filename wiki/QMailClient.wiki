@@ -10,12 +10,13 @@
 
 Сами сообщения хранятся локально, данные из сообщений - в базе.
   * UserSetting: Common cfg - всякие умолчания
-  * UserData: кеши мыльниц + настройки каждой мыльницы
+  * UserData: общая db + кеши мыльниц + настройки каждой мыльницы
 
 База (sqlite):
-  * folder (иерархический список)
-  * message (заголовки)
-  * folder-message (m2m)
+  * mailbox (id, ? settings)
+  * folder (иерархический список) (mailbox_id, name, parent)
+  * message (заголовки) (uid, ...)
+  * folder-message (m2m) ?
 
 Файлы: одним плоским списком в папке mailbox.
 
@@ -23,7 +24,7 @@
   * Create: upper no +1 or 1
   * Read: nothing
   * Update: nothing
-  * Delete: rmdir + rename all after
+  * Delete: rmdir
 
 = Порядок обновления =
 
