@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" rowspan="5">
-    <widget class="QListView" name="listView"/>
+    <widget class="QListView" name="lvAccounts"/>
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="pbAdd">
