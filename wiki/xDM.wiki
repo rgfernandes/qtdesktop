@@ -1,0 +1,13 @@
+#summary Display managers.
+
+= Introduction =
+
+  * XDM - X Display Manager (X) - no choice
+  * KDM - KDE Display Manager (KDE) - choice
+  * GDM - GNOME Display Manager (GNOME) - choice
+  * LXDM, a lightweight display manager - choice LXDE
+  * WDM - WINGs Display Manager (Windows Maker)
+  * entrance (Enlightenment)
+  * SLiM — Simple Login Manager (X) - no choice
+  * Enter Lightweight graphical login manager - no choice
+  * Orthos - OpenGL only - no choice
