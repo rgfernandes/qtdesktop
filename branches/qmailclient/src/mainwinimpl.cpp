@@ -1,46 +1,9 @@
-/****************************************************************************
-* http://sourceforge.net/projects/nlcreator/
-*
-* QNewsletterCreator - Business Email Client for Mass Mails
-* Nuntius Leo - Personal Qt Email Client
-*
-* This library is free software; you can redistribute it and/or
-* modify it under the terms of the GNU Library General Public
-* License Version 2 as published by the Free Software Foundation.
-*
-* This library is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* Library General Public License for more details.
-*
-* You should have received a copy of the GNU Library General Public
-* License along with this library; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
-* USA. http://www.gnu.org/copyleft/library.html
-*
-* Please report all bugs and problems to the project admins:
-* http://sourceforge.net/projects/nlcreator/
-* 
-*
-* Copyright by dontinelli@users.sourceforge.net if no additional copyright information is given
-* otherwise copyright by given authors/organizations 
-* and modfified, e.g. ported, by dontinelli@users.sourceforge.net.
-* Some code has been taken from 
-* http://sourceforge.net/projects/lhmail - License : GNU Library General Public License    
-* Authors: lukasz.iwaszkiewicz@gmail.com
-* lukasz.iwaszkiewicz@lefthand.com.pl, lukasz.iwaszkiewicz@software.com.pl 
-* Copyright (C) 2004/2005 LeftHand sp.z.o.o. info@lefthand.com.pl 
-*
-*****************************************************************************/
-
 #include "mainwinimpl.h"
-#include "accountsdialogimpl.h"
 #include "configdialogimpl.h"
 #include "maileditordialogimpl.h"
 
 MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f) 
-	: QMainWindow(parent, f)
-{
+	: QMainWindow(parent, f) {
 	p=0;
 	smtp=0;
 	currentMail=0;
@@ -53,6 +16,8 @@ MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f)
 	iniMailFolders();
 	iniMailEngine();
 
+	dialogA = new AccountsDialogImpl(this);
+
 	connect(smtp,SIGNAL(status(QString)),this,SLOT(displayState(QString)));
 	connect(smtp,SIGNAL(mailSent(Mail*)),this,SLOT(mailSent(Mail*)));
 	connect(p,SIGNAL(newMail(Mail*)),this,SLOT(newMail(Mail*)));
@@ -60,6 +25,19 @@ MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f)
 	//downloadMails();
 	connect(actionDownloadMails,SIGNAL(triggered()),this,SLOT(downloadMails()));
 	//loadMails();
+}
+
+void	MainWinImpl::setModels(QSqlDatabase *d) {
+	db = d;
+	modelA = new QSqlTableModel();	// create model _after_ opening db
+	modelA->setTable("account");
+	modelA->setSort(1, Qt::AscendingOrder);
+	//modelP->setEditStrategy(QSqlTableModel::OnManualSubmit);
+	modelA->setHeaderData(0, Qt::Horizontal, tr("#"));
+	modelA->setHeaderData(1, Qt::Horizontal, tr("Name"));
+	modelA->setHeaderData(2, Qt::Horizontal, tr("Options"));
+
+	//dialogA->setModel(modelA);
 }
 
 void MainWinImpl::addMailPartsToList(QTreeWidgetItem*parent, Mail *m)
@@ -76,8 +54,7 @@ void MainWinImpl::addMailPartsToList(QTreeWidgetItem*parent, Mail *m)
 	};
 }
 
-void MainWinImpl::addMailToList(Mail *m,QString fileName)
-{
+void MainWinImpl::addMailToList(Mail *m,QString fileName) {
 	lstMails->setSortingEnabled(false);
 	QTableWidgetItem *subject=new QTableWidgetItem(m->subject());
 	subject->setData(32,fileName);
@@ -92,13 +69,11 @@ void MainWinImpl::addMailToList(Mail *m,QString fileName)
 	lstMails->setSortingEnabled(true);
 }
 
-void MainWinImpl::displayState(QString s)
-{
+void MainWinImpl::displayState(QString s) {
 	this->statusBar()->showMessage(s,15000);
 }
 
-void MainWinImpl::downloadMails()
-{
+void MainWinImpl::downloadMails() {
 	p->getAllMails(false); //delete mails?
 }
 
@@ -125,8 +100,7 @@ QString MainWinImpl::generateMailName(QString dir)
 	return rand_name;
 }
 
-void MainWinImpl::iniMailEngine()
-{
+void MainWinImpl::iniMailEngine() {
 	if(p) delete p;
 	if(smtp) delete smtp;
 	p=new Pop3(popUsr,popPass,popHost,this);
@@ -135,13 +109,12 @@ void MainWinImpl::iniMailEngine()
 	//qDebug()<<"mail engine initialised";
 }
 
-void MainWinImpl::iniMailFolders()
-{
+void MainWinImpl::iniMailFolders() {
 	dirModel=new QDirModel(this);
 	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
 	dirTree->setModel(dirModel);
 	QDir d(mailBoxRootPath);
-
+	/*
 	if(!d.exists()) d.mkpath(d.absolutePath());
 	dirTree->setRootIndex(dirModel->index(d.absolutePath()));
 
@@ -149,7 +122,7 @@ void MainWinImpl::iniMailFolders()
 	if(!d.exists("outbox")) d.mkdir("outbox");
 	if(!d.exists("trash")) d.mkdir("trash");
 	if(!d.exists("draft")) d.mkdir("draft");
-	
+	*/
 	inboxDir=d.absolutePath();
 	inboxDir.cd("inbox");
 	outboxDir=d.absolutePath();
@@ -161,7 +134,6 @@ void MainWinImpl::iniMailFolders()
 	
 	return;
 }
-
 
 void MainWinImpl::loadMails(QString path)
 {
@@ -208,7 +180,7 @@ void MainWinImpl::on_actionDeleteMail_triggered()
 	if(dirModel->filePath(dirTree->currentIndex())==trashDir.absolutePath()){
 		QFile f(lstMails->item(lstMails->currentRow(),0)->data(32).toString());
 		f.remove();
-	}else{
+	} else {
 		QFile f(lstMails->item(lstMails->currentRow(),0)->data(32).toString());
 		QString fileName=f.fileName();
 		fileName=fileName.right(fileName.size()-fileName.lastIndexOf("/")-1);

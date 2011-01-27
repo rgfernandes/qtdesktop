@@ -1,64 +1,27 @@
-/****************************************************************************
-* http://sourceforge.net/projects/nlcreator/
-*
-* QNewsletterCreator - Business Email Client for Mass Mails
-* Nuntius Leo - Personal Qt Email Client
-*
-* This library is free software; you can redistribute it and/or
-* modify it under the terms of the GNU Library General Public
-* License Version 2 as published by the Free Software Foundation.
-*
-* This library is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-* Library General Public License for more details.
-*
-* You should have received a copy of the GNU Library General Public
-* License along with this library; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
-* USA. http://www.gnu.org/copyleft/library.html
-*
-* Please report all bugs and problems to the project admins:
-* http://sourceforge.net/projects/nlcreator/
-* 
-*
-* Copyright by dontinelli@users.sourceforge.net if no additional copyright information is given
-* otherwise copyright by given authors/organizations 
-* and modfified, e.g. ported, by dontinelli@users.sourceforge.net.
-* Some code has been taken from 
-* http://sourceforge.net/projects/lhmail - License : GNU Library General Public License    
-* Authors: lukasz.iwaszkiewicz@gmail.com
-* lukasz.iwaszkiewicz@lefthand.com.pl, lukasz.iwaszkiewicz@software.com.pl 
-* Copyright (C) 2004/2005 LeftHand sp.z.o.o. info@lefthand.com.pl 
-*
-*****************************************************************************/
-
 #ifndef MAINWINDOWIMPL_H
 #define MAINWINDOWIMPL_H
-//
-#include "ui_MainWin.h"
+
 #include <QtGui>
+#include <QtSql>
+
+#include "ui_MainWin.h"
+#include "accountsdialogimpl.h"
 
 #include "dummy.h"
 //#include "mailbox.h"
 
 //MailTreeWidgetItem is used to enable adding Mails to a TreeWidget
-class MailTreeWidgetItem : public QTreeWidgetItem
-{
+class MailTreeWidgetItem : public QTreeWidgetItem {
 public:
 	MailTreeWidgetItem(QTreeWidgetItem *parent, Mail *mp):QTreeWidgetItem(parent,QStringList()<<mp->header("Subject") 
-		<<mp->header("Content-Type")<<mp->header("Content-Transfer-Encoding")<<QString("%1 B").arg(mp->getMemSize()),QTreeWidgetItem::UserType)
-	{
+		<<mp->header("Content-Type")<<mp->header("Content-Transfer-Encoding")<<QString("%1 B").arg(mp->getMemSize()),QTreeWidgetItem::UserType) {
 		m=mp;
 	};
 	MailTreeWidgetItem(QTreeWidget *parent, Mail *mp):QTreeWidgetItem(parent,QStringList()<<mp->header("Subject") 
-		<<mp->header("Content-Type")<<mp->header("Content-Transfer-Encoding")<<QString("%1 B").arg(mp->getMemSize()),QTreeWidgetItem::UserType)
-	{
+		<<mp->header("Content-Type")<<mp->header("Content-Transfer-Encoding")<<QString("%1 B").arg(mp->getMemSize()),QTreeWidgetItem::UserType) {
 		m=mp;
 	};
-
 	Mail* getMail(){return m;};
-
 private:
 	Mail *m;
 };
@@ -85,8 +48,7 @@ private:
 	QDateTime d;
 };
 
-class MainWinImpl : public QMainWindow, public Ui::MainWin
-{
+class MainWinImpl : public QMainWindow, public Ui::MainWin {
 Q_OBJECT
 public:
 	MainWinImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
@@ -94,7 +56,7 @@ public:
 		delete p;
 		delete smtp;
 	};
-	
+	void	setModels(QSqlDatabase *);
 private slots:
 	void addMailPartsToList(QTreeWidgetItem*parent, Mail *m); //add a mailpart to the overview of all parts of a mail
 	void addMailToList(Mail *m,QString fileName); //add mail to the list of mails
@@ -119,6 +81,11 @@ private slots:
 	void sendMail(Mail *m); //send a mail
 	
 private:
+	QSqlDatabase		*db;
+	QSqlTableModel		*modelA;
+	//QSqlRelationalTableModel	*modelA;
+	AccountsDialogImpl	*dialogA;
+	// not mine
 	QString generateMailName(QString dir=""); //routine to generate a unique name for a mail, dir=path to file
 	void iniMailEngine();
 	void iniMailFolders();

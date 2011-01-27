@@ -1,5 +1,5 @@
 <RCC>
-  <qresource prefix="/img" >
+  <qresource prefix="/img">
     <file>images/3floppy_unmount.png</file>
     <file>images/add_user.png</file>
     <file>images/edit.png</file>
@@ -95,5 +95,8 @@
     <file>images/window_fullscreen.png</file>
     <file>images/wizard.png</file>
     <file>images/www.png</file>
+  </qresource>
+  <qresource prefix="sql">
+    <file>sql/data.sql</file>
   </qresource>
 </RCC>

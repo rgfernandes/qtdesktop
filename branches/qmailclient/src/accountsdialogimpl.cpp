@@ -7,7 +7,7 @@
 #include <map>
 
 #include "accountsdialogimpl.h"
-
+/*
 AccountsModel::AccountsModel(QSettings * s, QObject * parent) :
 	settings(s) {
 	lv = settings->childGroups();
@@ -33,13 +33,14 @@ QVariant AccountsModel::data(const QModelIndex & index, int role) const {
 		return QVariant();
 	}
 }
+*/
 // ====
 AccountsDialogImpl::AccountsDialogImpl(QWidget *parent) 
 	: QDialog(parent) {
 	setupUi(this);
-	settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
-	AccountsModel *am = new AccountsModel(settings);
-	lvAccounts->setModel(am);
+	//settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	//AccountsModel *am = new AccountsModel(settings);
+	//lvAccounts->setModel(am);
 	/*QStringList grouplist = s.childGroups();
 	for (int i = 0; i < grouplist.size(); i++) {
 		qDebug() << grouplist[i];
@@ -48,6 +49,21 @@ AccountsDialogImpl::AccountsDialogImpl(QWidget *parent)
 }
 
 AccountsDialogImpl::~AccountsDialogImpl() {
+}
+
+void	AccountsDialogImpl::prepareModel(QSqlTableModel *m) {
+	model = m;
+	mapper = new QDataWidgetMapper(this);
+	mapper->setModel(model);
+	//mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+	mapper->setItemDelegate(new QItemDelegate(this));
+}
+
+void	AccountsDialogImpl::setModel(QSqlTableModel *m) {
+	prepareModel(m);
+	//mapper->addMapping(leName, model->fieldIndex("name"));
+	//mapper->addMapping(leValue, model->fieldIndex("val"));
+	lvAccounts->setModel(m);
 }
 
 void AccountsDialogImpl::on_pbAdd_clicked() {

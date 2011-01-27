@@ -1,6 +1,6 @@
 VERSION = 0.1.0
 TEMPLATE = app
-QT += gui core network
+QT += gui core network sql
 SOURCES += src/main.cpp \
  src/mainwinimpl.cpp \
  src/configdialogimpl.cpp \
