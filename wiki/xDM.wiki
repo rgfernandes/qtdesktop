@@ -11,3 +11,5 @@
   * SLiM — Simple Login Manager (X) - no choice
   * Enter Lightweight graphical login manager - no choice
   * Orthos - OpenGL only - no choice
+
+WDM: WINGs-devel, libXdmcp-devel, libXmu-devel
