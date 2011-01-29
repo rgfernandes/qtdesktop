@@ -6,6 +6,7 @@
 
 #include "ui_MainWin.h"
 #include "accountsdialogimpl.h"
+#include "mbtreemodel.h"
 
 #include "dummy.h"
 //#include "mailbox.h"
@@ -83,7 +84,6 @@ private slots:
 private:
 	QSqlDatabase		*db;
 	QSqlTableModel		*modelA;
-	//QSqlRelationalTableModel	*modelA;
 	AccountsDialogImpl	*dialogA;
 	// not mine
 	QString generateMailName(QString dir=""); //routine to generate a unique name for a mail, dir=path to file
@@ -91,6 +91,7 @@ private:
 	void iniMailFolders();
 	void readSettings();
 
+	MBTreeModel *mbTreeModel;
 	QDirModel *dirModel;
 	QString mailBoxRootPath;
 	QDir inboxDir;

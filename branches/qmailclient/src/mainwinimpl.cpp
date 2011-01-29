@@ -33,11 +33,12 @@ void	MainWinImpl::setModels(QSqlDatabase *d) {
 	modelA->setTable("account");
 	modelA->setSort(1, Qt::AscendingOrder);
 	//modelP->setEditStrategy(QSqlTableModel::OnManualSubmit);
+	modelA->select();
 	modelA->setHeaderData(0, Qt::Horizontal, tr("#"));
 	modelA->setHeaderData(1, Qt::Horizontal, tr("Name"));
 	modelA->setHeaderData(2, Qt::Horizontal, tr("Options"));
 
-	//dialogA->setModel(modelA);
+	dialogA->setModel(modelA);
 }
 
 void MainWinImpl::addMailPartsToList(QTreeWidgetItem*parent, Mail *m)
@@ -110,11 +111,12 @@ void MainWinImpl::iniMailEngine() {
 }
 
 void MainWinImpl::iniMailFolders() {
-	dirModel=new QDirModel(this);
-	dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
-	dirTree->setModel(dirModel);
-	QDir d(mailBoxRootPath);
 	/*
+	//dirModel=new QDirModel(this);
+	//dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+	//dirTree->setModel(dirModel);
+	QDir d(mailBoxRootPath);
+	
 	if(!d.exists()) d.mkpath(d.absolutePath());
 	dirTree->setRootIndex(dirModel->index(d.absolutePath()));
 
@@ -122,7 +124,7 @@ void MainWinImpl::iniMailFolders() {
 	if(!d.exists("outbox")) d.mkdir("outbox");
 	if(!d.exists("trash")) d.mkdir("trash");
 	if(!d.exists("draft")) d.mkdir("draft");
-	*/
+	
 	inboxDir=d.absolutePath();
 	inboxDir.cd("inbox");
 	outboxDir=d.absolutePath();
@@ -131,7 +133,11 @@ void MainWinImpl::iniMailFolders() {
 	trashDir.cd("trash");
 	draftDir=d.absolutePath();
 	draftDir.cd("draft");
-	
+	*/
+	mbTreeModel = new MBTreeModel(this);
+	dirTree->setModel(mbTreeModel);
+	//dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
+	//dirTree->setModel(dirModel);
 	return;
 }
 

@@ -7,20 +7,6 @@
 #include <QtGui>
 #include <QtSql>
 
-class AccountsModel : public QAbstractListModel {
-	public:
-		AccountsModel(QSettings *, QObject * parent = 0);
-		~AccountsModel();
-		int rowCount(const QModelIndex & parent = QModelIndex()) const;
-		QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
-		void reloadsettings() const; 
-		//headerData()
-		void	setModel(QSqlTableModel *);
-	private:
-		QSettings *settings;
-		QStringList lv;
-};
-
 class AccountsDialogImpl : public QDialog, public Ui::AccountsDialog {
 	Q_OBJECT
 	public:
@@ -32,11 +18,7 @@ class AccountsDialogImpl : public QDialog, public Ui::AccountsDialog {
 		void on_pbEdit_clicked();
 		void on_pbDel_clicked();
 	private:
-		QWidget			*firstWidget;
 		QSqlTableModel		*model;
-		QDataWidgetMapper	*mapper;
-		QSettings		*settings;
-		void			prepareModel(QSqlTableModel *);
 };
 
 #endif // __ACCOUNTSDIALOGIMPL_H__
