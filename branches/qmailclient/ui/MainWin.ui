@@ -304,10 +304,11 @@
    </widget>
    <widget class="QMenu" name="menu_Service">
     <property name="title">
-     <string>&amp;Service</string>
+     <string>&amp;Account</string>
     </property>
-    <addaction name="actionAccounts"/>
-    <addaction name="actionSettings"/>
+    <addaction name="actionAccountAdd"/>
+    <addaction name="actionAccountEdit"/>
+    <addaction name="actionAccountDel"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -432,18 +433,23 @@
     <string>Edit Mail</string>
    </property>
   </action>
-  <action name="actionSettings">
+  <action name="actionAccountEdit">
    <property name="icon">
     <iconset resource="../resources.qrc">
      <normaloff>:/img/images/configure.png</normaloff>:/img/images/configure.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Settings</string>
+    <string>&amp;Edit</string>
    </property>
   </action>
-  <action name="actionAccounts">
+  <action name="actionAccountAdd">
    <property name="text">
-    <string>&amp;Accounts</string>
+    <string>&amp;Add</string>
+   </property>
+  </action>
+  <action name="actionAccountDel">
+   <property name="text">
+    <string>&amp;Del</string>
    </property>
   </action>
  </widget>

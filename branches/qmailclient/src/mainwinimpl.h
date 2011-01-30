@@ -5,7 +5,6 @@
 #include <QtSql>
 
 #include "ui_MainWin.h"
-#include "accountsdialogimpl.h"
 #include "mbtreemodel.h"
 
 #include "dummy.h"
@@ -52,8 +51,9 @@ private:
 class MainWinImpl : public QMainWindow, public Ui::MainWin {
 Q_OBJECT
 public:
-	MainWinImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	MainWinImpl( QSqlDatabase *d, QWidget * parent = 0, Qt::WFlags f = 0 );
 	~MainWinImpl(){
+		//delete db;		
 		delete p;
 		delete smtp;
 	};
@@ -66,8 +66,9 @@ private slots:
 	void newMail(Mail *mail);	//this slot is used to take handle of newly received mails
 	void displayState(QString s); //display message in the statebar
 	void loadMails(QString path); //load local mails i the list of mails; for each mail in a folder addMailToList is called
-	void on_actionEditConfiguration_triggered();
-	void on_actionAccounts_triggered();
+	void on_actionAccountAdd_triggered();
+	void on_actionAccountEdit_triggered();
+	void on_actionAccountDel_triggered();
 	void on_actionDeleteMail_triggered();
 	void on_actionEditMail_triggered();
 	void on_actionExit_triggered(){close();};
@@ -84,7 +85,6 @@ private slots:
 private:
 	QSqlDatabase		*db;
 	QSqlTableModel		*modelA;
-	AccountsDialogImpl	*dialogA;
 	// not mine
 	QString generateMailName(QString dir=""); //routine to generate a unique name for a mail, dir=path to file
 	void iniMailEngine();

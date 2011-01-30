@@ -6,20 +6,20 @@
 #include <QAbstractItemModel>
 #include <QList>
 #include <QString>
+#include <QtSql>
 
 class MBTreeItem {
 public:
-	MBTreeItem( int , QString p_sid, QString p_name );
+	MBTreeItem( int, QString, int = 0);
 	~MBTreeItem();
 public:
 	int getId() const;
-	QString getSid() const;
 	QString getName() const;
+	int getQty() const;
 	int getParentId() const;
 	int row() const;
 protected:
-	int id;
-	QString sid;
+	int id, qty;
 	QString name;
 private:
 	MBTreeItem* parent;
@@ -30,7 +30,7 @@ private:
 class MBTreeModel : public QAbstractItemModel {
 	Q_OBJECT
 public:
-	MBTreeModel( QObject* parent = 0 );
+	MBTreeModel( QSqlDatabase *d, QObject* parent = 0 );
 	~MBTreeModel();
 
 	int columnCount( const QModelIndex& parent = QModelIndex() ) const;
@@ -43,10 +43,11 @@ public:
 	int rowCount( const QModelIndex& parent = QModelIndex() ) const;
 	// own methods
 	void setRoot( MBTreeItem* node );
-	MBTreeItem* categoryFromIndex( const QModelIndex& index ) const;
+	MBTreeItem* itemFromIndex( const QModelIndex& index ) const;
 	void refreshModel();
 private:
 	void setupModel( MBTreeItem* parent );
 	MBTreeItem* root;
+	QSqlDatabase *db;
 };
 #endif // __MBTREEMODEL_H__

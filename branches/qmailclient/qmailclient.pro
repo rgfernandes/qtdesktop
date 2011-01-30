@@ -7,21 +7,15 @@ SOURCES += src/main.cpp \
  src/maileditordialogimpl.cpp \
  src/dummy.cpp \
  src/mailbox.cpp \
- src/accountsdialogimpl.cpp \
  src/mbtreemodel.cpp
 HEADERS += src/mainwinimpl.h \
  src/configdialogimpl.h \
  src/maileditordialogimpl.h \
  src/dummy.h \
  src/mailbox.h \
- src/accountsdialogimpl.h \
  src/mbtreemodel.h
 LIBS += `pkg-config --libs vmime`
-FORMS += ui/MailEditorDialog.ui \
- ui/MainWin.ui \
- ui/ConfigDialog.ui \
- ui/SettingsDialog.ui \
- ui/AccountsDialog.ui
+FORMS += ui/MailEditorDialog.ui ui/MainWin.ui ui/ConfigDialog.ui ui/SettingsDialog.ui
 TARGET = qmailclient
 PROJECTNAME = qmailclient
 MOC_DIR = build

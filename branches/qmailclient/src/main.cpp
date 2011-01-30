@@ -148,9 +148,9 @@ int main(int argc, char ** argv) {
 	if (!createConnection(db))
 		return 1;
 	// </db>
-	MainWinImpl *win = new MainWinImpl();
+	MainWinImpl *win = new MainWinImpl(&db);
 	//MailBox *mb = openMailBox();
-	win->setModels(&db);
+	//win->setModels(&db);
 	win->show();
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	int retvalue = app.exec();

@@ -2,21 +2,13 @@
 #include "configdialogimpl.h"
 #include "maileditordialogimpl.h"
 
-MainWinImpl::MainWinImpl( QWidget * parent, Qt::WFlags f) 
-	: QMainWindow(parent, f) {
-	p=0;
-	smtp=0;
-	currentMail=0;
-
+MainWinImpl::MainWinImpl( QSqlDatabase *d, QWidget * parent, Qt::WFlags f) 
+	: QMainWindow(parent, f), db(d), p(0), smtp(0), currentMail(0) {
 	setupUi(this);
-
 	mailBrowser->setOpenLinks(false);
-
 	readSettings();
 	iniMailFolders();
 	iniMailEngine();
-
-	dialogA = new AccountsDialogImpl(this);
 
 	connect(smtp,SIGNAL(status(QString)),this,SLOT(displayState(QString)));
 	connect(smtp,SIGNAL(mailSent(Mail*)),this,SLOT(mailSent(Mail*)));
@@ -37,8 +29,6 @@ void	MainWinImpl::setModels(QSqlDatabase *d) {
 	modelA->setHeaderData(0, Qt::Horizontal, tr("#"));
 	modelA->setHeaderData(1, Qt::Horizontal, tr("Name"));
 	modelA->setHeaderData(2, Qt::Horizontal, tr("Options"));
-
-	dialogA->setModel(modelA);
 }
 
 void MainWinImpl::addMailPartsToList(QTreeWidgetItem*parent, Mail *m)
@@ -134,7 +124,7 @@ void MainWinImpl::iniMailFolders() {
 	draftDir=d.absolutePath();
 	draftDir.cd("draft");
 	*/
-	mbTreeModel = new MBTreeModel(this);
+	mbTreeModel = new MBTreeModel(db, this);
 	dirTree->setModel(mbTreeModel);
 	//dirModel->setFilter(QDir::Dirs | QDir::NoDotAndDotDot);
 	//dirTree->setModel(dirModel);
@@ -195,23 +185,33 @@ void MainWinImpl::on_actionDeleteMail_triggered()
 	lstMails->removeRow(lstMails->currentRow());
 }
 
-void MainWinImpl::on_actionAccounts_triggered()
-{
-	AccountsDialogImpl dialog;
+void MainWinImpl::on_actionAccountAdd_triggered() {
+	ConfigDialogImpl dialog(db); //=new ConfigDialogImpl(this);
 	dialog.exec();
-//	if(dialog.result()){
-//		readSettings();
-//		iniMailEngine();
-//	}
+	if(dialog.result())
+		mbTreeModel->refreshModel();
 }
 
-void MainWinImpl::on_actionEditConfiguration_triggered()
-{
-	ConfigDialogImpl dialog; //=new ConfigDialogImpl(this);
-	dialog.exec();
-	if(dialog.result()){
-		readSettings();
-		iniMailEngine();
+void MainWinImpl::on_actionAccountEdit_triggered() {
+	if (dirTree->currentIndex().isValid()) {
+		ConfigDialogImpl dialog(db, mbTreeModel->itemFromIndex(dirTree->currentIndex())->getId());
+		dialog.exec();
+		if(dialog.result())
+			mbTreeModel->refreshModel();
+	}
+}
+
+void MainWinImpl::on_actionAccountDel_triggered() {
+	if (dirTree->currentIndex().isValid()) {
+		MBTreeItem *mb = mbTreeModel->itemFromIndex(dirTree->currentIndex());
+		if (QMessageBox::warning(this, tr("Deleting mailbox"),
+			tr("Do you want to delete mailbox?"),
+			QMessageBox::Yes | QMessageBox::No,
+			QMessageBox::No) == QMessageBox::Yes) {
+				QSqlQuery q(*db);
+				if (q.exec(QString("DELETE FROM account WHERE id=%1").arg(QString().number(mb->getId()))))
+					mbTreeModel->refreshModel();
+			}
 	}
 }
 
@@ -297,9 +297,9 @@ void MainWinImpl::on_actionReplyMail_triggered()
 	dialog->show();
 }
 
-void MainWinImpl::on_dirTree_clicked(const QModelIndex &index)
-{
-	loadMails(dirModel->filePath(index));
+void MainWinImpl::on_dirTree_clicked(const QModelIndex &index) {
+	qDebug() << "Click...";
+	//loadMails(dirModel->filePath(index));
 }
 
 void MainWinImpl::on_lstMails_cellClicked(int curRow, int curCol)
