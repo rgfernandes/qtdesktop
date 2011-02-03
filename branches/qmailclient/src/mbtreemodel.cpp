@@ -102,51 +102,40 @@ void MBTreeModel::refreshModel() {
 	setRoot( newRoot );
 }
 
-void MBTreeModel::setupModel( MBTreeItem* parent ) {
-	if( !parent || !parent->children.isEmpty() )	// is NULL or has children
+void MBTreeModel::setupModel( MBTreeItem* root ) {
+	if( !root || !root->children.isEmpty() )	// is NULL or has children
 		return;
-	if (!parent->parent) {	// root
+	if (!root->parent) {	// root
 		QSqlQuery q(*db);
 		if( q.prepare("SELECT id, name FROM account ORDER BY id")) {
 			if( q.exec() ) {
 				while( q.next() ) {
-					MBTreeItem* n = new MBTreeItem(q.value(0).toInt(), q.value(1).toString(), 0);
-					n->parent = parent;
-					parent->children.append(n);
+					MBTreeItem* account = new MBTreeItem(q.value(0).toInt(), q.value(1).toString(), 0);
+					account->parent = root;
+					root->children.append(account);
+					// add subfolders
+					QSqlQuery q1(*db);
+					if( q1.prepare("SELECT id, parentid, name FROM folder WHERE accountid=:aid ORDER BY parentid, name;")) {
+						q1.bindValue(":aid", account->getId());
+						if( q1.exec() ) {
+							QMap<int, MBTreeItem*> folders;
+							MBTreeItem *parent;
+							while( q1.next() ) {
+								MBTreeItem* n = new MBTreeItem(q1.value(0).toInt(), q1.value(2).toString(), 0 );
+								int parent_id = q1.value(1).toInt();
+								if ((parent_id > 0) && (folders.contains(parent_id)))
+									parent = folders.value(parent_id);
+								else
+									parent = account;
+								n->parent = parent;
+								parent->children.append(n);
+								folders.insert(n->getId(), n);
+							}
+						}
+					}
 				}
 			}
 		}
 	}
 	return;
-	//
-	QSqlQuery q( QSqlDatabase::database("main") );
-	if( q.prepare("select * from table( contractor_tree.GetCategoryTree(:pid,:depth) )")) {
-		q.bindValue( ":pid", parent->getId() );
-		q.bindValue( ":depth", 9999 );
-		if( q.exec() ) {
-			QList<MBTreeItem*> parents;
-			QList<int> levels;
-			parents << parent;
-			levels << 1;
-			while( q.next() ) {
-				int level = q.value(0).toInt();
-				if( level > levels.last() ) {
-					if( parents.last()->children.count() > 0 ) {
-						parents << parents.last()->children.value(parents.last()->children.count()-1 );
-						levels << level;
-					}
-				} else {
-					while( level < levels.last() && parents.count() > 0 ) {
-						parents.pop_back();
-						levels.pop_back();
-					}
-				}
-				MBTreeItem* n = new MBTreeItem(q.value(1).toInt(), q.value(3).toString(), 0 );
-				n->parent = parents.last();
-				parents.last()->children.append(n);
-			}
-			return;
-		}
-	}
-	//throw DatabaseException( q.lastError() );
 }

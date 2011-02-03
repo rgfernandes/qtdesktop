@@ -1,3 +1,17 @@
+= Done =
+* multibox
+* tree folder
+= Next =
+* update folders:
+** 
+* update headers:
+** get all
+** calc deleted
+** calc new
+** get new (headers)
+* get msg
+* send msg
+
 vmime:
 * POP3, IMAP, SMTP, maildir and sendmail
 * SSL/TLS security layer and X.509 certificates (using GNU TLS)
