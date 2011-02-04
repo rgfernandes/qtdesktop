@@ -11,6 +11,16 @@
 
 static bool handlerOK = false;
 
+QStringList	cmpQSL(QStringList &sl1, QStringList &sl2) {
+	// compare 2 stringlists
+	// return - sl1-sl2 - difference - items, that are in sl1 and not in sl2
+	QStrinList retvalue;
+	for (int i = 0; i < sl1.size(); i++)
+		if (!sl2->contains(sl1[i]))
+			retvalue.append(sl1[i])
+	return retvalue; 
+}
+
 MailBox::MailBox(void) {
 	setHandler();
 }
