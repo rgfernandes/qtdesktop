@@ -9,6 +9,7 @@ MainWinImpl::MainWinImpl( QSqlDatabase *d, QWidget * parent, Qt::WFlags f)
 	readSettings();
 	iniMailFolders();
 	iniMailEngine();
+	MailBoxFabric::init(db);
 
 	connect(smtp,SIGNAL(status(QString)),this,SLOT(displayState(QString)));
 	connect(smtp,SIGNAL(mailSent(Mail*)),this,SLOT(mailSent(Mail*)));
@@ -213,6 +214,14 @@ void MainWinImpl::on_actionAccountDel_triggered() {
 					mbTreeModel->refreshModel();
 			}
 	}
+}
+
+void MainWinImpl::on_actionAccountRefresh_triggered() {
+	if (dirTree->currentIndex().isValid()) {
+	}
+}
+
+void MainWinImpl::on_actionAccountRefreshAll_triggered() {
 }
 
 void MainWinImpl::on_actionEditMail_triggered()

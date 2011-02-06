@@ -133,7 +133,7 @@ QString ConfigDialogImpl::toString(QMap<QString, QString> map) {
 		i.next();
 		if (s.size())
 			s += "\n";
-		s = s + i.key() + "=" + i.value() + "\n";
+		s = s + i.key() + "=" + i.value();
 	}
 	return s;
 }

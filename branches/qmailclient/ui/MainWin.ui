@@ -301,11 +301,15 @@
      <string>&amp;Edit</string>
     </property>
     <addaction name="actionEditConfiguration"/>
+    <addaction name="actionEditSettings"/>
    </widget>
    <widget class="QMenu" name="menu_Service">
     <property name="title">
      <string>&amp;Account</string>
     </property>
+    <addaction name="actionAccountRefresh"/>
+    <addaction name="actionAccountRefreshAll"/>
+    <addaction name="separator"/>
     <addaction name="actionAccountAdd"/>
     <addaction name="actionAccountEdit"/>
     <addaction name="actionAccountDel"/>
@@ -358,7 +362,10 @@
      <normaloff>:/img/images/network_connected.png</normaloff>:/img/images/network_connected.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Settings...</string>
+    <string>&amp;Configuration...</string>
+   </property>
+   <property name="toolTip">
+    <string>Configuration</string>
    </property>
   </action>
   <action name="actionNewMail">
@@ -441,15 +448,40 @@
    <property name="text">
     <string>&amp;Edit</string>
    </property>
+   <property name="toolTip">
+    <string>Edit current mailbox</string>
+   </property>
   </action>
   <action name="actionAccountAdd">
    <property name="text">
     <string>&amp;Add</string>
    </property>
+   <property name="toolTip">
+    <string>Add new mailbox</string>
+   </property>
   </action>
   <action name="actionAccountDel">
    <property name="text">
     <string>&amp;Del</string>
+   </property>
+   <property name="toolTip">
+    <string>Delele current mailbox</string>
+   </property>
+  </action>
+  <action name="actionAccountRefresh">
+   <property name="text">
+    <string>&amp;Refresh</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh current account</string>
+   </property>
+  </action>
+  <action name="actionAccountRefreshAll">
+   <property name="text">
+    <string>Refresh all</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh all accounts</string>
    </property>
   </action>
  </widget>

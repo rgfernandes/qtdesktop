@@ -9,28 +9,116 @@
 #include "mailbox.h"
 #include <vmime/platforms/posix/posixHandler.hpp>
 
-static bool handlerOK = false;
-
 QStringList	cmpQSL(QStringList &sl1, QStringList &sl2) {
 	// compare 2 stringlists
 	// return - sl1-sl2 - difference - items, that are in sl1 and not in sl2
-	QStrinList retvalue;
+	QStringList retvalue;
 	for (int i = 0; i < sl1.size(); i++)
-		if (!sl2->contains(sl1[i]))
-			retvalue.append(sl1[i])
+		if (!sl2.contains(sl1[i]))
+			retvalue.append(sl1[i]);
 	return retvalue; 
 }
 
-MailBox::MailBox(void) {
-	setHandler();
+// ----
+QSqlDatabase *MailBoxFabric::db = NULL;
+QMap<int, MailBox*> MailBoxFabric::mbmap = QMap<int, MailBox*>();  
+
+void MailBoxFabric::init(QSqlDatabase *d) {
+	db = d;
+	vmime::platform::setHandler <vmime::platforms::posix::posixHandler>();
+	// for i in select: addMailBox(i)
 }
 
-bool	MailBox::setHandler(void) {
-	if (!handlerOK) {
-		vmime::platform::setHandler <vmime::platforms::posix::posixHandler>();
-		handlerOK = true;
-	}
+MailBox *MailBoxFabric::getMailBox(int id) {
+	if (mbmap.contains(id))
+		return mbmap.value(id);
+	else
+		return NULL;
+}
+
+bool MailBoxFabric::addMailBox(int id) {
+	// mbmap[id] = new MailBox() 
 	return true;
+}
+
+bool MailBoxFabric::delMailBox(int) {
+	// mdmap.remove()
+	// delete from db
+	return true;
+}
+
+// ----
+/*
+MailBox	*openMailBox(void) {
+	MailBox *mb;
+	int	transport, s_port, s_auth, t_port, t_auth;
+	QString	name, mail, s_host, s_login, s_password;
+	SERVICE	service;
+	CRYPTO	s_crypto = CRYPTO_NONE, t_crypto = CRYPTO_NONE;
+	AUTH	s_sasl = AUTH_NONE, s_apop = AUTH_NONE, t_pass = AUTH_NONE, t_sasl = AUTH_NONE;
+
+	mb = new MailBox();
+	mb->setSession();
+	QSettings s(QSettings::IniFormat, QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName());
+	service =	(SERVICE) s.value("service", 0).toInt();
+	transport =	s.value("transport", 0).toInt();
+	name =		s.value("name", "").toString();
+	mail =		s.value("mail", "").toString();
+	switch (service) {
+		case 1:
+			s.beginGroup("pop3");
+			s_host =	s.value("host", "").toString();
+			s_port =	s.value("port", 110).toInt();
+			s_login =	s.value("login", "").toString();
+			s_password =	s.value("password", "").toString();
+			s_crypto =	(CRYPTO) s.value("crypto", 0).toInt();
+			s_auth =	s.value("auth", 0).toInt();
+			s.endGroup();
+			switch (s_auth) {
+				case 1:
+					s_apop = AUTH_TRY;
+					break;
+				case 2:
+					s_apop = AUTH_REQUIRED;
+					break;
+				case 3:
+					s_sasl = AUTH_TRY;
+					break;
+				case 4:
+					s_apop = AUTH_TRY;
+					s_sasl = AUTH_TRY;
+					break;
+				case 5:
+					s_apop = AUTH_REQUIRED;
+					s_sasl = AUTH_TRY;
+					break;
+				case 6:
+					s_sasl = AUTH_REQUIRED;
+					break;
+				default:
+					break;
+			}
+			mb->setService(service, s_host, s_port, s_login, s_password, s_crypto, s_sasl, s_apop);
+			break;
+		case 2:
+			s.beginGroup("imap");
+			s_host =	s.value("host", "").toString();
+			s_port =	s.value("port", 143).toInt();
+			s_login =	s.value("login", "").toString();
+			s_password =	s.value("password", "").toString();
+			s_crypto =	(CRYPTO) s.value("crypto", 0).toInt();
+			s_auth =	s.value("auth", 0).toInt();
+			s.endGroup();
+			break;
+		default:
+			break;
+	}
+	//qDebug() << service;
+	return mb;
+}
+*/
+// ----
+MailBox::MailBox(QSqlDatabase *d, int i) : db(d), id(i) {
 }
 
 bool	MailBox::setSession(void) {

@@ -8,7 +8,7 @@
 #include "mbtreemodel.h"
 
 #include "dummy.h"
-//#include "mailbox.h"
+#include "mailbox.h"
 
 //MailTreeWidgetItem is used to enable adding Mails to a TreeWidget
 class MailTreeWidgetItem : public QTreeWidgetItem {
@@ -52,7 +52,7 @@ class MainWinImpl : public QMainWindow, public Ui::MainWin {
 Q_OBJECT
 public:
 	MainWinImpl( QSqlDatabase *d, QWidget * parent = 0, Qt::WFlags f = 0 );
-	~MainWinImpl(){
+	~MainWinImpl() {
 		//delete db;		
 		delete p;
 		delete smtp;
@@ -62,13 +62,15 @@ private slots:
 	void addMailPartsToList(QTreeWidgetItem*parent, Mail *m); //add a mailpart to the overview of all parts of a mail
 	void addMailToList(Mail *m,QString fileName); //add mail to the list of mails
 	void downloadMails();
-	void mailSent(Mail *mail); //this slot is used to take handle of a mail after the sending process
+	void mailSent(Mail *mail);	//this slot is used to take handle of a mail after the sending process
 	void newMail(Mail *mail);	//this slot is used to take handle of newly received mails
-	void displayState(QString s); //display message in the statebar
-	void loadMails(QString path); //load local mails i the list of mails; for each mail in a folder addMailToList is called
+	void displayState(QString s);	//display message in the statebar
+	void loadMails(QString path);	//load local mails i the list of mails; for each mail in a folder addMailToList is called
 	void on_actionAccountAdd_triggered();
 	void on_actionAccountEdit_triggered();
 	void on_actionAccountDel_triggered();
+	void on_actionAccountRefresh_triggered();
+	void on_actionAccountRefreshAll_triggered();
 	void on_actionDeleteMail_triggered();
 	void on_actionEditMail_triggered();
 	void on_actionExit_triggered(){close();};

@@ -2,6 +2,7 @@
 #define __MAILBOX_H__
 
 #include <QStringList>
+#include <QtSql>
 
 #include <vmime/vmime.hpp>
 #include <vmime/net/session.hpp>
@@ -26,16 +27,35 @@ enum	AUTH {
 	AUTH_REQUIRED
 };
 
-class MailBox
-{
+class MailBox;
+
+class MailBoxFabric {
 public:
-	MailBox(void);
+	static void init(QSqlDatabase *);
+	static MailBox *getMailBox(int);
+	static bool addMailBox(int);
+	static bool delMailBox(int);
+private:
+	static QSqlDatabase *db;
+	static QMap<int, MailBox*> mbmap;
+};
+
+class MailBox {
+public:
+	MailBox(QSqlDatabase *, int);
+	int		getId(void);
+	QString		getName(void);
+	bool		refreshAccount(void);
+	bool		refreshFolders(void);
+	bool		refreshMessages(void);
+	QStringList	getFolders(void);
 	bool		setSession();
 	bool		setService(SERVICE service, QString &host, int port, QString &login, QString &password, CRYPTO crypto=CRYPTO_NONE, AUTH sasl=AUTH_NONE, AUTH apop=AUTH_NONE);
 	bool		setTransport(QString &host, int port, QString login, QString password, CRYPTO crypto=CRYPTO_NONE, AUTH pass=AUTH_NONE, AUTH sasl=AUTH_NONE);
-	QStringList	getFolders(void);
 private:
-	bool		setHandler();
+	QSqlDatabase				*db;
+	int					id;
+	QString					name;
 	vmime::ref <vmime::net::session>	session;
 	vmime::ref <vmime::net::store>		store;
 	vmime::ref <vmime::net::transport>	transport;
