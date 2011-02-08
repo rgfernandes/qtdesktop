@@ -6,10 +6,8 @@ Wanted software for QtDesktop.
 
 = Details =
   * Utility:
-    * Audio mixer
     * CD recorder (like k3b)
-    * Calculator
-    * Sreen locker
+    * Sreen locker/saver
   * Internet:
     * RSS-reader
     * FTP client
