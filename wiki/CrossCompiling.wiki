@@ -1,0 +1,22 @@
+#summary Cross-compiling.
+
+Tested on Fedora 14
+
+= Pre =
+  # yum install mingw32-qt mingw32-qt-qmake
+  # goto your sources
+
+= Qmake =
+  # qmake-qt4 -spec win32-g++-cross
+
+= Cmake =
+  # mkdir build
+  # cd build
+  # cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DCMAKE_TOOLCHAIN_FILE=/usr/share/mingw32/Toolchain-mingw32.cmake
+
+Note: /usr/share/mingw32/Toolchain-mingw32.cmake is from mingw32-filesystem package
+
+= Post =
+  # copy executable into wine directory (e.g. ~/wine_c/Temp)
+  # copy needed DLLs from mingw32 root directory (e.g. /usr/i686-pc-mingw32/sys-root/mingw/bin/)
+  # run executable
