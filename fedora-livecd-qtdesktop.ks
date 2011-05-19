@@ -100,6 +100,7 @@ vlc
 qbittorrent
 qmmp
 speedcrunch
+goldendict
 
 # qtdesktop
 razorqt
