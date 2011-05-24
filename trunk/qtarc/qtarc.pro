@@ -1,11 +1,12 @@
 TEMPLATE = app
 QT = gui core
-CONFIG += qt release warn_on console
+CONFIG += qt warn_on console debug_and_release
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 FORMS = ui/mainwindow.ui
-HEADERS = src/mainwindowimpl.h
-SOURCES = src/mainwindowimpl.cpp src/main.cpp
+HEADERS = src/mainwindowimpl.h src/archengine.h
+SOURCES = src/mainwindowimpl.cpp src/main.cpp src/archengine.cpp
 RESOURCES += qtarc.qrc
+TRANSLATIONS += l10n/qtarc_ru.ts

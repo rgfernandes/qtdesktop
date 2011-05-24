@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="icons">
+    <file>icons/24x24/empty.png</file>
+    <file>icons/16x16/empty.png</file>
+    <file>icons/24x24/folder.png</file>
+    <file>icons/16x16/folder.png</file>
     <file>icons/24x24/add-files-to-archive.png</file>
     <file>icons/24x24/add-folder-to-archive.png</file>
     <file>icons/24x24/document-new.png</file>
