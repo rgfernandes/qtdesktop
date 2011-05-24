@@ -1,3 +1,7 @@
+/*
+ * 
+ */
+
 #include <QApplication>
 #include <QtCore>
 #include <QtGui>
@@ -17,7 +21,7 @@ int main(int argc, char ** argv)
 	QString trpath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);	// /usr/share/qt4/translations
 	QString trfile = QCoreApplication::applicationName() + "_" + QLocale::system().name().left(2);
 	if (not QFile::exists(trpath + QDir::separator() + trfile + ".qm"))
-		trpath = app.applicationDirPath() + QDir::separator() + "i18n";
+		trpath = app.applicationDirPath() + QDir::separator() + "l10n";
 	appTranslator.load(trpath + QDir::separator() + trfile);
 	app.installTranslator(&appTranslator);
 	// </tr>
