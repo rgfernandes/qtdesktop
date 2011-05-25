@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 #include "archengine.h"
+#include "architemmodel.h"
 
 class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 {
