@@ -1,2 +1,10 @@
 Try:
 * qtiocompressor
+
+QFileIconProvider::Computer
+QFileIconProvider::Desktop
+QFileIconProvider::Trashcan
+QFileIconProvider::Network
+QFileIconProvider::Drive
+QFileIconProvider::Folder
+QFileIconProvider::File

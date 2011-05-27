@@ -21,12 +21,13 @@ ArchItem::ArchItem(QString name, bool fileIsDir, ArchItem *parent, long size, QD
 	this->children = new ArchItemMap();
 }
 
+ArchItem *	ArchItem::findChild(QString &name) {
+	return this->children->contains(name) ? this->children->value(name) : 0;
+}
+
 void	ArchItem::addChild(ArchItem *item) {
 	if (!this->children->contains(item->getName()))
 		this->children->insert(item->getName(), item);
-}
-ArchItem *	ArchItem::findChild(QString &name) {
-	return this->children->contains(name) ? this->children->value(name) : 0;
 }
 
 void	ArchItem::addChildRecursive(QStringList &filePath, bool fileIsDir, long size, QDateTime date) {
