@@ -46,6 +46,20 @@
 class	ArchItem;
 
 typedef QMap<QString, ArchItem *> ArchItemMap;
+typedef QList<ArchItem *> ArchItemList;
+
+class	ArchItemPack {
+	/*
+	 * Class containing ArchItems
+	 */
+public:
+	ArchItemPack();
+	~ArchItemPack();
+/''	void	sort();
+private:
+	ArchItemMap	dirs, files;	// by name
+	ArchItemList	list;		// by order
+};
 
 class	ArchItem {	// http://habrahabr.ru/blogs/qt_software/69658/
 public:
@@ -53,7 +67,7 @@ public:
 	void		setSize(long what) { size = what; }
 	void		setDateTime(QDateTime what) { date = what; }
 	void		setIsDir(bool what) { fileIsDir = what; }
-	void		setChildren(ArchItemMap *what);
+//	void		setChildren(ArchItemMap *what);
 	QString		getName() const { return name; };
 	long		getSize() const { return size; }			// in bytes
 	QDateTime	getDateTime() const { return date; }
@@ -63,7 +77,7 @@ public:
 	void		addChild(ArchItem *item);
 	void		addChildRecursive(QStringList &, bool, long, QDateTime);
 	int		childCount() const { return children->count(); }
-	int		row() const;						// self no in parent's list
+//	int		row() const;						// self no in parent's list
 	ArchItem *	parent() { return itemParent; }
 private:
 	void		setParent(ArchItem *parent) { itemParent = parent; }	// if parent is unknown
