@@ -1,16 +1,20 @@
 #ifndef __ARCHITEMMODEL_H__
 #define __ARCHITEMMODEL_H__
 
+#include <QAbstractItemModel>
+#include <QFileIconProvider>
+#include "archengine.h"
+
 class ArchItemModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
-	enum Columns
+	/*enum Columns
 	{
 		NameColumn = 0,
-		SizeColumn,
-		DateColumn
-	};
+		SizeColumn = 1,
+		DateColumn = 2;
+	};*/
 	ArchItemModel(Archive *arch, QObject *parent = 0);
 	~ArchItemModel();
 	QModelIndex	index(int row, int column, const QModelIndex &parent = QModelIndex()) const;		// item index (virtual, mandatory)
@@ -20,7 +24,7 @@ public:
 	QVariant	data(const QModelIndex &index, int role = Qt::DisplayRole) const;			// (virtual, mandatory)
 	QVariant	headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;	// column headers (virtual, mandatory)
 	Qt::ItemFlags	flags(const QModelIndex &index) const;							// (virtual, mandatory)
-	bool		hasChildren(const QModelIndex &index) const;
+	//bool		hasChildren(const QModelIndex &index) const;
 	ArchItem *	item(QModelIndex index) const;								// item by index (UDF)
 //	ArchItem *	getRootItem() { return rootItem; }
 //	bool		canFetchMore(const QModelIndex &index) const;
