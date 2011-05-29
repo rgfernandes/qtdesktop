@@ -4,6 +4,74 @@
 #include <QProcess>
 #include <QRegExp>
 
+ArchItemPack::ArchItemPack() :
+	dirs(new ArchItemMap),
+	files(new ArchItemMap),
+	list(new ArchItemList)
+	{}
+
+ArchItemPack::~ArchItemPack() {
+	clear();
+	delete dirs;
+	delete files;
+	delete list;
+}
+
+void		ArchItemPack::add(ArchItem * item) {
+	if (item->isDir())
+		dirs->insert(item->getName(), item);
+	else
+		files->insert(item->getName(), item);
+}
+
+void		ArchItemPack::clear(void) {
+	// 1. clear and delete subs (dirs)
+	QMapIterator <QString, ArchItem *> i(*dirs), j(*files);
+	while (i.hasNext()) {
+		i.next();
+		i.value()->getChildren()->clear();
+		delete i.value();
+	}
+	dirs->clear();
+	// 2. clear and delete subs (files)
+	while (j.hasNext()) {
+		j.next();
+		j.value()->getChildren()->clear();
+		delete j.value();
+	}
+	files->clear();
+	// 3. list
+	list->clear();
+}
+
+int		ArchItemPack::count(void) {
+	return dirs->size() + files->size();
+}
+
+bool		ArchItemPack::contains(QString name) {
+	return (dirs->contains(name) || files->contains(name));
+}
+
+ArchItem *	ArchItemPack::get(QString & name) {
+	return (dirs->contains(name)) ? dirs->value(name) : ((files->contains(name)) ? files->value(name) : 0);
+}
+
+ArchItem *	ArchItemPack::get(int no) {
+	return ((no >=0) && (no < list->size())) ? list->at(no) : 0;
+}
+
+void		ArchItemPack::sort(void) {
+	list->clear();
+	list->append(dirs->values());
+	list->append(files->values());
+	for (int i = 0; i < list->size(); i++) {
+		list->at(i)->setRow(i);
+		list->at(i)->getChildren()->sort();
+	}
+}
+
+// ----
+
 struct	FileInfo {
 	bool		type;
 	QString		path;
@@ -11,23 +79,31 @@ struct	FileInfo {
 	QDateTime	datetime;
 };
 
-ArchItem::ArchItem(QString name, bool fileIsDir, ArchItem *parent, long size, QDateTime date)
-{
+ArchItem::ArchItem(QString name, bool fileIsDir, ArchItem *parent, long size, QDateTime date) {
 	this->name = name;
 	this->fileIsDir = fileIsDir;
 	this->size = size;
 	this->date = date;
+	this->row = 0;
 	this->itemParent = parent;
-	this->children = new ArchItemMap();
+	this->children = new ArchItemPack();
 }
 
-ArchItem *	ArchItem::findChild(QString &name) {
-	return this->children->contains(name) ? this->children->value(name) : 0;
+ArchItem::~ArchItem() {
+	delete children;
+}
+
+ArchItem *	ArchItem::getChild(QString &name) {
+	return this->children->get(name);
+}
+
+ArchItem *	ArchItem::getChild(int no) {
+	return this->children->get(no);
 }
 
 void	ArchItem::addChild(ArchItem *item) {
 	if (!this->children->contains(item->getName()))
-		this->children->insert(item->getName(), item);
+		this->children->add(item);
 }
 
 void	ArchItem::addChildRecursive(QStringList &filePath, bool fileIsDir, long size, QDateTime date) {
@@ -37,21 +113,23 @@ void	ArchItem::addChildRecursive(QStringList &filePath, bool fileIsDir, long siz
 	 QString s = filePath.at(0);
 	 if (filePath.size() == 1) {				 	// last item
 	 	if (this->children->contains(s)) {			// already exists
-	 		this->children->value(s)->setIsDir(fileIsDir);
-	 		this->children->value(s)->setSize(size);
-	 		this->children->value(s)->setDateTime(date);
+	 		ArchItem *item = this->getChild(s);
+	 		item->setIsDir(fileIsDir);
+	 		item->setSize(size);
+	 		item->setDateTime(date);
  		} else {
  			this->addChild(new ArchItem(s, fileIsDir, this, size, date));
 		}
  	} else {							// down
  		this->addChild(new ArchItem(s, true, this));		// create sub
  		filePath.removeFirst();
- 		this->findChild(s)->addChildRecursive(filePath, fileIsDir, size, date);
+ 		this->getChild(s)->addChildRecursive(filePath, fileIsDir, size, date);
 	}
 }
 
-Archive::Archive( const QString & fn ) : archname( fn )
-{
+// ----
+
+Archive::Archive( const QString & fn ) : archname( fn ) {
 	/*
 	 * fn - archive file name 
  	*/
@@ -76,6 +154,10 @@ Archive::Archive( const QString & fn ) : archname( fn )
 	load();
 }
 
+Archive::~Archive() {
+	delete root;
+}
+
 void	Archive::load(void) {
 	/*
 	 * Load archive contents
@@ -98,6 +180,7 @@ void	Archive::load(void) {
 	QRegExp rx("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*$");
 	// 7z end
 	QStringList::const_iterator ci;
+	root->getChildren()->clear();
 	for (ci = outlist.constBegin(); ci != outlist.constEnd(); ++ci) {
 		if (rx.indexIn(*ci) == 0) {
 	// 7z start
@@ -110,8 +193,25 @@ void	Archive::load(void) {
 			root->addChildRecursive(pathlist, fi.type, fi.size, fi.datetime);
 		}
 	}
+	root->getChildren()->sort();	// !
 }
 
-ArchItemMap	*Archive::List() {
+ArchItemPack	*Archive::List(void) {
 	return currentItem->getChildren();
 }
+
+bool	Archive::Add( QString * name ) {	// or update ?
+	// a
+	;
+}
+
+bool	Archive::Update( QString * name ) {
+	// a
+	;
+}
+
+bool	Archive::Test(void) {
+	// t key
+	;
+}
+

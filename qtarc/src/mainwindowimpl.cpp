@@ -7,8 +7,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	setSlots();
-	this->tableWidget->setColumnCount(3);
-	this->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("Name") << tr("Size") << tr("Date"));
+	//this->tableWidget->setColumnCount(3);
+	//this->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("Name") << tr("Size") << tr("Date"));
 }
 
 void	MainWindowImpl::setSlots(void) {
@@ -41,22 +41,13 @@ void	MainWindowImpl::onActionOpen(void) {
 		if (archive)
 			delete archive;
 		archive = new Archive(fileName);
-		this->tableWidget->setRowCount(0);
-		ArchItemMap *filelist = archive->List();
-		//for (int i = 0; i < filelist->count(); i++
-		QMapIterator <QString, ArchItem *> i(*filelist);
-		int row = 0;
-		while (i.hasNext()) {
-			i.next();
-			this->tableWidget->insertRow(row);
-			this->tableWidget->setItem(row, 0, new QTableWidgetItem(i.key()));
-			this->tableWidget->item(row, 0)->setIcon(QIcon(i.value()->isDir() ? ":/icons/icons/24x24/folder.png" : ":/icons/icons/24x24/empty.png"));
-			this->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(i.value()->getSize())));
-			this->tableWidget->item(row, 1)->setTextAlignment(Qt::AlignRight);
-			this->tableWidget->setItem(row, 2, new QTableWidgetItem(i.value()->getDateTime().toString("yyyy-MM-dd HH:mm:ss")));
-			//qDebug() << i.key();
-			row++;
-		}
+		//qDebug() << archive->List()->count();
+		ArchItemModel *model = new ArchItemModel(archive);
+		//QItemSelectionModel *selections = new QItemSelectionModel(model);
+		//this->tableView->setModel(model);
+		//this->tableView->setSelectionModel(selections);
+		this->treeView->setModel(model);
+		//this->treeView->setSelectionModel(selections);
 	}
 }
 

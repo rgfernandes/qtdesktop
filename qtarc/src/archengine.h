@@ -55,25 +55,34 @@ class	ArchItemPack {
 public:
 	ArchItemPack();
 	~ArchItemPack();
-/''	void	sort();
+	void		add(ArchItem *);
+	void		clear(void);
+	int		count(void);
+	bool		contains(QString);
+	ArchItem *	get(QString &);
+	ArchItem *	get(int);
+	void		sort(void);
 private:
-	ArchItemMap	dirs, files;	// by name
-	ArchItemList	list;		// by order
+	ArchItemMap	*dirs, *files;	// by name
+	ArchItemList	*list;		// by order
 };
 
 class	ArchItem {	// http://habrahabr.ru/blogs/qt_software/69658/
 public:
 	ArchItem(QString name, bool fileIsDir, ArchItem *parent = 0, long size = 0, QDateTime date = QDateTime::currentDateTime());
+	~ArchItem();
 	void		setSize(long what) { size = what; }
 	void		setDateTime(QDateTime what) { date = what; }
 	void		setIsDir(bool what) { fileIsDir = what; }
-//	void		setChildren(ArchItemMap *what);
+	void		setRow(int what) { row = what; }
 	QString		getName() const { return name; };
 	long		getSize() const { return size; }			// in bytes
 	QDateTime	getDateTime() const { return date; }
 	bool		isDir() const { return fileIsDir; }
-	ArchItemMap *	getChildren() { return children; }
-	ArchItem *	findChild(QString &);
+	bool		getRow() const { return row; }
+	ArchItemPack *	getChildren() { return children; }
+	ArchItem *	getChild(QString &);
+	ArchItem *	getChild(int);
 	void		addChild(ArchItem *item);
 	void		addChildRecursive(QStringList &, bool, long, QDateTime);
 	int		childCount() const { return children->count(); }
@@ -85,8 +94,9 @@ private:
 	long		size;
 	QDateTime	date;
 	bool		fileIsDir;
+	int		row;
 	ArchItem	*itemParent;
-	ArchItemMap	*children;
+	ArchItemPack	*children;
 };
 
 enum	ArchType { NONE, LZMA, TAR, ZIP, ARJ, RAR, CAB, ISO, RPM, DEB };
@@ -94,11 +104,14 @@ enum	ArchType { NONE, LZMA, TAR, ZIP, ARJ, RAR, CAB, ISO, RPM, DEB };
 class	Archive {
 public:
 	Archive( const QString & );
-	ArchItemMap	*List(void);
-	bool		Add( QString * src, QString * dst );
+	~Archive();
+	ArchItemPack	*List(void);
+	bool		Add( QString * );
+	bool		Update( QString * );
 	bool		Extract( QString * src, QString * dst );	// QDir
-	bool		Update( QString * src, QString * dst );
-	bool		Delete( QString * filename );
+	bool		Delete( QString * );
+	bool		Test(void);
+	ArchItem *	getRoot(void) { return root; }
 private:
 	void		load();
 	QString		archname;

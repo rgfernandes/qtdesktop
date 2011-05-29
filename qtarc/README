@@ -8,3 +8,8 @@ QFileIconProvider::Network
 QFileIconProvider::Drive
 QFileIconProvider::Folder
 QFileIconProvider::File
+====
+Add: to root only
+Rename: no
+View?
+...
