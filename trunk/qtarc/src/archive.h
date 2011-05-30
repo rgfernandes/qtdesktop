@@ -1,14 +1,10 @@
 /*
  * Abstract to handle archive engines.
  * Supported formats:
- * - 7z (7za)
- * - tar, tgz, tar.gz, tbzip2, tar.bz2 (tar)
- * - arj (arj/unarj)
- * - zip (zip/unzip, 7za)
- * - rar (rar/unrar)
- * - rpm (ro, rpm2cpio | cpio -t -v)
- * - cab (ro, cabextract)
- * - deb
+ * - 7z (7za) (list: 7za t)
+ * - tar, tgz, tar.gz, tbzip2, tar.bzip2, t7z/tar.7z (tar; list: tar -tvf)
+ * - zip (zip/unzip, list: unzip -l)
+ * - rar (unrar)
  * 
  * Supported actions:
  * - list
@@ -40,7 +36,9 @@
 
 #include "architempack.h"
 
-enum	ArchType { NONE, LZMA, TAR, ZIP, ARJ, RAR, CAB, ISO, RPM, DEB };
+// helpers
+// 1. archive type
+enum	ArchType { TAR, LZMA, ZIP, RAR, NONE };
 
 class	Archive {
 public:
@@ -48,10 +46,9 @@ public:
 	~Archive();
 	ArchItemPack	*List(void);
 	bool		Add( QString * );
-	bool		Update( QString * );
-	bool		Extract( QString * src, QString * dst );	// QDir
-	bool		Delete( QString * );
-	bool		Test(void);
+	bool		Add( QStringList * );
+	bool		Extract( QStringList *, QString * );
+	bool		Delete( QStringList * );
 	ArchItem *	getRoot(void) { return root; }
 private:
 	void		load();

@@ -47,3 +47,9 @@ void	ArchItem::addChildRecursive(QStringList &filePath, bool fileIsDir, long siz
  		this->getChild(s)->addChildRecursive(filePath, fileIsDir, size, date);
 	}
 }
+
+QString	ArchItem::getFullPath(void) {
+	if (itemParent)
+		return itemParent->getFullPath() + "/" + name;
+	return name;
+}

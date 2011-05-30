@@ -24,11 +24,8 @@ public:
 	QVariant	data(const QModelIndex &index, int role = Qt::DisplayRole) const;			// (virtual, mandatory)
 	QVariant	headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;	// column headers (virtual, mandatory)
 	Qt::ItemFlags	flags(const QModelIndex &index) const;							// (virtual, mandatory)
-	//bool		hasChildren(const QModelIndex &index) const;
 	ArchItem *	item(QModelIndex index) const;								// item by index (UDF)
 //	ArchItem *	getRootItem() { return rootItem; }
-//	bool		canFetchMore(const QModelIndex &index) const;
-//	void		fetchMore(const QModelIndex &index);							// run when click on -/+ (virtual, mandatory)
 //	void		refresh() { emit layoutChanged(); }
 private:
 	Archive			*archive;

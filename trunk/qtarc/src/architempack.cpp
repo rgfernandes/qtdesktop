@@ -14,7 +14,7 @@ ArchItemPack::~ArchItemPack() {
 }
 
 void		ArchItemPack::add(ArchItem * item) {
-	if (item->isDir())
+	if (item->getIsDir())
 		dirs->insert(item->getName(), item);
 	else
 		files->insert(item->getName(), item);

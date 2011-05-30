@@ -5,7 +5,7 @@
 #include <QString>
 #include <QStringList>
 
-class	ArchItemPack;	// forward declaration
+#include "architempack.h"
 
 class	ArchItem {	// http://habrahabr.ru/blogs/qt_software/69658/
 public:
@@ -27,6 +27,7 @@ public:
 	void		addChildRecursive(QStringList &, bool, long, QDateTime);
 	int		childCount() const { return children->count(); }
 	ArchItem *	parent() { return itemParent; }
+	QString		getFullPath(void);
 private:
 	void		setParent(ArchItem *parent) { itemParent = parent; }	// if parent is unknown
 	QString		name;

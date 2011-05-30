@@ -3,6 +3,31 @@
 
 #include "archive.h"
 
+typedef QMap<QString, ArchType> ArchiverMap;
+ArchiverMap *archmap;
+
+static struct { QString ext; ArchType type; } ArchiveExt[] = {
+	{".zip",	ZIP},
+	{".7z",		LZMA},
+	{".tar",	TAR},
+	{".tar.gz",	TAR},
+	{".tar.bz2",	TAR},
+	{".tgz",	TAR},
+	{".tbzip2",	TAR},
+	{"rar",		RAR}
+};
+
+/*struct {
+	int	type;
+	QString	archiver;
+	QString	unarchiver;
+	QString	list;
+	QString add;
+	QString extract;
+	QString del;
+	QString regex;
+}*/
+
 struct	FileInfo {
 	bool		type;
 	QString		path;
@@ -14,7 +39,7 @@ Archive::Archive( const QString & fn ) : archname( fn ) {
 	/*
 	 * fn - archive file name 
  	*/
-	// 1. define arc type
+
 	QString fnl = fn.toLower();
 	if (fnl.endsWith(".7z"))
 		type = LZMA;
@@ -82,16 +107,17 @@ ArchItemPack	*Archive::List(void) {
 }
 
 bool	Archive::Add( QString * name ) {	// or update ?
-	// a
-	;
+	return true;
 }
 
-bool	Archive::Update( QString * name ) {
-	// a
-	;
+bool	Archive::Add( QStringList * names ) {	// or update ?
+	return true;
 }
 
-bool	Archive::Test(void) {
-	// t key
-	;
+bool	Archive::Extract(  QStringList * src, QString * dst ) {
+	return true;
+}
+
+bool	Archive::Delete( QStringList * names ) {
+	return true;
 }
