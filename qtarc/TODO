@@ -1,3 +1,13 @@
+0.0.1:
+	* Open
+	* List
+	* Add
+	* Extract
+* New
+* compression level, solid
+* CLI
+* DE integration (KDE, GNOME - *.desktop)
 * Cut/Copy/Paste
 * Drug'n'Drop
-* link w/ libs
+* link w/ natural libs
+* arj, rpm, deb, iso, cab

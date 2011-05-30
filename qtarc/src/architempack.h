@@ -4,7 +4,7 @@
 #include <QMap>
 #include <QList>
 
-#include "architem.h"
+class ArchItem;
 
 typedef QMap<QString, ArchItem *> ArchItemMap;
 typedef QList<ArchItem *> ArchItemList;
@@ -24,5 +24,7 @@ private:
 	ArchItemMap	*dirs, *files;	// by name
 	ArchItemList	*list;		// by order
 };
+
+#include "architem.h"
 
 #endif // __ARCHITEMPACK_H__

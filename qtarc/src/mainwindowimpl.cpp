@@ -7,8 +7,6 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 {
 	setupUi(this);
 	setSlots();
-	//this->tableWidget->setColumnCount(3);
-	//this->tableWidget->setHorizontalHeaderLabels(QStringList() << tr("Name") << tr("Size") << tr("Date"));
 }
 
 void	MainWindowImpl::setSlots(void) {
@@ -41,11 +39,7 @@ void	MainWindowImpl::onActionOpen(void) {
 		archive = new Archive(fileName);
 		//qDebug() << archive->List()->count();
 		ArchItemModel *model = new ArchItemModel(archive);
-		//QItemSelectionModel *selections = new QItemSelectionModel(model);
-		//this->tableView->setModel(model);
-		//this->tableView->setSelectionModel(selections);
 		this->treeView->setModel(model);
-		//this->treeView->setSelectionModel(selections);
 	}
 }
 
@@ -69,21 +63,49 @@ void	MainWindowImpl::onActionPaste(void) {
 }
 
 void	MainWindowImpl::onActionSelectAll(void) {
+	this->treeView->selectAll();
 }
 
 void	MainWindowImpl::onActionDeselect(void) {
+	this->treeView->clearSelection();
 }
 
 void	MainWindowImpl::onActionAddFile(void) {
+	QStringList files = QFileDialog::getOpenFileNames (0, tr("Add file(s)"));
+	if (!files.isEmpty()) {
+		archive->Add(&files);
+		qDebug() << files;
+	}
 }
 
 void	MainWindowImpl::onActionAddDirectory(void) {
+	QString dir = QFileDialog::getExistingDirectory (0, tr("Add directory"));
+	if (!dir.isEmpty()) {
+		archive->Add(&dir);
+		qDebug() << dir;
+	}
 }
 
 void	MainWindowImpl::onActionExtract(void) {
+	// TODO: control dir/subfile selection
+	QModelIndexList selected = this->treeView->selectionModel()->selectedRows();
+	if (!selected.isEmpty()) {
+		QString dir = QFileDialog::getExistingDirectory (0, tr("Add directory"));
+		if (!dir.isEmpty()) {
+			;	// 
+		}
+	}
 }
 
 void	MainWindowImpl::onActionDelete(void) {
+	QModelIndexList selected = this->treeView->selectionModel()->selectedRows();
+	if (!selected.isEmpty()) {
+		for (int i = 0; i < selected.size(); i++) {
+			ArchItem *item = static_cast<ArchItem*>(selected.at(i).internalPointer());
+			qDebug() << item->getFullPath();
+			// delete, update list
+		}
+	}
 }
 
 void	MainWindowImpl::onActionAbout(void) {
@@ -94,4 +116,3 @@ void	MainWindowImpl::onActionAboutQt(void) {
 	QMessageBox::aboutQt(this, tr("About Qt"));
 }
 
-//

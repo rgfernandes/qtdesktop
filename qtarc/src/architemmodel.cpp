@@ -104,16 +104,7 @@ Qt::ItemFlags	ArchItemModel::flags(const QModelIndex &index) const {
 	//qDebug() << "flags";
 	return index.isValid() ? (Qt::ItemIsSelectable|Qt::ItemIsEnabled|Qt::ItemIsDragEnabled|Qt::ItemIsDropEnabled) : Qt::NoItemFlags;
 }
-/*
-bool		ArchItemModel::hasChildren(const QModelIndex &index) const {
-	qDebug() << "hasChildren";
-	if (index.isValid())
-		qDebug() << static_cast<ArchItem *>(index.internalPointer())->childCount();
-	return index.isValid() ? static_cast<ArchItem *>(index.internalPointer())->childCount() : false;
-}
-*/
+
 ArchItem *	ArchItemModel::item(QModelIndex index) const {
 	return static_cast<ArchItem *>(index.internalPointer());
 }
-
-//bool		canFetchMore(const QModelIndex &index) const { return index.isValid() ? !item(index)->getFetched() : true; }
