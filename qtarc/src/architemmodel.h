@@ -3,7 +3,7 @@
 
 #include <QAbstractItemModel>
 #include <QFileIconProvider>
-#include "archengine.h"
+#include "archive.h"
 
 class ArchItemModel : public QAbstractItemModel
 {

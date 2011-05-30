@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>288</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -36,9 +36,6 @@
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSaveAs"/>
-    <addaction name="separator"/>
-    <addaction name="actionExtract"/>
-    <addaction name="actionTest"/>
     <addaction name="separator"/>
     <addaction name="actionProperties"/>
     <addaction name="separator"/>
@@ -51,19 +48,9 @@
     <addaction name="actionCut"/>
     <addaction name="actionCopy"/>
     <addaction name="actionPaste"/>
-    <addaction name="actionRename"/>
-    <addaction name="actionDelete"/>
     <addaction name="separator"/>
     <addaction name="actionSelectAll"/>
     <addaction name="actionDeselect"/>
-    <addaction name="separator"/>
-    <addaction name="actionAddFile"/>
-    <addaction name="actionAddDirectory"/>
-   </widget>
-   <widget class="QMenu" name="menu_View">
-    <property name="title">
-     <string>&amp;View</string>
-    </property>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -72,9 +59,18 @@
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
    </widget>
+   <widget class="QMenu" name="menu_Actions">
+    <property name="title">
+     <string>&amp;Actions</string>
+    </property>
+    <addaction name="actionAddFile"/>
+    <addaction name="actionAddDirectory"/>
+    <addaction name="actionExtract"/>
+    <addaction name="actionDelete"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
-   <addaction name="menu_View"/>
+   <addaction name="menu_Actions"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -90,9 +86,11 @@
    </attribute>
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
-   <addaction name="actionExtract"/>
+   <addaction name="separator"/>
    <addaction name="actionAddFile"/>
    <addaction name="actionAddDirectory"/>
+   <addaction name="actionExtract"/>
+   <addaction name="actionDelete"/>
   </widget>
   <action name="actionNew">
    <property name="icon">
@@ -104,6 +102,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+N</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionOpen">
@@ -117,6 +118,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+O</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionSaveAs">
    <property name="icon">
@@ -127,7 +131,10 @@
     <string>Save &amp;As...</string>
    </property>
    <property name="shortcut">
-    <string notr="true"/>
+    <string notr="true">Ctrl+S</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionExtract">
@@ -141,13 +148,8 @@
    <property name="shortcut">
     <string notr="true">Ctrl+E</string>
    </property>
-  </action>
-  <action name="actionTest">
-   <property name="text">
-    <string>&amp;Test</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true">Ctrl+T</string>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionProperties">
@@ -161,13 +163,19 @@
    <property name="shortcut">
     <string notr="true">Ctrl+P</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
     <string>E&amp;xit</string>
    </property>
    <property name="shortcut">
-    <string notr="true"/>
+    <string notr="true">Ctrl+Q</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionAddFile">
@@ -181,6 +189,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+F</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionAddDirectory">
    <property name="icon">
@@ -192,6 +203,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+D</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionCut">
@@ -205,6 +219,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+X</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionCopy">
    <property name="icon">
@@ -216,6 +233,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+C</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionPaste">
@@ -229,13 +249,8 @@
    <property name="shortcut">
     <string notr="true">Ctrl+V</string>
    </property>
-  </action>
-  <action name="actionRename">
-   <property name="text">
-    <string>Rename</string>
-   </property>
-   <property name="shortcut">
-    <string notr="true">F2</string>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionDelete">
@@ -249,6 +264,9 @@
    <property name="shortcut">
     <string notr="true">Del</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="icon">
@@ -260,6 +278,9 @@
    </property>
    <property name="shortcut">
     <string notr="true"/>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionAboutQt">
@@ -277,6 +298,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+A</string>
    </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionDeselect">
    <property name="text">
@@ -284,6 +308,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+Shift+A</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
    </property>
   </action>
  </widget>
