@@ -76,7 +76,7 @@ QVariant	ArchItemModel::data(const QModelIndex &index, int role) const {
 		}
 	if (role == Qt::DecorationRole) {
 		if (index.column() == 0)
-			return item->isDir() ? iconProvider.icon(QFileIconProvider::Folder) : iconProvider.icon(QFileIconProvider::File);
+			return item->getIsDir() ? iconProvider.icon(QFileIconProvider::Folder) : iconProvider.icon(QFileIconProvider::File);
 	}
 	return QVariant();
 }

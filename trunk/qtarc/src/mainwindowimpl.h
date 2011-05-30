@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
-#include "archengine.h"
 #include "architemmodel.h"
 
 class MainWindowImpl : public QMainWindow, public Ui::MainWindow
@@ -15,19 +14,17 @@ private slots:
 	void		onActionNew(void);
 	void		onActionOpen(void);
 	void		onActionSaveAs(void);
-	void		onActionExtract(void);
-	void		onActionTest(void);
 	void		onActionProperties(void);
 	void		onActionExit(void);
 	void		onActionCut(void);
 	void		onActionCopy(void);
 	void		onActionPaste(void);
-	void		onActionRename(void);
-	void		onActionDelete(void);
 	void		onActionSelectAll(void);
 	void		onActionDeselect(void);
 	void		onActionAddFile(void);
 	void		onActionAddDirectory(void);
+	void		onActionExtract(void);
+	void		onActionDelete(void);
 	void		onActionAbout(void);
 	void		onActionAboutQt(void);
 private:
@@ -36,7 +33,3 @@ private:
 };
 
 #endif
-
-
-
-
