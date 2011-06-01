@@ -19,12 +19,13 @@ public:
 	long		getSize() const { return size; }			// in bytes
 	QDateTime	getDateTime() const { return date; }
 	bool		getIsDir() const { return fileIsDir; }
-	bool		getRow() const { return row; }
+	int		getRow() const { return row; }
 	ArchItemPack *	getChildren() { return children; }
 	ArchItem *	getChild(QString &);
 	ArchItem *	getChild(int);
 	void		addChild(ArchItem *item);
 	void		addChildRecursive(QStringList &, bool, long, QDateTime);
+	void		delChild(ArchItem *item);
 	int		childCount() const { return children->count(); }
 	ArchItem *	parent() { return itemParent; }
 	QString		getFullPath(void);

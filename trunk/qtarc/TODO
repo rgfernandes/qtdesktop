@@ -8,6 +8,7 @@
 * CLI
 * DE integration (KDE, GNOME - *.desktop)
 * Cut/Copy/Paste
+* MoveTo, MoveFrom
 * Drug'n'Drop
 * link w/ natural libs
 * arj, rpm, deb, iso, cab

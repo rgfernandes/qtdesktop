@@ -25,8 +25,9 @@ public:
 	QVariant	headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;	// column headers (virtual, mandatory)
 	Qt::ItemFlags	flags(const QModelIndex &index) const;							// (virtual, mandatory)
 	ArchItem *	item(QModelIndex index) const;								// item by index (UDF)
+//	Archive *	getArchive( void ) const { return archive; }
 //	ArchItem *	getRootItem() { return rootItem; }
-//	void		refresh() { emit layoutChanged(); }
+	void		refresh() { emit layoutChanged(); }
 private:
 	Archive			*archive;
 	static const int	ColumnCount = 3;

@@ -7,14 +7,22 @@ typedef QMap<QString, ArchType> ArchiverMap;
 ArchiverMap *archmap;
 
 static struct { QString ext; ArchType type; } ArchiveExt[] = {
-	{".zip",	ZIP},
-	{".7z",		LZMA},
 	{".tar",	TAR},
+	{".tar.7z",	TAR},
 	{".tar.gz",	TAR},
-	{".tar.bz2",	TAR},
 	{".tgz",	TAR},
-	{".tbzip2",	TAR},
-	{"rar",		RAR}
+	{".tar.bz",	TAR},
+	{".tar.bz2",	TAR},
+	{".tbz",	TAR},
+	{".tbz2",	TAR},
+	{".tar.lzma",	TAR},
+	{".tlzma",	TAR},
+	{".tar.xz",	TAR},
+	{".txz",	TAR},
+	{".7z",		LZMA},
+	{".zip",	LZMA},
+	{".arj",	ARJ},
+	{".rar",	RAR},
 };
 
 /*struct {
@@ -35,58 +43,46 @@ struct	FileInfo {
 	QDateTime	datetime;
 };
 
-Archive::Archive( const QString & fn ) : archname( fn ) {
-	/*
-	 * fn - archive file name 
- 	*/
-
-	QString fnl = fn.toLower();
-	if (fnl.endsWith(".7z"))
-		type = LZMA;
-	else if (
-		fnl.endsWith(".tar") ||
-		fnl.endsWith(".tgz") ||
-		fnl.endsWith(".tbz2") ||
-		fnl.endsWith(".tar.gz") ||
-		fnl.endsWith(".tar.bz2")
-	)
-		type = TAR;
-	else if (fnl.endsWith(".zip"))
-		type = ZIP;
-	else
-		type = NONE;
-	root = new ArchItem("", true);
-	currentItem = root;
-	load();
+Archive::Archive( void ) : type(NONE), root(new ArchItem("", true)) {
+	//currentItem = root;
 }
 
 Archive::~Archive() {
 	delete root;
 }
 
-void	Archive::load(void) {
+bool	Archive::load( const QString & fn ) {
 	/*
 	 * Load archive contents
 	 * TODO:
 	 * - handle exit status
 	 */
 	FileInfo fi;
-
-	if (archname.isEmpty())
-		return;
 	QProcess arch;
+
+	if (fn.isEmpty())
+		return false;
+	archname = fn;
+	QString fnl = fn.toLower();
+	for (unsigned int i = 0; i < sizeof(ArchiveExt); i++)
+		if (fnl.endsWith(ArchiveExt[i].ext)) {
+			type = ArchiveExt[i].type;
+			break;
+		}
+	if (type != LZMA)
+		return false;
 	// 7z start
 	arch.start("7za", QStringList() << "l" << archname);
 	// 7z end
 	arch.waitForFinished();
 	QString out = QString(arch.readAllStandardOutput());
-	QString err = QString(arch.readAllStandardError());
+	//QString err = QString(arch.readAllStandardError());
+	root->getChildren()->clear();
 	QStringList outlist = out.split('\n');
 	// 7z start
 	QRegExp rx("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*$");
 	// 7z end
 	QStringList::const_iterator ci;
-	root->getChildren()->clear();
 	for (ci = outlist.constBegin(); ci != outlist.constEnd(); ++ci) {
 		if (rx.indexIn(*ci) == 0) {
 	// 7z start
@@ -99,25 +95,66 @@ void	Archive::load(void) {
 			root->addChildRecursive(pathlist, fi.type, fi.size, fi.datetime);
 		}
 	}
-	root->getChildren()->sort();	// !
+	sort();
+	return true;
+}
+
+void	Archive::sort( void ) {
+	root->getChildren()->sort();
 }
 
 ArchItemPack	*Archive::List(void) {
-	return currentItem->getChildren();
+	return root->getChildren();
 }
 
 bool	Archive::Add( QString * name ) {	// or update ?
-	return true;
+	return Add(new QStringList(*name));
 }
 
 bool	Archive::Add( QStringList * names ) {	// or update ?
+	// TODO: proceess errcode
+	QProcess arch;
+	if (!names->count())
+		return false;
+	// 7z start
+	arch.start("7za", QStringList() << "a" << archname << *names);
+	// 7z end
+	arch.waitForFinished();
+	return load(archname);
+}
+
+bool	Archive::Extract( QModelIndexList & selected, QString * dst ) {
+	QProcess arch;
+	if (selected.size()) {
+		QStringList arglist;
+		for (int i = 0; i < selected.size(); i++) {
+			ArchItem *item = static_cast<ArchItem*>(selected.at(i).internalPointer());
+			arglist << item->getFullPath();
+		}
+		//qDebug() << arglist;
+		// 7z start
+		arch.start("7za", QStringList() << "x" << (QString("-o") + *dst) << archname << arglist);
+		// 7z end
+		arch.waitForFinished();
+	}
 	return true;
 }
 
-bool	Archive::Extract(  QStringList * src, QString * dst ) {
-	return true;
-}
-
-bool	Archive::Delete( QStringList * names ) {
+bool	Archive::Delete( QModelIndexList & selected ) {
+	QProcess arch;
+	if (selected.size()) {
+		QStringList arglist;
+		for (int i = 0; i < selected.size(); i++) {
+			ArchItem *item = static_cast<ArchItem*>(selected.at(i).internalPointer());
+			arglist << item->getFullPath();
+			ArchItem *parent = item->parent();
+			parent->delChild(item);
+		}
+		// 7z start
+		arch.start("7za", QStringList() << "d" << archname << arglist);
+		// 7z end
+		arch.waitForFinished();
+		//sort();
+	}
 	return true;
 }
