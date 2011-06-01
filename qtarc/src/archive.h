@@ -34,27 +34,30 @@
 #ifndef __ARCHIVE_H__
 #define __ARCHIVE_H__
 
-#include "architempack.h"
+#include <QModelIndexList>
+#include <QDebug>
+#include "architem.h"
 
 // helpers
 // 1. archive type
-enum	ArchType { TAR, LZMA, ZIP, RAR, NONE };
+enum	ArchType { LZMA, ARJ, RAR, ZIP, TAR, NONE };
 
 class	Archive {
 public:
-	Archive( const QString & );
+	Archive( void );
 	~Archive();
+	bool		load( const QString & fn = QString() );
+	void		sort( void );
 	ArchItemPack	*List(void);
 	bool		Add( QString * );
 	bool		Add( QStringList * );
-	bool		Extract( QStringList *, QString * );
-	bool		Delete( QStringList * );
+	bool		Extract( QModelIndexList &, QString * );
+	bool		Delete( QModelIndexList & );
 	ArchItem *	getRoot(void) { return root; }
 private:
-	void		load();
 	QString		archname;
 	ArchType	type;
-	ArchItem	*root, *currentItem;
+	ArchItem	*root;	//, *currentItem;
 };
 
 #endif // __ARCHIVE_H__

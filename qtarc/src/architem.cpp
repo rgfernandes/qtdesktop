@@ -28,28 +28,32 @@ void	ArchItem::addChild(ArchItem *item) {
 }
 
 void	ArchItem::addChildRecursive(QStringList &filePath, bool fileIsDir, long size, QDateTime date) {
-	/* add children recursively
-	 *
-	 */
-	 QString s = filePath.at(0);
-	 if (filePath.size() == 1) {				 	// last item
-	 	if (this->children->contains(s)) {			// already exists
-	 		ArchItem *item = this->getChild(s);
-	 		item->setIsDir(fileIsDir);
-	 		item->setSize(size);
-	 		item->setDateTime(date);
- 		} else {
- 			this->addChild(new ArchItem(s, fileIsDir, this, size, date));
+	QString s = filePath.at(0);
+	if (filePath.size() == 1) {				 	// last item
+		if (this->children->contains(s)) {			// already exists
+			ArchItem *item = this->getChild(s);
+			item->setIsDir(fileIsDir);
+			item->setSize(size);
+			item->setDateTime(date);
+		} else {
+			this->addChild(new ArchItem(s, fileIsDir, this, size, date));
 		}
- 	} else {							// down
- 		this->addChild(new ArchItem(s, true, this));		// create sub
- 		filePath.removeFirst();
- 		this->getChild(s)->addChildRecursive(filePath, fileIsDir, size, date);
+	} else {							// down
+		this->addChild(new ArchItem(s, true, this));		// create sub
+		filePath.removeFirst();
+		this->getChild(s)->addChildRecursive(filePath, fileIsDir, size, date);
 	}
 }
 
 QString	ArchItem::getFullPath(void) {
-	if (itemParent)
-		return itemParent->getFullPath() + "/" + name;
+	if (itemParent) {
+		QString s = itemParent->getFullPath();
+		if (!s.isEmpty())
+			return s + "/" + name;
+	}
 	return name;
+}
+
+void	ArchItem::delChild(ArchItem * item) {
+	children->del(item);
 }

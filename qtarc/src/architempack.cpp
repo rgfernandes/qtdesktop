@@ -1,3 +1,5 @@
+#include <QDebug>
+
 #include "architempack.h"
 
 ArchItemPack::ArchItemPack() :
@@ -18,6 +20,18 @@ void		ArchItemPack::add(ArchItem * item) {
 		dirs->insert(item->getName(), item);
 	else
 		files->insert(item->getName(), item);
+}
+
+void		ArchItemPack::del(ArchItem * item) {
+	if (item->getIsDir())
+		dirs->remove(item->getName());
+	else
+		files->remove(item->getName());
+	list->removeAt(item->getRow());
+	//qDebug() << item->getRow();
+	for (int i = item->getRow(); i < list->count(); i++)
+		list->at(i)->setRow(i);
+	//delete item; FIXME: !!! - crash after this
 }
 
 void		ArchItemPack::clear(void) {

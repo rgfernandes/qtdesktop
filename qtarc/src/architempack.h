@@ -14,6 +14,7 @@ public:
 	ArchItemPack();
 	~ArchItemPack();
 	void		add(ArchItem *);
+	void		del(ArchItem *);
 	void		clear(void);
 	int		count(void);
 	bool		contains(QString);

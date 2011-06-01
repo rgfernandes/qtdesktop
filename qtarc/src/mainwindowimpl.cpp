@@ -2,11 +2,10 @@
 #include <QtGui>
 
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
-	: QMainWindow(parent, f),
-	archive(0)
-{
+	: QMainWindow(parent, f), archive(new Archive()) {
 	setupUi(this);
 	setSlots();
+	this->treeView->setModel(new ArchItemModel(archive));
 }
 
 void	MainWindowImpl::setSlots(void) {
@@ -32,14 +31,10 @@ void	MainWindowImpl::onActionNew(void) {
 }
 
 void	MainWindowImpl::onActionOpen(void) {
-	QString fileName = QFileDialog::getOpenFileName(0, tr("Open file"), QString(), tr("Archive (*.7z *.tar *.tgz *.tbz2 *.tar.gz *.tar.bz2 *.zip *.rar)"));
+	QString fileName = QFileDialog::getOpenFileName(0, tr("Open file"), QString(), tr("Archive") + " (*.7z *.arj *.rar *.zip *.tar *.tar.gz *.tgz *.tar.bz *.tar.bz2 *.tbz *.tbz2  *.tbz *.tar.7z *.tar.lzma *.tlzma *.tar.xz *.txz)");
 	if (!fileName.isEmpty()) {
-		if (archive)
-			delete archive;
-		archive = new Archive(fileName);
-		//qDebug() << archive->List()->count();
-		ArchItemModel *model = new ArchItemModel(archive);
-		this->treeView->setModel(model);
+		archive->load(fileName);
+		static_cast<ArchItemModel *>(this->treeView->model())->refresh();
 	}
 }
 
@@ -74,7 +69,7 @@ void	MainWindowImpl::onActionAddFile(void) {
 	QStringList files = QFileDialog::getOpenFileNames (0, tr("Add file(s)"));
 	if (!files.isEmpty()) {
 		archive->Add(&files);
-		qDebug() << files;
+		static_cast<ArchItemModel *>(this->treeView->model())->refresh();
 	}
 }
 
@@ -82,7 +77,7 @@ void	MainWindowImpl::onActionAddDirectory(void) {
 	QString dir = QFileDialog::getExistingDirectory (0, tr("Add directory"));
 	if (!dir.isEmpty()) {
 		archive->Add(&dir);
-		qDebug() << dir;
+		static_cast<ArchItemModel *>(this->treeView->model())->refresh();
 	}
 }
 
@@ -92,7 +87,8 @@ void	MainWindowImpl::onActionExtract(void) {
 	if (!selected.isEmpty()) {
 		QString dir = QFileDialog::getExistingDirectory (0, tr("Add directory"));
 		if (!dir.isEmpty()) {
-			;	// 
+			archive->Extract(selected, &dir);
+			static_cast<ArchItemModel *>(this->treeView->model())->refresh();
 		}
 	}
 }
@@ -100,11 +96,8 @@ void	MainWindowImpl::onActionExtract(void) {
 void	MainWindowImpl::onActionDelete(void) {
 	QModelIndexList selected = this->treeView->selectionModel()->selectedRows();
 	if (!selected.isEmpty()) {
-		for (int i = 0; i < selected.size(); i++) {
-			ArchItem *item = static_cast<ArchItem*>(selected.at(i).internalPointer());
-			qDebug() << item->getFullPath();
-			// delete, update list
-		}
+		archive->Delete(selected);
+		static_cast<ArchItemModel *>(this->treeView->model())->refresh();
 	}
 }
 
@@ -115,4 +108,3 @@ void	MainWindowImpl::onActionAbout(void) {
 void	MainWindowImpl::onActionAboutQt(void) {
 	QMessageBox::aboutQt(this, tr("About Qt"));
 }
-

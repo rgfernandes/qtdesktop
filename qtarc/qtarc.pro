@@ -1,3 +1,4 @@
+TARGET = qtarc
 TEMPLATE = app
 QT = gui core
 CONFIG += qt warn_on console debug_and_release
@@ -19,3 +20,16 @@ SOURCES = src/mainwindowimpl.cpp \
  src/archive.cpp
 RESOURCES += qtarc.qrc
 TRANSLATIONS += l10n/qtarc_ru.ts
+
+target.path = /usr/bin
+
+translations.files += l10n/*.qm
+translations.path += $$[QT_INSTALL_TRANSLATIONS] /usr/share/qt4/translations
+
+desktop.files += qtarc.desktop
+desktop.path += /usr/share/applications
+
+icon.files += qtarc.png
+icon.path += /usr/share/pixmaps
+
+INSTALLS += target translations desktop icon
