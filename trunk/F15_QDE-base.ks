@@ -6,7 +6,7 @@
 # Maintainer(s):
 # - TI_Eugene <ti.eugene@gmail.com>
 # Usage:
-# - sudo livecd-creator -c fedora-livecd-qtdesktop.ks -t /mnt/shares/tmp --cache /mnt/shares/cache/yum
+# - sudo livecd-creator -c F15_QDE-mini.ks -t /mnt/shares/tmp --cache /mnt/shares/cache/yum
 # TODO:
 # - services
 
@@ -30,61 +30,84 @@ services --enabled=NetworkManager,messagebus --disabled=network,sshd,lvm2-monito
 
 # cleanup
 -abrt*
+-acl
+-audit
 -avahi*
--iptables*
--m17n*
--lohit*
--ibus*
--system-config*
--sendmail
-
--gnome-packagekit
--sssd*
--selinux-policy*
--setools-console
--man-db
--quota
--policycoreutils*
--openssh-server
--powertop
--setroubleshoot
--mtr
--mailcap
--cyrus-sasl-plain
--gnome-python2*
--libldb
+-bc
 -c-ares
--libini_config
--libdhash
--PackageKit-gtk-module
+-cyrus-sasl-gssapi
+-cyrus-sasl-plain
+-efibootmgr
+-ethtool
+-fedora-gnome-theme
+-fedora-icon-theme
+-foo2*
+-foo2qpdl
 -gnome-keyring
+-gnome-packagekit
+-gnome-python2*
+-gnome-themes
+-gnome-vfs2
+-google-droid*
+-groff
+-gtk2-engines
+-ibus*
+-iptables*
+-iptstate
+-iso-codes
+-jbigkit-libs
+-krb5-auth-dialog
+-krb5-workstation
+-lcms
+-libbonobo*
 -libcollection
--notify-python
+-libdhash
+-libgnome*
+-libini_config
+-libldb
+-libnetfilter_conntrack
+-libnfnetlink
 -libpath_utils
 -libref_array
--cyrus-sasl-gssapi
--m4
 -libtevent
--iso-codes
--krb5-auth-dialog
--libgnome*
--libbonobo*
--groff
--smolt*
--gnome-vfs2
--fedora-gnome-theme
+-lohit*
+-m17n*
+-m4
+-mailcap
+-man-db
+-mcelog
+-microcode_ctl
+-mtr
+-notify-python
+-ntsysv
+-openssh-server
+-PackageKit-gtk-module
+-pam_krb5
+-pam_pkcs11
+-passwdqc
+-passwdqc-lib
+-pcsc-lite-libs
+-plymouth-graphics-libs
+-plymouth-plugin*
 -plymouth-system-theme
+-plymouth-theme-charge
+-policycoreutils*
+-powertop
+-pyOpenSSL
 -python-paste
 -python-simplejson
--fedora-icon-theme
--plymouth-theme-charge
--gnome-themes
--pyOpenSSL
--plymouth-plugin*
--gtk2-engines
--plymouth-graphics-libs
+-quota
+-selinux-policy*
+-sendmail
+-setools-console
+-setroubleshoot
+-smolt*
+-sssd*
+-system-config*
 -tcp_wrappers
--google-droid*
+-tcpdump
+-tmpwatch
+-vconfig
 
 # misc
 mc
@@ -92,42 +115,18 @@ rpmreaper
 slim
 openbox
 
-# qt-apps from official repos
-psi
-arora
-smplayer
-vlc
-qbittorrent
-qmmp
-speedcrunch
-goldendict
-
 # qtdesktop
 razorqt
-razorqt-session-openbox
-razorqt-session-eggwm
-eggwm
-cuberok
-easyPaint
-juffed
-licq
-qasmixer
-qefem
-qiviewer
-qlipper
-qterminal
-qtcmd
-qtrun
-qxkb
-screengrab
-webrender
-znotes
+razorqt-openbox
+razorqt-desktop
+razorqt-panel
 
 %end
 
 %post
 
-sed -i -e 's/xfce4,icewm,wmaker,blackbox/razor-openbox,rezor-eggwm,openbox/g' /etc/slim.conf
+sed -i -e 's/xfce4,icewm,wmaker,blackbox/razor-openbox,openbox/g' /etc/slim.conf
 echo "exec /usr/bin/razor-session -c session-openbox" > ~/.xinitrc
+echo "DISPLAYMANAGER=/usr/bin/slim" > /etc/sysconfig/desktop
 
 %end
