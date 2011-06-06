@@ -43,7 +43,6 @@ qgmailnotifier
 qiviewer
 qlipper
 qrdc
-qrss
 qtagconvert
 qtarc
 qtcmd
