@@ -39,7 +39,7 @@ services --enabled=NetworkManager,messagebus --disabled=network,sshd,lvm2-monito
 -cyrus-sasl-plain
 -efibootmgr
 -ethtool
--fedora-gnome-theme
+#-fedora-gnome-theme
 -fedora-icon-theme
 -foo2*
 -foo2qpdl
