@@ -8,6 +8,7 @@
 
 !define PRODUCT_NAME "QtDesktop-RTL"
 !define PRODUCT_VERSION "4.7.1"
+!define PRODUCT_BUILD "0"
 !define PRODUCT_PUBLISHER "QtDesktop"
 !define PRODUCT_WEB_SITE "http://www.qtdesktop.org/"
 !define PRODUCT_DIR_REGKEY "Software\QtDesktop\RTL"
@@ -37,13 +38,16 @@ RequestExecutionLevel admin
 !define MUI_LANGDLL_REGISTRY_VALUENAME "NSIS:Language"
 
 ; Welcome page
+!define MUI_PAGE_CUSTOMFUNCTION_PRE page_pre
 !insertmacro MUI_PAGE_WELCOME
 ; License page (if new installation)
+!define MUI_PAGE_CUSTOMFUNCTION_PRE page_pre
 !define MUI_LICENSEPAGE_RADIOBUTTONS
 !insertmacro MUI_PAGE_LICENSE "gpl.txt"
 ; Components page
 !insertmacro MUI_PAGE_COMPONENTS
 ; Directory page (if new installation)
+!define MUI_PAGE_CUSTOMFUNCTION_PRE page_pre
 !insertmacro MUI_PAGE_DIRECTORY
 ; Start menu page (if new)
 var ICONS_GROUP
@@ -52,8 +56,9 @@ var ICONS_GROUP
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_KEY "${PRODUCT_UNINST_KEY}"
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME "${PRODUCT_STARTMENU_REGVAL}"
+!define MUI_PAGE_CUSTOMFUNCTION_PRE page_pre
 !insertmacro MUI_PAGE_STARTMENU Application $ICONS_GROUP
-; on new and installed
+; allways
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
@@ -72,32 +77,94 @@ var ICONS_GROUP
 ; MUI end ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}.exe"
+OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-${PRODUCT_BUILD}.exe"
 InstallDir "$PROGRAMFILES\QtDesktop\RTL"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" "Path"
 ShowInstDetails show
 ShowUnInstDetails show
 
 ;--------------------------------
-Section "Core" SEC01
+Function page_pre
+  StrCmp $INSTALLED "1" 0 EndPagePre
+   Abort
+  EndPagePre:
+FunctionEnd
+;--------------------------------
+Section "Core" SEC00
   SectionIn RO
-  StrCmp $INSTALLED "1" EndSec01
+  StrCmp $INSTALLED "1" EndSec00
    SetOutPath $INSTDIR
    !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libgcc_s_sjlj-1.dll" "$INSTDIR\libgcc_s_sjlj-1.dll" $INSTDIR
    !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libstdc++-6.dll" "$INSTDIR\libstdc++-6.dll" $INSTDIR
    !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\zlib1.dll" "$INSTDIR\zlib1.dll" $INSTDIR
-   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libpng14-14.dll" "$INSTDIR\libpng14-14.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libpng15-15.dll" "$INSTDIR\libpng15-15.dll" $INSTDIR
    !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtCore4.dll" "$INSTDIR\QtCore4.dll" $INSTDIR
    !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtGui4.dll" "$INSTDIR\QtGui4.dll" $INSTDIR
-  EndSec01:
+  EndSec00:
+SectionEnd
+
+; == Optional sections
+Section "Network" SEC01
+  IfFileExists "$INSTDIR\QtDBus4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtDBus4.dll" "$INSTDIR\QtDBus4.dll" $INSTDIR
 SectionEnd
 
 Section "Network" SEC02
+  IfFileExists "$INSTDIR\QtHelp4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtHelp4.dll" "$INSTDIR\QtHelp4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC03
+  IfFileExists "$INSTDIR\QtMultimedia4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtMultimedia4.dll" "$INSTDIR\QtMultimedia4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC04
   IfFileExists "$INSTDIR\QtNetwork4.dll" +2
    SetOutPath $INSTDIR
    !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtNetwork4.dll" "$INSTDIR\QtNetwork4.dll" $INSTDIR
 SectionEnd
 
+Section "Network" SEC05
+  IfFileExists "$INSTDIR\QtOpenGL4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtOpenGL4.dll" "$INSTDIR\QtOpenGL4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC06
+  IfFileExists "$INSTDIR\QtScript4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtScript4.dll" "$INSTDIR\QtScript4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC07
+  IfFileExists "$INSTDIR\QtSql4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtSql4.dll" "$INSTDIR\QtSql4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC08
+  IfFileExists "$INSTDIR\QtSvg4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtSvg4.dll" "$INSTDIR\QtSvg4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC09
+  IfFileExists "$INSTDIR\QtWebKit4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtWebKit4.dll" "$INSTDIR\QtWebKit4.dll" $INSTDIR
+SectionEnd
+
+Section "Network" SEC10
+  IfFileExists "$INSTDIR\QtXml4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtXml4.dll" "$INSTDIR\QtXml4.dll" $INSTDIR
+SectionEnd
+
+; ==
 Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
   ; check installed
@@ -106,14 +173,66 @@ Function .onInit
    ; installed
    StrCpy $INSTALLED "1"
    StrCpy $INSTDIR $0
-   ; Network
-   IfFileExists "$INSTDIR\QtNetwork4.dll" 0 +3
+   ; Check options
+   ; DBus
+   IfFileExists "$INSTDIR\QtDBus4.dll" 0 +3
+    SectionSetFlags ${SEC01} ${SF_SELECTED}
+    Goto Chk02
+   SectionSetFlags ${SEC01} 0
+   Chk02:
+   ; Help
+   IfFileExists "$INSTDIR\QtHelp4.dll" 0 +3
     SectionSetFlags ${SEC02} ${SF_SELECTED}
     Goto Chk03
    SectionSetFlags ${SEC02} 0
    Chk03:
-   ; the end
-   Goto Done
+   ; Multimedia
+   IfFileExists "$INSTDIR\QtMultimedia4.dll" 0 +3
+    SectionSetFlags ${SEC03} ${SF_SELECTED}
+    Goto Chk04
+   SectionSetFlags ${SEC03} 0
+   Chk04:
+   ; Network
+   IfFileExists "$INSTDIR\QtNetwork4.dll" 0 +3
+    SectionSetFlags ${SEC04} ${SF_SELECTED}
+    Goto Chk05
+   SectionSetFlags ${SEC04} 0
+   Chk05:
+   ; OpenGL
+   IfFileExists "$INSTDIR\QtOpenGL4.dll" 0 +3
+    SectionSetFlags ${SEC05} ${SF_SELECTED}
+    Goto Chk06
+   SectionSetFlags ${SEC05} 0
+   Chk06:
+   ; Script
+   IfFileExists "$INSTDIR\QtScript4.dll" 0 +3
+    SectionSetFlags ${SEC06} ${SF_SELECTED}
+    Goto Chk07
+   SectionSetFlags ${SEC06} 0
+   Chk07:
+   ; SQL
+   IfFileExists "$INSTDIR\QtSql4.dll" 0 +3
+    SectionSetFlags ${SEC07} ${SF_SELECTED}
+    Goto Chk08
+   SectionSetFlags ${SEC07} 0
+   Chk08:
+   ; SVG
+   IfFileExists "$INSTDIR\QtSvg4.dll" 0 +3
+    SectionSetFlags ${SEC08} ${SF_SELECTED}
+    Goto Chk09
+   SectionSetFlags ${SEC08} 0
+   Chk09:
+   ; WebKit
+   IfFileExists "$INSTDIR\QtWebKit4.dll" 0 +3
+    SectionSetFlags ${SEC09} ${SF_SELECTED}
+    Goto Chk10
+   SectionSetFlags ${SEC09} 0
+   Chk10:
+   ; XML
+   IfFileExists "$INSTDIR\QtXml4.dll" 0 +3
+    SectionSetFlags ${SEC10} ${SF_SELECTED}
+    Goto Done
+   SectionSetFlags ${SEC10} 0
   ; new installation
   New:
    StrCpy $INSTALLED "0"
@@ -145,7 +264,26 @@ Section -Post
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "NoRepair" "1"
   Goto EndPost
   PostInstalled:
-   ; delete unselected
+   ; delete unselected options
+   ; DBus
+   !insertmacro SectionFlagIsSet ${SEC01} ${SF_SELECTED} Chk02 Del01
+    Del01:
+     IfFileExists "$INSTDIR\QtDBus4.dll" 0 Chk02
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtDBus4.dll"
+   ; Help
+   Chk02:
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtHelp4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtHelp4.dll"
+   ; Multimedia
+   Chk03:
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
    ; Network
    !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
     Del02:
@@ -153,14 +291,66 @@ Section -Post
       !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
    ; DBus
    Chk03:
+   ; Network
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
+   ; Network
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
+   ; Network
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
+   ; Network
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
+   ; Network
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
+   ; Network
+   !insertmacro SectionFlagIsSet ${SEC02} ${SF_SELECTED} Chk03 Del02
+    Del02:
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk03
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
+   ; DBus
+   Chk03:
+   ; End delete options
   EndPost:
   MessageBox MB_OK "simple message box"
 SectionEnd
 
 ; Section descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} "Core"
-!insertmacro MUI_DESCRIPTION_TEXT ${SEC02} "Network"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC00} "Core"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC01} "DBus"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC02} "Help"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC03} "Multimedia"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC04} "Network"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC05} "OpenGL"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC06} "Script"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC07} "SQL"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC08} "SVG"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC09} "WebKit"
+!insertmacro MUI_DESCRIPTION_TEXT ${SEC10} "XML"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;--------------------------------
@@ -184,7 +374,7 @@ Section "Uninstall"
    !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtGui4.dll"
   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtCore4.dll"
-  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libpng14-14.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libpng15-15.dll"
   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libstdc++-6.dll"
   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libgcc_s_sjlj-1.dll"
   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\zlib11.dll"
