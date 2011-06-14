@@ -1,0 +1,134 @@
+/* dot -Tpng -oqtdesktop-rtl.png qtdesktop-rtl.dot */
+digraph G {
+rankdir=LR;
+{
+	node [shape="box"];
+	dbus_daemon;
+	dbus_launch;
+	dbus_monitor;
+	dbus_send;
+	libdbus;
+	libexpat;
+	libgcc;
+	libgomp;
+	libjpeg;
+	libpng;
+	libsqlite;
+	libssp;
+	libstdc;
+	libtiff;
+	libtiffxx;
+	mingwm;
+	pthreadgc;
+	pthreadgce;
+	zlib;
+}
+{
+	node [shape="ellipse"];
+	QtCore;
+	QtDBus;
+	QtGui;
+	QtMultimedia;
+	QtNetwork;
+	QtOpenGL;
+	QtScript;
+	QtSql;
+	QtSvg;
+	QtWebKit;
+	QtXml;
+
+	Qt3Support;
+	QtDeclarative;
+	QtScriptTools;
+	QtTest;
+	QtXmlPatterns;
+}
+{	rank="min";
+	dbus_launch;
+	libdbus;
+	libexpat;
+	libgcc;
+	libjpeg;
+	libsqlite;
+	libssp;
+	mingwm;
+	pthreadgc;
+	zlib;
+}
+{	rank="same";
+	dbus_daemon;
+	dbus_monitor;
+	dbus_send;
+	libgomp;
+	libpng;
+	libstdc;
+	libtiff;
+}
+{	rank="max";
+	QtDBus;
+	QtMultimedia;
+	QtOpenGL;
+	QtSvg;
+	QtWebKit;
+
+	Qt3Support;
+	QtDeclarative;
+	QtScriptTools;
+	QtTest;
+}
+{
+	edge [style="solid"];
+	libdbus		-> dbus_monitor;
+	libdbus		-> dbus_send;
+	libdbus		-> QtDBus;
+	libexpat	-> dbus_daemon;
+	libgcc		-> libstdc;
+	libjpeg		-> libtiff;
+	libpng		-> QtGui;
+	libsqlite	-> QtWebKit;
+	libstdc		-> libtiffxx;
+	libstdc		-> pthreadgce;
+	libstdc		-> QtCore;
+	libtiff		-> libtiffxx;
+	pthreadgc	-> libgomp;
+	zlib		-> libpng;
+	zlib		-> libtiff;
+	zlib		-> QtCore;
+	QtCore		-> QtGui;
+	QtCore		-> QtNetwork;
+	QtCore		-> QtScript;
+	QtCore		-> QtSql;
+	QtCore		-> QtXml;
+	QtGui		-> QtMultimedia;
+	QtGui		-> QtOpenGL;
+	QtGui		-> QtSvg;
+	QtGui		-> QtWebKit;
+	QtNetwork	-> QtWebKit;
+	QtXml		-> QtDBus;
+
+	QtCore		-> QtTest;
+	QtGui		-> Qt3Support;
+	QtGui		-> QtDeclarative;
+	QtGui		-> QtScriptTools;
+	QtNetwork	-> Qt3Support;
+	QtNetwork	-> QtXmlPatterns;
+	QtScript	-> QtDeclarative;
+	QtScript	-> QtScriptTools;
+	QtSql		-> Qt3Support;
+	QtSql		-> QtDeclarative;
+	QtXml		-> Qt3Support;
+	QtXmlPatterns	-> QtDeclarative;
+}
+{
+	edge [style="dashed"];
+	mingwm		-> QtCore;
+	libssp		-> QtCore;
+	libgomp		-> QtCore;
+	pthreadgce	-> QtCore;
+	libtiffxx	-> QtGui;
+	dbus_daemon	-> QtDBus;
+	dbus_launch	-> QtDBus;
+	dbus_monitor	-> QtDBus;
+	dbus_send	-> QtDBus;
+}
+}
