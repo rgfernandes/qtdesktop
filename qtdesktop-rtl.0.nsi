@@ -1,16 +1,16 @@
-; qtdesktop-rtl.nsi
+; qtdesktop-rtl0.nsi
 ; Trying to install into ProgramFiles\QtDesktop\RTL
 ; Bugs:
 ; - Error creating MainMenu...
 ; - Невозможно найти символ: Dll[Un]RegisterServer
-; - Add/Remove
-; - sqlite - as Sql as WebKit
+; - deps
 ; TODO:
 ; - Install/uninstall log
-; - Qt3Support4, QtDeclarative, QtScriptTools, QtTest, QtXmlPatterns
-; - Deps
+; - what about Qt3Support4, QtDeclarative, QtScriptTools, QtTest, QtXmlPatterns
+; - Deps:
+; -- DBus < Xml
+; -- WebKit < libsqlite3
 ; - Add/Remove in Uninstaller
-; - macros
 
 !define PRODUCT_NAME "QtDesktop-RTL"
 !define PRODUCT_VERSION "4.7.1"
@@ -36,6 +36,8 @@ RequestExecutionLevel admin
 
 ; MUI Settings
 !define MUI_ABORTWARNING
+;!define MUI_ICON "installer.ico"
+;!define MUI_UNICON "uninstaller.ico"
 
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
@@ -84,8 +86,8 @@ var ICONS_GROUP
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-${PRODUCT_BUILD}.exe"
 InstallDir "$PROGRAMFILES\QtDesktop\RTL"
+InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" "Path"
 ShowInstDetails show
-InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" "Version"
 ShowUnInstDetails show
 
 ;--------------------------------
@@ -98,33 +100,33 @@ FunctionEnd
 Section "Core" SEC_Core
   SectionIn RO
   StrCmp $INSTALLED "1" EndSec_Core
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libgcc_s_sjlj-1.dll" "$SYSDIR\libgcc_s_sjlj-1.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libstdc++-6.dll" "$SYSDIR\libstdc++-6.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\zlib1.dll" "$SYSDIR\zlib1.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtCore4.dll" "$SYSDIR\QtCore4.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libpng14-14.dll" "$SYSDIR\libpng14-14.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtGui4.dll" "$SYSDIR\QtGui4.dll" $INSTDIR
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libgcc_s_sjlj-1.dll" "$INSTDIR\libgcc_s_sjlj-1.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libstdc++-6.dll" "$INSTDIR\libstdc++-6.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\zlib1.dll" "$INSTDIR\zlib1.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libpng14-14.dll" "$INSTDIR\libpng14-14.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtCore4.dll" "$INSTDIR\QtCore4.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtGui4.dll" "$INSTDIR\QtGui4.dll" $INSTDIR
    ; options
    ; - core
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\mingwm10.dll" "$SYSDIR\mingwm10.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\pthreadGC2.dll" "$SYSDIR\pthreadGC2.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libgomp-1.dll" "$SYSDIR\libgomp-1.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\pthreadGCE2.dll" "$SYSDIR\pthreadGCE2.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libssp-0.dll" "$SYSDIR\libssp-0.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\mingwm10.dll" "$INSTDIR\mingwm10.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\pthreadGC2.dll" "$INSTDIR\pthreadGC2.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\pthreadGCE2.dll" "$INSTDIR\pthreadGCE2.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libgomp-1.dll" "$INSTDIR\libgomp-1.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libssp-0.dll" "$INSTDIR\libssp-0.dll" $INSTDIR
    ; - gui
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libjpeg-7.dll" "$SYSDIR\libjpeg-7.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libtiff-3.dll" "$SYSDIR\libtiff-3.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libtiffxx-3.dll" "$SYSDIR\libtiffxx-3.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libjpeg-7.dll" "$INSTDIR\libjpeg-7.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libtiff-3.dll" "$INSTDIR\libtiff-3.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libtiffxx-3.dll" "$INSTDIR\libtiffxx-3.dll" $INSTDIR
   EndSec_Core:
 SectionEnd
 
 ; == Optional sections
 Section "DBus" SEC_DBus
-  IfFileExists "$SYSDIR\QtDBus4.dll" EndSec_DBus
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libdbus-1-3.dll" "$SYSDIR\libdbus-1-3.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtDBus4.dll" "$SYSDIR\QtDBus4.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libexpat-1.dll" "$SYSDIR\libexpat-1.dll" $INSTDIR
-   SetOutPath $SYSDIR
+  IfFileExists "$INSTDIR\QtDBus4.dll" EndSec_DBus
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libdbus-1-3.dll" "$INSTDIR\libdbus-1-3.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtDBus4.dll" "$INSTDIR\QtDBus4.dll" $INSTDIR
    File "bin\dbus-daemon.exe"
    File "bin\dbus-launch.exe"
    File "bin\dbus-monitor.exe"
@@ -133,44 +135,55 @@ Section "DBus" SEC_DBus
 SectionEnd
 
 Section "Multimedia" SEC_MM
-  IfFileExists "$SYSDIR\QtMultimedia4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtMultimedia4.dll" "$SYSDIR\QtMultimedia4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtMultimedia4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtMultimedia4.dll" "$INSTDIR\QtMultimedia4.dll" $INSTDIR
 SectionEnd
 
 Section "Network" SEC_Network
-  IfFileExists "$SYSDIR\QtNetwork4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtNetwork4.dll" "$SYSDIR\QtNetwork4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtNetwork4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtNetwork4.dll" "$INSTDIR\QtNetwork4.dll" $INSTDIR
 SectionEnd
 
 Section "OpenGL" SEC_OpenGL
-  IfFileExists "$SYSDIR\QtOpenGL4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtOpenGL4.dll" "$SYSDIR\QtOpenGL4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtOpenGL4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtOpenGL4.dll" "$INSTDIR\QtOpenGL4.dll" $INSTDIR
 SectionEnd
 
 Section "Script" SEC_Script
-  IfFileExists "$SYSDIR\QtScript4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtScript4.dll" "$SYSDIR\QtScript4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtScript4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtScript4.dll" "$INSTDIR\QtScript4.dll" $INSTDIR
 SectionEnd
 
 Section "SQL" SEC_Sql
-  IfFileExists "$SYSDIR\QtSql4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtSql4.dll" "$SYSDIR\QtSql4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtSql4.dll" EndSec_Sql
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libsqlite3-0.dll" "$INSTDIR\libsqlite3-0.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtSql4.dll" "$INSTDIR\QtSql4.dll" $INSTDIR
+  EndSec_Sql:
 SectionEnd
 
 Section "SVG" SEC_Svg
-  IfFileExists "$SYSDIR\QtSvg4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtSvg4.dll" "$SYSDIR\QtSvg4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtSvg4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtSvg4.dll" "$INSTDIR\QtSvg4.dll" $INSTDIR
 SectionEnd
 
 Section "WebKit" SEC_WebKit
-  IfFileExists "$SYSDIR\QtWebKit4.dll" +2
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\libsqlite3-0.dll" "$SYSDIR\libsqlite3-0.dll" $INSTDIR
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtWebKit4.dll" "$SYSDIR\QtWebKit4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtWebKit4.dll" +2
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtWebKit4.dll" "$INSTDIR\QtWebKit4.dll" $INSTDIR
 SectionEnd
 
 Section "XML" SEC_Xml
-  IfFileExists "$SYSDIR\QtXml4.dll" +1
-   !insertmacro InstallLib DLL $0 NOREBOOT_NOTPROTECTED "bin\QtXml4.dll" "$SYSDIR\QtXml4.dll" $INSTDIR
+  IfFileExists "$INSTDIR\QtXml4.dll" EndSec_Xml
+   SetOutPath $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\libexpat-1.dll" "$INSTDIR\libexpat-1.dll" $INSTDIR
+   !insertmacro InstallLib REGDLL $0 NOREBOOT_NOTPROTECTED "bin\QtXml4.dll" "$INSTDIR\QtXml4.dll" $INSTDIR
+  EndSec_Xml:
 SectionEnd
 
 ; ==
@@ -181,57 +194,58 @@ Function .onInit
   IfErrors New
    ; installed
    StrCpy $INSTALLED "1"
+   StrCpy $INSTDIR $1
    ; Check options
    ; DBus
-   IfFileExists "$SYSDIR\QtDBus4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtDBus4.dll" 0 +3
     SectionSetFlags ${SEC_DBus} ${SF_SELECTED}
     Goto Chk_MM
    SectionSetFlags ${SEC_DBus} 0
    ; Multimedia
    Chk_MM:
-   IfFileExists "$SYSDIR\QtMultimedia4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtMultimedia4.dll" 0 +3
     SectionSetFlags ${SEC_MM} ${SF_SELECTED}
     Goto Chk_Network
    SectionSetFlags ${SEC_MM} 0
    ; Network
    Chk_Network:
-   IfFileExists "$SYSDIR\QtNetwork4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtNetwork4.dll" 0 +3
     SectionSetFlags ${SEC_Network} ${SF_SELECTED}
     Goto Chk_OpenGL
    SectionSetFlags ${SEC_Network} 0
    ; OpenGL
    Chk_OpenGL:
-   IfFileExists "$SYSDIR\QtOpenGL4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtOpenGL4.dll" 0 +3
     SectionSetFlags ${SEC_OpenGL} ${SF_SELECTED}
     Goto Chk_Script
    SectionSetFlags ${SEC_OpenGL} 0
    ; Script
    Chk_Script:
-   IfFileExists "$SYSDIR\QtScript4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtScript4.dll" 0 +3
     SectionSetFlags ${SEC_Script} ${SF_SELECTED}
     Goto Chk_Sql
    SectionSetFlags ${SEC_Script} 0
    ; SQL
    Chk_Sql:
-   IfFileExists "$SYSDIR\QtSql4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtSql4.dll" 0 +3
     SectionSetFlags ${SEC_Sql} ${SF_SELECTED}
     Goto Chk_Svg
    SectionSetFlags ${SEC_Sql} 0
    ; SVG
    Chk_Svg:
-   IfFileExists "$SYSDIR\QtSvg4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtSvg4.dll" 0 +3
     SectionSetFlags ${SEC_Svg} ${SF_SELECTED}
     Goto Chk_WebKit
    SectionSetFlags ${SEC_Svg} 0
    ; WebKit
    Chk_WebKit:
-   IfFileExists "$SYSDIR\QtWebKit4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtWebKit4.dll" 0 +3
     SectionSetFlags ${SEC_WebKit} ${SF_SELECTED}
     Goto Chk_Xml
    SectionSetFlags ${SEC_WebKit} 0
    ; XML
    Chk_Xml:
-   IfFileExists "$SYSDIR\QtXml4.dll" 0 +3
+   IfFileExists "$INSTDIR\QtXml4.dll" 0 +3
     SectionSetFlags ${SEC_Xml} ${SF_SELECTED}
     Goto Done
    SectionSetFlags ${SEC_Xml} 0
@@ -255,7 +269,7 @@ Section -AdditionalIcons
   SetOutPath $INSTDIR
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   SetShellVarContext all
-  ;CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk" "$INSTDIR\uninst.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
   EndAI:
@@ -265,14 +279,13 @@ Section -Post
   StrCmp $INSTALLED "1" PostInstalled
    WriteUninstaller "$INSTDIR\uninst.exe"
    WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "Path" "$INSTDIR"
-   WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "Version" "${PRODUCT_VERSION}"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\uninst.exe"
-   ;WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "NoModify" "1"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "NoModify" "1"
    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "NoRepair" "1"
   Goto EndPost
   PostInstalled:
@@ -280,60 +293,60 @@ Section -Post
    ; DBus
    !insertmacro SectionFlagIsSet ${SEC_DBus} ${SF_SELECTED} Chk_MM Del_DBus
     Del_DBus:
-     IfFileExists "$SYSDIR\QtDBus4.dll" 0 Chk_MM
-      Delete "$SYSDIR\dbus-*.exe"
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtDBus4.dll"
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libdbus-1-3.dll"
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libexpat-1.dll"
+     IfFileExists "$INSTDIR\QtDBus4.dll" 0 Chk_MM
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libdbus-1-3.dll"
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtDBus4.dll"
+      Delete "$INSTDIR\dbus-*.exe"
    ; Multimedia
    Chk_MM:
    !insertmacro SectionFlagIsSet ${SEC_MM} ${SF_SELECTED} Chk_Network Del_MM
     Del_MM:
-     IfFileExists "$SYSDIR\QtMultimedia4.dll" 0 Chk_Network
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtMultimedia4.dll"
+     IfFileExists "$INSTDIR\QtMultimedia4.dll" 0 Chk_Network
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtMultimedia4.dll"
    ; Network
    Chk_Network:
    !insertmacro SectionFlagIsSet ${SEC_Network} ${SF_SELECTED} Chk_OpenGL Del_Network
     Del_Network:
-     IfFileExists "$SYSDIR\QtNetwork4.dll" 0 Chk_OpenGL
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtNetwork4.dll"
+     IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk_OpenGL
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
    ; OpenGL
    Chk_OpenGL:
    !insertmacro SectionFlagIsSet ${SEC_OpenGL} ${SF_SELECTED} Chk_Script Del_OpenGL
     Del_OpenGL:
-     IfFileExists "$SYSDIR\QtOpenGL4.dll" 0 Chk_Script
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtOpenGL4.dll"
+     IfFileExists "$INSTDIR\QtOpenGL4.dll" 0 Chk_Script
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtOpenGL4.dll"
    ; Script
    Chk_Script:
    !insertmacro SectionFlagIsSet ${SEC_Script} ${SF_SELECTED} Chk_Sql Del_Script
     Del_Script:
-     IfFileExists "$SYSDIR\QtScript4.dll" 0 Chk_Sql
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtScript4.dll"
+     IfFileExists "$INSTDIR\QtScript4.dll" 0 Chk_Sql
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtScript4.dll"
    ; SQL
    Chk_Sql:
    !insertmacro SectionFlagIsSet ${SEC_Sql} ${SF_SELECTED} Chk_Svg Del_Sql
     Del_Sql:
-     IfFileExists "$SYSDIR\QtSql4.dll" 0 Chk_Svg
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtSql4.dll"
+     IfFileExists "$INSTDIR\QtSql4.dll" 0 Chk_Svg
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libsqlite3-0.dll"
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtSql4.dll"
    ; SVG
    Chk_Svg:
    !insertmacro SectionFlagIsSet ${SEC_Svg} ${SF_SELECTED} Chk_WebKit Del_Svg
     Del_Svg:
-     IfFileExists "$SYSDIR\QtSvg4.dll" 0 Chk_WebKit
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtSvg4.dll"
+     IfFileExists "$INSTDIR\QtSvg4.dll" 0 Chk_WebKit
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtSvg4.dll"
    ; WebKit
    Chk_WebKit:
    !insertmacro SectionFlagIsSet ${SEC_WebKit} ${SF_SELECTED} Chk_Xml Del_WebKit
     Del_WebKit:
-     IfFileExists "$SYSDIR\QtWebKit4.dll" 0 Chk_Xml
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtWebKit4.dll"
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libsqlite3-0.dll"
+     IfFileExists "$INSTDIR\QtWebKit4.dll" 0 Chk_Xml
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtWebKit4.dll"
    ; XML
    Chk_Xml:
    !insertmacro SectionFlagIsSet ${SEC_Xml} ${SF_SELECTED} EndPost Del_Xml
     Del_Xml:
-     IfFileExists "$SYSDIR\QtXml4.dll" 0 EndPost
-      !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtXml4.dll"
+     IfFileExists "$INSTDIR\QtXml4.dll" 0 EndPost
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtXml4.dll"
+      !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libexpat-1.dll"
    ; End delete options
   EndPost:
   MessageBox MB_OK "Check result"
@@ -371,63 +384,59 @@ Section "Uninstall"
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
   ; dlls deregister
   ; DBus
-  IfFileExists "$SYSDIR\QtDBus4.dll" 0 Chk_MM
-   Delete "$SYSDIR\dbus-*.exe"
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtDBus4.dll"
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libdbus-1-3.dll"
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libexpat-1.dll"
+  IfFileExists "$INSTDIR\QtDBus4.dll" 0 Chk_MM
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtDBus4.dll"
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libdbus-1-3.dll"
   ; Multimedia
   Chk_MM:
-  IfFileExists "$SYSDIR\QtMultimedia4.dll" 0 Chk_Network
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtMultimedia4.dll"
+  IfFileExists "$INSTDIR\QtMultimedia4.dll" 0 Chk_Network
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtMultimedia4.dll"
   ; Network
   Chk_Network:
-  IfFileExists "$SYSDIR\QtNetwork4.dll" 0 Chk_OpenGL
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtNetwork4.dll"
+  IfFileExists "$INSTDIR\QtNetwork4.dll" 0 Chk_OpenGL
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtNetwork4.dll"
   ; OpenGL
   Chk_OpenGL:
-  IfFileExists "$SYSDIR\QtOpenGL4.dll" 0 Chk_Script
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtOpenGL4.dll"
+  IfFileExists "$INSTDIR\QtOpenGL4.dll" 0 Chk_Script
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtOpenGL4.dll"
   ; Script
   Chk_Script:
-  IfFileExists "$SYSDIR\QtScript4.dll" 0 Chk_Sql
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtScript4.dll"
+  IfFileExists "$INSTDIR\QtScript4.dll" 0 Chk_Sql
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtScript4.dll"
   ; SQL
   Chk_Sql:
-  IfFileExists "$SYSDIR\QtSql4.dll" 0 Chk_Svg
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtSql4.dll"
+  IfFileExists "$INSTDIR\QtSql4.dll" 0 Chk_Svg
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtSql4.dll"
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libsqlite3-0.dll"
   ; SVG
   Chk_Svg:
-  IfFileExists "$SYSDIR\QtSvg4.dll" 0 Chk_WebKit
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtSvg4.dll"
+  IfFileExists "$INSTDIR\QtSvg4.dll" 0 Chk_WebKit
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtSvg4.dll"
   ; WebKit
   Chk_WebKit:
-  IfFileExists "$SYSDIR\QtWebKit4.dll" 0 Chk_Xml
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtWebKit4.dll"
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libsqlite3-0.dll"
+  IfFileExists "$INSTDIR\QtWebKit4.dll" 0 Chk_Xml
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtWebKit4.dll"
   ; XML
   Chk_Xml:
-  IfFileExists "$SYSDIR\QtXml4.dll" 0 Del_Core
-   !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtXml4.dll"
+  IfFileExists "$INSTDIR\QtXml4.dll" 0 Del_Core
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtXml4.dll"
+   !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libexpat-1.dll"
   ; Core
   Del_Core:
-  ; options
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libtiffxx-3.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libtiff-3.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libjpeg-7.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libssp-0.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\pthreadGC2.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libgomp-1.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\pthreadGCE2.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\mingwm10.dll"
-  Delete "$SYSDIR\dbus-*.exe"
-  ; mandatory
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtGui4.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libpng14-14.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\QtCore4.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libstdc++-6.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\libgcc_s_sjlj-1.dll"
-  !insertmacro UninstallLib DLL SHARED NOREBOOT_NOTPROTECTED "$SYSDIR\zlib1.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtGui4.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\QtCore4.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libstdc++-6.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libgcc_s_sjlj-1.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libpng14-14.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libjpeg-7.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libtiff-3.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libtiffxx-3.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\zlib1.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libssp-0.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\pthreadGC2.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\libgomp-1.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\pthreadGCE2.dll"
+  !insertmacro UninstallLib REGDLL SHARED NOREBOOT_NOTPROTECTED "$INSTDIR\mingwm10.dll"
   ; Files
   Delete "$INSTDIR\*.*"
   RMDir "$INSTDIR"

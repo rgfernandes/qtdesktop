@@ -44,7 +44,7 @@ icon.path = /usr/share/pixmaps
 icon.files = contrib/qrdc.png
 isEmpty(QMAKE_LRELEASE) {
  win32 {
-  QMAKE_LRELEASE =   $$[QT_INSTALL_BINS]\lrelease.exe
+  QMAKE_LRELEASE =   $$[QT_INSTALL_BINS]\\lrelease.exe
 }
 else:QMAKE_LRELEASE =  $$[QT_INSTALL_BINS]/lrelease-qt4
 }
