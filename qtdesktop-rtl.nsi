@@ -36,6 +36,8 @@ RequestExecutionLevel admin
 
 ; MUI Settings
 !define MUI_ABORTWARNING
+;!define MUI_ICON "installer.ico"
+;!define MUI_UNICON "uninstaller.ico"
 
 ; Language Selection Dialog Settings
 !define MUI_LANGDLL_REGISTRY_ROOT "${PRODUCT_UNINST_ROOT_KEY}"
@@ -84,8 +86,8 @@ var ICONS_GROUP
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-${PRODUCT_BUILD}.exe"
 InstallDir "$PROGRAMFILES\QtDesktop\RTL"
+InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" "Path"
 ShowInstDetails show
-InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" "Version"
 ShowUnInstDetails show
 
 ;--------------------------------
@@ -248,6 +250,7 @@ Function .onInit
    SectionSetFlags ${SEC_WebKit} 0
    SectionSetFlags ${SEC_Xml} 0
   Done:
+  MessageBox MB_OK $INSTALLED
 FunctionEnd
 
 Section -AdditionalIcons
