@@ -12,7 +12,7 @@
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
 
-SetCompressor /SOLID lzma
+SetCompressor lzma
 BrandingText "www.qtdesktop.org"
 XPStyle on
 RequestExecutionLevel admin
@@ -61,7 +61,7 @@ var ICONS_GROUP
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-${PRODUCT_BUILD}.exe"
-InstallDir "$PROGRAMFILES\QtDesktop\RTL"
+InstallDir "$PROGRAMFILES\QtDesktop\QRDC"
 ShowInstDetails show
 ShowUnInstDetails show
 
@@ -74,76 +74,47 @@ SectionEnd
 ; ==
 Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
-  ; check installed
-  ReadRegStr $0 HKLM "${PRODUCT_DIR_REGKEY}" "Path"
-  IfErrors Done
-   ; installed
-   StrCpy $INSTDIR $0
-   ; Check options
-   ; DBus
-   IfFileExists "$INSTDIR\QtDBus4.dll" 0 +3
-    SectionSetFlags ${SEC_DBus} ${SF_SELECTED}
-    Goto Chk_MM
-   SectionSetFlags ${SEC_DBus} 0
-   ; Multimedia
-   Chk_MM:
-   IfFileExists "$INSTDIR\QtMultimedia4.dll" 0 +3
-    SectionSetFlags ${SEC_MM} ${SF_SELECTED}
-    Goto Chk_Network
-   SectionSetFlags ${SEC_MM} 0
-   ; Network
-   Chk_Network:
-   IfFileExists "$INSTDIR\QtNetwork4.dll" 0 +3
-    SectionSetFlags ${SEC_Network} ${SF_SELECTED}
-    Goto Chk_OpenGL
-   SectionSetFlags ${SEC_Network} 0
-   ; OpenGL
-   Chk_OpenGL:
-   IfFileExists "$INSTDIR\QtOpenGL4.dll" 0 +3
-    SectionSetFlags ${SEC_OpenGL} ${SF_SELECTED}
-    Goto Chk_Script
-   SectionSetFlags ${SEC_OpenGL} 0
-   ; Script
-   Chk_Script:
-   IfFileExists "$INSTDIR\QtScript4.dll" 0 +3
-    SectionSetFlags ${SEC_Script} ${SF_SELECTED}
-    Goto Chk_Sql
-   SectionSetFlags ${SEC_Script} 0
-   ; SQL
-   Chk_Sql:
-   IfFileExists "$INSTDIR\QtSql4.dll" 0 +3
-    SectionSetFlags ${SEC_Sql} ${SF_SELECTED}
-    Goto Chk_Svg
-   SectionSetFlags ${SEC_Sql} 0
-   ; SVG
-   Chk_Svg:
-   IfFileExists "$INSTDIR\QtSvg4.dll" 0 +3
-    SectionSetFlags ${SEC_Svg} ${SF_SELECTED}
-    Goto Chk_WebKit
-   SectionSetFlags ${SEC_Svg} 0
-   ; WebKit
-   Chk_WebKit:
-   IfFileExists "$INSTDIR\QtWebKit4.dll" 0 +3
-    SectionSetFlags ${SEC_WebKit} ${SF_SELECTED}
-    Goto Chk_Xml
-   SectionSetFlags ${SEC_WebKit} 0
-   ; XML
-   Chk_Xml:
-   IfFileExists "$INSTDIR\QtXml4.dll" 0 +3
-    SectionSetFlags ${SEC_Xml} ${SF_SELECTED}
-    Goto Done
-   SectionSetFlags ${SEC_Xml} 0
-  ; new installation
-  Done:
+  ; 1. check installed
+  MessageBox MB_OK "Check installed"
+  ReadRegStr $1 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" 
+  StrCmp $1 "" ChkRTL
+    MessageBox MB_OK "${PRODUCT_NAME} already installed."
+    Abort
+  ; 2. check RTL
+  ChkRTL:
+  MessageBox MB_OK "Check RTL"
+  ReadRegStr $1 ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\Uninstall\QtDesktop-RTL" "DisplayName" 
+  StrCmp $1 "" 0 ChkLibs
+    MessageBox MB_OK "Install QtDesktop-RTL first."
+    Abort
+  ; 3. check libs
+  ChkLibs:
+  MessageBox MB_OK "Check libs"
+  IfFileExists "$SYSDIR\QtSql4.dll" EndInit
+    MessageBox MB_OK "Add Sql to QtDesktop-RTL."
+    Abort
+  EndInit:
 FunctionEnd
 
 Section -AdditionalIcons
   SetOutPath $INSTDIR
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   SetShellVarContext all
-  CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
+  ;CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Website.lnk" "$INSTDIR\${PRODUCT_NAME}.url"
   CreateShortCut "$SMPROGRAMS\$ICONS_GROUP\Uninstall.lnk" "$INSTDIR\uninst.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
+SectionEnd
+
+Section -Post
+   WriteUninstaller "$INSTDIR\uninst.exe"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\uninst.exe"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "NoModify" "1"
+   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "NoRepair" "1"
 SectionEnd
 
 ;--------------------------------
@@ -155,9 +126,8 @@ Section "Uninstall"
   Delete "$INSTDIR\*.*"
   RMDir "$INSTDIR"
   ; Startmenu
-  Delete "$SMPROGRAMS\QtDesktop\RTL\qrdc.lnk"
+  Delete "$SMPROGRAMS\QtDesktop\QRDC\qrdc.lnk"
   ; Registry
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
-  MessageBox MB_OK "Check result"
-;  SetAutoClose true
+  SetAutoClose false
 SectionEnd
