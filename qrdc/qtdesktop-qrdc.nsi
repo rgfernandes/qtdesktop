@@ -75,21 +75,18 @@ SectionEnd
 Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
   ; 1. check installed
-  MessageBox MB_OK "Check installed"
   ReadRegStr $1 ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" 
   StrCmp $1 "" ChkRTL
     MessageBox MB_OK "${PRODUCT_NAME} already installed."
     Abort
   ; 2. check RTL
   ChkRTL:
-  MessageBox MB_OK "Check RTL"
   ReadRegStr $1 ${PRODUCT_UNINST_ROOT_KEY} "Software\Microsoft\Windows\CurrentVersion\Uninstall\QtDesktop-RTL" "DisplayName" 
   StrCmp $1 "" 0 ChkLibs
     MessageBox MB_OK "Install QtDesktop-RTL first."
     Abort
   ; 3. check libs
   ChkLibs:
-  MessageBox MB_OK "Check libs"
   IfFileExists "$SYSDIR\QtSql4.dll" EndInit
     MessageBox MB_OK "Add Sql to QtDesktop-RTL."
     Abort
