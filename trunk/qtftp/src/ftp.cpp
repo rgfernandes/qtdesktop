@@ -65,12 +65,12 @@ void Ftp::downloadFile()
 {
 	QString fileName = fileList->currentItem()->text(0);
 	if (QFile::exists(fileName)) {
-		QMessageBox::information(this, tr("FTP"),tr("There already exists a file called %1 in the current directory.").arg(fileName));
+		qDebug() << tr("There already exists a file called %1 in the current directory.").arg(fileName));
 		return;
 	}
 	file = new QFile(fileName);
 	if (!file->open(QIODevice::WriteOnly)) {
-		QMessageBox::information(this, tr("FTP"), tr("Unable to save the file %1: %2.").arg(fileName).arg(file->errorString()));
+		qDebug() << tr("Unable to save the file %1: %2.").arg(fileName).arg(file->errorString()));
 		delete file;
 		return;
 	}
