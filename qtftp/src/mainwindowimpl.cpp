@@ -29,6 +29,7 @@ void	MainWindowImpl::onActionNew(void) {
 }
 
 void	MainWindowImpl::onActionOpen(void) {
+	ftp.setHost("ftp.qt.nokia.com");
 }
 
 void	MainWindowImpl::onActionSaveAs(void) {

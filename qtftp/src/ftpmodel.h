@@ -4,18 +4,16 @@
 #include <QtCore>
 #include <QtNetwork>
 
+#include "ftp.h"
+
 class FtpEngineHandler : public QObject, QAbstractFileEngineHandler
 {
 	Q_OBJECT
 public:
 	QAbstractFileEngine * create ( const QString & ) const;
 	bool setHost(const QString &);
-private slots:
-	void ftpDone(bool);
-	void listDone(const QUrlInfo &);
 private:
-	QString host;
-	QFtp ftp;
+	Ftp ftp;
 };
 
 class FtpEngine : public QAbstractFileEngine

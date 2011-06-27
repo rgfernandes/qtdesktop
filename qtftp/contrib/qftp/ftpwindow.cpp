@@ -94,6 +94,7 @@ FtpWindow::FtpWindow(QWidget *parent)
 
         connectButton->setEnabled(false);
         statusLabel->setText(tr("Opening network session."));
+	qDebug() << "Opening session...";
         networkSession->open();
     }
 
@@ -109,6 +110,7 @@ QSize FtpWindow::sizeHint() const
 void FtpWindow::connectOrDisconnect()
 {
     if (ftp) {
+	    qDebug() << "Disconnect";
         ftp->abort();
         ftp->deleteLater();
         ftp = 0;
@@ -130,6 +132,7 @@ void FtpWindow::connectOrDisconnect()
 #endif
 
 //![1]
+    qDebug() << "Connect";
     ftp = new QFtp(this);
     connect(ftp, SIGNAL(commandFinished(int,bool)),
             this, SLOT(ftpCommandFinished(int,bool)));
@@ -146,7 +149,9 @@ void FtpWindow::connectOrDisconnect()
 //![2]
     QUrl url(ftpServerLineEdit->text());
     if (!url.isValid() || url.scheme().toLower() != QLatin1String("ftp")) {
+	    qDebug() << "FTP: Connecting to " << ftpServerLineEdit->text();
         ftp->connectToHost(ftpServerLineEdit->text(), 21);
+	    qDebug() << "FTP: Logging...";
         ftp->login();
     } else {
         ftp->connectToHost(url.host(), url.port(21));
@@ -209,6 +214,7 @@ void FtpWindow::cancelDownload()
 //![6]
 void FtpWindow::ftpCommandFinished(int, bool error)
 {
+	qDebug() << "Command finished:" << ftp->currentCommand();
 #ifndef QT_NO_CURSOR
     setCursor(Qt::ArrowCursor);
 #endif
@@ -348,6 +354,7 @@ void FtpWindow::enableDownloadButton()
 
 void FtpWindow::enableConnectButton()
 {
+	qDebug() << "Session opened";
     // Save the used configuration
     QNetworkConfiguration config = networkSession->configuration();
     QString id;

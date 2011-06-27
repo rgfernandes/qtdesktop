@@ -5,7 +5,6 @@
 int main(int argc, char ** argv)
 {
 	QApplication app( argc, argv );
-	FtpEngineHandler ftp;
 	// <settings>
 	QCoreApplication::setApplicationName("qtftp");
 	QCoreApplication::setApplicationVersion("0.0.1");
@@ -22,7 +21,6 @@ int main(int argc, char ** argv)
 	app.installTranslator(&appTranslator);
 	// </tr>
 	MainWindowImpl win;
-	ftp.setHost("mirror.yandex.ru");
 	win.show(); 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();

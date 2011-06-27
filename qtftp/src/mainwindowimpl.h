@@ -28,6 +28,7 @@ private slots:
 	void		onActionAboutQt(void);
 private:
 	void		setSlots(void);
+	FtpEngineHandler ftp;
 };
 
 #endif
