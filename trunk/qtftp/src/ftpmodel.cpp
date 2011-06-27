@@ -6,32 +6,23 @@ QAbstractFileEngine * FtpEngineHandler::create ( const QString & url ) const {
 }
 
 bool FtpEngineHandler::setHost(const QString &hostname) {
-	this->connect(&ftp, SIGNAL(done(bool)), this, SLOT(ftpDone(bool)));
-	this->connect(&ftp, SIGNAL(listInfo(QString &)), this, SLOT(listDone(const QString &)));
-	host = hostname;
-	ftp.connectToHost(hostname);
-	ftp.login();
-	//ftp.cd("qt");
-	ftp.list();
-	//ftp.close();
-	return true;
-}
-
-void FtpEngineHandler::listDone(const QUrlInfo &i) {
-	qDebug() << i.name();
-}
-
-void FtpEngineHandler::ftpDone(bool error)
-{
-	if (error) 
-		qDebug() << ftp.errorString();
+	//this->connect(&ftp, SIGNAL(done(bool)), this, SLOT(ftpDone(bool)));
+	qDebug() << "FtpEH: Connecting...";
+	ftp.Connect(hostname);
+	bool connected = false;
+	for (int i = 0; i < 10; i++) {
+		qDebug() << "FtpEH: Try " << i << ", state: " << ftp.getState();
+		//sleep(1);
+		if ((connected = ftp.isConnected()))
+			break;
+	}
+	if (ftp.isConnected())
+		qDebug() << "FtpEH: Connected OK";
+		//ftp.list();
 	else
-		qDebug() << "File downloaded";
-	QByteArray result = ftp.readAll();
-	qDebug() << result.size();
-	qDebug() << QString(result);
-	//file.close();
-	//emit canExit();
+		qDebug() << "FtpEH: Connection failed";
+	//ftp.Disconnect();
+	return true;
 }
 
 // ----
@@ -66,19 +57,19 @@ bool FtpEngine::seek ( qint64 offset ) {
 }
 
 qint64 FtpEngine::size () const {
-    return data.size();
+	return data.size();
 }
 
 bool FtpEngine::close () {
 //    qDebug() << Q_FUNC_INFO;
-    return true;
+	return true;
 }
 bool FtpEngine::isSequential () const {
 //    qDebug() << Q_FUNC_INFO;
-    return false;
+	return false;
 }
 
 bool FtpEngine::supportsExtension ( Extension extension ) const {
 //    qDebug() << Q_FUNC_INFO << extension;
-    return QAbstractFileEngine::supportsExtension(extension);
+	return QAbstractFileEngine::supportsExtension(extension);
 }
