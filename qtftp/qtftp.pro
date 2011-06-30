@@ -1,7 +1,11 @@
 TARGET = qtftp
 TEMPLATE = app
 QT = gui core network
-CONFIG += qt warn_on console debug_and_release
+CONFIG += qt \
+ warn_on \
+ console \
+ debug_and_release \
+ qtestlib
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build

@@ -26,9 +26,9 @@ public:
 	int getState(void) { return ftp->state(); }
 private slots:
 	void ftpCommandFinished(int commandId, bool error);
-	void ftpStateChanged(int);
-	void ftpCommandStarted(int);
-	void ftpDone(int);
+	//void ftpStateChanged(int);
+	//void ftpCommandStarted(int);
+	//void ftpDone(int);
 	void addToList(const QUrlInfo &urlInfo);
 	void enableConnect();
 private:

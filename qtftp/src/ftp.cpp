@@ -1,5 +1,6 @@
 #include <QtGui>
 #include <QtNetwork>
+#include <QtTest/QtTest>
 
 #include "ftp.h"
 
@@ -30,15 +31,15 @@ void Ftp::Connect(const QString &urlpath)
 	ftp = new QFtp(this);
 	connect(ftp, SIGNAL(commandFinished(int, bool)), this, SLOT(ftpCommandFinished(int,bool)));
 	connect(ftp, SIGNAL(listInfo(QUrlInfo)), this, SLOT(addToList(QUrlInfo)));
-	connect(ftp, SIGNAL(stateChanged(int)), this, SLOT(ftpStateChanged(int)));
-	connect(ftp, SIGNAL(commandStarted(int)), this, SLOT(ftpCommandStarted(int)));
-	connect(ftp, SIGNAL(done(int)), this, SLOT(ftpDone(int)));
+	//connect(ftp, SIGNAL(stateChanged(int)), this, SLOT(ftpStateChanged(int)));
+	//connect(ftp, SIGNAL(commandStarted(int)), this, SLOT(ftpCommandStarted(int)));
+	//connect(ftp, SIGNAL(done(int)), this, SLOT(ftpDone(int)));
 	fileList.clear();
 	currentPath.clear();
 	QUrl url(urlpath);
 	if (!url.isValid() || url.scheme().toLower() != QLatin1String("ftp")) {
 		qDebug() << "FTP: Connecting to " << urlpath;
-		qDebug() << "FTP: Connecting to " << urlpath << ", id: " << ftp->connectToHost(urlpath, 21);
+		ftp->connectToHost(urlpath, 21);
 		qDebug() << "FTP: Logging...";
 		ftp->login();
 	} else {
@@ -51,6 +52,7 @@ void Ftp::Connect(const QString &urlpath)
 			ftp->cd(url.path());
 	}
 	connected = false;
+	QTest::qWait(100);
 }
 
 void Ftp::Disconnect(void) {
@@ -63,11 +65,9 @@ void Ftp::Disconnect(void) {
 	return;
 }
 
-void Ftp::ftpStateChanged(int state) { qDebug() << "FTP: state changed:" << state; }
-
-void Ftp::ftpCommandStarted(int id) { qDebug() << "FTP: command started: " << id; }
-
-void Ftp::ftpDone(int err) { qDebug() << "FTP: done: " << err; }
+//void Ftp::ftpStateChanged(int state) { qDebug() << "FTP: state changed:" << state; }
+//void Ftp::ftpCommandStarted(int id) { qDebug() << "FTP: command started: " << id; }
+//void Ftp::ftpDone(int err) { qDebug() << "FTP: done: " << err; }
 
 void Ftp::ftpCommandFinished(int, bool error)
 {
