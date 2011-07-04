@@ -8,20 +8,20 @@ QAbstractFileEngine * FtpEngineHandler::create ( const QString & url ) const {
 bool FtpEngineHandler::setHost(const QString &hostname) {
 	//this->connect(&ftp, SIGNAL(done(bool)), this, SLOT(ftpDone(bool)));
 	qDebug() << "FtpEH: Connecting...";
-	ftp.Connect(hostname);
-	bool connected = false;
-	for (int i = 0; i < 10; i++) {
-		qDebug() << "FtpEH: Try " << i << ", state: " << ftp.getState();
-		//sleep(1);
-		if ((connected = ftp.isConnected()))
-			break;
-	}
-	if (ftp.isConnected())
+	if (ftp.Connect(hostname)) {
 		qDebug() << "FtpEH: Connected OK";
-		//ftp.list();
-	else
+		if (ftp.List()) {
+			UrlInfoHash data = ftp.getData();
+			QHashIterator<QString, QUrlInfo> i(data);
+			while (i.hasNext()) {
+				i.next();
+				qDebug() << i.key();
+			}
+		}
+	} else {
 		qDebug() << "FtpEH: Connection failed";
-	//ftp.Disconnect();
+		ftp.Disconnect();
+	}
 	return true;
 }
 
