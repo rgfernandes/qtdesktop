@@ -1,0 +1,9 @@
+Source: qtrun
+Section: editors
+Priority: optional
+Maintainer: TI_Eugene <ti.eugene@gmail.com>
+Build-Depends: debhelper, g++, qt4-qmake, libqt4-dev, qt4-dev-tools
+
+Package: qtrun
+Architecture: any
+Description: Run application helper
