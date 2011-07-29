@@ -1,9 +1,11 @@
 #include "mainwindowimpl.h"
-#include <QtGui>
 
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f) {
 	setupUi(this);
+	model = new QFileSystemModel;
+	model->setRootPath(QDir::currentPath());
+	treeView->setModel(model);
 	setSlots();
 }
 
@@ -23,6 +25,8 @@ void	MainWindowImpl::setSlots(void) {
 	connect( actionDelete,		SIGNAL( triggered() ),	this, SLOT( onActionDelete() ) );
 	connect( actionAbout,		SIGNAL( triggered() ),	this, SLOT( onActionAbout() ) );
 	connect( actionAboutQt,		SIGNAL( triggered() ),	this, SLOT( onActionAboutQt() ) );
+	connect( treeView->selectionModel(),	SIGNAL( currentChanged(const QModelIndex &, const QModelIndex &) ),	this, SLOT( onItemSelected(const QModelIndex &, const QModelIndex &) ) );
+	connect( pbGo,			SIGNAL( clicked() ),	this, SLOT( onGo() ) );
 }
 
 void	MainWindowImpl::onActionNew(void) {
@@ -52,11 +56,11 @@ void	MainWindowImpl::onActionPaste(void) {
 }
 
 void	MainWindowImpl::onActionSelectAll(void) {
-	this->treeView->selectAll();
+	treeView->selectAll();
 }
 
 void	MainWindowImpl::onActionDeselect(void) {
-	this->treeView->clearSelection();
+	treeView->clearSelection();
 }
 
 void	MainWindowImpl::onActionAddFile(void) {
@@ -74,4 +78,19 @@ void	MainWindowImpl::onActionAbout(void) {
 
 void	MainWindowImpl::onActionAboutQt(void) {
 	QMessageBox::aboutQt(this, tr("About Qt"));
+}
+
+void	MainWindowImpl::onItemSelected(const QModelIndex & selected, const QModelIndex &) {
+	QFileInfo item = model->fileInfo(selected);
+	//qDebug() << item.absoluteFilePath();
+	leAddressBar->setText(model->filePath(selected));
+}
+
+void	MainWindowImpl::onGo() {
+	QModelIndex item = model->setRootPath(leAddressBar->text());
+	if (!item.isValid())
+		qDebug() << "Wrong path";
+	else {
+		treeView->setCurrentIndex(item);
+	}
 }

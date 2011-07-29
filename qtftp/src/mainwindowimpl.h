@@ -1,7 +1,8 @@
 #ifndef MAINWINDOWIMPL_H
 #define MAINWINDOWIMPL_H
 
-#include <QMainWindow>
+#include <QtCore>
+#include <QtGui>
 #include "ui_mainwindow.h"
 #include "ftpmodel.h"
 
@@ -26,9 +27,12 @@ private slots:
 	void		onActionDelete(void);
 	void		onActionAbout(void);
 	void		onActionAboutQt(void);
+	void		onItemSelected(const QModelIndex &, const QModelIndex &);
+	void		onGo(void);
 private:
 	void		setSlots(void);
 	FtpEngineHandler ftp;
+	QFileSystemModel *model;
 };
 
 #endif
