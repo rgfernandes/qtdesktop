@@ -1,38 +1,59 @@
 #include "ftpmodel.h"
 #include <QtDebug>
 
-QAbstractFileEngine * FtpEngineHandler::create ( const QString & url ) const {
-	//qDebug() << "FEH create";
-	return (!url.startsWith("ftp:")) ? 0 : new FtpEngine(url);
+FtpHash ftpHash;
+
+// ----
+FtpEngineIterator::FtpEngineIterator(const QString & path, QDir::Filters filters, const QStringList &nameFilters)
+	: QAbstractFileEngineIterator(filters, nameFilters),
+	index(0) {
+	// In a real iterator, these entries are fetched from the file system based on the value of path().
+	entries << "entry1" << "entry2" << "entry3";
 }
 
-bool FtpEngineHandler::setHost(const QString &hostname) {
-	//this->connect(&ftp, SIGNAL(done(bool)), this, SLOT(ftpDone(bool)));
-	qDebug() << "FtpEH: Connecting...";
-	if (ftp.Connect(hostname)) {
-		qDebug() << "FtpEH: Connected OK";
-		if (ftp.List()) {
-			UrlInfoHash data = ftp.getData();
-			QHashIterator<QString, QUrlInfo> i(data);
-			while (i.hasNext()) {
-				i.next();
-				qDebug() << i.key();
-			}
-		}
-	} else {
-		qDebug() << "FtpEH: Connection failed";
-		ftp.Disconnect();
-	}
-	return true;
+bool FtpEngineIterator::hasNext() const {
+	return index < entries.size() - 1;
+}
+
+QString FtpEngineIterator::next() {
+	if (!hasNext())
+		return QString();
+	++index;
+	return currentFilePath();
+}
+
+QString FtpEngineIterator::currentFileName() const {
+	return entries.at(index);
 }
 
 // ----
 FtpEngine::FtpEngine(const QString &url) {
-	qDebug() << "Url:" << url;
+	QString host(QUrl(url).host());
+	if (!ftpHash.contains(host)) {
+		ftpHash[host] = new Ftp();
+		if (ftpHash[host]->Connect(host)) {
+			qDebug() << "FtpEH: Connected OK";
+			/*if (ftp.List()) {
+				UrlInfoHash data = ftp.getData();
+				QHashIterator<QString, QUrlInfo> i(data);
+				while (i.hasNext()) {
+					i.next();
+					qDebug() << i.key();
+				}
+			}*/
+		} else {
+			qDebug() << "FtpEH: Connection failed";
+			ftpHash[host]->Disconnect();
+		}
+	}
+	ftp = ftpHash[host];
+	qDebug() << "FE: FE()"; 
 	data = QByteArray();
+	path = url;
 }
 
 bool FtpEngine::open ( QIODevice::OpenMode mode ) {
+	qDebug() << "FE: open()";
 	if(mode & QIODevice::Truncate || mode & QIODevice::WriteOnly) return false;
 	if(mode & QIODevice::Append) return false;
 	// read only so far
@@ -63,15 +84,25 @@ qint64 FtpEngine::size () const {
 }
 
 bool FtpEngine::close () {
-//    qDebug() << Q_FUNC_INFO;
+//	qDebug() << Q_FUNC_INFO;
 	return true;
 }
 bool FtpEngine::isSequential () const {
-//    qDebug() << Q_FUNC_INFO;
+//	qDebug() << Q_FUNC_INFO;
 	return false;
 }
 
 bool FtpEngine::supportsExtension ( Extension extension ) const {
-//    qDebug() << Q_FUNC_INFO << extension;
+//	qDebug() << Q_FUNC_INFO << extension;
 	return QAbstractFileEngine::supportsExtension(extension);
+}
+
+QAbstractFileEngineIterator * FtpEngine::beginEntryList(QDir::Filters filters, const QStringList &filterNames) {
+	return new FtpEngineIterator(path, filters, filterNames);
+}
+
+// ----
+QAbstractFileEngine * FtpEngineHandler::create ( const QString & url ) const {
+	//qDebug() << "FEH create";
+	return url.startsWith("ftp://") ? new FtpEngine(url) : NULL;
 }
