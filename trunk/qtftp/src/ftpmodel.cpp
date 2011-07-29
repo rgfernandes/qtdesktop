@@ -2,6 +2,7 @@
 #include <QtDebug>
 
 QAbstractFileEngine * FtpEngineHandler::create ( const QString & url ) const {
+	//qDebug() << "FEH create";
 	return (!url.startsWith("ftp:")) ? 0 : new FtpEngine(url);
 }
 
@@ -27,6 +28,7 @@ bool FtpEngineHandler::setHost(const QString &hostname) {
 
 // ----
 FtpEngine::FtpEngine(const QString &url) {
+	qDebug() << "Url:" << url;
 	data = QByteArray();
 }
 
