@@ -24,14 +24,16 @@ public:
 	FtpEngine(const QString &);
 	~FtpEngine() { }
 	bool open ( QIODevice::OpenMode mode );
-	qint64 pos () const;
+	/*qint64 pos () const;
 	qint64 read ( char * data, qint64 maxlen );
 	bool seek ( qint64 offset );
-	qint64 size () const;
+	qint64 size () const;*/
 	bool close ();
 	bool isSequential () const;
 	bool supportsExtension ( Extension extension ) const;
+	QStringList entryList ( QDir::Filters filters, const QStringList & filterNames ) const;
 	Iterator * beginEntryList(QDir::Filters, const QStringList &);
+	// virtual FileFlags fileFlags (FileFlags type = FileInfoAll ) const { return ExistsFlag | ReadOwnerPerm | ReadUserPerm | ReadGroupPerm | ReadOtherPerm | DirectoryType; }
 private:
 	Ftp *ftp;
 	QString path;
