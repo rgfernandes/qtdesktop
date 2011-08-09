@@ -1,10 +1,13 @@
 #include "mainwindowimpl.h"
+#include <QFileDialog>
 
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f) {
 	setupUi(this);
 	model = new QFileSystemModel;
-	model->setRootPath(QDir::currentPath());
+	//model->setRootPath(QDir::currentPath());
+	//model->setRootPath("ftp://mirror.yandex.ru/");
+	model->setRootPath(":/");
 	treeView->setModel(model);
 	setSlots();
 }
@@ -34,6 +37,7 @@ void	MainWindowImpl::onActionNew(void) {
 
 void	MainWindowImpl::onActionOpen(void) {
 	//ftp.setHost("mirror.yandex.ru");	// ftp.qt.nokia.com
+	QFileDialog::getExistingDirectory(this, tr("Open Directory"), "ftp://mirror.yandex.ru/fedora/", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 }
 
 void	MainWindowImpl::onActionSaveAs(void) {
@@ -87,10 +91,16 @@ void	MainWindowImpl::onItemSelected(const QModelIndex & selected, const QModelIn
 }
 
 void	MainWindowImpl::onGo() {
+	//model = new QFileSystemModel;
+	//QModelIndex item = model->setRootPath(leAddressBar->text());
+	//treeView->setModel(model);
 	QModelIndex item = model->setRootPath(leAddressBar->text());
 	if (!item.isValid())
 		qDebug() << "Wrong path";
 	else {
+		qDebug() << model->filePath(item);
 		treeView->setCurrentIndex(item);
+		//treeView->setRootIndex(item);
+		//model->reset();
 	}
 }
