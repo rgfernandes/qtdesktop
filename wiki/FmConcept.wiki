@@ -1,0 +1,14 @@
+#summary Concept of FileManager/FileDialog.
+
+= Problem =
+
+  * QFileDialog (QFD) uses hardcoded QFileSystemModel (QFSM) (or native win/mac/kde/gnome FileDialog).
+  * QFSM uses hardcoded local filesystem.
+  * Them we can't use QFD for virtual filesystems (VFS').
+
+= Solution =
+
+  * Add own QAbstractFileHandlers for handling VFSs'.
+  * Use own QFileDialog successor - with own QAbstractItemModel (QAIM) or QFSM successor.
+
+= ??? =
