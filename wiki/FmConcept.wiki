@@ -2,7 +2,7 @@
 
 = Problem =
 
-  * QFileDialog (QFD) uses hardcoded QFileSystemModel (QFSM) (or native win/mac/kde/gnome FileDialog).
+  * QFileDialog (QFD) uses hardcoded QFileSystemModel (QFSM) (or native win/mac/kde/gnome file dialog).
   * QFSM uses hardcoded local filesystem.
   * Then we can't use QFD for virtual filesystems (VFS').
   * And can't use QFSM for file manager - for VFS'.
@@ -18,8 +18,8 @@
 
 == ??? ==
 
-  * Central widget - 1 list/table/icons?/column (switchable).
-  * Left side: tree, favorite, bookmarks - switchable on/off.
+  * Central widget - 1 list/table/icons(?)/column (switchable).
+  * Left side: tree(?), favorite, bookmarks - switchable on/off.
   * Topbar: actions for central widget: view (list/table/icons), address.
   * below - custom topbar (for filemanager, archiver, ftp)
   * drug'n'drop
