@@ -34,8 +34,9 @@
 
 == Questions ==
 
-  * how to switch between models
-  * how to make connection manager
+  * how to switch between models (QFSM/QVFSM) in widget?
+  * how to make connection manager?
+  * whether it's possible to add VFS' using qt plugins - to use VFS's transparently for any qt app?
 
 = File manager =
 
