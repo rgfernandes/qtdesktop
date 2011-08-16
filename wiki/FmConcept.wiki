@@ -44,3 +44,10 @@ is Widget +
   * 1 or 2 panels
   * tabs
   * custom toolbar: current panel on/off
+
+== QtDesktop ==
+
+for every qt-based app:
+
+  * include VFS's includes (with QAFE children) - for using VFS' in QFile, QDir.
+  * replace QFileDialog with own FileDialog.
