@@ -18,9 +18,9 @@
 
 == ??? ==
 
-  * Central widget - 1 or 2 list/table/icons (switchable) panels (2 panels are usual for copy/move operations).
+  * Central widget - 1 list/table/icons (switchable).
   * Left side: tree, favorite, bookmarks - switchable on/off.
-  * Topbar: actions for current panel: panel on/off (1 or 2 panels), view (list/table/icons), address.
+  * Topbar: actions for central widget: view (list/table/icons), address.
   * below - custom topbar (for filemanager, archiver, ftp)
   * drug'n'drop
   * no tabs
@@ -36,4 +36,11 @@
 
   * how to switch between models
   * how to make connection manager
-  * 1 or 1..2 panels?
+
+= File manager =
+
+is Widget +
+
+  * 1 or 2 panels
+  * tabs
+  * custom toolbar: current panel on/off
