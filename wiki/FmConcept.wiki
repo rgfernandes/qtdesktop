@@ -18,7 +18,7 @@
 
 == ??? ==
 
-  * Central widget - 1 list/table/icons (switchable).
+  * Central widget - 1 list/table/icons?/column (switchable).
   * Left side: tree, favorite, bookmarks - switchable on/off.
   * Topbar: actions for central widget: view (list/table/icons), address.
   * below - custom topbar (for filemanager, archiver, ftp)
