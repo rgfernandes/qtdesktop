@@ -36,3 +36,4 @@
 
   * how to switch between models
   * how to make connection manager
+  * 1 or 1..2 panels?
