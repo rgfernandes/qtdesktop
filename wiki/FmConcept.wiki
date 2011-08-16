@@ -4,11 +4,35 @@
 
   * QFileDialog (QFD) uses hardcoded QFileSystemModel (QFSM) (or native win/mac/kde/gnome FileDialog).
   * QFSM uses hardcoded local filesystem.
-  * Them we can't use QFD for virtual filesystems (VFS').
+  * Then we can't use QFD for virtual filesystems (VFS').
+  * And can't use QFSM for file manager - for VFS'.
 
 = Solution =
 
-  * Add own QAbstractFileHandlers for handling VFSs'.
-  * Use own QFileDialog successor - with own QAbstractItemModel (QAIM) or QFSM successor.
+  * Add own QAbstractFileHandlers (QAFH) for handling VFSs'.
+  * Use own QFD successor
+  * with own QAbstractItemModel (QAIM) or QFSM successor - QVFSModel.
+  * as widget.
+  * This widget is used by filemanager, archiver, ftp-client etc
+  * but with addition respective menu
 
-= ??? =
+== ??? ==
+
+  * Central widget - 1 or 2 list/table/icons (switchable) panels (2 panels are usual for copy/move operations).
+  * Left side: tree, favorite, bookmarks - switchable on/off.
+  * Topbar: actions for current panel: panel on/off (1 or 2 panels), view (list/table/icons), address.
+  * below - custom topbar (for filemanager, archiver, ftp)
+  * drug'n'drop
+  * no tabs
+
+== Inside ==
+
+  * 1 model per panel
+  * switch between QFSM/QVFSM.
+  * fs watcher/locker.
+  * connection manager (e.g. no more then 1 connection per 1 ftp host).
+
+== Questions ==
+
+  * how to switch between models
+  * how to make connection manager
