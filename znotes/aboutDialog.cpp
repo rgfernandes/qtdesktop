@@ -14,7 +14,7 @@ aboutDialog::aboutDialog(QWidget *parent) :
 	ui->lbAbout->setText(QString("zNotes\n%1\n%2 %3\n%4\n%5\n\n%6")
 		.arg(tr("Simple Qt-based notes aplication"))
 		.arg(tr("version")).arg(VERSION)
-		.arg(tr("Copyright (c) 2010"))
+		.arg(tr("Copyright (c) 2011"))
 		.arg(tr("by Peter Savichev (proton)"))
 		.arg(tr("Distributed under the GPL license version 3 or later")));
 	//Adding authors information
@@ -28,6 +28,10 @@ aboutDialog::aboutDialog(QWidget *parent) :
 		.arg("Pavel Fric (fri)", "pavelfric@seznam.cz", tr("Czech translation")));
 	strAuthors.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
 		.arg("Peter Savichev (proton)", "psavichev@gmail.com", tr("Russian translation")));
+	strAuthors.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
+		.arg("Slavko Fedorik", "slavino@slavino.sk", tr("Slovak translation")));
+	strAuthors.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
+		.arg("Alieola", "aliaeolova@gmail.com", tr("Spanish translation")));
 	strAuthors.append(QString("<p><b>%1</b> - <a href='mailto:%2'>%2</a><br/>%3</p>")
 		.arg("Vadim Nekhai (onix)", "onix@onix.name", tr("Ukrainian translation")));
 	strAuthors.append(QString("<p><b>%1</b></p>").arg(tr("Icons:")));

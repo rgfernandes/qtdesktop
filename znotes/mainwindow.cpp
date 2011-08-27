@@ -4,6 +4,7 @@
 #include "configdialog.h"
 #include "aboutDialog.h"
 #include "note_html.h"
+#include "notecreatewidget.h"
 
 #include <QMessageBox>
 #include <QClipboard>
@@ -15,27 +16,44 @@
 /*
 	Tray icon on windows is very small
 */
-#ifdef unix
-#define TRAY_ICON_FILE_NAME ":/res/znotes32.png"
+#ifdef Q_WS_WIN
+	#define TRAY_ICON_FILE_NAME ":/res/znotes.png"
+#elif Q_WS_MAC
+	#define TRAY_ICON_FILE_NAME ":/res/znotes32_bw.png"
 #else
-#define TRAY_ICON_FILE_NAME ":/res/znotes.png"
+	#define TRAY_ICON_FILE_NAME ":/res/znotes32.png"
 #endif
 
 Settings settings;
 
+void MainWindow::NewNote()
+{
+	if(!note_create_widget)
+	{
+		note_create_widget = new NoteCreateWidget(this, notes);
+		connect(note_create_widget, SIGNAL(closed(bool)), notes->getWidget(), SLOT(setShown(bool)));
+		connect(note_create_widget, SIGNAL(closed(bool)), ui->mainToolBar, SLOT(setEnabled(bool)));
+		connect(note_create_widget, SIGNAL(closed(bool)), &cmenu, SLOT(setEnabled(bool)));
+		ui->layout->addWidget(note_create_widget);
+	}
+	notes->getWidget()->hide();
+	ui->mainToolBar->setDisabled(true);
+	cmenu.setDisabled(true);
+	note_create_widget->show();
+}
 void MainWindow::NewNotePlain()
 {
-	notes->create("%1");
+	notes->create(Note::type_text);
 }
 
 void MainWindow::NewNoteHTML()
 {
-	notes->create("%1.htm");
+	notes->create(Note::type_html);
 }
 
 void MainWindow::NewNoteTODO()
 {
-	notes->create("%1.ztodo");
+	notes->create(Note::type_todo);
 }
 
 void MainWindow::PreviousNote()
@@ -169,6 +187,8 @@ void MainWindow::cmd_changed()
 		cmd_mapper.setMapping(cmd_menu.actions().last(), sm.getFile(i));
 		connect(&cmd_mapper, SIGNAL(mapped(const QString &)), this, SLOT(cmdExec(const QString &)));
 	}
+	cmd_menu.addSeparator();
+	cmd_menu.addAction(tr("Edit command list"), this, SLOT(edit_command_list()));
 }
 
 void MainWindow::actions_changed()
@@ -180,6 +200,13 @@ void MainWindow::actions_changed()
 		if(items[i]==itemSeparator) ui->mainToolBar->addSeparator();
 		else ui->mainToolBar->addAction(actions[items[i]]);
 	}
+}
+
+void MainWindow::edit_command_list()
+{
+	configDialog dlg;
+	dlg.changeTabToCommands();
+	dlg.exec();
 }
 
 void MainWindow::formatChanged(const QFont& font)
@@ -259,7 +286,7 @@ inline QAction* GenerateAction(int item_id /*, bool checkable = false*/)
 }
 
 MainWindow::MainWindow(QWidget *parent)
-	: QMainWindow(parent), ui(new Ui::MainWindow)
+	: QMainWindow(parent), ui(new Ui::MainWindow), note_create_widget(0)
 {
 	ui->setupUi(this);
 	ui->wSearch->hide();
@@ -277,7 +304,8 @@ MainWindow::MainWindow(QWidget *parent)
 	actShow =	new QAction(tr("Show"),	parent);
 	actHide =	new QAction(tr("Hide"),	parent);
 	//Connecting actions with slots
-	connect(actions[itemAdd],		SIGNAL(triggered()), this, SLOT(NewNotePlain()));
+	connect(actions[itemAdd],		SIGNAL(triggered()), this, SLOT(NewNote()));
+	connect(actions[itemAddText],		SIGNAL(triggered()), this, SLOT(NewNotePlain()));
 	connect(actions[itemAddHtml],	SIGNAL(triggered()), this, SLOT(NewNoteHTML()));
 	connect(actions[itemAddTodo],	SIGNAL(triggered()), this, SLOT(NewNoteTODO()));
 	connect(actions[itemRemove],	SIGNAL(triggered()), notes, SLOT(removeCurrentNote()));
@@ -338,7 +366,7 @@ MainWindow::MainWindow(QWidget *parent)
 	scFormatStrikeout = new QShortcut(Qt::CTRL + Qt::Key_S,	this);
 	scFormatUnderline = new QShortcut(Qt::CTRL + Qt::Key_U,	this);
 	//Connecting shortcuts with slots
-	connect(scAdd,		SIGNAL(activated()), this, SLOT(NewNotePlain()));
+	connect(scAdd,		SIGNAL(activated()), this, SLOT(NewNote()));
 	connect(scRemove,	SIGNAL(activated()), notes, SLOT(removeCurrentNote()));
 	connect(scRename,	SIGNAL(activated()), notes, SLOT(renameCurrentNote()));
 	connect(scPrev,		SIGNAL(activated()), this, SLOT(PreviousNote()));
