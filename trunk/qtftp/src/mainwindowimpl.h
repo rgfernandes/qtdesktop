@@ -32,7 +32,7 @@ private slots:
 private:
 	void		setSlots(void);
 	FtpEngineHandler ftp;
-	QFileSystemModel *model;
+	QDirModel *model;
 };
 
 #endif
