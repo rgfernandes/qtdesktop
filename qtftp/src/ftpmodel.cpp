@@ -65,13 +65,14 @@ bool FtpEngine::open ( QIODevice::OpenMode mode ) {
 	m_pos = 0;
 	return true;
 }
-/*
+
 qint64 FtpEngine::pos () const {
+	qDebug() << Q_FUNC_INFO;
 	return m_pos;
 }
 
 qint64 FtpEngine::read ( char * ddata, qint64 maxlen ) {
-	//qDebug() << Q_FUNC_INFO << m_pos << maxlen;
+	qDebug() << Q_FUNC_INFO;
 	maxlen = qBound(qint64(0), data.size()-m_pos, maxlen);
 	memcpy(ddata, data.constData()+m_pos, maxlen);
 	//qDebug() << "READ:" << maxlen;
@@ -80,18 +81,19 @@ qint64 FtpEngine::read ( char * ddata, qint64 maxlen ) {
 }
 
 bool FtpEngine::seek ( qint64 offset ) {
-	//qDebug() << Q_FUNC_INFO << offset;
+	qDebug() << Q_FUNC_INFO;
 	if(offset<0 || offset>=data.size()) return false;
 	m_pos = offset;
 	return true;
 }
 
 qint64 FtpEngine::size () const {
+	qDebug() << Q_FUNC_INFO;
 	return data.size();
 }
-*/
+
 bool FtpEngine::close () {
-//	qDebug() << Q_FUNC_INFO;
+	qDebug() << Q_FUNC_INFO;
 	return true;
 }
 bool FtpEngine::isSequential () const {
