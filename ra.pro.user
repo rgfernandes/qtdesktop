@@ -1,0 +1,354 @@
+<!DOCTYPE QtCreatorProject>
+<qtcreator>
+ <data>
+  <variable>RunConfiguration0-Arguments</variable>
+  <valuelist type="QVariantList" />
+ </data>
+ <data>
+  <variable>RunConfiguration0-Executable</variable>
+  <value type="QString" ></value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-RunConfiguration.name</variable>
+  <value type="QString" >Custom Executable</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-UseTerminal</variable>
+  <value type="bool" >false</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-UserName</variable>
+  <value type="QString" ></value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-UserSetName</variable>
+  <value type="bool" >false</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-WorkingDirectory</variable>
+  <value type="QString" >$BUILDDIR</value>
+ </data>
+ <data>
+  <variable>RunConfiguration0-type</variable>
+  <value type="QString" >ProjectExplorer.CustomExecutableRunConfiguration</value>
+ </data>
+ <data>
+  <variable>activeRunConfiguration</variable>
+  <value type="int" >0</value>
+ </data>
+ <data>
+  <variable>activebuildconfiguration</variable>
+  <value type="QString" >Release</value>
+ </data>
+ <data>
+  <variable>buildConfiguration-Debug</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+   <value key="QtVersionId" type="int" >0</value>
+   <value key="addQDumper" type="" ></value>
+   <value key="buildDirectory" type="QString" >/home/pavel/ra-debug</value>
+   <value key="useShadowBuild" type="bool" >true</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildConfiguration-Release</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
+   <value key="QtVersionId" type="int" >0</value>
+   <value key="addQDumper" type="" ></value>
+   <value key="buildDirectory" type="QString" >/home/pavel/ra-release</value>
+   <value key="useShadowBuild" type="bool" >true</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-buildstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+   <value key="buildConfiguration" type="int" >2</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Debug-cleanstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Debug</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Release-buildstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >BASH_ENV=/home/pavel/.bashrc</value>
+    <value type="QString" >BROWSER=/usr/bin/kfmclient openProfile webbrowsing</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/var/run/dbus/users/dbus-uivJn8V2Xr,guid=759cfb4da178086bcc809c534a937a89</value>
+    <value type="QString" >DBUS_SESSION_BUS_PID=6414</value>
+    <value type="QString" >DESKTOP_SESSION=default</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >DM_CONTROL=/var/run/xdmctl</value>
+    <value type="QString" >FTP_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >GDK_PIXBUF_MODULEDIR=/usr/lib/gtk-2.0/2.10.0/loaders</value>
+    <value type="QString" >GS_LIB=/home/pavel/.fonts</value>
+    <value type="QString" >GTK2_RC_FILES=/usr/share/themes/QtCurve/gtk-2.0/gtkrc:/etc/gtk-2.0/gtkrc:/home/pavel/.gtkrc-2.0:/home/pavel/.kde/share/config/gtkrc-2.0</value>
+    <value type="QString" >GTK_PATH=/usr/lib/gtk-2.0/2.10.0</value>
+    <value type="QString" >GTK_RC_FILES=/usr/share/themes/Industrial/gtk/gtkrc:/etc/gtk/gtkrc:/home/pavel/.gtkrc:/home/pavel/.kde/share/config/gtkrc</value>
+    <value type="QString" >G_BROKEN_FILENAMES=1</value>
+    <value type="QString" >G_FILENAME_ENCODING=utf8</value>
+    <value type="QString" >HELP_BROWSER=/usr/bin/xbrowser</value>
+    <value type="QString" >HISTFILESIZE=9999</value>
+    <value type="QString" >HISTSIZE=999</value>
+    <value type="QString" >HOME=/home/pavel</value>
+    <value type="QString" >HOSTNAME=pm-alt.workgroup.coke.kmr.kuzbass.net</value>
+    <value type="QString" >HTTPS_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >HTTP_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >KDEDIR=/usr</value>
+    <value type="QString" >KDEROOTHOME=/root</value>
+    <value type="QString" >KDE_FULL_SESSION=true</value>
+    <value type="QString" >KDE_MULTIHEAD=false</value>
+    <value type="QString" >KDE_SESSION_UID=500</value>
+    <value type="QString" >LANG=ru_RU.UTF-8</value>
+    <value type="QString" >LD_LIBRARY_PATH=/home/pavel/qtsdk-2009.02/lib/qtcreator:</value>
+    <value type="QString" >LESS=-MM</value>
+    <value type="QString" >LESSKEY=/etc/.less</value>
+    <value type="QString" >LESSOPEN=|/usr/share/less/lesspipe.sh %s</value>
+    <value type="QString" >LOGNAME=pavel</value>
+    <value type="QString" >LS_COLORS=</value>
+    <value type="QString" >MAIL=/var/mail/pavel</value>
+    <value type="QString" >MAILER=/bin/mail</value>
+    <value type="QString" >PATH=/home/pavel/qtsdk-2009.02/qt/bin:/home/pavel/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin:/usr/games:/usr/X11R6/bin</value>
+    <value type="QString" >PWD=/home/pavel</value>
+    <value type="QString" >QTDIR=/home/pavel/qtsdk-2009.02/qt</value>
+    <value type="QString" >QTINC=/usr/lib/qt3/include/</value>
+    <value type="QString" >QTLIB=/usr/lib/qt3/lib/</value>
+    <value type="QString" >SESSION_MANAGER=local/pm-alt.workgroup.coke.kmr.kuzbass.net:/tmp/.ICE-unix/6523</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SHLVL=1</value>
+    <value type="QString" >SSH_AGENT_PID=6417</value>
+    <value type="QString" >SSH_AUTH_SOCK=/home/pavel/.ssh/agent</value>
+    <value type="QString" >TMPDIR=/home/pavel/tmp</value>
+    <value type="QString" >USER=pavel</value>
+    <value type="QString" >XAUTHORITY=/home/pavel/.Xauthority</value>
+    <value type="QString" >XCURSOR_THEME=jimmac</value>
+    <value type="QString" >XDG_CONFIG_HOME=/home/pavel/.config</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share:/var/cache</value>
+    <value type="QString" >XDG_DATA_HOME=/home/pavel/.local/share</value>
+    <value type="QString" >XDG_SESSION_COOKIE=45c5fd6264707b341fe2506749dade2a-1251179144.871837-2046575354</value>
+    <value type="QString" >XDM_MANAGED=/var/run/xdmctl/xdmctl-:0,maysd,sched,rsvd,method=classic</value>
+    <value type="QString" >ftp_proxy=http://10.0.0.251:3128/</value>
+    <value type="QString" >http_proxy=http://10.0.0.251:3128/</value>
+    <value type="QString" >https_proxy=http://10.0.0.251:3128/</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >/mnt/sda2/Qt/work/ra/Source/ra.pro</value>
+    <value type="QString" >-spec</value>
+    <value type="QString" >linux-g++</value>
+    <value type="QString" >-r</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/home/pavel/qtsdk-2009.02/qt/bin/qmake</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/pavel/ra-release</value>
+   <value key="buildConfiguration" type="int" >0</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Release-buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >BASH_ENV=/home/pavel/.bashrc</value>
+    <value type="QString" >BROWSER=/usr/bin/kfmclient openProfile webbrowsing</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/var/run/dbus/users/dbus-uivJn8V2Xr,guid=759cfb4da178086bcc809c534a937a89</value>
+    <value type="QString" >DBUS_SESSION_BUS_PID=6414</value>
+    <value type="QString" >DESKTOP_SESSION=default</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >DM_CONTROL=/var/run/xdmctl</value>
+    <value type="QString" >FTP_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >GDK_PIXBUF_MODULEDIR=/usr/lib/gtk-2.0/2.10.0/loaders</value>
+    <value type="QString" >GS_LIB=/home/pavel/.fonts</value>
+    <value type="QString" >GTK2_RC_FILES=/usr/share/themes/QtCurve/gtk-2.0/gtkrc:/etc/gtk-2.0/gtkrc:/home/pavel/.gtkrc-2.0:/home/pavel/.kde/share/config/gtkrc-2.0</value>
+    <value type="QString" >GTK_PATH=/usr/lib/gtk-2.0/2.10.0</value>
+    <value type="QString" >GTK_RC_FILES=/usr/share/themes/Industrial/gtk/gtkrc:/etc/gtk/gtkrc:/home/pavel/.gtkrc:/home/pavel/.kde/share/config/gtkrc</value>
+    <value type="QString" >G_BROKEN_FILENAMES=1</value>
+    <value type="QString" >G_FILENAME_ENCODING=utf8</value>
+    <value type="QString" >HELP_BROWSER=/usr/bin/xbrowser</value>
+    <value type="QString" >HISTFILESIZE=9999</value>
+    <value type="QString" >HISTSIZE=999</value>
+    <value type="QString" >HOME=/home/pavel</value>
+    <value type="QString" >HOSTNAME=pm-alt.workgroup.coke.kmr.kuzbass.net</value>
+    <value type="QString" >HTTPS_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >HTTP_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >KDEDIR=/usr</value>
+    <value type="QString" >KDEROOTHOME=/root</value>
+    <value type="QString" >KDE_FULL_SESSION=true</value>
+    <value type="QString" >KDE_MULTIHEAD=false</value>
+    <value type="QString" >KDE_SESSION_UID=500</value>
+    <value type="QString" >LANG=ru_RU.UTF-8</value>
+    <value type="QString" >LD_LIBRARY_PATH=/home/pavel/qtsdk-2009.02/lib/qtcreator:</value>
+    <value type="QString" >LESS=-MM</value>
+    <value type="QString" >LESSKEY=/etc/.less</value>
+    <value type="QString" >LESSOPEN=|/usr/share/less/lesspipe.sh %s</value>
+    <value type="QString" >LOGNAME=pavel</value>
+    <value type="QString" >LS_COLORS=</value>
+    <value type="QString" >MAIL=/var/mail/pavel</value>
+    <value type="QString" >MAILER=/bin/mail</value>
+    <value type="QString" >PATH=/home/pavel/qtsdk-2009.02/qt/bin:/home/pavel/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin:/usr/games:/usr/X11R6/bin</value>
+    <value type="QString" >PWD=/home/pavel</value>
+    <value type="QString" >QTDIR=/home/pavel/qtsdk-2009.02/qt</value>
+    <value type="QString" >QTINC=/usr/lib/qt3/include/</value>
+    <value type="QString" >QTLIB=/usr/lib/qt3/lib/</value>
+    <value type="QString" >SESSION_MANAGER=local/pm-alt.workgroup.coke.kmr.kuzbass.net:/tmp/.ICE-unix/6523</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SHLVL=1</value>
+    <value type="QString" >SSH_AGENT_PID=6417</value>
+    <value type="QString" >SSH_AUTH_SOCK=/home/pavel/.ssh/agent</value>
+    <value type="QString" >TMPDIR=/home/pavel/tmp</value>
+    <value type="QString" >USER=pavel</value>
+    <value type="QString" >XAUTHORITY=/home/pavel/.Xauthority</value>
+    <value type="QString" >XCURSOR_THEME=jimmac</value>
+    <value type="QString" >XDG_CONFIG_HOME=/home/pavel/.config</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share:/var/cache</value>
+    <value type="QString" >XDG_DATA_HOME=/home/pavel/.local/share</value>
+    <value type="QString" >XDG_SESSION_COOKIE=45c5fd6264707b341fe2506749dade2a-1251179144.871837-2046575354</value>
+    <value type="QString" >XDM_MANAGED=/var/run/xdmctl/xdmctl-:0,maysd,sched,rsvd,method=classic</value>
+    <value type="QString" >ftp_proxy=http://10.0.0.251:3128/</value>
+    <value type="QString" >http_proxy=http://10.0.0.251:3128/</value>
+    <value type="QString" >https_proxy=http://10.0.0.251:3128/</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >-w</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/usr/bin/make</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/pavel/ra-release</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfiguration-Release-cleanstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" >Release</value>
+   <valuelist key="abstractProcess.Environment" type="QVariantList" >
+    <value type="QString" >BASH_ENV=/home/pavel/.bashrc</value>
+    <value type="QString" >BROWSER=/usr/bin/kfmclient openProfile webbrowsing</value>
+    <value type="QString" >DBUS_SESSION_BUS_ADDRESS=unix:abstract=/var/run/dbus/users/dbus-wvDRKsfiBe,guid=a92a59883fd0b71f4c91f7ff49f7a04d</value>
+    <value type="QString" >DBUS_SESSION_BUS_PID=6458</value>
+    <value type="QString" >DESKTOP_SESSION=default</value>
+    <value type="QString" >DESKTOP_STARTUP_ID=</value>
+    <value type="QString" >DISPLAY=:0.0</value>
+    <value type="QString" >DM_CONTROL=/var/run/xdmctl</value>
+    <value type="QString" >FTP_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >GDK_PIXBUF_MODULEDIR=/usr/lib/gtk-2.0/2.10.0/loaders</value>
+    <value type="QString" >GS_LIB=/home/pavel/.fonts</value>
+    <value type="QString" >GTK2_RC_FILES=/usr/share/themes/QtCurve/gtk-2.0/gtkrc:/etc/gtk-2.0/gtkrc:/home/pavel/.gtkrc-2.0:/home/pavel/.kde/share/config/gtkrc-2.0</value>
+    <value type="QString" >GTK_PATH=/usr/lib/gtk-2.0/2.10.0</value>
+    <value type="QString" >GTK_RC_FILES=/usr/share/themes/Industrial/gtk/gtkrc:/etc/gtk/gtkrc:/home/pavel/.gtkrc:/home/pavel/.kde/share/config/gtkrc</value>
+    <value type="QString" >G_BROKEN_FILENAMES=1</value>
+    <value type="QString" >G_FILENAME_ENCODING=utf8</value>
+    <value type="QString" >HELP_BROWSER=/usr/bin/xbrowser</value>
+    <value type="QString" >HISTFILESIZE=9999</value>
+    <value type="QString" >HISTSIZE=999</value>
+    <value type="QString" >HOME=/home/pavel</value>
+    <value type="QString" >HOSTNAME=pm-alt.workgroup.coke.kmr.kuzbass.net</value>
+    <value type="QString" >HTTPS_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >HTTP_PROXY=http://10.0.0.251:3128/</value>
+    <value type="QString" >KDEDIR=/usr</value>
+    <value type="QString" >KDEROOTHOME=/root</value>
+    <value type="QString" >KDE_FULL_SESSION=true</value>
+    <value type="QString" >KDE_MULTIHEAD=false</value>
+    <value type="QString" >KDE_SESSION_UID=500</value>
+    <value type="QString" >LANG=ru_RU.UTF-8</value>
+    <value type="QString" >LD_LIBRARY_PATH=/home/pavel/qtsdk-2009.02/lib/qtcreator:</value>
+    <value type="QString" >LESS=-MM</value>
+    <value type="QString" >LESSKEY=/etc/.less</value>
+    <value type="QString" >LESSOPEN=|/usr/share/less/lesspipe.sh %s</value>
+    <value type="QString" >LOGNAME=pavel</value>
+    <value type="QString" >LS_COLORS=</value>
+    <value type="QString" >MAIL=/var/mail/pavel</value>
+    <value type="QString" >MAILER=/bin/mail</value>
+    <value type="QString" >PATH=/home/pavel/qtsdk-2009.02/qt/bin:/home/pavel/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin:/usr/games:/usr/X11R6/bin</value>
+    <value type="QString" >PWD=/home/pavel</value>
+    <value type="QString" >QTDIR=/home/pavel/qtsdk-2009.02/qt</value>
+    <value type="QString" >QTINC=/usr/lib/qt3/include/</value>
+    <value type="QString" >QTLIB=/usr/lib/qt3/lib/</value>
+    <value type="QString" >SESSION_MANAGER=local/pm-alt.workgroup.coke.kmr.kuzbass.net:/tmp/.ICE-unix/6567</value>
+    <value type="QString" >SHELL=/bin/bash</value>
+    <value type="QString" >SHLVL=1</value>
+    <value type="QString" >SSH_AGENT_PID=6461</value>
+    <value type="QString" >SSH_AUTH_SOCK=/home/pavel/.ssh/agent</value>
+    <value type="QString" >TMPDIR=/home/pavel/tmp</value>
+    <value type="QString" >USER=pavel</value>
+    <value type="QString" >XAUTHORITY=/home/pavel/.Xauthority</value>
+    <value type="QString" >XCURSOR_THEME=jimmac</value>
+    <value type="QString" >XDG_CONFIG_HOME=/home/pavel/.config</value>
+    <value type="QString" >XDG_DATA_DIRS=/usr/share:/var/cache</value>
+    <value type="QString" >XDG_DATA_HOME=/home/pavel/.local/share</value>
+    <value type="QString" >XDG_SESSION_COOKIE=45c5fd6264707b341fe2506749dade2a-1240965197.67861-116036631</value>
+    <value type="QString" >XDM_MANAGED=/var/run/xdmctl/xdmctl-:0,maysd,sched,rsvd,method=classic</value>
+    <value type="QString" >ftp_proxy=http://10.0.0.251:3128/</value>
+    <value type="QString" >http_proxy=http://10.0.0.251:3128/</value>
+    <value type="QString" >https_proxy=http://10.0.0.251:3128/</value>
+   </valuelist>
+   <valuelist key="abstractProcess.arguments" type="QVariantList" >
+    <value type="QString" >clean</value>
+    <value type="QString" >-w</value>
+   </valuelist>
+   <value key="abstractProcess.command" type="QString" >/usr/bin/make</value>
+   <value key="abstractProcess.enabled" type="bool" >true</value>
+   <value key="abstractProcess.workingDirectory" type="QString" >/home/pavel/ra-release</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildconfigurations</variable>
+  <valuelist type="QVariantList" >
+   <value type="QString" >Debug</value>
+   <value type="QString" >Release</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>buildstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+   <value key="mkspec" type="QString" ></value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildstep1</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>buildsteps</variable>
+  <valuelist type="QVariantList" >
+   <value type="QString" >trolltech.qt4projectmanager.qmake</value>
+   <value type="QString" >trolltech.qt4projectmanager.make</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>cleanstep0</variable>
+  <valuemap type="QVariantMap" >
+   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString" ></value>
+   <value key="clean" type="bool" >true</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>cleansteps</variable>
+  <valuelist type="QVariantList" >
+   <value type="QString" >trolltech.qt4projectmanager.make</value>
+  </valuelist>
+ </data>
+ <data>
+  <variable>defaultFileEncoding</variable>
+  <value type="QByteArray" >System</value>
+ </data>
+ <data>
+  <variable>project</variable>
+  <valuemap type="QVariantMap" />
+ </data>
+</qtcreator>
