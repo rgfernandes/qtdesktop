@@ -4,7 +4,18 @@
 #include <QtCore>
 #include <QtGui>
 #include "ui_mainwindow.h"
-#include "ftpmodel.h"
+#include "ftphandler.h"
+
+class QFSModel : public QFileSystemModel {
+	/* To change:
+	 * static QString qt_GetLongPathName(const QString &strShortPath) (WIN32)
+	 * QFileSystemModelPrivate::QFileSystemNode *QFileSystemModelPrivate::node(const QString &path, bool fetch) const
+	 * QString QFileSystemModelPrivate::filePath(const QModelIndex &index) const
+	 * QModelIndex QFileSystemModel::setRootPath(const QString &newPath)
+	 * QFileSystemModelPrivate::QFileSystemNode* QFileSystemModelPrivate::addNode(QFileSystemNode *parentNode, const QString &fileName, const QFileInfo& info) (WIN*)
+	 * void QFileSystemModelPrivate::init() (due FSWatcher)
+	 */
+};
 
 class MainWindowImpl : public QMainWindow, public Ui::MainWindow
 {
