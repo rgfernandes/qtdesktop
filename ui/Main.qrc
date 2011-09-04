@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/actions" >
+        <file>icons/actions/button_cancel.png</file>
+        <file>icons/actions/button_ok.png</file>
+        <file>icons/actions/exit.png</file>
+        <file>icons/actions/led-green.png</file>
+        <file>icons/actions/led-red.png</file>
+    </qresource>
+    <qresource prefix="/apps" >
+        <file>icons/apps/Quamachi.png</file>
+        <file>icons/apps/ckhome2.png</file>
+        <file>icons/apps/egw.png</file>
+        <file>icons/apps/gnu-head-sm.jpg</file>
+        <file>icons/apps/icon-clipboard.png</file>
+        <file>icons/apps/infolog.png</file>
+        <file>icons/apps/package_settings.png</file>
+        <file>icons/apps/pyqt-logo.png</file>
+        <file>icons/apps/python-logo.png</file>
+        <file>icons/apps/qt4-logo.png</file>
+    </qresource>
+    <qresource prefix="/mimetypes" >
+        <file>icons/mimetypes/txt.png</file>
+    </qresource>
+</RCC>
