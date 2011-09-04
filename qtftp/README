@@ -1,9 +1,0 @@
-Protocols:
-
-file
-fish/sshfs/sftp
-ftp
-gzip
-media
-zip
-smb

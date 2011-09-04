@@ -1,9 +1,0 @@
-[Desktop Entry]
-ServiceTypes=inode/all
-Actions=QXattr
-
-[Desktop Action QXattr]
-Name=Edit extended attributes
-Name[ru]=Редактировать расширенные атрибуты
-Icon=x
-Exec=~/bin/qxattr.py %u
