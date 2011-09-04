@@ -1,0 +1,3 @@
+# -*- coding: utf-8 -*-
+* partial loading (max-results=0, startIndex, totalResults)
+* postloading of entries
