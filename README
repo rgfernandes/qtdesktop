@@ -1,0 +1,32 @@
+SMB:	fuse-smb	FUSE-Filesystem to fast and easy access remote resources via SMB
+SSH:	fuse-sshfs	FUSE-Filesystem to access remote filesystems via SSH
+FTP:	curlftpfs	CurlFtpFS is a filesystem for accessing FTP hosts based on FUSE and libcurl
+
+SMB:
+	fusesmb-bin mountpoint [options] + ~./smb/fusesmb.conf
+SSH:
+	sshfs [user@]host:[dir] mountpoint [options]
+	e.g. sshfs user00@master:/mnt/shares ~/mnt/ssh/user00@master (mountpoint must exists)
+FTP:
+	curlftpfs [options] host path
+	e.g. curlftpfs master ~/mnt/ftp/master
+Umount:
+	fusermount -u mountpoint
+
+fuse	File System in Userspace (FUSE) utilities
+
+afuse	An automounter implemented with FUSE
+fuse-zip	Fuse-zip is a fs to navigate, extract, create and modify ZIP
+fusecompress	FUSE based compressed filesystem implementation
+fuseiso		FUSE support for ISO filesystem images
+zfs-fuse	ZFS ported to Linux FUSE
+fuse-gmailfs	Gmail Filesystem
+====
+Implementation:
+* current mounpoints (active/no)
+* mount/umount
+* tray
+* Mount options (misc for each mountpoint)
+* Add/Del/Edit mountpoints
+====
+ls: mount -l -t fuse.sshfs(ssh)|fuse(ftp)|fuse.fusesmb-bin(smb)
