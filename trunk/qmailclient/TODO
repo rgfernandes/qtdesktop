@@ -2,10 +2,19 @@
 * multibox
 * tree folder
 = Next =
+== DB ==
+* MailBox:
+* Folder:
+** MailBox
+** Parent
+** parms[] ?
+* message:
+** ...
+== Sync ==
 * update folders:
 ** 
 * update headers:
-** get all
+** get all (IDs)
 ** calc deleted
 ** calc new
 ** get new (headers)
