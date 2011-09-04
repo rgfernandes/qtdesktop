@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWin</class>
+ <widget class="QMainWindow" name="MainWin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QMailClient</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/img/images/kontact_mail.png</normaloff>:/img/images/kontact_mail.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeView" name="dirTree">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+      <widget class="QSplitter" name="splitter">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QTableWidget" name="lstMails">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>2</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="showGrid">
+         <bool>false</bool>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="cornerButtonEnabled">
+         <bool>false</bool>
+        </property>
+        <column>
+         <property name="text">
+          <string>Subject</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>From</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Size</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QFrame" name="frame">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>2</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <layout class="QVBoxLayout">
+            <item>
+             <widget class="QLabel" name="lblFrom">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>18</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>From:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblTo">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>To:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblCc">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Cc:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblDate">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Date:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lblSubject">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Subject:</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextBrowser" name="mailBrowser">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>4</horstretch>
+             <verstretch>2</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTreeWidget" name="mailParts">
+        <property name="animated">
+         <bool>true</bool>
+        </property>
+        <property name="allColumnsShowFocus">
+         <bool>true</bool>
+        </property>
+        <column>
+         <property name="text">
+          <string>Description</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Type</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Encoding</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Size</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionNewMail"/>
+    <addaction name="actionDownloadMails"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionEditConfiguration"/>
+    <addaction name="actionEditSettings"/>
+   </widget>
+   <widget class="QMenu" name="menu_Service">
+    <property name="title">
+     <string>&amp;Account</string>
+    </property>
+    <addaction name="actionAccountRefresh"/>
+    <addaction name="actionAccountRefreshAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionAccountAdd"/>
+    <addaction name="actionAccountEdit"/>
+    <addaction name="actionAccountDel"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Edit"/>
+   <addaction name="menu_Service"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNewMail"/>
+   <addaction name="actionExit"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar_2">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionDownloadMails"/>
+   <addaction name="separator"/>
+   <addaction name="actionReplyMail"/>
+   <addaction name="actionReplyAll"/>
+   <addaction name="actionForwardMail"/>
+   <addaction name="separator"/>
+   <addaction name="actionEditMail"/>
+   <addaction name="actionDeleteMail"/>
+  </widget>
+  <action name="actionEditSettings">
+   <property name="text">
+    <string>&amp;Settings...</string>
+   </property>
+  </action>
+  <action name="actionEditConfiguration">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/network_connected.png</normaloff>:/img/images/network_connected.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Configuration...</string>
+   </property>
+   <property name="toolTip">
+    <string>Configuration</string>
+   </property>
+  </action>
+  <action name="actionNewMail">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/mail_new.png</normaloff>:/img/images/mail_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New Mail</string>
+   </property>
+  </action>
+  <action name="actionDownloadMails">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/mail_get.png</normaloff>:/img/images/mail_get.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Download mails</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/exit.png</normaloff>:/img/images/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="actionReplyMail">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/mail_reply.png</normaloff>:/img/images/mail_reply.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reply to Mail</string>
+   </property>
+  </action>
+  <action name="actionForwardMail">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/mail_forward.png</normaloff>:/img/images/mail_forward.png</iconset>
+   </property>
+   <property name="text">
+    <string>Forward</string>
+   </property>
+  </action>
+  <action name="actionReplyAll">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/mail_replyall.png</normaloff>:/img/images/mail_replyall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reply All</string>
+   </property>
+  </action>
+  <action name="actionDeleteMail">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/trashcan_empty.png</normaloff>:/img/images/trashcan_empty.png</iconset>
+   </property>
+   <property name="text">
+    <string>DeleteMail</string>
+   </property>
+  </action>
+  <action name="actionEditMail">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/document.png</normaloff>:/img/images/document.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit Mail</string>
+   </property>
+  </action>
+  <action name="actionAccountEdit">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/img/images/configure.png</normaloff>:/img/images/configure.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Edit</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit current mailbox</string>
+   </property>
+  </action>
+  <action name="actionAccountAdd">
+   <property name="text">
+    <string>&amp;Add</string>
+   </property>
+   <property name="toolTip">
+    <string>Add new mailbox</string>
+   </property>
+  </action>
+  <action name="actionAccountDel">
+   <property name="text">
+    <string>&amp;Del</string>
+   </property>
+   <property name="toolTip">
+    <string>Delele current mailbox</string>
+   </property>
+  </action>
+  <action name="actionAccountRefresh">
+   <property name="text">
+    <string>&amp;Refresh</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh current account</string>
+   </property>
+  </action>
+  <action name="actionAccountRefreshAll">
+   <property name="text">
+    <string>Refresh all</string>
+   </property>
+   <property name="toolTip">
+    <string>Refresh all accounts</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

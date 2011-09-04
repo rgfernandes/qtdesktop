@@ -1,0 +1,32 @@
+= Done =
+* multibox
+* tree folder
+= Next =
+* update folders:
+** 
+* update headers:
+** get all
+** calc deleted
+** calc new
+** get new (headers)
+* get msg
+* send msg
+
+vmime:
+* POP3, IMAP, SMTP, maildir and sendmail
+* SSL/TLS security layer and X.509 certificates (using GNU TLS)
+* SASL authentication (using GNU SASL)
+
+Evolution:
+	* IMAP:
+		* server
+		* user
+		* crypt: no/TLS/SSL
+		* Auth: pass/(NTLM/SPA)/GSSAPI/DIGEST-MD5/CRAM-MD5
+	* POP3:
+		* server
+		* user
+		* crypt: ...
+		* Auth: pass/APOP/регистрация/...
+	* SMTP:
+		* 

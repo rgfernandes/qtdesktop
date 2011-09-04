@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfigDialog</class>
+ <widget class="QDialog" name="ConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>436</width>
+    <height>278</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QMailClient - Settings</string>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tabGeneral">
+      <attribute name="title">
+       <string>&amp;General</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lTitle">
+         <property name="text">
+          <string>&amp;Title</string>
+         </property>
+         <property name="buddy">
+          <cstring>leTitle</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="leTitle"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lService">
+         <property name="text">
+          <string>Service:</string>
+         </property>
+         <property name="buddy">
+          <cstring>cbService</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="cbService">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>POP3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>IMAP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MailDir</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>222</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lTransport">
+         <property name="text">
+          <string>Transport:</string>
+         </property>
+         <property name="buddy">
+          <cstring>cbTransport</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="cbTransport">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SMTP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sendmail</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>222</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lName">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Name:</string>
+         </property>
+         <property name="buddy">
+          <cstring>leName</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QLineEdit" name="leName"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="lMail">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Mail:</string>
+         </property>
+         <property name="buddy">
+          <cstring>leMail</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <widget class="QLineEdit" name="leMail"/>
+       </item>
+       <item row="5" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>32</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabPOP3">
+      <attribute name="title">
+       <string>&amp;POP3</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lPOP3Host">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Host:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="lePOP3Host"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lPOP3Port">
+         <property name="text">
+          <string>Port:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sbPOP3Port">
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="value">
+          <number>110</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>248</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lPOP3Login">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Login:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QLineEdit" name="lePOP3Login"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lPOP3Password">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Password:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QLineEdit" name="lePOP3Password"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="lPOP3Crypto">
+         <property name="text">
+          <string>Crypto:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <widget class="QComboBox" name="cbPOP3Crypto">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SSL</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TLS &gt; None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TLS</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="lPOP3Auth">
+         <property name="text">
+          <string>Auth:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1" colspan="2">
+        <widget class="QComboBox" name="cbPOP3Auth">
+         <item>
+          <property name="text">
+           <string>password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>APOP &gt; password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>APOP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL &gt; APOP &gt; password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL &gt; APOP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="1" colspan="2">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>33</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabIMAP">
+      <attribute name="title">
+       <string>&amp;IMAP</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lIMAPHost">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Host:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="leIMAPHost"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lIMAPPort">
+         <property name="text">
+          <string>Port:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sbIMAPPort">
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="value">
+          <number>143</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>248</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lIMAPLogin">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Login:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QLineEdit" name="leIMAPLogin"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lIMAPPassword">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Password:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QLineEdit" name="leIMAPPassword"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="lIMAPCrypto">
+         <property name="text">
+          <string>Crypto:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <widget class="QComboBox" name="cbIMAPCrypto">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SSL</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TLS &gt; None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TLS</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="lIMAPAuth">
+         <property name="text">
+          <string>Auth:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1" colspan="2">
+        <widget class="QComboBox" name="cbIMAPAuth">
+         <item>
+          <property name="text">
+           <string>password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL &gt; password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>33</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabMailDir">
+      <attribute name="title">
+       <string>&amp;MailDir</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="lMailDirFolder">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Maildir Folder:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QHBoxLayout" name="hlMailDirFolder">
+         <item>
+          <widget class="QLineEdit" name="leMailDirFolder"/>
+         </item>
+         <item>
+          <widget class="QToolButton" name="tbMailDirFolder">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabSMTP">
+      <attribute name="title">
+       <string>&amp;SMTP</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lSMTPHost">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Host:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLineEdit" name="leSMTPHost"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lSMTPPort">
+         <property name="text">
+          <string>Port:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="sbSMTPPort">
+         <property name="minimum">
+          <number>0</number>
+         </property>
+         <property name="maximum">
+          <number>65535</number>
+         </property>
+         <property name="value">
+          <number>25</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>248</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lSMTPLogin">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Login:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QLineEdit" name="leSMTPLogin"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lSMTPPassword">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Password:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" colspan="2">
+        <widget class="QLineEdit" name="leSMTPPassword"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="lSMTPCrypto">
+         <property name="text">
+          <string>Crypto:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" colspan="2">
+        <widget class="QComboBox" name="cbSMTPCrypto">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SSL</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TLS &gt; None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>TLS</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="lSMTPAuth">
+         <property name="text">
+          <string>Auth:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1" colspan="2">
+        <widget class="QComboBox" name="cbSMTPAuth">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL &gt; password</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SASL</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>3</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabSendmail">
+      <attribute name="title">
+       <string>Sendmail</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lSendmailPath">
+         <property name="contextMenuPolicy">
+          <enum>Qt::NoContextMenu</enum>
+         </property>
+         <property name="text">
+          <string>Maildir Folder:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <layout class="QHBoxLayout" name="hlSendmailPath">
+         <item>
+          <widget class="QLineEdit" name="leSendmailPath"/>
+         </item>
+         <item>
+          <widget class="QToolButton" name="tbSendmailPath">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>leTitle</tabstop>
+  <tabstop>cbService</tabstop>
+  <tabstop>cbTransport</tabstop>
+  <tabstop>leName</tabstop>
+  <tabstop>leMail</tabstop>
+  <tabstop>lePOP3Login</tabstop>
+  <tabstop>lePOP3Password</tabstop>
+  <tabstop>sbPOP3Port</tabstop>
+  <tabstop>cbPOP3Crypto</tabstop>
+  <tabstop>cbPOP3Auth</tabstop>
+  <tabstop>lePOP3Host</tabstop>
+  <tabstop>leIMAPPassword</tabstop>
+  <tabstop>leIMAPHost</tabstop>
+  <tabstop>leIMAPLogin</tabstop>
+  <tabstop>cbIMAPAuth</tabstop>
+  <tabstop>sbIMAPPort</tabstop>
+  <tabstop>cbIMAPCrypto</tabstop>
+  <tabstop>leMailDirFolder</tabstop>
+  <tabstop>tbMailDirFolder</tabstop>
+  <tabstop>sbSMTPPort</tabstop>
+  <tabstop>cbSMTPCrypto</tabstop>
+  <tabstop>leSMTPLogin</tabstop>
+  <tabstop>cbSMTPAuth</tabstop>
+  <tabstop>leSMTPHost</tabstop>
+  <tabstop>leSMTPPassword</tabstop>
+  <tabstop>leSendmailPath</tabstop>
+  <tabstop>tbSendmailPath</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
