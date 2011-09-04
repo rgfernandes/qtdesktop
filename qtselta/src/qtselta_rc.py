@@ -1,1 +1,0 @@
-../qtselta_rc.py

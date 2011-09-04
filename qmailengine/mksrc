@@ -1,9 +1,0 @@
-#!/bin/sh
-NAME="qmailengine"
-VER=`grep ^VERSION $NAME.pro | gawk '{print $3}'`
-TMP=~/tmp
-mkdir $TMP/$NAME-$VER
-cp -a * $TMP/$NAME-$VER
-pushd $TMP
-tar zcf ~/RPM/SOURCES/$NAME-$VER.tar.gz $NAME-$VER && rm -rf $NAME-$VER
-popd
