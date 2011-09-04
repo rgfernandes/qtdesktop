@@ -37,7 +37,19 @@ void	MainWindowImpl::onActionNew(void) {
 }
 
 void	MainWindowImpl::onActionOpen(void) {
+	/*
+	 * QFileDialog: localfs - ok, :/ - not, ftp - not
+	 * QDir: local - ok, :/ - ok, ftp: tries
+	 * QFile: local - ok, 
+	 * QFileSystemModel: local - ok, :/ - not
+	 * QDirModel: 
+	 */
 	//ftp.setHost("mirror.yandex.ru");	// ftp.qt.nokia.com
+	//QString s("/mnt/shares/");
+	//QString s(":/icons/icons/16x16/");	// file: empty.png
+	//QString s("ftp://mirror.yandex.ru/fedora/");
+	//QFileDialog::getOpenFileName(this, tr("Open file"), s,  tr("Images (*.png *.xpm *.jpg)"));
+	//qDebug() << QDir(s).entryList();	//ok
 	//QFileDialog::getExistingDirectory(this, tr("Open Directory"), "ftp://mirror.yandex.ru/fedora/", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 }
 
