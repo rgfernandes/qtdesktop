@@ -1,0 +1,15 @@
+[Desktop Entry]
+Encoding=UTF-8
+Categories=Application;Graphics;Qt4;
+X-Desktop-File-Install-Version=0.18
+Name=Qt PDF Viewer
+Name[sv]=Qt PDF-visare
+Name[de]=Qt PDF-Betrachter
+Comment=View Adobe PDF (acrobat) files
+Comment[sv]=Visar Adobe PDF-filer (acrobat-filer)
+Comment[de]=PDF-Betrachter
+Exec=qtpdfview
+Terminal=0
+Type=Application
+Icon=qtpdfview
+MimeType=application/pdf;
