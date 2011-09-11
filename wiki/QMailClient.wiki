@@ -49,8 +49,7 @@
 
 = Test =
 
-  * time: fetchall vs fetchone: fetchall 40% faster
-  * time: fetchall(all) vs fetchall (uid): uid only 15 times faster
-  * 
+  * time: fetchall vs fetchone: fetchall 40% faster.
+  * time: fetchall(uid) vs fetchall(all): fetchall(uid) 15 times faster.
 
 = Ideas =
