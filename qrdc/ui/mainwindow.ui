@@ -40,7 +40,7 @@
      <x>0</x>
      <y>0</y>
      <width>346</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -115,15 +115,11 @@
    <addaction name="actionRestoreDB"/>
   </widget>
   <action name="actionExit">
-   <property name="icon">
-    <iconset resource="../qrdc.qrc">
-     <normaloff>:/icons/icons/poweroff.gif</normaloff>:/icons/icons/poweroff.gif</iconset>
-   </property>
    <property name="text">
     <string>E&amp;xit</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+X</string>
+    <string>Ctrl+X</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -146,10 +142,6 @@
    </property>
   </action>
   <action name="actionAdd">
-   <property name="icon">
-    <iconset resource="../qrdc.qrc">
-     <normaloff>:/icons/icons/add.gif</normaloff>:/icons/icons/add.gif</iconset>
-   </property>
    <property name="text">
     <string>&amp;Add</string>
    </property>
@@ -157,7 +149,7 @@
     <string>Add new connection</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+Ins</string>
+    <string>Ctrl+Ins</string>
    </property>
   </action>
   <action name="actionEdit">
@@ -176,10 +168,6 @@
    </property>
   </action>
   <action name="actionDel">
-   <property name="icon">
-    <iconset resource="../qrdc.qrc">
-     <normaloff>:/icons/icons/minus.gif</normaloff>:/icons/icons/minus.gif</iconset>
-   </property>
    <property name="text">
     <string>&amp;Del</string>
    </property>
@@ -187,7 +175,7 @@
     <string>Delete connection</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+Del</string>
+    <string>Ctrl+Del</string>
    </property>
   </action>
   <action name="actionOpen">
