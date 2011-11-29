@@ -12,6 +12,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	viewGroup->addAction(actionProtocols);
 	createTrayIcon();
 	setSlots();
+	setIcons();
 	// edit dialogs
 	dialogC = new DialogConnectionImpl(this);
 	dialogH = new DialogHostImpl(this);
@@ -52,6 +53,17 @@ void	MainWindowImpl::setSlots(void) {
 	connect( actionAboutQt,		SIGNAL( triggered() ),	this, SLOT( onActionAboutQt() ) );
 	connect( tray,			SIGNAL( activated ( QSystemTrayIcon::ActivationReason)), this, SLOT(onTray(QSystemTrayIcon::ActivationReason)));
 	connect( actionHideRestore,	SIGNAL( triggered() ),	this, SLOT(onHideRestore()));
+}
+
+void	MainWindowImpl::setIcons(void) {
+	QIcon::setThemeName("oxygen");
+	actionExit->setIcon(QIcon::fromTheme("application-exit"));
+	actionConnections->setIcon(QIcon::fromTheme("network-wired"));
+	actionHosts->setIcon(QIcon::fromTheme("computer"));
+	actionAdd->setIcon(QIcon::fromTheme("list-add"));
+	actionDel->setIcon(QIcon::fromTheme("list-remove"));
+	actionSettings->setIcon(QIcon::fromTheme("preferences-system"));
+	actionAbout->setIcon(QIcon::fromTheme("help-about"));
 }
 
 void	MainWindowImpl::setModels(QSqlDatabase *d) {

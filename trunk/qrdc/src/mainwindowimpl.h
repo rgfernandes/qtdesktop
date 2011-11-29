@@ -46,6 +46,7 @@ private slots:
 private:
 	LISTTYPE			currentList;
 	void				setSlots(void);
+	void				setIcons(void);
 	void				doUpdate(void);
 	void				createTrayIcon(void);
 	void				hideEvent ( QHideEvent *);
