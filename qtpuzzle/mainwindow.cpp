@@ -275,12 +275,12 @@ void MainWindow::buttonPressed()
 
     if(solved()&&moved){
         if(picture == "cartoon"){
-            QPixmap p("./cartoon-sliced_16.jpg");
+            QPixmap p(":/data/cartoon-sliced_16.jpg");
             buttons[15]->setIcon(p);
 
         }else{
             if(picture == "anime"){
-                QPixmap p("./Daddy_look_by_meago_16.jpg");
+                QPixmap p(":/data/Daddy_look_by_meago_16.jpg");
                 buttons[15]->setIcon(p);
 
             }
@@ -338,22 +338,22 @@ void MainWindow::reset()
             buttons[i] = new BlockButton (i+1,tr(""), this);
             if(picture == "cartoon"){
             switch(buttons[i]->getNumber()){
-            case 1:s ="./cartoon-sliced_1.jpg";break;
-            case 2:s ="./cartoon-sliced_2.jpg";break;
-            case 3:s ="./cartoon-sliced_3.jpg";break;
-            case 4:s ="./cartoon-sliced_4.jpg";break;
-            case 5:s ="./cartoon-sliced_5.jpg";break;
-            case 6:s ="./cartoon-sliced_6.jpg";break;
-            case 7:s ="./cartoon-sliced_7.jpg";break;
-            case 8:s ="./cartoon-sliced_8.jpg";break;
-            case 9:s ="./cartoon-sliced_9.jpg";break;
-            case 10:s ="./cartoon-sliced_10.jpg";break;
-            case 11:s ="./cartoon-sliced_11.jpg";break;
-            case 12:s ="./cartoon-sliced_12.jpg";break;
-            case 13:s ="./cartoon-sliced_13.jpg";break;
-            case 14:s ="./cartoon-sliced_14.jpg";break;
-            case 15:s ="./cartoon-sliced_15.jpg";break;
-            case 16:s ="./cartoon-sliced_16.jpg";break;
+            case 1:s =":/data/cartoon-sliced_1.jpg";break;
+            case 2:s =":/data/cartoon-sliced_2.jpg";break;
+            case 3:s =":/data/cartoon-sliced_3.jpg";break;
+            case 4:s =":/data/cartoon-sliced_4.jpg";break;
+            case 5:s =":/data/cartoon-sliced_5.jpg";break;
+            case 6:s =":/data/cartoon-sliced_6.jpg";break;
+            case 7:s =":/data/cartoon-sliced_7.jpg";break;
+            case 8:s =":/data/cartoon-sliced_8.jpg";break;
+            case 9:s =":/data/cartoon-sliced_9.jpg";break;
+            case 10:s =":/data/cartoon-sliced_10.jpg";break;
+            case 11:s =":/data/cartoon-sliced_11.jpg";break;
+            case 12:s =":/data/cartoon-sliced_12.jpg";break;
+            case 13:s =":/data/cartoon-sliced_13.jpg";break;
+            case 14:s =":/data/cartoon-sliced_14.jpg";break;
+            case 15:s =":/data/cartoon-sliced_15.jpg";break;
+            case 16:s =":/data/cartoon-sliced_16.jpg";break;
 
             }
 
@@ -373,22 +373,22 @@ void MainWindow::reset()
         }else{
             if(picture == "anime"){
             switch(buttons[i]->getNumber()){
-            case 1:s ="./Daddy_look_by_meago_1.jpg";break;
-            case 2:s ="./Daddy_look_by_meago_2.jpg";break;
-            case 3:s ="./Daddy_look_by_meago_3.jpg";break;
-            case 4:s ="./Daddy_look_by_meago_4.jpg";break;
-            case 5:s ="./Daddy_look_by_meago_5.jpg";break;
-            case 6:s ="./Daddy_look_by_meago_6.jpg";break;
-            case 7:s ="./Daddy_look_by_meago_7.jpg";break;
-            case 8:s ="./Daddy_look_by_meago_8.jpg";break;
-            case 9:s ="./Daddy_look_by_meago_9.jpg";break;
-            case 10:s ="./Daddy_look_by_meago_10.jpg";break;
-            case 11:s ="./Daddy_look_by_meago_11.jpg";break;
-            case 12:s ="./Daddy_look_by_meago_12.jpg";break;
-            case 13:s ="./Daddy_look_by_meago_13.jpg";break;
-            case 14:s ="./Daddy_look_by_meago_14.jpg";break;
-            case 15:s ="./Daddy_look_by_meago_15.jpg";break;
-            case 16:s ="./Daddy_look_by_meago_16.jpg";break;
+            case 1:s =":/data/Daddy_look_by_meago_1.jpg";break;
+            case 2:s =":/data/Daddy_look_by_meago_2.jpg";break;
+            case 3:s =":/data/Daddy_look_by_meago_3.jpg";break;
+            case 4:s =":/data/Daddy_look_by_meago_4.jpg";break;
+            case 5:s =":/data/Daddy_look_by_meago_5.jpg";break;
+            case 6:s =":/data/Daddy_look_by_meago_6.jpg";break;
+            case 7:s =":/data/Daddy_look_by_meago_7.jpg";break;
+            case 8:s =":/data/Daddy_look_by_meago_8.jpg";break;
+            case 9:s =":/data/Daddy_look_by_meago_9.jpg";break;
+            case 10:s =":/data/Daddy_look_by_meago_10.jpg";break;
+            case 11:s =":/data/Daddy_look_by_meago_11.jpg";break;
+            case 12:s =":/data/Daddy_look_by_meago_12.jpg";break;
+            case 13:s =":/data/Daddy_look_by_meago_13.jpg";break;
+            case 14:s =":/data/Daddy_look_by_meago_14.jpg";break;
+            case 15:s =":/data/Daddy_look_by_meago_15.jpg";break;
+            case 16:s =":/data/Daddy_look_by_meago_16.jpg";break;
 
             }
 
@@ -570,26 +570,26 @@ void MainWindow::cartoonClicked()
     QString s;
     for(int i = 0; i<16;i++){
         switch(buttons[i]->getNumber()){
-        case 1:s ="./cartoon-sliced_1.jpg";break;
-        case 2:s ="./cartoon-sliced_2.jpg";break;
-        case 3:s ="./cartoon-sliced_3.jpg";break;
-        case 4:s ="./cartoon-sliced_4.jpg";break;
-        case 5:s ="./cartoon-sliced_5.jpg";break;
-        case 6:s ="./cartoon-sliced_6.jpg";break;
-        case 7:s ="./cartoon-sliced_7.jpg";break;
-        case 8:s ="./cartoon-sliced_8.jpg";break;
-        case 9:s ="./cartoon-sliced_9.jpg";break;
-        case 10:s ="./cartoon-sliced_10.jpg";break;
-        case 11:s ="./cartoon-sliced_11.jpg";break;
-        case 12:s ="./cartoon-sliced_12.jpg";break;
-        case 13:s ="./cartoon-sliced_13.jpg";break;
-        case 14:s ="./cartoon-sliced_14.jpg";break;
-        case 15:s ="./cartoon-sliced_15.jpg";break;
+        case 1:s =":/data/cartoon-sliced_1.jpg";break;
+        case 2:s =":/data/cartoon-sliced_2.jpg";break;
+        case 3:s =":/data/cartoon-sliced_3.jpg";break;
+        case 4:s =":/data/cartoon-sliced_4.jpg";break;
+        case 5:s =":/data/cartoon-sliced_5.jpg";break;
+        case 6:s =":/data/cartoon-sliced_6.jpg";break;
+        case 7:s =":/data/cartoon-sliced_7.jpg";break;
+        case 8:s =":/data/cartoon-sliced_8.jpg";break;
+        case 9:s =":/data/cartoon-sliced_9.jpg";break;
+        case 10:s =":/data/cartoon-sliced_10.jpg";break;
+        case 11:s =":/data/cartoon-sliced_11.jpg";break;
+        case 12:s =":/data/cartoon-sliced_12.jpg";break;
+        case 13:s =":/data/cartoon-sliced_13.jpg";break;
+        case 14:s =":/data/cartoon-sliced_14.jpg";break;
+        case 15:s =":/data/cartoon-sliced_15.jpg";break;
 
         }
         if((buttons[i]->getNumber()==16) && solved()){
        if(picture == "cartoon")
-        s ="./cartoon-sliced_16.jpg";
+        s =":/data/cartoon-sliced_16.jpg";
         QPixmap image(s);
         QIcon icon(image);
 
@@ -616,25 +616,25 @@ void MainWindow::animeClicked()
     QString s;
     for(int i = 0; i<16;i++){
         switch(buttons[i]->getNumber()){
-        case 1:s ="./Daddy_look_by_meago_1.jpg";break;
-        case 2:s ="./Daddy_look_by_meago_2.jpg";break;
-        case 3:s ="./Daddy_look_by_meago_3.jpg";break;
-        case 4:s ="./Daddy_look_by_meago_4.jpg";break;
-        case 5:s ="./Daddy_look_by_meago_5.jpg";break;
-        case 6:s ="./Daddy_look_by_meago_6.jpg";break;
-        case 7:s ="./Daddy_look_by_meago_7.jpg";break;
-        case 8:s ="./Daddy_look_by_meago_8.jpg";break;
-        case 9:s ="./Daddy_look_by_meago_9.jpg";break;
-        case 10:s ="./Daddy_look_by_meago_10.jpg";break;
-        case 11:s ="./Daddy_look_by_meago_11.jpg";break;
-        case 12:s ="./Daddy_look_by_meago_12.jpg";break;
-        case 13:s ="./Daddy_look_by_meago_13.jpg";break;
-        case 14:s ="./Daddy_look_by_meago_14.jpg";break;
-        case 15:s ="./Daddy_look_by_meago_15.jpg";break;
+        case 1:s =":/data/Daddy_look_by_meago_1.jpg";break;
+        case 2:s =":/data/Daddy_look_by_meago_2.jpg";break;
+        case 3:s =":/data/Daddy_look_by_meago_3.jpg";break;
+        case 4:s =":/data/Daddy_look_by_meago_4.jpg";break;
+        case 5:s =":/data/Daddy_look_by_meago_5.jpg";break;
+        case 6:s =":/data/Daddy_look_by_meago_6.jpg";break;
+        case 7:s =":/data/Daddy_look_by_meago_7.jpg";break;
+        case 8:s =":/data/Daddy_look_by_meago_8.jpg";break;
+        case 9:s =":/data/Daddy_look_by_meago_9.jpg";break;
+        case 10:s =":/data/Daddy_look_by_meago_10.jpg";break;
+        case 11:s =":/data/Daddy_look_by_meago_11.jpg";break;
+        case 12:s =":/data/Daddy_look_by_meago_12.jpg";break;
+        case 13:s =":/data/Daddy_look_by_meago_13.jpg";break;
+        case 14:s =":/data/Daddy_look_by_meago_14.jpg";break;
+        case 15:s =":/data/Daddy_look_by_meago_15.jpg";break;
 
         }
         if((buttons[i]->getNumber()==16) && solved()){
-        s ="./Daddy_look_by_meago_16.jpg";
+        s =":/data/Daddy_look_by_meago_16.jpg";
         QPixmap image(s);
         QIcon icon(image);
 
