@@ -1,34 +1,228 @@
-<ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>598</width>
-    <height>388</height>
+    <width>404</width>
+    <height>343</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>MainWindow</string>
+  <property name="windowTitle">
+   <string notr="true">QRSS</string>
   </property>
-  <widget class="QWidget" name="centralwidget" />
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>598</width>
-     <height>28</height>
+     <width>404</width>
+     <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionExport"/>
+    <addaction name="actionImport"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuF_eed">
+    <property name="title">
+     <string>Fee&amp;d</string>
+    </property>
+    <addaction name="actionFeedAdd"/>
+    <addaction name="actionFeedDelete"/>
+    <addaction name="actionFeedProperties"/>
+    <addaction name="separator"/>
+    <addaction name="actionFeedMarkRead"/>
+    <addaction name="actionFeedMarkReadAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionFeedUpdate"/>
+    <addaction name="actionFeedUpdateAll"/>
+   </widget>
+   <widget class="QMenu" name="menu_Entry">
+    <property name="title">
+     <string>&amp;Entry</string>
+    </property>
+    <addaction name="actionEntryOpenTab"/>
+    <addaction name="actionEntryOpenBrowser"/>
+    <addaction name="separator"/>
+    <addaction name="actionEntryMarkImportant"/>
+    <addaction name="actionEntryMarkNew"/>
+    <addaction name="actionEntryDelete"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionHelpAbout"/>
+    <addaction name="actionHelpAboutQt"/>
+   </widget>
+   <widget class="QMenu" name="menu_Goto">
+    <property name="title">
+     <string>&amp;Goto</string>
+    </property>
+    <addaction name="actionGotoEntryPrev"/>
+    <addaction name="actionGotoEntryPrevUnread"/>
+    <addaction name="actionGotoEntryNext"/>
+    <addaction name="actionGotoEntryNextUnread"/>
+    <addaction name="separator"/>
+    <addaction name="actionGotoFeedPrev"/>
+    <addaction name="actionGotoFeedPrevUnread"/>
+    <addaction name="actionGotoFeedNext"/>
+    <addaction name="actionGotoFeedNextUnread"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Goto"/>
+   <addaction name="menuF_eed"/>
+   <addaction name="menu_Entry"/>
+   <addaction name="menu_Help"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFeedUpdate"/>
+   <addaction name="actionFeedUpdateAll"/>
+  </widget>
+  <action name="actionExit">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>&amp;Export</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>&amp;Import</string>
+   </property>
+  </action>
+  <action name="actionFeedAdd">
+   <property name="text">
+    <string>&amp;Add</string>
+   </property>
+  </action>
+  <action name="actionFeedDelete">
+   <property name="text">
+    <string>&amp;Delete</string>
+   </property>
+  </action>
+  <action name="actionFeedProperties">
+   <property name="text">
+    <string>&amp;Properties</string>
+   </property>
+  </action>
+  <action name="actionFeedMarkRead">
+   <property name="text">
+    <string>Mark as read</string>
+   </property>
+  </action>
+  <action name="actionFeedMarkReadAll">
+   <property name="text">
+    <string>Mark all as read</string>
+   </property>
+  </action>
+  <action name="actionFeedUpdate">
+   <property name="text">
+    <string>Update feed</string>
+   </property>
+  </action>
+  <action name="actionFeedUpdateAll">
+   <property name="text">
+    <string>Update all feeds</string>
+   </property>
+  </action>
+  <action name="actionEntryOpenTab">
+   <property name="text">
+    <string>Open in new tab</string>
+   </property>
+  </action>
+  <action name="actionEntryOpenBrowser">
+   <property name="text">
+    <string>Open in browser</string>
+   </property>
+  </action>
+  <action name="actionEntryMarkImportant">
+   <property name="text">
+    <string>Mark as important</string>
+   </property>
+  </action>
+  <action name="actionEntryMarkNew">
+   <property name="text">
+    <string>Mark as New</string>
+   </property>
+  </action>
+  <action name="actionEntryDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionGotoEntryPrev">
+   <property name="text">
+    <string>Prev entry</string>
+   </property>
+  </action>
+  <action name="actionGotoEntryPrevUnread">
+   <property name="text">
+    <string>Prev unread entry</string>
+   </property>
+  </action>
+  <action name="actionGotoEntryNext">
+   <property name="text">
+    <string>Next entry</string>
+   </property>
+  </action>
+  <action name="actionGotoEntryNextUnread">
+   <property name="text">
+    <string>Next unread entry</string>
+   </property>
+  </action>
+  <action name="actionGotoFeedPrev">
+   <property name="text">
+    <string>Prev feed</string>
+   </property>
+  </action>
+  <action name="actionGotoFeedPrevUnread">
+   <property name="text">
+    <string>Prev unread feed</string>
+   </property>
+  </action>
+  <action name="actionGotoFeedNext">
+   <property name="text">
+    <string>Next feed</string>
+   </property>
+  </action>
+  <action name="actionGotoFeedNextUnread">
+   <property name="text">
+    <string>Next unread feed</string>
+   </property>
+  </action>
+  <action name="actionHelpAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionHelpAboutQt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
  </widget>
- <pixmapfunction></pixmapfunction>
  <resources/>
  <connections/>
 </ui>
