@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+  <file>drsslogo.png</file>
+  <file>loading.png</file>
+  <file>notloading.png</file>
+  <file>LICENSE.txt</file>
+</qresource>
+</RCC>
+
