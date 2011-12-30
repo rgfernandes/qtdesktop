@@ -83,6 +83,7 @@ void MainWindowImpl::createDockWindows()
 
 void MainWindowImpl::setMenu()
 {
+	/*
 	QMenu* menu = new QMenu( "&Channel", this );
 	QMainWindow::menuBar()->addMenu( menu );
 	menu->addAction( "&Add new",this, SLOT( addChannel( )), tr( "Alt+A" ));
@@ -90,6 +91,8 @@ void MainWindowImpl::setMenu()
 	menu->addAction( "&Delete",this, SLOT( deleteChannel( )), tr( "Alt+D" ));
 	menu->addAction( "&Refresh", this, SLOT( refresh( )), tr( "Alt+R" ));
 	menu->addAction( "Read A&ll", this, SLOT( readAll( )),tr( "Alt+L" ));
+	*/
+	//connect( actionFeedAdd, SIGNAL( triggered() ), this, SLOT( addChannel() ) );
 }
 
 void MainWindowImpl::setConnection()
