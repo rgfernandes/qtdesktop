@@ -1,0 +1,23 @@
+//
+0.1
+- QTextCodec - what to do to encode text.
+- adding / edditing channels 											[ %40 ]
+	- From menu -> action -> add / edit -> input dialog with url 
+	- From menu -> delete -> confirmation dialog						[ %90 ]
+
+- progress on status bar: refreshing, new channel loading			[ %40 ]
+- unreaded items counter - status bar.
+- all items channel
+- icons - news, unreaded, readed
+- syncing with saved items - add parsing data						[ %80 ]
+- autorefresh
+- rapidshare link parser
+- insert url from clipboard - while adding / editing
+- ?change channels list to the qtreeview
+
+*	rapidshare link parser
+*	hanlde tiny.* , uploadjockey, lix.in
+
+0.2 
+- channels icons
+-cokolwiek
