@@ -2,7 +2,15 @@
 X-SuSE-translate=true
 Type=Application
 Name=QtRun
+Name[sr]=Кјут Покретач
+Name[sr@ijekavian]=Кјут Покретач
+Name[sr@latin]=Qt Pokretač
+Name[sr@ijekavianlatin]=Qt Pokretač
 GenericName=Qt4 runing something utility
+GenericName[sr]=Кјут4 покретач апликација
+GenericName[sr@ijekavian]=Кјут4 покретач апликација
+GenericName[sr@latin]=Qt4 pokretač aplikacija
+GenericName[sr@ijekavianlatin]=Qt4 pokretač aplikacija
 Icon=qtrun
 Exec=qtrun
 Terminal=false
