@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/rss.svg</file>
+    <file>icons/qrss_16x16.png</file>
+    <file>icons/qrss_22x22.png</file>
+    <file>icons/qrss_32x32.png</file>
+    <file>icons/qrss_48x48.png</file>
+    <file>icons/qrss_64x64.png</file>
+    <file>icons/qrss_128x128.png</file>
+  </qresource>
+</RCC>

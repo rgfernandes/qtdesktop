@@ -29,7 +29,7 @@ public:
 virtual ~MainWindowImpl();
 	
 	private:
-		void setMenu();
+		void setIcons();
 		void createDockWindows();
 		void setConnection();
 		QColor getColor( ItemState );
@@ -40,11 +40,11 @@ virtual ~MainWindowImpl();
 		void itemClicked( QTreeWidgetItem *, int column );
 		void channelClicked( QTreeWidgetItem*, int column );
 		
-		void addChannel();
-		void editChannel();
-		void deleteChannel();
-		void refresh();
-		void readAll();
+		void onFeedAdd();		// addChannel
+		void onFeedProperties();	// editChannel
+		void onFeedDelete();		// deleteChannel
+		void onFeedUpdate();		// refresh
+		void onFeedUpdateAll();		// readAll
 		
 		void itemAdded( int channelId, ItemState type, QString& itemTitle, QDateTime& itemDate );
 		void channelAdded( QString& channel,int unreadedCount, bool markFirst );
@@ -62,14 +62,13 @@ virtual ~MainWindowImpl();
 		void errorMsg( const QString& );
 	
 private:
-	RssContainer* 				m_rssContainer;
-	QWebView 					m_view;
-	QStringList					m_ColumnHeaders;
-	QStringList					m_channelColumns;
-	QPointer<RssItemTree>		m_itemsTree;
-	QPointer<QTreeWidget>		m_channelsTree;
-	QErrorMessage				m_errorMsg;
-	
+	RssContainer* 		m_rssContainer;
+	QWebView 		m_view;
+	QStringList		m_ColumnHeaders;
+	QStringList		m_channelColumns;
+	QPointer<RssItemTree>	m_itemsTree;
+	QPointer<QTreeWidget>	m_channelsTree;
+	QErrorMessage		m_errorMsg;
 };
 #endif //MAINWINDOWIMPL_H
 //eof

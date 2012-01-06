@@ -50,7 +50,7 @@ void RssItem::setState( ItemState state )
 
 void RssItem::internalize( QTextStream& stream )
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	
 	QString line = stream.readLine();
 	int i = 0, j =0;
@@ -61,30 +61,30 @@ void RssItem::internalize( QTextStream& stream )
 		if( m_title.isEmpty( ))
 		{
 			m_title = line.mid( i, j-i );
-			qDebug() << "title " << m_title;
+			//qDebug() << "title " << m_title;
 		}
 		else if( m_txt.isEmpty( ))
 		{
 			m_txt = line.mid( i, j-i );
-			qDebug() << "desc " << m_txt;
+			//qDebug() << "desc " << m_txt;
 		}
 		else if( m_link.isEmpty( ))
 		{
 			m_link = line.mid( i, j-i );
-			qDebug() << "link " << m_link;
+			//qDebug() << "link " << m_link;
 		}
 		else if( m_state == 0 )
 		{
 			m_state = ( ItemState )line.mid( i, j-i ).toInt( &ok );
 			if( !ok )
 			{
-				qDebug() << "state:: incorrect state passed";
+				//qDebug() << "state:: incorrect state passed";
 				m_state = eNew;
 			}
 			else
 			{
 				ok = false;
-				qDebug() << "state::" << m_state;
+				//qDebug() << "state::" << m_state;
 				if( m_state == eNew )
 					m_state = eUnreaded;
 			}
@@ -93,7 +93,7 @@ void RssItem::internalize( QTextStream& stream )
 		else if( m_date.isNull( ))
 		{
 			m_date = QDateTime::fromString( line.mid( i, j-i ), DATEFORMAT ); 
-			qDebug() << "__date:"  << m_date.toString( DATEFORMAT );
+			//qDebug() << "__date:"  << m_date.toString( DATEFORMAT );
 		}
 		
 		j+=ITEMSEPARATORLENGTH;
@@ -103,29 +103,29 @@ void RssItem::internalize( QTextStream& stream )
 
 void RssItem::externalize( QTextStream& stream )
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	
 	stream << m_title << ITEMSEPARATOR;
-	qDebug() << m_title << ITEMSEPARATOR << "saved";
+	//qDebug() << m_title << ITEMSEPARATOR << "saved";
 
 	stream << m_txt << ITEMSEPARATOR;
-	qDebug() << m_txt << ITEMSEPARATOR << "saved";
+	//qDebug() << m_txt << ITEMSEPARATOR << "saved";
 
 	stream << m_link.toString() << ITEMSEPARATOR;
-	qDebug() << m_link.toString() << ITEMSEPARATOR << "saved";
+	//qDebug() << m_link.toString() << ITEMSEPARATOR << "saved";
 	
 	stream << ( int ) m_state << ITEMSEPARATOR;
-	qDebug() << ( int ) m_state << ITEMSEPARATOR << "state saved";
+	//qDebug() << ( int ) m_state << ITEMSEPARATOR << "state saved";
 	
 	if( m_date.isValid( ))
 		stream << m_date.toString( DATEFORMAT ) << ITEMSEPARATOR << "\n";
 	else
 	{
-		qDebug() << "invalid date";
+		//qDebug() << "invalid date";
 		stream << ITEMSEPARATOR << "\n";
 	}
 	
-	qDebug() << m_date.toString( DATEFORMAT ) << ITEMSEPARATOR << "saved";
+	//qDebug() << m_date.toString( DATEFORMAT ) << ITEMSEPARATOR << "saved";
 }
 
 void RssItem::operator>>( QTextStream& stream )

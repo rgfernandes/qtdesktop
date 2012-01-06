@@ -54,7 +54,7 @@ void RssChannel::addItem( QString& title, QString& desc, QDateTime& date, QUrl& 
 QString& RssChannel::itemDescription( int ind )
 {
 	Q_ASSERT( ind < m_itemsList.count( ));
-	qDebug() << m_itemsList.count();
+	//qDebug() << m_itemsList.count();
 
 	return m_itemsList.at( ind )->txt();
 }
@@ -74,7 +74,7 @@ QUrl& RssChannel::itemLink( int ind )
 
 void RssChannel::internalize( QTextStream& stream )
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	
 	QString line = stream.readLine();
 	int i = 0,j =0;
@@ -85,12 +85,12 @@ void RssChannel::internalize( QTextStream& stream )
 		if( m_url.isEmpty( ))
 		{
 			m_url.setUrl( line.mid( i, j-i ));
-			qDebug() << "url: " << m_url.toString();
+			//qDebug() << "url: " << m_url.toString();
 		}
 		else if( m_name.isEmpty( ))
 		{
 			m_name = line.mid( i, j-i );
-			qDebug() << "name: " << m_name;
+			//qDebug() << "name: " << m_name;
 		}
 		else if( cnt == -1 )
 		{
@@ -98,16 +98,17 @@ void RssChannel::internalize( QTextStream& stream )
 			cnt = ( line.mid( i, j-i )).toInt( &ok );
 			if( !ok )
 			{
-				qDebug() << "toInt failed ";
+				//qDebug() << "toInt failed ";
 				cnt = 0;
 			}
 			else
-				qDebug() << "cnt: " << cnt;
+				//qDebug() << "cnt: " << cnt;
+				;
 		}
-		qDebug() << i << j;
+		//qDebug() << i << j;
 		j += ITEMSEPARATORLENGTH;
 		i = j;
-		qDebug() << i << j;
+		//qDebug() << i << j;
 	}
 
 	RssItem* item;
@@ -121,31 +122,31 @@ void RssChannel::internalize( QTextStream& stream )
 	}
 	
 	line = stream.readLine();
-	if( line.indexOf(CHANNELSEPARATOR) != -1 )
-		qDebug() << "</channel>";
-	else
-		qDebug() << "channel internalize error";
+	//if( line.indexOf(CHANNELSEPARATOR) != -1 )
+	//	qDebug() << "</channel>";
+	//else
+	//	qDebug() << "channel internalize error";
 }
 
 void RssChannel::externalize( QTextStream& stream )
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	
 	stream << m_url.toString() << ITEMSEPARATOR;
-	qDebug() << m_url.toString() << ITEMSEPARATOR << "saved";
+	//qDebug() << m_url.toString() << ITEMSEPARATOR << "saved";
 	
 	stream << m_name << ITEMSEPARATOR;
-	qDebug() << m_name << ITEMSEPARATOR << "saved";
+	//qDebug() << m_name << ITEMSEPARATOR << "saved";
 
 	stream << m_itemsList.count() << ITEMSEPARATOR;
 
-	qDebug() << m_itemsList.count() << ITEMSEPARATOR << "saved";
+	//qDebug() << m_itemsList.count() << ITEMSEPARATOR << "saved";
 	stream << "\n";
 	
 	foreach( RssItem* item, m_itemsList )
 		item->externalize( stream );
 
-	qDebug() << CHANNELSEPARATOR << "saved";
+	//qDebug() << CHANNELSEPARATOR << "saved";
 	stream << CHANNELSEPARATOR << "\n";
 }
 

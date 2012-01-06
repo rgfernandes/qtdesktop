@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=QRSS
+Exec=drss
+Icon=qrss
+Type=Application
+GenericName=Feed Reader
+Comment=A Feed Reader
+Terminal=false
+Categories=Qt;Network;News;
+X-DBUS-StartupType=Unique

@@ -28,3 +28,18 @@ SOURCES = src/mainwindowimpl.cpp \
  src/rssitemtree.cpp \
  src/xmlparser.cpp
 TRANSLATIONS += l10n/qrss_ru.ts
+RESOURCES += qrss.qrc
+translations.files = l10n/*.qm
+desktop.files = qrss.desktop
+icon.files = icons/qrss.svg
+unix {
+ isEmpty(PREFIX) {
+  PREFIX =   /usr
+ }
+ target.path = $$PREFIX/bin
+ translations.path = $PREFIX/share/data/qrss
+ desktop.path = $$PREFIX/share/applications
+ icon.path = $$PREFIX/share/pixmaps
+}
+
+INSTALLS += target translations desktop icon
