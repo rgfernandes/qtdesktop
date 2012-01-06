@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=QRSS
-Exec=drss
+Exec=qrss
 Icon=qrss
 Type=Application
 GenericName=Feed Reader
