@@ -3,7 +3,9 @@ QT = gui \
  core \
  xml \
  webkit \
- network
+ network \
+ svg \
+ sql
 CONFIG += qt warn_on console debug_and_release
 DESTDIR = bin
 OBJECTS_DIR = build
@@ -36,10 +38,9 @@ unix {
  isEmpty(PREFIX) {
   PREFIX =   /usr
  }
- target.path = $$PREFIX/bin
- translations.path = $PREFIX/share/data/qrss
- desktop.path = $$PREFIX/share/applications
- icon.path = $$PREFIX/share/pixmaps
+ target.path =  $$PREFIX/bin
+ translations.path =  $PREFIX/share/data/qrss
+ desktop.path =  $$PREFIX/share/applications
+ icon.path =  $$PREFIX/share/pixmaps
+ INSTALLS +=  target  translations  desktop  icon
 }
-
-INSTALLS += target translations desktop icon
