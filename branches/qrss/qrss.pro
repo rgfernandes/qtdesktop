@@ -39,8 +39,8 @@ unix {
   PREFIX =   /usr
  }
  target.path =  $$PREFIX/bin
- translations.path =  $PREFIX/share/data/qrss
+ translations.path =  $$PREFIX/share/qrss/l10n
  desktop.path =  $$PREFIX/share/applications
  icon.path =  $$PREFIX/share/pixmaps
- INSTALLS +=  target  translations  desktop  icon
+ INSTALLS +=  target translations  desktop  icon
 }
