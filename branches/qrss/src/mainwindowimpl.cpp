@@ -80,7 +80,6 @@ void MainWindowImpl::createDockWindows()
 	addDockWidget( Qt::TopDockWidgetArea, dock );
 }
 
-
 void MainWindowImpl::setIcons()
 {
 	QIcon::setThemeName("oxygen");	// FIXME
