@@ -81,7 +81,7 @@ void RssContainer::addChannel( QString& url )
 	QUrl qurl( url );
 	if( qurl.isValid( ))
 	{
-		qDebug() << "host" << qurl.host() << "path: " << qurl.path();
+		//qDebug() << "host" << qurl.host() << "path: " << qurl.path();
 		
 		m_curChannel = new RssChannel();
 		m_curChannel->setUrl( qurl );
@@ -95,7 +95,8 @@ void RssContainer::addChannel( QString& url )
 		m_httpHandler->get( qurl );
 	}
 	else
-		qDebug() << "Invalid url given: " << qurl;
+		;
+		//qDebug() << "Invalid url given: " << qurl;
 }
 
 void RssContainer::deleteChannel( int ind )
@@ -151,8 +152,8 @@ void RssContainer::documentEnd()
 QDateTime RssContainer::parseDate( QString& date )
 {
 	//Tue, 24 Jun 2008 23:26:24 +0200
-	qDebug() << __LOG_FNAME__
-	qDebug() << date;
+	//qDebug() << __LOG_FNAME__
+	//qDebug() << date;
 	date = date.trimmed();
 	int i = date.indexOf(" ") + 1;
 
@@ -176,7 +177,7 @@ QDateTime RssContainer::parseDate( QString& date )
 	}
 
 	QDateTime dateTime = QDateTime::fromString( date, DATEFORMAT );
-	qDebug() << dateTime.toString(DATEFORMAT);
+	//qDebug() << dateTime.toString(DATEFORMAT);
 	
 	return dateTime;
 }
@@ -208,7 +209,7 @@ QUrl& RssContainer::getChannelUrl( int ind )
 
 void RssContainer::storeData()
 {
-	qDebug() << __LOG_FNAME__ ;
+	//qDebug() << __LOG_FNAME__ ;
 	QFile file( CNFNAME );
 
 	if( file.open( QIODevice::WriteOnly | QIODevice::Truncate ))
@@ -216,7 +217,7 @@ void RssContainer::storeData()
 		QTextStream stream( &file );
 
 		stream << m_channelsList.count() << "\n";
-		qDebug() << m_channelsList.count() << "saved";
+		//qDebug() << m_channelsList.count() << "saved";
 
 		foreach( RssChannel* channel, m_channelsList )
 		{
@@ -224,7 +225,7 @@ void RssContainer::storeData()
 		}
 
 		stream << RSSCNFEND << "\n";
-		qDebug() << RSSCNFEND << "\n saved";
+		//qDebug() << RSSCNFEND << "\n saved";
 
 		file.close();
 	}
@@ -232,7 +233,7 @@ void RssContainer::storeData()
 
 void RssContainer::loadData()
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	
 	QFile file( CNFNAME );
 	if( file.exists( ))
@@ -266,7 +267,7 @@ void RssContainer::loadData()
 
 void RssContainer::update()
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	//we have to wait for the first channel refreshing before we hit the next one
 	
 	if( m_channelsList.count() > 0 )
@@ -299,22 +300,22 @@ void RssContainer::setItemState( int channelId, int ind, ItemState state )
 //FROM QXmlErrorHandler
 bool RssContainer::error( const QXmlParseException & exception )
 {
-	qDebug() << __LOG_FNAME__;
-	qDebug() << exception.message();
+	//qDebug() << __LOG_FNAME__;
+	//qDebug() << exception.message();
 	return true;
 }
 
 bool RssContainer::fatalError( const QXmlParseException & exception )
 {
-	qDebug() << __LOG_FNAME__;
-	qDebug() << exception.message();
+	//qDebug() << __LOG_FNAME__;
+	//qDebug() << exception.message();
 	emit(displayError( exception.message( )));
 	return false;
 }
 bool RssContainer::warning( const QXmlParseException & exception )
 {
-	qDebug() << __LOG_FNAME__;
-	qDebug() << exception.message();
+	//qDebug() << __LOG_FNAME__;
+	//qDebug() << exception.message();
 	return true;
 }
 QString RssContainer::errorString() const
@@ -325,7 +326,7 @@ QString RssContainer::errorString() const
 
 void RssContainer::timerEvent( QTimerEvent *event )
 {
-	qDebug() << __LOG_FNAME__;
+	//qDebug() << __LOG_FNAME__;
 	update();
 }
 
@@ -389,7 +390,7 @@ void RssContainer::requestFinished( bool error )
 void RssContainer::progress( int done, int total )
 {
 	//TODO: display progress bar on status bar
-	qDebug() << done << "/" << total;
+	//qDebug() << done << "/" << total;
 }
 
 void RssContainer::httpDone()

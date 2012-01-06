@@ -15,8 +15,9 @@
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f ) 
 	: QMainWindow( parent, f )
 {
+	setupUi(this);
 	statusBar();
-	setMenu();
+	setIcons();
 
 	createDockWindows();
 	
@@ -41,7 +42,7 @@ MainWindowImpl::~MainWindowImpl()
 
 void MainWindowImpl::createDockWindows()
 {
-	QDockWidget* dock = new QDockWidget( tr( "Channels "), this );
+	QDockWidget* dock = new QDockWidget( tr( "Feeds "), this );
 	dock->setAllowedAreas( Qt::AllDockWidgetAreas );
 	dock->setFeatures( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
 	//m_channels = new QListWidget(dock);
@@ -59,7 +60,6 @@ void MainWindowImpl::createDockWindows()
 	//TODO: add here channels + icon 	 
 	dock->setWidget( m_channelsTree );
 	addDockWidget( Qt::TopDockWidgetArea, dock );
-
 
 	//TODO: check the second parameter to specify widget flags
 	dock = new QDockWidget( tr( "feeds" ), this );
@@ -81,8 +81,21 @@ void MainWindowImpl::createDockWindows()
 }
 
 
-void MainWindowImpl::setMenu()
+void MainWindowImpl::setIcons()
 {
+	QIcon::setThemeName("oxygen");	// FIXME
+	actionExit->setIcon(QIcon::fromTheme("application-exit"));
+	actionGotoEntryPrev->setIcon(QIcon::fromTheme("go-previous"));
+	actionGotoEntryNext->setIcon(QIcon::fromTheme("go-next"));
+	actionGotoFeedPrev->setIcon(QIcon::fromTheme("go-up"));
+	actionGotoFeedNext->setIcon(QIcon::fromTheme("go-down"));
+	actionFeedDelete->setIcon(QIcon::fromTheme("edit-delete"));
+	actionFeedUpdate->setIcon(QIcon::fromTheme("view-refresh"));
+	actionFeedUpdateAll->setIcon(QIcon::fromTheme("mail-send-receive"));
+	actionEntryDelete->setIcon(QIcon::fromTheme("list-remove"));
+	actionEntryMarkImportant->setIcon(QIcon::fromTheme("mail-mark-important"));
+	actionEntryMarkNew->setIcon(QIcon::fromTheme("mail-mark-new"));
+	actionHelpAbout->setIcon(QIcon::fromTheme("help-about"));
 	/*
 	QMenu* menu = new QMenu( "&Channel", this );
 	QMainWindow::menuBar()->addMenu( menu );
@@ -92,12 +105,19 @@ void MainWindowImpl::setMenu()
 	menu->addAction( "&Refresh", this, SLOT( refresh( )), tr( "Alt+R" ));
 	menu->addAction( "Read A&ll", this, SLOT( readAll( )),tr( "Alt+L" ));
 	*/
-	//connect( actionFeedAdd, SIGNAL( triggered() ), this, SLOT( addChannel() ) );
 }
 
 void MainWindowImpl::setConnection()
 {
-	//lists
+	// menus
+	connect( actionFeedAdd, SIGNAL( triggered() ), this, SLOT( onFeedAdd() ) );
+	connect( actionFeedDelete, SIGNAL( triggered() ), this, SLOT( onFeedDelete() ) );
+	connect( actionFeedProperties, SIGNAL( triggered() ), this, SLOT( onFeedProperties() ) );
+	connect( actionFeedUpdate, SIGNAL( triggered() ), this, SLOT( onFeedUpdate() ) );
+	connect( actionFeedUpdateAll, SIGNAL( triggered() ), this, SLOT( onFeedUpdateAll() ) );
+	//connect( actionFeed, SIGNAL( triggered() ), this, SLOT( onFeed() ) );
+
+	// lists
 	connect( m_itemsTree, SIGNAL ( itemActivated ( QTreeWidgetItem*,int )), this, SLOT( itemClicked( QTreeWidgetItem *, int )));
 	connect( m_itemsTree, SIGNAL ( itemClicked ( QTreeWidgetItem*, int )), this, SLOT( itemClicked( QTreeWidgetItem *, int )));
 	connect( m_channelsTree, SIGNAL( itemClicked ( QTreeWidgetItem*, int )), this, SLOT( channelClicked( QTreeWidgetItem*, int )));
@@ -132,7 +152,7 @@ void MainWindowImpl::channelClicked( QTreeWidgetItem* item, int column )
 	m_view.setHtml( m_rssContainer->getChannelDescription( ind ));
 }
 
-void MainWindowImpl::addChannel()
+void MainWindowImpl::onFeedAdd()
 {
 	bool ok( false );
 	QString url = QInputDialog::getText( this, tr( "Add new channel" ), tr( "Enter url" ),  QLineEdit::Normal, tr( "http://" ), &ok );
@@ -145,7 +165,7 @@ void MainWindowImpl::addChannel()
 	}
 }
 
-void MainWindowImpl::editChannel()
+void MainWindowImpl::onFeedProperties()
 {
 	bool ok( false );
 	int ind = currentChannelInd();
@@ -161,11 +181,12 @@ void MainWindowImpl::editChannel()
 		else
 		{
 			m_rssContainer->addChannel( url );
-			deleteChannel();
+			onFeedDelete();
 		}
 	}
 }
-void MainWindowImpl::deleteChannel()
+
+void MainWindowImpl::onFeedDelete()
 {
 	//delete channel
 	int ind = currentChannelInd();
@@ -223,19 +244,19 @@ void MainWindowImpl::quit()
 
 void MainWindowImpl::unreadedCount( int channelId, int count )
 {
-	qDebug() << __LOG_FNAME__;
-	qDebug() << channelId << count;
+	//qDebug() << __LOG_FNAME__;
+	//qDebug() << channelId << count;
 	//TODO: change unreaded msg amount
 	QTreeWidgetItem* item = m_channelsTree->topLevelItem( channelId );
 	item->setText( 1, QString::number( count ));
 }
 
-void MainWindowImpl::refresh()
+void MainWindowImpl::onFeedUpdate()
 {
 	m_rssContainer->update();
 }
 
-void MainWindowImpl::readAll()
+void MainWindowImpl::onFeedUpdateAll()
 {
 	m_rssContainer->readAll( currentChannelInd( ));
 	m_itemsTree->clear();

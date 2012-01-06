@@ -87,18 +87,18 @@ signals:
 	void 		unreadedCount( int, int );
 
 private:
-	QList<RssChannel*>				m_channelsList;
+	QList<RssChannel*>		m_channelsList;
 	QList<RssChannel*>::iterator	m_channelsIterator;
-	HttpHandler*					m_httpHandler;
-	QXmlInputSource 				m_xmlInput;
-	QXmlSimpleReader 				m_xmlReader;
-	XmlParser* 						m_xmlParser;
-	bool 							m_firstData;
-	RssChannel* 					m_curChannel;
-	QStringList						m_monthsName;
-	bool							m_isUpdating;
-	int								m_timerId;
-	RssState						m_state;
+	HttpHandler*			m_httpHandler;
+	QXmlInputSource 		m_xmlInput;
+	QXmlSimpleReader 		m_xmlReader;
+	XmlParser* 			m_xmlParser;
+	bool 				m_firstData;
+	RssChannel* 			m_curChannel;
+	QStringList			m_monthsName;
+	bool				m_isUpdating;
+	int				m_timerId;
+	RssState			m_state;
 };
 #endif // RSSCONTAINER_H
 //EOF

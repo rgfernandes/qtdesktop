@@ -25,7 +25,7 @@ bool XmlParser::startDocument ()
 	//m_cod = QTextCodec::codecForName("ISO 8859-2");
 	//QTextCodec::setCodecForCStrings(m_cod);
 
-	qDebug() << "start document";
+	//qDebug() << "start document";
 	m_item = false;
 	m_getTitle = false;
 	m_getDesc = false;
@@ -41,7 +41,7 @@ bool XmlParser::startDocument ()
 bool XmlParser::startElement ( const QString & /*namespaceURI*/, const QString & /*localName*/, const QString & qName,
 								 const QXmlAttributes & /*atts*/ )
 {
-	qDebug() << "startElement: " << qName;
+	//qDebug() << "startElement: " << qName;
 	
 	if( "channel" == qName || "item" == qName )		
 	{
@@ -87,7 +87,7 @@ bool XmlParser::startElement ( const QString & /*namespaceURI*/, const QString &
 
 bool XmlParser::characters( const QString &chars )
 {
-	qDebug() << "characters: " << chars;
+	//qDebug() << "characters: " << chars;
 
 	if( m_getTitle )
 		m_title += chars;
@@ -103,7 +103,7 @@ bool XmlParser::characters( const QString &chars )
 
 bool XmlParser::endElement ( const QString & /*namespaceURI*/, const QString & /*localName*/, const QString & qName )
 {
-	qDebug() << "endElement: " << qName;
+	//qDebug() << "endElement: " << qName;
 	if( m_item )
 	{
 
@@ -190,7 +190,7 @@ void XmlParser::emitItem()
 
 bool XmlParser::fatalError( const QXmlParseException &exception )
 {
-	qDebug() << "Fatar xml error occurred:" << exception.message();
+	//qDebug() << "Fatar xml error occurred:" << exception.message();
 	return true;
 }
 //eof

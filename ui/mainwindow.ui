@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string notr="true">QRSS</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../qrss.qrc">
+    <normaloff>:/icons/icons/rss.svg</normaloff>:/icons/icons/rss.svg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -77,10 +81,17 @@
     <addaction name="actionGotoFeedNext"/>
     <addaction name="actionGotoFeedNextUnread"/>
    </widget>
+   <widget class="QMenu" name="menu_Settings">
+    <property name="title">
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="actionSettings"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Goto"/>
    <addaction name="menuF_eed"/>
    <addaction name="menu_Entry"/>
+   <addaction name="menu_Settings"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -116,100 +127,160 @@
    <property name="text">
     <string>&amp;Add</string>
    </property>
+   <property name="shortcut">
+    <string>Ins</string>
+   </property>
   </action>
   <action name="actionFeedDelete">
    <property name="text">
     <string>&amp;Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Del</string>
    </property>
   </action>
   <action name="actionFeedProperties">
    <property name="text">
     <string>&amp;Properties</string>
    </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
   </action>
   <action name="actionFeedMarkRead">
    <property name="text">
     <string>Mark as read</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionFeedMarkReadAll">
    <property name="text">
     <string>Mark all as read</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
   </action>
   <action name="actionFeedUpdate">
    <property name="text">
     <string>Update feed</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
   <action name="actionFeedUpdateAll">
    <property name="text">
     <string>Update all feeds</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
   </action>
   <action name="actionEntryOpenTab">
    <property name="text">
     <string>Open in new tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Return</string>
    </property>
   </action>
   <action name="actionEntryOpenBrowser">
    <property name="text">
     <string>Open in browser</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Return</string>
+   </property>
   </action>
   <action name="actionEntryMarkImportant">
    <property name="text">
     <string>Mark as important</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
    </property>
   </action>
   <action name="actionEntryMarkNew">
    <property name="text">
     <string>Mark as New</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
   </action>
   <action name="actionEntryDelete">
    <property name="text">
     <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
    </property>
   </action>
   <action name="actionGotoEntryPrev">
    <property name="text">
     <string>Prev entry</string>
    </property>
+   <property name="shortcut">
+    <string>Left</string>
+   </property>
   </action>
   <action name="actionGotoEntryPrevUnread">
    <property name="text">
     <string>Prev unread entry</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
    </property>
   </action>
   <action name="actionGotoEntryNext">
    <property name="text">
     <string>Next entry</string>
    </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
   </action>
   <action name="actionGotoEntryNextUnread">
    <property name="text">
     <string>Next unread entry</string>
+   </property>
+   <property name="shortcut">
+    <string>+</string>
    </property>
   </action>
   <action name="actionGotoFeedPrev">
    <property name="text">
     <string>Prev feed</string>
    </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
   </action>
   <action name="actionGotoFeedPrevUnread">
    <property name="text">
     <string>Prev unread feed</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+-</string>
    </property>
   </action>
   <action name="actionGotoFeedNext">
    <property name="text">
     <string>Next feed</string>
    </property>
+   <property name="shortcut">
+    <string>N</string>
+   </property>
   </action>
   <action name="actionGotoFeedNextUnread">
    <property name="text">
     <string>Next unread feed</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt++</string>
    </property>
   </action>
   <action name="actionHelpAbout">
@@ -222,7 +293,31 @@
     <string>About Qt</string>
    </property>
   </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>QRSS settings</string>
+   </property>
+  </action>
  </widget>
- <resources/>
- <connections/>
+ <resources>
+  <include location="../qrss.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>201</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
