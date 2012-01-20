@@ -15,6 +15,7 @@ Tested on Fedora 14
   # cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DCMAKE_TOOLCHAIN_FILE=/usr/share/mingw32/Toolchain-mingw32.cmake
 
 Note: /usr/share/mingw32/Toolchain-mingw32.cmake is from mingw32-filesystem package
+Note #2: windres.exe == /usr/bin/i686-pc-mingw32-windres from mingw32-binutils package
 
 = Post =
   # copy executable into wine directory (e.g. ~/wine_c/Temp)
