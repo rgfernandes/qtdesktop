@@ -1,5 +1,8 @@
 ; qtdesktop-rtl.nsi
 ; Trying to install into ProgramFiles\QtDesktop\RTL
+; Sources:  ( )
+; BuildRequires: mingw32-nsis mingw32-qt
+; Build: ln -s /usr/i686-pc-mingw32/sys-root/mingw/bin bin && makensis qtdesktop-rtl.nsi
 ; Bugs:
 ; - Error creating MainMenu...
 ; - sqlite - as Sql as WebKit
@@ -15,7 +18,7 @@
 ; - macros
 
 !define PRODUCT_NAME "QtDesktop-RTL"
-!define PRODUCT_VERSION "4.7.1"
+!define PRODUCT_VERSION "4.8.0"
 !define PRODUCT_BUILD "0"
 !define PRODUCT_PUBLISHER "QtDesktop"
 !define PRODUCT_WEB_SITE "http://www.qtdesktop.org/"
@@ -141,7 +144,7 @@ Section "Core" SEC_Core
    !insertmacro TryInstLib pthreadGCE2.dll
    !insertmacro TryInstLib libssp-0.dll
    ; - gui
-   !insertmacro TryInstLib libjpeg-7.dll
+   !insertmacro TryInstLib libjpeg-62.dll
    !insertmacro TryInstLib libtiff-3.dll
    !insertmacro TryInstLib libtiffxx-3.dll
   EndSec_Core:
