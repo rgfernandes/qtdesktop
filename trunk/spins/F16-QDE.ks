@@ -6,7 +6,7 @@
 # Maintainer(s):
 # - TI_Eugene <ti.eugene@gmail.com>
 # Usage:
-# - sudo livecd-creator -c F15_QDE-mini.ks -t /mnt/shares/tmp --cache /mnt/shares/cache/yum
+# - sudo livecd-creator -c F16-QDE.ks -t /mnt/shares/tmp --cache /mnt/shares/cache/yum
 # TODO:
 # - services
 
@@ -14,11 +14,11 @@
 #%include /usr/share/spin-kickstarts/fedora-live-minimization.ks
 %include /usr/share/spin-kickstarts/fedora-live-mini.ks
 
-repo --name=qtdesktop --baseurl=http://download.opensuse.org/repositories/home:/TI_Eugene:/QtDesktop/Fedora_14/
 repo --name=rpmfusion-free --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-$releasever&arch=$basearch
 repo --name=rpmfusion-free-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-$releasever&arch=$basearch
 repo --name=rpmfusion-nonfree --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-$releasever&arch=$basearch
 repo --name=rpmfusion-nonfree-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
+repo --name=qtdesktop --baseurl=http://download.opensuse.org/repositories/home:/TI_Eugene:/QtDesktop/Fedora_$releasever/
 
 selinux --disabled
 firewall --disabled
@@ -28,7 +28,8 @@ services --enabled=NetworkManager,messagebus --disabled=network,sshd,lvm2-monito
 
 %packages
 
-# cleanup
+# 1. official
+# 1.1. cleanup
 -abrt*
 -acl
 -audit
@@ -108,18 +109,76 @@ services --enabled=NetworkManager,messagebus --disabled=network,sshd,lvm2-monito
 -tcpdump
 -tmpwatch
 -vconfig
+-btrfs-progs
 
-# misc
+# 1.2. add (non-Qt)
+anaconda
 mc
 rpmreaper
 slim
 openbox
+oxygen-icon-theme
 
-# qtdesktop
+# 1.3. add (Qt)
+AcetoneISO2
+arora
+avidemux-qt
+clementine
+#eric
+goldendict
+kchmviewer-qt
+#lyx
+#monkeystudio
+psi
+#q4wine
+qbittorrent
+#qdevelop
+#qgit
+qmmp
+qmmp-plugins-freeworld
+#qstardict
+#qt-creator
+qutim-icq
+qutim-jabber
+qutim-mrim
+scribus
+smplayer
+speedcrunch
+sqliteman
+vlc
+#yagf
+
+# 2. qtdesktop (add)
 razorqt
-razorqt-openbox
 razorqt-desktop
 razorqt-panel
+razorqt-runner
+razorqt-config
+razorqt-session
+andromeda
+basqet
+communi
+cuberok
+#cuneiform-qt
+flo
+juffed-plugins
+ptbatterysystemtray
+qasmixer
+qgmailnotifier
+qiviewer
+qlipper
+qrdc
+qtagconvert
+qterminal
+qtfm
+qtpdfview
+qxkb
+qxmledit
+#scantailor
+screengrab
+socnetv
+#ucpufreq
+znotes
 
 %end
 
@@ -128,5 +187,19 @@ razorqt-panel
 sed -i -e 's/xfce4,icewm,wmaker,blackbox/razor-openbox,openbox/g' /etc/slim.conf
 echo "exec /usr/bin/razor-session -c session-openbox" > ~/.xinitrc
 echo "DISPLAYMANAGER=/usr/bin/slim" > /etc/sysconfig/desktop
+echo "[Desktop Entry]
+Name=Install To Hard Drive
+GenericName=Install
+Comment=Install the live CD to your hard disk
+Categories=System;Utility;X-Red-Hat-Base;X-Fedora;GNOME;GTK;Qt;
+Exec=/usr/bin/libeinst
+Terminal=false
+Type=Application
+Icon=anaconda
+Encoding=UTF-8
+StartupNotify=true
+NoDisplay=false
+X-Desktop-File-Install-Version=0.18
+" > /usr/share/applications/liveinst.desktop
 
 %end
