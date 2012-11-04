@@ -13,6 +13,8 @@ Tested on Fedora 17
   # mkdir build
   # cd build
   # cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DCMAKE_TOOLCHAIN_FILE=/usr/share/mingw/Toolchain-mingw32.cmake
+or
+  # mingw32-cmake ...
 
 Note #1: /usr/share/mingw32/Toolchain-mingw32.cmake is from mingw32-filesystem package
 
