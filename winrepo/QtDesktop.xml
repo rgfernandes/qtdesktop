@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <spec-version>2</spec-version>
+    <!-- Licenses -->
+    <license name="org.7-zip.License">
+        <title>7-zip license</title>
+        <url>http://www.7-zip.org/license.txt</url>
+    </license>
+    <license name="org.gnu.GPLv2">
+        <title>GPLv2</title>
+        <url>http://www.gnu.org/licenses/gpl.html</url>
+    </license>
+    <license name="org.gnu.GPLv3">
+        <title>GPLv3</title>
+        <url>http://www.gnu.org/licenses/gpl.html</url>
+    </license>
+    <license name="org.gnu.LGPLv2_1">
+        <title>LGPLv2.1</title>
+        <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html</url>
+    </license>
+    <license name="org.gnu.LGPLv3">
+        <title>LGPLv3</title>
+        <url>http://www.gnu.de/documents/lgpl-3.0.en.html</url>
+    </license>
+    <!-- Packages -->
+    <package name="com.googlecode.windows-package-manager.CLU">
+        <title>CLU</title>
+        <url>http://code.google.com/p/windows-package-manager/</url>
+        <description>command line utility</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="com.googlecode.windows-package-manager.Npackd">
+        <title>Npackd</title>
+        <url>http://code.google.com/p/windows-package-manager/</url>
+        <description>package manager</description>
+        <icon>https://lh5.googleusercontent.com/-Clv-5HRjnqw/T2iH5F-IJYI/AAAAAAAAAbY/PRAIafxwI1c/s800/com.googlecode.windows-package-manager.Npackd.png</icon>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="com.googlecode.windows-package-manager.NpackdCL">
+        <title>NpackdCL</title>
+        <url>http://code.google.com/p/windows-package-manager/</url>
+        <description>command line interface to Npackd</description>
+        <icon>https://lh6.googleusercontent.com/-R3PmyAtT6P8/T2iIJygyrqI/AAAAAAAAAbg/bCcaRCTAab8/s800/com.googlecode.windows-package-manager.NpackdCL.png</icon>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="com.googlecode.windows-package-manager.NpackdInstallerHelper">
+        <title>Npackd Installer Helper</title>
+        <url>http://code.google.com/p/windows-package-manager/</url>
+        <description>helps to install/uninstall Npackd packages</description>
+        <icon>https://lh5.googleusercontent.com/-3rSJezE_JY4/T2iIZjLuiDI/AAAAAAAAAbo/-KN9No1ejd8/s800/com.googlecode.windows-package-manager.NpackdInstallerHelper.png</icon>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.7-zip.SevenZIPA">
+        <title>7-ZIP A</title>
+        <url>http://www.7-zip.org/</url>
+        <description>command line file archiver</description>
+        <icon>https://lh6.googleusercontent.com/-ipFkADMviPw/T2iLPEs5HtI/AAAAAAAAAcA/lre1u3QDfB4/s800/org.7-zip.SevenZipA.png</icon>
+        <license>org.7-zip.License</license>
+    </package>
+    <package name="com.nokia.QtSource">
+        <title>Qt</title>
+        <url>http://qt.nokia.com/products/library</url>
+        <description>C++ library (source code)</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <!-- Versions -->
+    <version name="1.0.1" package="com.googlecode.windows-package-manager.CLU">
+        <file path=".Npackd\Install.bat">clu add-path --path "%CD%"
+verify
+</file>
+        <file path=".Npackd\Uninstall.bat">clu remove-path --path "%CD%"
+verify
+</file>
+        <url>http://npackd.googlecode.com/files/com.googlecode.windows-package-manager.CLU-1.0.1.zip</url>
+        <sha1>9ccc9f6203847adba6958e2be5b180e4e0152034</sha1>
+    </version>
+
+    <version name="1.16.3" package="com.googlecode.windows-package-manager.Npackd">
+        <important-file path="npackdg.exe" title="Npackd"/>
+        <url>http://windows-package-manager.googlecode.com/files/Npackd-1.16.3.zip</url>
+        <sha1>e3de8b84fd4ba06d958f887b48bf1990c7b6b929</sha1>
+    </version>
+
+    <version name="1" package="com.googlecode.windows-package-manager.NpackdCL">
+        <file path=".Npackd\Install.bat">if "%npackd_cl%" equ "" set npackd_cl=.
+set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
+for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
+"%clu%\clu" add-path --path "%CD%"
+verify
+</file>
+        <file path=".Npackd\Uninstall.bat">if "%npackd_cl%" equ "" set npackd_cl=.
+set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
+for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
+"%clu%\clu" remove-path --path "%CD%"
+verify
+</file>
+        <url>http://dl.dropbox.com/u/17046326/files/org.googlecode.windows-package-manager.NpackdCL-1.0.zip</url>
+        <sha1>ddee619df78bcda28462ac640a2a69c6443f3456</sha1>
+        <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1, 2)"/>
+    </version>
+    <version name="1.16.4" package="com.googlecode.windows-package-manager.NpackdCL">
+        <file path=".Npackd\Install.bat">if "%npackd_cl%" equ "" set npackd_cl=.
+set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
+for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
+"%clu%\clu" add-path --path "%CD%"
+verify
+</file>
+        <file path=".Npackd\Uninstall.bat">if "%npackd_cl%" equ "" set npackd_cl=.
+set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
+for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
+"%clu%\clu" remove-path --path "%CD%"
+verify
+</file>
+        <url>http://windows-package-manager.googlecode.com/files/NpackdCL-1.16.4.zip</url>
+        <sha1>8842a0b4ceeb01238a7acd3c8426edc0c539d406</sha1>
+        <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1, 2)"/>
+    </version>
+
+    <version name="1.1" package="com.googlecode.windows-package-manager.NpackdInstallerHelper">
+        <url>http://npackd.googlecode.com/files/com.googlecode.windows-package-manager.NpackdInstallerHelper-1.1.zip</url>
+        <sha1>4e0704257d07a8d6139663a7a07c7a184462980b</sha1>
+    </version>
+
+    <version name="9.20" package="org.7-zip.SevenZIPA">
+        <file path=".Npackd\Install.bat">if "%npackd_cl%" equ "" set npackd_cl=..\com.googlecode.windows-package-manager.NpackdCL-1
+set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
+for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
+"%clu%\clu" add-path --path "%CD%"
+verify
+</file>
+        <file path=".Npackd\Uninstall.bat">if "%npackd_cl%" equ "" set npackd_cl=..\com.googlecode.windows-package-manager.NpackdCL-1
+set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
+for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
+"%clu%\clu" remove-path --path "%CD%"
+verify
+</file>
+        <url>http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip?ts=1291376227</url>
+        <sha1>9ce9ce89ebc070fea5d679936f21f9dde25faae0</sha1>
+        <dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1.15.7, 2)"/>
+        <dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1, 1]"/>
+        <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1, 2)"/>
+    </version>
+    <version name="4.8.2" package="com.nokia.QtSource">
+        <file path=".Npackd\Install.bat">for /f "delims=" %%x in ('dir /b qt*') do set name=%%x
+cd "%name%"
+for /f "delims=" %%a in ('dir /b') do (
+  move "%%a" ..
+)
+cd ..
+rmdir "%name%"
+</file>
+        <url>http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.2.zip</url>
+        <sha1>6bafae4e3435c796df94ca31ef5c3813acd7fea6</sha1>
+    </version>
+</root>

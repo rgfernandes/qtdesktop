@@ -1,0 +1,22 @@
+Qt:
+    * mingw-RTL (Add PATH=C:\Qt\4.8.3\bin;%PATH%[, QTDIR]):
+       * /usr/i686-w64-mingw32/sys-root/mingw/bin/*.dll
+       * imports\*\*.dll
+       * plugins\*\*.dll
+       * translations\qt_*.qm
+Cross-compile:
+= Qmake =
+    /usr/i686-w64-mingw32/bin/qmake-qt4 -spec win32-g++-cross
+    make
+= CMake =
+
+= QScintilla =
+cd Qt4Qt5
+qmake qtscintilla.pro
+nmake
+
+= JuffEd =
+mkdir build
+cd build
+cmake ..
+msbuild juffed.sln /t:Rebuid /p:Confuguration=Release (.NET)
