@@ -59,33 +59,45 @@
     </package>
     <package name="org.qtdesktop.core">
         <title>Core</title>
-        <description>QtDesktop core metapackage</description>
+        <description>QtDesktop (QDE) core metapackage</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <package name="org.qtdesktop.gcc">
         <title>GCC</title>
-        <description>MinGW32 RTL</description>
+        <description>MinGW32 RTL (QDE)</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <package name="org.qtdesktop.gcc-cpp">
         <title>GCC-C++</title>
-        <description>MinGW32 RTL</description>
+        <description>MinGW32 RTL (QDE)</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <package name="org.qtdesktop.zlib">
         <title>ZLib</title>
-        <description>MinGW32 RTL</description>
+        <description>MinGW32 RTL (QDE)</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <package name="org.qtdesktop.libpng">
         <title>LibPNG</title>
-        <description>MinGW32 RTL</description>
+        <description>MinGW32 RTL (QDE)</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <package name="org.qtdesktop.Qt4RTL">
         <title>Qt4</title>
         <url>http://qt.nokia.com/products/library</url>
-        <description>MinGW RTL</description>
+        <description>MinGW RTL (QDE)</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.qscintilla">
+        <title>QScintilla</title>
+        <url>http://www.riverbankcomputing.co.uk/software/qscintilla</url>
+        <description>MinGW RTL (QDE)</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.JuffEd">
+        <title>JuffEd</title>
+        <url>http://www.juffed.com</url>
+        <description>Plain text editor (QDE)</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <!-- Versions -->
@@ -153,22 +165,22 @@ verify
     </version>
 
     <version name="4.7.0" package="org.qtdesktop.gcc">
-        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-4.7.0-2.7z</url>
-        <sha1>aa2c2aa929acf2927a0ec6fdb95c2e99d5f881fe</sha1>
+        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-4.7.0-2.zip</url>
+        <sha1>0e2e35d2b9ef3e4d56dd479775edcdf745ef568f</sha1>
     </version>
 
     <version name="4.7.0" package="org.qtdesktop.gcc-cpp">
-        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-c%2B%2B-4.7.0-2.7z</url>
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-c%2B%2B-4.7.0-2.7z</url>
         <sha1>248425b53ca0a2e97088c4487faa43a7298d05a5</sha1>
     </version>
 
-    <version name="4.7.0" package="org.qtdesktop.zlib">
+    <version name="1.2.5" package="org.qtdesktop.zlib">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-zlib-1.2.5-10.7z</url>
         <sha1>fa38fe67f34b6d3e9fd02867038edc5c1b0053c1</sha1>
     </version>
 
-    <version name="4.7.0" package="org.qtdesktop.libpng">
-        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-libpng-1.5.13-1.7z</url>
+    <version name="1.5.13" package="org.qtdesktop.libpng">
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-libpng-1.5.13-1.7z</url>
         <sha1>1054e2cdc6e2188cbb3fec67bf7a2cca0df65efa</sha1>
     </version>
 
@@ -181,11 +193,24 @@ for /f "delims=" %%a in ('dir /b') do (
 cd ..
 rmdir "%name%"
 </file>
-        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-Qt4-4.8.3-1.7z</url>
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-Qt4-4.8.3-1.7z</url>
         <sha1>75bfaa2d60a9dce9eff87b8a96759b7ca7a072d1</sha1>
         <dependency package="org.qtdesktop.gcc" versions="[4.7,)"/>
         <dependency package="org.qtdesktop.gcc-cpp" versions="[4.7,)"/>
-        <dependency package="org.qtdesktop.zlib" versions="[4.7,)"/>
-        <dependency package="org.qtdesktop.libpng" versions="[1.5,)"/>
+        <dependency package="org.qtdesktop.zlib" versions="[1.2.5,)"/>
+        <dependency package="org.qtdesktop.libpng" versions="[1.5.13,)"/>
     </version>
+
+    <version name="2.6.2" package="org.qtdesktop.qscintilla">
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-qscintilla-2.6.2-1.7z</url>
+        <sha1>abf23a4a48b5588953d0dd4411f9ebfbbeb51070</sha1>
+        <dependency package="org.qtdesktop.Qt4RTL" versions="[4.8.3,)"/>
+    </version>
+
+    <version name="0.9.1137" package="org.qtdesktop.JuffEd">
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-JuffEd-0.9.1137-1.7z</url>
+        <sha1>6c99111e27eaed3b7385541b9bfd803b4586333d</sha1>
+        <dependency package="org.qtdesktop.qscintilla" versions="[2.6.2,)"/>
+    </version>
+
 </root>
