@@ -166,6 +166,7 @@ verify
         <sha1>bc51d9db526e419e1395ad879f4e49fe85f645a6</sha1>
         <file path=".Npackd\Install.bat">
 mkdir %SystemDrive%\QDE
+mkdir %SystemDrive%\QDE\lib
 </file>
         <file path=".Npackd\Uninstall.bat">
 rmdir %SystemDrive%\QDE\lib
@@ -177,9 +178,7 @@ rmdir %SystemDrive%\QDE
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-4.7.0-2.zip</url>
         <sha1>0e2e35d2b9ef3e4d56dd479775edcdf745ef568f</sha1>
         <file path=".Npackd\Install.bat">
-for /f "delims=" %%a in ('dir /b lib\*') do (
-  move "%%a" %SystemDrive%\QDE\lib\
-)
+move lib\* %SystemDrive%\QDE\lib\
 </file>
     </version>
 
