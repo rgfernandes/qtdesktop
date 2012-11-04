@@ -16,13 +16,8 @@
 
 = Deps =
 QtCore4:
-    * libgcc_s_sjlj-1.dll
-    * libstdc++-6.dll
-    * zlib1.dll
+    * libgcc_s_sjlj-1.dll (gcc)
+    * libstdc++-6.dll (gcc-c++)
+    * zlib1.dll (zlib)
 QtGui:
-    * libpng15-15.dll
-= debug =
-fixme:msvcrt:__lconv_init  stub
-wine: Call from 0x7edc2b30 to unimplemented function msvcrt.dll.___lc_codepage_func, aborting
-wine: Unimplemented function msvcrt.dll.___lc_codepage_func called at address 0x7edc2b30 (thread 0036), starting debugger...
-Unhandled exception: unimplemented function msvcrt.dll.___lc_codepage_func called in 32-bit code (0x7edc2b8a).
+    * libpng15-15.dll (libpng)

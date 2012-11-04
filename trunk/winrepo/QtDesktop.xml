@@ -57,10 +57,35 @@
         <icon>https://lh6.googleusercontent.com/-ipFkADMviPw/T2iLPEs5HtI/AAAAAAAAAcA/lre1u3QDfB4/s800/org.7-zip.SevenZipA.png</icon>
         <license>org.7-zip.License</license>
     </package>
-    <package name="com.nokia.QtSource">
-        <title>Qt</title>
+    <package name="org.qtdesktop.core">
+        <title>Core</title>
+        <description>QtDesktop core metapackage</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.gcc">
+        <title>GCC</title>
+        <description>MinGW32 RTL</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.gcc-cpp">
+        <title>GCC-C++</title>
+        <description>MinGW32 RTL</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.zlib">
+        <title>ZLib</title>
+        <description>MinGW32 RTL</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.libpng">
+        <title>LibPNG</title>
+        <description>MinGW32 RTL</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
+    <package name="org.qtdesktop.Qt4RTL">
+        <title>Qt4</title>
         <url>http://qt.nokia.com/products/library</url>
-        <description>C++ library (source code)</description>
+        <description>MinGW RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <!-- Versions -->
@@ -81,23 +106,6 @@ verify
         <sha1>e3de8b84fd4ba06d958f887b48bf1990c7b6b929</sha1>
     </version>
 
-    <version name="1" package="com.googlecode.windows-package-manager.NpackdCL">
-        <file path=".Npackd\Install.bat">if "%npackd_cl%" equ "" set npackd_cl=.
-set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
-for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
-"%clu%\clu" add-path --path "%CD%"
-verify
-</file>
-        <file path=".Npackd\Uninstall.bat">if "%npackd_cl%" equ "" set npackd_cl=.
-set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
-for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set clu=%%x
-"%clu%\clu" remove-path --path "%CD%"
-verify
-</file>
-        <url>http://dl.dropbox.com/u/17046326/files/org.googlecode.windows-package-manager.NpackdCL-1.0.zip</url>
-        <sha1>ddee619df78bcda28462ac640a2a69c6443f3456</sha1>
-        <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1, 2)"/>
-    </version>
     <version name="1.16.4" package="com.googlecode.windows-package-manager.NpackdCL">
         <file path=".Npackd\Install.bat">if "%npackd_cl%" equ "" set npackd_cl=.
 set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=com.googlecode.windows-package-manager.CLU" "--versions=[1, 2)"
@@ -136,11 +144,35 @@ verify
 </file>
         <url>http://downloads.sourceforge.net/project/sevenzip/7-Zip/9.20/7za920.zip?ts=1291376227</url>
         <sha1>9ce9ce89ebc070fea5d679936f21f9dde25faae0</sha1>
-        <dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1.15.7, 2)"/>
-        <dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1, 1]"/>
+        <!--dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1.15.7, 2)"/-->
+        <!--dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1, 1]"/-->
         <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1, 2)"/>
     </version>
-    <version name="4.8.2" package="com.nokia.QtSource">
+<!-- QtDesktop -->
+    <version name="0.0.1" package="org.qtdesktop.core">
+    </version>
+
+    <version name="4.7.0" package="org.qtdesktop.gcc">
+        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-4.7.0-2.7z</url>
+        <sha1>aa2c2aa929acf2927a0ec6fdb95c2e99d5f881fe</sha1>
+    </version>
+
+    <version name="4.7.0" package="org.qtdesktop.gcc-cpp">
+        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-c%2B%2B-4.7.0-2.7z</url>
+        <sha1>248425b53ca0a2e97088c4487faa43a7298d05a5</sha1>
+    </version>
+
+    <version name="4.7.0" package="org.qtdesktop.zlib">
+        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-zlib-1.2.5-10.7z</url>
+        <sha1>fa38fe67f34b6d3e9fd02867038edc5c1b0053c1</sha1>
+    </version>
+
+    <version name="4.7.0" package="org.qtdesktop.libpng">
+        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-libpng-1.5.13-1.7z</url>
+        <sha1>1054e2cdc6e2188cbb3fec67bf7a2cca0df65efa</sha1>
+    </version>
+
+    <version name="4.8.3" package="org.qtdesktop.Qt4RTL">
         <file path=".Npackd\Install.bat">for /f "delims=" %%x in ('dir /b qt*') do set name=%%x
 cd "%name%"
 for /f "delims=" %%a in ('dir /b') do (
@@ -149,7 +181,11 @@ for /f "delims=" %%a in ('dir /b') do (
 cd ..
 rmdir "%name%"
 </file>
-        <url>http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.2.zip</url>
-        <sha1>6bafae4e3435c796df94ca31ef5c3813acd7fea6</sha1>
+        <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-Qt4-4.8.3-1.7z</url>
+        <sha1>75bfaa2d60a9dce9eff87b8a96759b7ca7a072d1</sha1>
+        <dependency package="org.qtdesktop.gcc" versions="[4.7,)"/>
+        <dependency package="org.qtdesktop.gcc-cpp" versions="[4.7,)"/>
+        <dependency package="org.qtdesktop.zlib" versions="[4.7,)"/>
+        <dependency package="org.qtdesktop.libpng" versions="[1.5,)"/>
     </version>
 </root>

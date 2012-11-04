@@ -20,3 +20,18 @@ mkdir build
 cd build
 cmake ..
 msbuild juffed.sln /t:Rebuid /p:Confuguration=Release (.NET)
+
+= Another platform =
+Windows-only:
+    * QtCore4.dll:
+        * Qt-Windows-mingw
+        * mingw10.dll
+        * libgcc_s_dw2-1.dll
+    * QtGui4.dll
+
+= Deps =
+CLU
+Npackd
+CLU -> NpackdCL
+NPackd Helper
+CLU -> 7-zipA
