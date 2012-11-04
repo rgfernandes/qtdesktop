@@ -1,0 +1,28 @@
++mingw32-gcc
++mingw32-gcc-c++
++mingw32-libpng
++mingw32-zlib
++mingw32-qt
++mingw32-qscintilla
+
+ mingw32-dbus
++mingw32-expat
++mingw32-libjpeg-turbo
+ mingw32-libtiff
+ mingw32-libxml2
+ mingw32-pthreads
++mingw32-sqlite
+ mingw32-win-iconv
+
+= Deps =
+QtCore4:
+    * libgcc_s_sjlj-1.dll
+    * libstdc++-6.dll
+    * zlib1.dll
+QtGui:
+    * libpng15-15.dll
+= debug =
+fixme:msvcrt:__lconv_init  stub
+wine: Call from 0x7edc2b30 to unimplemented function msvcrt.dll.___lc_codepage_func, aborting
+wine: Unimplemented function msvcrt.dll.___lc_codepage_func called at address 0x7edc2b30 (thread 0036), starting debugger...
+Unhandled exception: unimplemented function msvcrt.dll.___lc_codepage_func called in 32-bit code (0x7edc2b8a).

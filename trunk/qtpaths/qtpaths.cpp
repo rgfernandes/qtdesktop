@@ -1,5 +1,9 @@
-#include <QtCore>
-#include <QtGui>
+//include <QtCore>
+//#include <QtGui>
+#include <QLibraryInfo>
+#include <QDesktopServices>
+#include <QCoreApplication>
+#include <QApplication>
 
 #include <string>
 #include <iostream>
