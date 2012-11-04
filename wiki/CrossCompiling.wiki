@@ -1,20 +1,20 @@
 #summary Cross-compiling.
 
-Tested on Fedora 14
+Tested on Fedora 17
 
 = Pre =
   # yum install mingw32-qt mingw32-qt-qmake
   # goto your sources
 
 = Qmake =
-  # qmake-qt4 -spec win32-g++-cross
+  # mingw32-qmake-qt4 -spec win32-g++-cross
 
 = Cmake =
   # mkdir build
   # cd build
   # cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release -DCMAKE_TOOLCHAIN_FILE=/usr/share/mingw32/Toolchain-mingw32.cmake
 
-Note: /usr/share/mingw32/Toolchain-mingw32.cmake is from mingw32-filesystem package
+Note #1: /usr/share/mingw32/Toolchain-mingw32.cmake is from mingw32-filesystem package
 Note #2: windres.exe == /usr/bin/i686-pc-mingw32-windres from mingw32-binutils package
 
 = Post =
