@@ -163,18 +163,8 @@ verify
 <!-- QtDesktop -->
     <version name="0.0.1" package="org.qtdesktop.core">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-0.0.1-1.zip</url>
-        <sha1>36474bf565fe0080dadcfe39f2f48c9d776557fa</sha1>
+        <sha1>91c2291312d0927d6d8006738ed0a2ad2fe5e185</sha1>
         <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1,2)"/>
-        <file path=".Npackd\Install.bat">
-clu add-path --path "%CD%\lib"
-clu add-path --path "%CD%\bin"
-REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v QTDESKTOP /t REG_SZ /d "%CD%" /f
-        </file>
-        <file path=".Npackd\Uninstall.bat">
-clu remove-path --path "%CD%\lib"
-clu remove-path --path "%CD%\bin"
-REG DELETE "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v QTDESKTOP /f
-        </file>
     </version>
 
     <version name="4.7.0" package="org.qtdesktop.gcc-i686-mingw">
