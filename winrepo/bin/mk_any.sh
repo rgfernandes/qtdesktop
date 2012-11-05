@@ -28,6 +28,7 @@ mkdir .Npackd
 mv $TMPINSTALL .Npackd/Install.bat
 mv $TMPUNINSTALL .Npackd/Uninstall.bat
 # 3. pack
-zip $DEST * .Npackd/*
+zip $DEST lib/* .Npackd/*
 popd
 rm -rf $TMPDIR
+sha1sum $DEST
