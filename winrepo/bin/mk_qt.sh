@@ -1,7 +1,7 @@
 #!/bin/sh
 # Make QDE-Qt4 package
 MINGW=/usr/i686-w64-mingw32/sys-root/mingw
-DEST=`pwd`/QtDesktop-Qt4-4.8.3-1.zip
+DEST=`pwd`/QtDesktop-Qt4-4.8.3-1.7z
 TMP=`mktemp -d`
 pushd $TMP
 # 1. cp files
@@ -27,7 +27,8 @@ mkdir .Npackd
 mv $TMPINSTALL .Npackd/Install.bat
 mv $TMPUNINSTALL .Npackd/Uninstall.bat
 # 3. pack
-zip -r $DEST lib/* qt4 .Npackd/*
+#zip -9 -r $DEST lib/* qt4 .Npackd/*
+7za a $DEST lib/* qt4 .Npackd/*
 popd
 rm -rf $TMP
 sha1sum $DEST
