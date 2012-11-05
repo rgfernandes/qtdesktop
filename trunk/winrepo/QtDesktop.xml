@@ -88,6 +88,12 @@
         <description>MinGW RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
+    <package name="org.qtdesktop.qtwebkit">
+        <title>QtDesktop QtWebKit</title>
+        <url>http://qt.nokia.com/products/library</url>
+        <description>MinGW RTL</description>
+        <license>org.gnu.GPLv3</license>
+    </package>
     <package name="org.qtdesktop.qscintilla">
         <title>QtDesktop QScintilla</title>
         <url>http://www.riverbankcomputing.co.uk/software/qscintilla</url>
@@ -198,6 +204,12 @@ verify
         <dependency package="org.qtdesktop.gcc-cpp" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.zlib" versions="[1.2.5,1.2.5]"/>
         <dependency package="org.qtdesktop.libpng" versions="[1.5.13,1.5.13]"/>
+    </version>
+
+    <version name="4.8.3" package="org.qtdesktop.qtwebkit">
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-QtWebKit4-4.8.3-1.zip</url>
+        <sha1>291bd27f522f57be527a0a305de208fc73af5a26</sha1>
+        <dependency package="org.qtdesktop.qt" versions="[4.8.3,4.8.3]"/>
     </version>
 
     <version name="2.6.2" package="org.qtdesktop.qscintilla">
