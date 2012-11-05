@@ -19,14 +19,15 @@ TMPINSTALL=`mktemp`
 TMPUNINSTALL=`mktemp`
 find . -type f | sed 's/^\.\///' | sed 's/\//\\\\/' | while read i
 do
-    echo "MOVE $i \"%QTDESKTOP%\\lib\\\"" >> $TMPINSTALL
+    echo "MOVE $i \"%QTDESKTOP%\\$i\"" >> $TMPINSTALL
     echo "DEL \"%QTDESKTOP%\\$i\"" >> $TMPUNINSTALL
 done
 echo "RMDIR lib" >> $TMPINSTALL
-mv $TMPINSTALL Install.bat
-mv $TMPUNINSTALL Uninstall.bat
-unix2dos Install.bat Uninstall.bat
+unix2dos $TMPINSTALL $TMPUNINSTALL
+mkdir .Npackd
+mv $TMPINSTALL .Npackd/Install.bat
+mv $TMPUNINSTALL .Npackd/Uninstall.bat
 # 3. pack
-zip $DEST *
+zip $DEST * .Npackd/*
 popd
 rm -rf $TMPDIR
