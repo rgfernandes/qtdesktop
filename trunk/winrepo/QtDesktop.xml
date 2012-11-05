@@ -169,37 +169,36 @@ verify
 <!-- QtDesktop -->
     <version name="0.0.1" package="org.qtdesktop.core">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-0.0.1-1.zip</url>
-        <sha1>91c2291312d0927d6d8006738ed0a2ad2fe5e185</sha1>
-        <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1,2)"/>
+        <sha1>bd477cbff5c48c8783202a24aa1defd9cb6ff547</sha1>
     </version>
 
     <version name="4.7.0" package="org.qtdesktop.gcc">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-gcc-4.7.0-2.zip</url>
-        <sha1>76d8ddd980e5880f2fa135cf63410014081d598c</sha1>
+        <sha1>f0f1e63864195327b037c2d63a243692163a12de</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,0.0.1]"/>
     </version>
 
     <version name="4.7.0" package="org.qtdesktop.gcc-cpp">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-gcc-c%2B%2B-4.7.0-2.zip</url>
-        <sha1>823f0a53168f23e0f4eaa972fdbc135f5f57e04d</sha1>
+        <sha1>f73cddf025bd806f726165677b7bb82b40050d77</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,0.0.1]"/>
     </version>
 
     <version name="1.2.5" package="org.qtdesktop.zlib">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-zlib-1.2.5-10.zip</url>
-        <sha1>1ca1ac5e8d663b143b7fedd689fd7e95a391bf7d</sha1>
+        <sha1>a3508925b1303690cc2d47b0304477d599a6eb28</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,0.0.1]"/>
     </version>
 
     <version name="1.5.13" package="org.qtdesktop.libpng">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-libpng-1.5.13-1.zip</url>
-        <sha1>db0c98bb7fc2ecc86e8e9a3207fd25bea7c77f0f</sha1>
+        <sha1>0f7d0372af03d5d683143539ded2e62297c8e79e</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,0.0.1]"/>
     </version>
 
     <version name="4.8.3" package="org.qtdesktop.qt">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-Qt4-4.8.3-1.zip</url>
-        <sha1>43ca921e35f9b9d7f780c14c229718f7e1e36135</sha1>
+        <sha1>f79b4c0251be26e2e40c4d8eb279203a13a24129</sha1>
         <dependency package="org.qtdesktop.gcc" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.gcc-cpp" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.zlib" versions="[1.2.5,1.2.5]"/>
@@ -208,13 +207,13 @@ verify
 
     <version name="4.8.3" package="org.qtdesktop.qtwebkit">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-QtWebKit4-4.8.3-1.zip</url>
-        <sha1>291bd27f522f57be527a0a305de208fc73af5a26</sha1>
+        <sha1>6278f2ffdea775f8c76d5277325d22f853cd2e80</sha1>
         <dependency package="org.qtdesktop.qt" versions="[4.8.3,4.8.3]"/>
     </version>
 
     <version name="2.6.2" package="org.qtdesktop.qscintilla">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-qscintilla-2.6.2-1.zip</url>
-        <sha1>bef098a6800ce83bac6a3794954f497e0f6ba730</sha1>
+        <sha1>fcc8534ba67bd2db9a71ff1a6f763b9b4d2c51e2</sha1>
         <dependency package="org.qtdesktop.qt" versions="[4.8.3,4.8.3]"/>
     </version>
 
