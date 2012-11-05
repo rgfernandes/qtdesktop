@@ -179,7 +179,7 @@ REG DELETE "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /
 
     <version name="4.7.0" package="org.qtdesktop.gcc-i686-mingw">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-gcc-4.7.0-2.zip</url>
-        <sha1>4d9c85bb0126ccd4173d795f24d86a31a07862a9</sha1>
+        <sha1>76d8ddd980e5880f2fa135cf63410014081d598c</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,)"/>
     </version>
 
