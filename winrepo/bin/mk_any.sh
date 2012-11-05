@@ -9,26 +9,24 @@ DEST=`pwd`/QtDesktop-$1-$VER-$REL.zip
 TMPDIR=`mktemp -d`
 pushd $TMPDIR
 # 1. cp files
-mkdir lib
 for i in `rpm -ql mingw32-$1 | grep dll$`
 do
-    cp $i lib/
+    cp $i .
 done
 # 2. prepare [Un]install scripts
 TMPINSTALL=`mktemp`
 TMPUNINSTALL=`mktemp`
-find . -type f | sed 's/^\.\///' | sed 's/\//\\\\/' | while read i
+for i in `ls`
 do
-    echo "MOVE $i \"%QTDESKTOP%\\$i\"" >> $TMPINSTALL
-    echo "DEL \"%QTDESKTOP%\\$i\"" >> $TMPUNINSTALL
+    echo "MOVE $i \"%SystemRoot%\\System32\\$i\"" >> $TMPINSTALL
+    echo "DEL \"%SystemRoot%\\System32\\$i\"" >> $TMPUNINSTALL
 done
-echo "RMDIR lib" >> $TMPINSTALL
 unix2dos $TMPINSTALL $TMPUNINSTALL
 mkdir .Npackd
 mv $TMPINSTALL .Npackd/Install.bat
 mv $TMPUNINSTALL .Npackd/Uninstall.bat
 # 3. pack
-zip $DEST lib/* .Npackd/*
+zip $DEST * .Npackd/*
 popd
 rm -rf $TMPDIR
 sha1sum $DEST
