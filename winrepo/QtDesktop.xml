@@ -175,33 +175,25 @@ verify
 
     <version name="4.7.0" package="org.qtdesktop.gcc-cpp-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-c%2B%2B-4.7.0-2.7z</url>
-        <sha1>248425b53ca0a2e97088c4487faa43a7298d05a5</sha1>
+        <sha1>823f0a53168f23e0f4eaa972fdbc135f5f57e04d</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,)"/>
     </version>
 
     <version name="1.2.5" package="org.qtdesktop.zlib-i686-mingw">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-zlib-1.2.5-10.7z</url>
-        <sha1>fa38fe67f34b6d3e9fd02867038edc5c1b0053c1</sha1>
+        <sha1>1ca1ac5e8d663b143b7fedd689fd7e95a391bf7d</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,)"/>
     </version>
 
     <version name="1.5.13" package="org.qtdesktop.libpng-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-libpng-1.5.13-1.7z</url>
-        <sha1>1054e2cdc6e2188cbb3fec67bf7a2cca0df65efa</sha1>
+        <sha1>db0c98bb7fc2ecc86e8e9a3207fd25bea7c77f0f</sha1>
         <dependency package="org.qtdesktop.core" versions="[0.0.1,)"/>
     </version>
 
     <version name="4.8.3" package="org.qtdesktop.Qt4RTL-i686-mingw">
-        <file path=".Npackd\Install.bat">for /f "delims=" %%x in ('dir /b qt*') do set name=%%x
-cd "%name%"
-for /f "delims=" %%a in ('dir /b') do (
-  move "%%a" ..
-)
-cd ..
-rmdir "%name%"
-</file>
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-Qt4-4.8.3-1.7z</url>
-        <sha1>75bfaa2d60a9dce9eff87b8a96759b7ca7a072d1</sha1>
+        <sha1>367443754e91ccd81d63b3306f1895488320d77a</sha1>
         <dependency package="org.qtdesktop.gcc-i686-mingw" versions="[4.7,)"/>
         <dependency package="org.qtdesktop.gcc-cpp-i686-mingw" versions="[4.7,)"/>
         <dependency package="org.qtdesktop.zlib-i686-mingw" versions="[1.2.5,)"/>
@@ -216,7 +208,7 @@ rmdir "%name%"
 
     <version name="0.9.1137" package="org.qtdesktop.JuffEd-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-JuffEd-0.9.1137-1.7z</url>
-        <sha1>6c99111e27eaed3b7385541b9bfd803b4586333d</sha1>
+        <sha1>bef098a6800ce83bac6a3794954f497e0f6ba730</sha1>
         <dependency package="org.qtdesktop.qscintilla-i686-mingw" versions="[2.6.2,)"/>
     </version>
 
