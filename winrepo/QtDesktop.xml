@@ -219,8 +219,9 @@ verify
     </version>
 
     <version name="0.9.1137" package="org.qtdesktop.JuffEd">
+        <important-file path="juffed.exe" title="JuffEd"/>
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-JuffEd-0.9.1137-1.zip</url>
-        <sha1>bef098a6800ce83bac6a3794954f497e0f6ba730</sha1>
+        <sha1>2a7cb759fb3a845bec61f92d72e2336918b0dcd9</sha1>
         <dependency package="org.qtdesktop.qscintilla" versions="[2.6.2,2.6.2]"/>
     </version>
 
