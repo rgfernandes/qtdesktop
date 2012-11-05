@@ -57,45 +57,45 @@
         <icon>https://lh6.googleusercontent.com/-ipFkADMviPw/T2iLPEs5HtI/AAAAAAAAAcA/lre1u3QDfB4/s800/org.7-zip.SevenZipA.png</icon>
         <license>org.7-zip.License</license>
     </package>
-    <package name="org.qtdesktop.core">
-        <title>Core</title>
-        <description>QtDesktop (QDE) core metapackage</description>
+    <package name="org.qtdesktop.QtDesktop">
+        <title>QtDesktop Core</title>
+        <description>QtDesktop core metapackage</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.gcc">
-        <title>GCC</title>
-        <description>MinGW32 RTL (QDE)</description>
+    <package name="org.qtdesktop.gcc-i686-mingw">
+        <title>QtDesktop GCC</title>
+        <description>MinGW32 RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.gcc-cpp">
-        <title>GCC-C++</title>
-        <description>MinGW32 RTL (QDE)</description>
+    <package name="org.qtdesktop.gcc-cpp-i686-mingw">
+        <title>QtDesktop GCC-C++</title>
+        <description>MinGW32 RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.zlib">
-        <title>ZLib</title>
-        <description>MinGW32 RTL (QDE)</description>
+    <package name="org.qtdesktop.zlib-i686-mingw">
+        <title>QtDesktop ZLib</title>
+        <description>MinGW32 RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.libpng">
-        <title>LibPNG</title>
-        <description>MinGW32 RTL (QDE)</description>
+    <package name="org.qtdesktop.libpng-i686-mingw">
+        <title>QtDesktop LibPNG</title>
+        <description>MinGW32 RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.Qt4RTL">
-        <title>Qt4</title>
+    <package name="org.qtdesktop.Qt4RTL-i686-mingw">
+        <title>QtDesktop Qt4</title>
         <url>http://qt.nokia.com/products/library</url>
-        <description>MinGW RTL (QDE)</description>
+        <description>MinGW RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.qscintilla">
-        <title>QScintilla</title>
+    <package name="org.qtdesktop.qscintilla-i686-mingw">
+        <title>QtDesktop QScintilla</title>
         <url>http://www.riverbankcomputing.co.uk/software/qscintilla</url>
-        <description>MinGW RTL (QDE)</description>
+        <description>MinGW RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.JuffEd">
-        <title>JuffEd</title>
+    <package name="org.qtdesktop.JuffEd-i686-mingw">
+        <title>QtDesktop JuffEd</title>
         <url>http://www.juffed.com</url>
         <description>Plain text editor (QDE)</description>
         <license>org.gnu.GPLv3</license>
@@ -161,43 +161,39 @@ verify
         <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1, 2)"/>
     </version>
 <!-- QtDesktop -->
-    <version name="0.0.1" package="org.qtdesktop.core">
-        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-core-0.0.1-1.zip</url>
-        <sha1>bc51d9db526e419e1395ad879f4e49fe85f645a6</sha1>
-        <file path=".Npackd\Install.bat">
-mkdir %SystemDrive%\QDE
-mkdir %SystemDrive%\QDE\lib
-</file>
-        <file path=".Npackd\Uninstall.bat">
-rmdir %SystemDrive%\QDE\lib
-rmdir %SystemDrive%\QDE
-</file>
+    <version name="0.0.1" package="org.qtdesktop.QtDesktop">
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-0.0.1-1.zip</url>
+        <sha1>8e736644274664a61d89024506276ea5b7b90a91</sha1>
+        <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1,2)"/>
     </version>
 
-    <version name="4.7.0" package="org.qtdesktop.gcc">
+    <version name="4.7.0" package="org.qtdesktop.gcc-i686-mingw">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-4.7.0-2.zip</url>
         <sha1>0e2e35d2b9ef3e4d56dd479775edcdf745ef568f</sha1>
+        <dependency package="org.qtdesktop.core" versions="[0.0.1,)"/>
         <file path=".Npackd\Install.bat">
-move lib\* %SystemDrive%\QDE\lib\
+for /f "delims=" %%a in ('dir /b lib\*') do (
+  move "lib\%%a" %SystemDrive%\QDE\lib\
+)
 </file>
     </version>
 
-    <version name="4.7.0" package="org.qtdesktop.gcc-cpp">
+    <version name="4.7.0" package="org.qtdesktop.gcc-cpp-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-gcc-c%2B%2B-4.7.0-2.7z</url>
         <sha1>248425b53ca0a2e97088c4487faa43a7298d05a5</sha1>
     </version>
 
-    <version name="1.2.5" package="org.qtdesktop.zlib">
+    <version name="1.2.5" package="org.qtdesktop.zlib-i686-mingw">
         <url>http://sites.google.com/a/qtdesktop.org/www/windows/QDE-zlib-1.2.5-10.7z</url>
         <sha1>fa38fe67f34b6d3e9fd02867038edc5c1b0053c1</sha1>
     </version>
 
-    <version name="1.5.13" package="org.qtdesktop.libpng">
+    <version name="1.5.13" package="org.qtdesktop.libpng-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-libpng-1.5.13-1.7z</url>
         <sha1>1054e2cdc6e2188cbb3fec67bf7a2cca0df65efa</sha1>
     </version>
 
-    <version name="4.8.3" package="org.qtdesktop.Qt4RTL">
+    <version name="4.8.3" package="org.qtdesktop.Qt4RTL-i686-mingw">
         <file path=".Npackd\Install.bat">for /f "delims=" %%x in ('dir /b qt*') do set name=%%x
 cd "%name%"
 for /f "delims=" %%a in ('dir /b') do (
@@ -214,13 +210,13 @@ rmdir "%name%"
         <dependency package="org.qtdesktop.libpng" versions="[1.5.13,)"/>
     </version>
 
-    <version name="2.6.2" package="org.qtdesktop.qscintilla">
+    <version name="2.6.2" package="org.qtdesktop.qscintilla-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-qscintilla-2.6.2-1.7z</url>
         <sha1>abf23a4a48b5588953d0dd4411f9ebfbbeb51070</sha1>
         <dependency package="org.qtdesktop.Qt4RTL" versions="[4.8.3,)"/>
     </version>
 
-    <version name="0.9.1137" package="org.qtdesktop.JuffEd">
+    <version name="0.9.1137" package="org.qtdesktop.JuffEd-i686-mingw">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QDE-JuffEd-0.9.1137-1.7z</url>
         <sha1>6c99111e27eaed3b7385541b9bfd803b4586333d</sha1>
         <dependency package="org.qtdesktop.qscintilla" versions="[2.6.2,)"/>
