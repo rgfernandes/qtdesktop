@@ -58,7 +58,7 @@
         <license>org.7-zip.License</license>
     </package>
     <package name="org.qtdesktop.QtDesktop">
-        <title>QtDesktop/Core</title>
+        <title>Core</title>
         <description>QtDesktop core metapackage</description>
         <license>org.gnu.GPLv3</license>
     </package>
