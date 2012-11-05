@@ -214,7 +214,7 @@ verify
 
     <version name="2.6.2" package="org.qtdesktop.qscintilla">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-qscintilla-2.6.2-1.zip</url>
-        <sha1>abf23a4a48b5588953d0dd4411f9ebfbbeb51070</sha1>
+        <sha1>bef098a6800ce83bac6a3794954f497e0f6ba730</sha1>
         <dependency package="org.qtdesktop.qt" versions="[4.8.3,4.8.3]"/>
     </version>
 
