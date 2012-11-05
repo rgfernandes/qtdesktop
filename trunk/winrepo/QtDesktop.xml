@@ -82,8 +82,8 @@
         <description>MinGW32 RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
-    <package name="org.qtdesktop.Qt4RTL">
-        <title>QtDesktop Qt4</title>
+    <package name="org.qtdesktop.qt">
+        <title>QtDesktop Qt</title>
         <url>http://qt.nokia.com/products/library</url>
         <description>MinGW RTL</description>
         <license>org.gnu.GPLv3</license>
@@ -191,28 +191,19 @@ verify
         <dependency package="org.qtdesktop.core" versions="[0.0.1,0.0.1]"/>
     </version>
 
-    <version name="4.8.3" package="org.qtdesktop.Qt4RTL" type="one-file">
-        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-Qt4-4.8.3-1.7z</url>
-        <sha1>5434f781fe3c0e650d49efe8a3f87e8a90bc8bc8</sha1>
+    <version name="4.8.3" package="org.qtdesktop.qt">
+        <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-Qt4-4.8.3-1.zip</url>
+        <sha1>43ca921e35f9b9d7f780c14c229718f7e1e36135</sha1>
         <dependency package="org.qtdesktop.gcc" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.gcc-cpp" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.zlib" versions="[1.2.5,1.2.5]"/>
         <dependency package="org.qtdesktop.libpng" versions="[1.5.13,1.5.13]"/>
-        <dependency package="org.7-zip.SevenZIPA" versions="[9.20, 9.20]"/>
-        <dependency package="com.googlecode.windows-package-manager.NpackdInstallerHelper" versions="[1.1, 2)"/>
-        <dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1.15.7, 2)"/>
-        <file path=".Npackd\Install.bat">if "%npackd_cl%" equ "" set npackd_cl=..\com.googlecode.windows-package-manager.NpackdCL-1
-set onecmd="%npackd_cl%\npackdcl.exe" "path" "--package=org.7-zip.SevenZIPA" "--versions=[9.20, 9.20]"
-for /f "usebackq delims=" %%x in (`%%onecmd%%`) do set sevenzipa=%%x
-for /f %%x in ('dir /b *.7z') do set setup=%%x
-"%sevenzipa%\7za.exe" x "%setup%" &gt; .Npackd\Output.txt &amp;&amp; type .Npackd\Output.txt
-</file>
     </version>
 
     <version name="2.6.2" package="org.qtdesktop.qscintilla">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-qscintilla-2.6.2-1.zip</url>
         <sha1>abf23a4a48b5588953d0dd4411f9ebfbbeb51070</sha1>
-        <dependency package="org.qtdesktop.Qt4RTL" versions="[4.8.3,4.8.3]"/>
+        <dependency package="org.qtdesktop.qt" versions="[4.8.3,4.8.3]"/>
     </version>
 
     <version name="0.9.1137" package="org.qtdesktop.JuffEd">
