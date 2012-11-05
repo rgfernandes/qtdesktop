@@ -58,12 +58,12 @@
         <license>org.7-zip.License</license>
     </package>
     <package name="org.qtdesktop.QtDesktop">
-        <title>QtDesktop Core</title>
+        <title>QtDesktop/Core</title>
         <description>QtDesktop core metapackage</description>
         <license>org.gnu.GPLv3</license>
     </package>
     <package name="org.qtdesktop.gcc-i686-mingw">
-        <title>QtDesktop GCC</title>
+        <title>QtDesktop/GCC</title>
         <description>MinGW32 RTL</description>
         <license>org.gnu.GPLv3</license>
     </package>
