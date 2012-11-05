@@ -197,7 +197,7 @@ verify
         <dependency package="org.qtdesktop.gcc" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.gcc-cpp" versions="[4.7,4.7]"/>
         <dependency package="org.qtdesktop.zlib" versions="[1.2.5,1.2.5]"/>
-        <dependency package="org.qtdesktop.libpng" versions="[1.5.13,1.5.13)"/>
+        <dependency package="org.qtdesktop.libpng" versions="[1.5.13,1.5.13]"/>
         <dependency package="org.7-zip.SevenZIPA" versions="[9.20, 9.20]"/>
         <dependency package="com.googlecode.windows-package-manager.NpackdInstallerHelper" versions="[1.1, 2)"/>
         <dependency package="com.googlecode.windows-package-manager.NpackdCL" versions="[1.15.7, 2)"/>
