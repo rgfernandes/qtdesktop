@@ -165,6 +165,14 @@ verify
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-0.0.1-1.zip</url>
         <sha1>8e736644274664a61d89024506276ea5b7b90a91</sha1>
         <dependency package="com.googlecode.windows-package-manager.CLU" versions="[1,2)"/>
+        <file path=".Npackd\Install.bat">
+clu add-path --path "%CD%\lib"
+clu add-path --path "%CD%\bin"
+        </file>
+        <file path=".Npackd\Uninstall.bat">
+clu remove-path --path "%CD%\lib"
+clu remove-path --path "%CD%\bin"
+        </file>
     </version>
 
     <version name="4.7.0" package="org.qtdesktop.gcc-i686-mingw">
