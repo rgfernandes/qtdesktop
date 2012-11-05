@@ -191,7 +191,7 @@ verify
         <dependency package="org.qtdesktop.core" versions="[0.0.1,0.0.1]"/>
     </version>
 
-    <version name="4.8.3" package="org.qtdesktop.Qt4RTL">
+    <version name="4.8.3" package="org.qtdesktop.Qt4RTL" type="one-file">
         <url>https://sites.google.com/a/qtdesktop.org/www/windows/QtDesktop-Qt4-4.8.3-1.7z</url>
         <sha1>5434f781fe3c0e650d49efe8a3f87e8a90bc8bc8</sha1>
         <dependency package="org.qtdesktop.gcc" versions="[4.7,4.7]"/>
