@@ -19,8 +19,8 @@ TMPINSTALL=`mktemp`
 TMPUNINSTALL=`mktemp`
 find . -type f | sed 's/^\.\///' | sed 's/\//\\\\/' | while read i
 do
-    echo "MOVE $i %QTDESKTOP%\\lib\\" >> $TMPINSTALL
-    echo "DEL %QTDESKTOP%\\$i" >> $TMPUNINSTALL
+    echo "MOVE $i \"%QTDESKTOP%\\lib\\\"" >> $TMPINSTALL
+    echo "DEL \"%QTDESKTOP%\\$i\"" >> $TMPUNINSTALL
 done
 echo "RMDIR lib" >> $TMPINSTALL
 mv $TMPINSTALL Install.bat
