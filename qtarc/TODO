@@ -13,3 +13,21 @@
 * Drug'n'Drop
 * link w/ natural libs
 * arj, rpm, deb, iso, cab
+= Or =
+use mc (/usr/libexec/mc/ext.d)
+
+= Current =
+MainWindow->treeView->model(ArchItemModel(Archive))
+ArchItemModel(QAbstractItemModel): Archive(archive) - model for viewing
+Archive	- archive file representation (load,save,extract etc); root=ArchItem
+ArchItem - a folder/file in archive
+ArchItemPack	// Class containing ArchItems - as children of ArchItem
+
+= Need =
+misc arch handlers:
+	- list
+	- get info
+	- add
+	- del
+	- extract
+	- replace?
