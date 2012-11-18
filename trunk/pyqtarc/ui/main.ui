@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>Main</class>
+ <widget class="QMainWindow" name="Main">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -39,50 +39,60 @@
      <x>0</x>
      <y>0</y>
      <width>288</width>
-     <height>26</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionNew"/>
-    <addaction name="actionOpen"/>
-    <addaction name="actionSaveAs"/>
+    <addaction name="action_FileNew"/>
+    <addaction name="action_FileOpen"/>
+    <addaction name="action_FileSaveAs"/>
     <addaction name="separator"/>
-    <addaction name="actionProperties"/>
+    <addaction name="action_FileProperties"/>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
+    <addaction name="action_Exit"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
     <property name="title">
      <string>&amp;Edit</string>
     </property>
-    <addaction name="actionCut"/>
-    <addaction name="actionCopy"/>
-    <addaction name="actionPaste"/>
+    <addaction name="action_EditCut"/>
+    <addaction name="action_EditCopy"/>
+    <addaction name="action_EditPaste"/>
     <addaction name="separator"/>
-    <addaction name="actionSelectAll"/>
-    <addaction name="actionDeselect"/>
+    <addaction name="action_EditSelectAll"/>
+    <addaction name="action_EditDeselect"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionAbout"/>
-    <addaction name="actionAboutQt"/>
+    <addaction name="action_HelpAbout"/>
+    <addaction name="action_HelpAboutQt"/>
    </widget>
    <widget class="QMenu" name="menu_Actions">
     <property name="title">
      <string>&amp;Actions</string>
     </property>
-    <addaction name="actionAddFile"/>
-    <addaction name="actionAddDirectory"/>
-    <addaction name="actionExtract"/>
-    <addaction name="actionDelete"/>
+    <addaction name="action_AddFile"/>
+    <addaction name="action_AddDirectory"/>
+    <addaction name="action_Extract"/>
+    <addaction name="action_Delete"/>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="action_ViewTree"/>
+    <addaction name="action_ViewTable"/>
+    <addaction name="action_ViewIcons"/>
+    <addaction name="action_ViewColumns"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
+   <addaction name="menu_View"/>
    <addaction name="menu_Actions"/>
    <addaction name="menu_Help"/>
   </widget>
@@ -97,17 +107,17 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionNew"/>
-   <addaction name="actionOpen"/>
+   <addaction name="action_FileNew"/>
+   <addaction name="action_FileOpen"/>
    <addaction name="separator"/>
-   <addaction name="actionAddFile"/>
-   <addaction name="actionAddDirectory"/>
-   <addaction name="actionExtract"/>
-   <addaction name="actionDelete"/>
+   <addaction name="action_AddFile"/>
+   <addaction name="action_AddDirectory"/>
+   <addaction name="action_Extract"/>
+   <addaction name="action_Delete"/>
   </widget>
-  <action name="actionNew">
+  <action name="action_FileNew">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/document-new.png</normaloff>:/icons/icons/24x24/document-new.png</iconset>
    </property>
    <property name="text">
@@ -120,9 +130,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionOpen">
+  <action name="action_FileOpen">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/document-open.png</normaloff>:/icons/icons/24x24/document-open.png</iconset>
    </property>
    <property name="text">
@@ -135,9 +145,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionSaveAs">
+  <action name="action_FileSaveAs">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/document-save-as.png</normaloff>:/icons/icons/24x24/document-save-as.png</iconset>
    </property>
    <property name="text">
@@ -150,9 +160,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionExtract">
+  <action name="action_Extract">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/extract-archive.png</normaloff>:/icons/icons/24x24/extract-archive.png</iconset>
    </property>
    <property name="text">
@@ -165,9 +175,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionProperties">
+  <action name="action_FileProperties">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/document-properties.png</normaloff>:/icons/icons/24x24/document-properties.png</iconset>
    </property>
    <property name="text">
@@ -180,7 +190,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionExit">
+  <action name="action_Exit">
    <property name="text">
     <string>E&amp;xit</string>
    </property>
@@ -191,9 +201,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionAddFile">
+  <action name="action_AddFile">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/add-files-to-archive.png</normaloff>:/icons/icons/24x24/add-files-to-archive.png</iconset>
    </property>
    <property name="text">
@@ -206,9 +216,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionAddDirectory">
+  <action name="action_AddDirectory">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/add-folder-to-archive.png</normaloff>:/icons/icons/24x24/add-folder-to-archive.png</iconset>
    </property>
    <property name="text">
@@ -221,9 +231,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionCut">
+  <action name="action_EditCut">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/edit-cut.png</normaloff>:/icons/icons/24x24/edit-cut.png</iconset>
    </property>
    <property name="text">
@@ -236,9 +246,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionCopy">
+  <action name="action_EditCopy">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/edit-copy.png</normaloff>:/icons/icons/24x24/edit-copy.png</iconset>
    </property>
    <property name="text">
@@ -251,9 +261,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionPaste">
+  <action name="action_EditPaste">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/edit-paste.png</normaloff>:/icons/icons/24x24/edit-paste.png</iconset>
    </property>
    <property name="text">
@@ -266,9 +276,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionDelete">
+  <action name="action_Delete">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/edit-delete.png</normaloff>:/icons/icons/24x24/edit-delete.png</iconset>
    </property>
    <property name="text">
@@ -281,9 +291,9 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionAbout">
+  <action name="action_HelpAbout">
    <property name="icon">
-    <iconset resource="../qtarc.qrc">
+    <iconset resource="../pyqtarc.qrc">
      <normaloff>:/icons/icons/24x24/help-about.png</normaloff>:/icons/icons/24x24/help-about.png</iconset>
    </property>
    <property name="text">
@@ -296,7 +306,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionAboutQt">
+  <action name="action_HelpAboutQt">
    <property name="text">
     <string>AboutQt</string>
    </property>
@@ -304,7 +314,7 @@
     <string notr="true"/>
    </property>
   </action>
-  <action name="actionSelectAll">
+  <action name="action_EditSelectAll">
    <property name="text">
     <string>Select All</string>
    </property>
@@ -315,7 +325,7 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="actionDeselect">
+  <action name="action_EditDeselect">
    <property name="text">
     <string>Deselect</string>
    </property>
@@ -326,9 +336,58 @@
     <bool>true</bool>
    </property>
   </action>
+  <action name="action_ViewTree">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>T&amp;ree</string>
+   </property>
+  </action>
+  <action name="action_ViewTable">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Table</string>
+   </property>
+  </action>
+  <action name="action_ViewIcons">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Icons</string>
+   </property>
+  </action>
+  <action name="action_ViewColumns">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Columns</string>
+   </property>
+  </action>
  </widget>
  <resources>
-  <include location="../qtarc.qrc"/>
+  <include location="../pyqtarc.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action_Exit</sender>
+   <signal>triggered()</signal>
+   <receiver>Main</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>143</x>
+     <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

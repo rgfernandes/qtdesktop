@@ -1,25 +1,14 @@
 #!/bin/env python
 # -*- coding: utf-8 -*-
+'''
+pyqtarc.py - main file
+'''
 
-import sys
-from PyQt4 import QtCore, QtGui
-from ui.Ui_mainwindow import Ui_MainWindow
-#from    Ui_Main                 import Ui_Main
-#from    Main_rc                 import *
+__progname__ = 'PyQtArc'
+__version__ =	'0.0.1'
+__author__ =	'TI_Eugene'
 
-class	MainWindow(Ui_MainWindow):
-	def init_signals(self):
-		'''
-		Setup window slots
-		'''
-
-def main():
-	app = QtGui.QApplication(sys.argv)
-	mwMain = QtGui.QMainWindow()
-	uiMain = MainWindow()
-	uiMain.setupUi( mwMain )
-	mwMain.show()
-	sys.exit(app.exec_())
+from src.main import main
 
 if __name__ == '__main__':
     main()
