@@ -14,8 +14,9 @@ class	ArchFile:
 
 	def	load(self, path):
 		helper = ArchHelper7z()
-		helper.set_apth(path)
-		helper.list(self.__root)
+		for i in helper.list(path):
+			self.__root.addChildRecursive(i[0], i[1], i[2],  i[3])
+		self.__root.sort()
 
 	def	List(self):
 		return self.__root.getChildren()

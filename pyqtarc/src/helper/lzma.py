@@ -1,16 +1,17 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
 '''
 7z helper
 '''
 
-from PyQt4 import QtCore 
+import sys, re, datetime, subprocess, pprint
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class	ArchHelper7z:
-	exts = (
-	        '7z', 
-	)
-	mimes = (
-	        'application/x-7z-compressed', 
-	)
+	exts = ('7z',)
+	mimes = ('application/x-7z-compressed',)
 
 	@classmethod
 	def	get_ext():
@@ -21,41 +22,33 @@ class	ArchHelper7z:
 		return self.mimes
 
 	def	__init__(self):
-		self.__path = None
+		self.__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
 
-	def	set_path(self, path):
-		self.__path = path
-
-	def	list(self, root):
+	def	list(self, path):
 		'''
 		@param path: full path to archive
 		@type path: str
 		@param root: where to load to
 		@type root: ArchItemFolder
-		@return: success
-		@rtype: bool
+		@return: (name, isdir, mtime, size, csize)
+		@rtype: list
 		'''
-		arch = QProcess()
-		# 7z start
-		arch.start("7za", QStringList() << "l" << archname)
-		# 7z end
-		arch.waitForFinished()
-		out = QtCore.QString(arch.readAllStandardOutput())
-		root.getChildren().clear()
-		outlist = out.split('\n')
-		# 7z start
-		rx = QtCore.QRegExp("^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*$")
-		# 7z end
-		ci = QtCore.QStringList.const_iterator
-		for (ci = outlist.constBegin(); ci != outlist.constEnd(); ++ci)
-			if (rx.indexIn(*ci) == 0):
-		# 7z start
-				fi.type =	(*ci).mid(20, 5).startsWith('D')
-				fi.path =	(*ci).mid(53)
-				fi.size =	(*ci).mid(26, 12).trimmed().toLong()
-				fi.datetime =	QDateTime::fromString((*ci).mid(0, 19), "yyyy-MM-dd HH:mm:ss")
-		# 7z end
-				QStringList pathlist = fi.path.split('/')
-				root.addChildRecursive(pathlist, fi.type, fi.size, fi.datetime)
-		root.sort()
-		return True
+		p = subprocess.Popen(["7za", "l", path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		out, err = p.communicate()
+		retvalue = list()
+		for match in self.__rx.finditer(out):
+			s = match.group()
+			retvalue.append((
+					s[53:].rstrip("\n"),
+					(s[20] == 'D'),
+					datetime.datetime.strptime(s[:19], "%Y-%m-%d %H:%M:%S"),
+					long(s[26:38].lstrip()),
+					long(s[39:51].lstrip()) if s[39:51].lstrip() else 0,
+				)
+			)
+		return retvalue
+
+if __name__ == '__main__':
+	helper = ArchHelper7z()
+	for i in helper.list(sys.argv[1]):
+		print i[0], i[1], i[2], i[3], i[4]
