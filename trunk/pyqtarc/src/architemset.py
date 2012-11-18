@@ -36,7 +36,7 @@ class	ArchItemSet:
 
 	def	sort(self):
 		self.__list = self.__dirs.values() + self.__files.values()
-		for i, item in eumerate(self.__list):
+		for i, item in enumerate(self.__list):
 			item.setRow(i)
 			if (item.isDir()):
 				item.getChildren().sort()

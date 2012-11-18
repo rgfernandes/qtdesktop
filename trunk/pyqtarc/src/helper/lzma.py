@@ -39,11 +39,11 @@ class	ArchHelper7z:
 		for match in self.__rx.finditer(out):
 			s = match.group()
 			retvalue.append((
-					s[53:].rstrip("\n"),
-					(s[20] == 'D'),
-					datetime.datetime.strptime(s[:19], "%Y-%m-%d %H:%M:%S"),
-					long(s[26:38].lstrip()),
-					long(s[39:51].lstrip()) if s[39:51].lstrip() else 0,
+					s[53:].rstrip("\n"),	# name:str
+					(s[20] == 'D'),		# isdir:bool
+					datetime.datetime.strptime(s[:19], "%Y-%m-%d %H:%M:%S"),	# mtime:datetime
+					long(s[26:38].lstrip()),	# size:long
+					long(s[39:51].lstrip()) if s[39:51].lstrip() else 0,	# csize:long
 				)
 			)
 		return retvalue

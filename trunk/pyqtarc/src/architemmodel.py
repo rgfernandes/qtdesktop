@@ -7,25 +7,26 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 		self.__iconProvider = QtGui.QFileIconProvider()
 
 	def	index(self, row, column, index):
-		if not self.hasIndex(index):
-			return QModelIndex()
+		if not self.hasIndex(row, column, index):
+			return QtCore.QModelIndex()
 		if not index.isValid():
 			parentItem = self.__archfile.getRoot()
 		else:
-			parentItem = index.internalPoiner()
-		childItem = parentItem.getChild(row)
+			parentItem = index.internalPointer()
+		#print type(parentItem).__name__
+		childItem = parentItem.getChild(row)		# parentItem == ArchItemFolder
 		if (childItem):
 			return self.createIndex(row, column, childItem)
 		else:
-			return QModelIndex()
+			return QtCore.QModelIndex()
 
 	def	parent(self, index):
 		if (index.isValid()):
 			n = index.internalPointer()
-			p = n.parent()
+			p = n.getParent()
 			if (p != self.__archfile.getRoot()):
 				return self.createIndex(p.getRow(), 0, p)
-		return QModelIndex()
+		return QtCore.QModelIndex()
 
 	def	rowCount(self, index):
 		if (index.column() > 0):
@@ -34,7 +35,7 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 			item = index.internalPointer()
 		else:
 			item = self.__archfile.getRoot()
-		return item.getChildrenCount()
+		return item.getChildrenCount() if item.isDir() else 0
 
 	def	columnCount(self, index):
 		return 3
@@ -48,14 +49,14 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 			if (section == 0):
 				return item.getName()
 			if (section == 1):
-				return QString.number(item.getSize())
+				return 0 if item.isDir() else item.getSize()
 			if (section == 2):
-				return item.getDateTime().toString("yyyy-MM-dd HH:mm:ss")
+				return item.getMtime().toString("yyyy-MM-dd HH:mm:ss")
 			else:
 				return QtCore.QVariant()
 		if (role == QtCore.Qt.DecorationRole):
 			if (index.column() == 0):
-				return iconProvider.icon(QFileIconProvider.Folder) if item.isDir() else iconProvider.icon(QFileIconProvider.File)
+				return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if item.isDir() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
 		return QtCore.QVariant()
 
 	def	headerData(self, section, orientation, role):
@@ -77,4 +78,4 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 		return index.internalPointer()
 
 	def	refresh(self):
-		self.layoutChanged()
+		self.layoutChanged.emit()
