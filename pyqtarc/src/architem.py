@@ -51,7 +51,7 @@ class	ArchItemFile(ArchItem):
 		self.__size = size
 
 	@classmethod
-	def	isDir():
+	def	isDir(self):
 		return False
 
 	def	setSize(self, value):
@@ -66,7 +66,7 @@ class	ArchItemFolder(ArchItem):
 		self.__children = ArchItemSet()
 
 	@classmethod
-	def	isDir():
+	def	isDir(self):
 		return True
 
 	def	getChildren(self):
@@ -76,7 +76,7 @@ class	ArchItemFolder(ArchItem):
 		return self.__children.count()
 
 	def	getChild(self, item):
-		return self.__children.getChild(item)
+		return self.__children.get(item)
 
 	def	addChild(self, item):
 		if (not self.__children.contains(item.getName())):
@@ -98,7 +98,7 @@ class	ArchItemFolder(ArchItem):
 		else:					# dive in
 			new_item = ArchItemFolder(s, mtime, self)	# FIXME: wrong mtime
 			self.addChild(new_item)
-			new_item.addChildRecursive(filepath[1:], isDir, mtime, size)
+			new_item.addChildRecursive(filePath[1:], isDir, mtime, size)
 
 	def	delChild(self, item):
 		return self.__children.del_(item)

@@ -1,3 +1,4 @@
+from PyQt4 import QtCore
 import architem
 from helper.lzma import ArchHelper7z
 
@@ -18,8 +19,8 @@ class	ArchFile:
 	def	load(self, path):
 		helper = ArchHelper7z()
 		for i in helper.list(path):
-			self.__root.addChildRecursive(i[0], i[1], i[2],  i[3])
-		self.__root.sort()
+			self.__root.addChildRecursive(i[0].split("/"), i[1], QtCore.QDateTime(i[2]), i[3])	# name:str, isdir:bool, mtime:datetime, size:int
+		self.__root.getChildren().sort()
 
 	def	List(self):
 		return self.__root.getChildren()
