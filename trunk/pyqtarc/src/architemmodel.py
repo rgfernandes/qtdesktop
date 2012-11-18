@@ -13,8 +13,7 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 			parentItem = self.__archfile.getRoot()
 		else:
 			parentItem = index.internalPointer()
-		#print type(parentItem).__name__
-		childItem = parentItem.getChild(row)		# parentItem == ArchItemFolder
+		childItem = parentItem.getChild(row)
 		if (childItem):
 			return self.createIndex(row, column, childItem)
 		else:
