@@ -20,7 +20,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			parent = None,
 			caption=self.tr("Open file"),
 			directory="",
-			filter = self.tr("Archive") + " (*.7z *.arj *.rar *.zip *.tar *.tar.gz *.tgz *.tar.bz *.tar.bz2 *.tbz *.tbz2  *.tbz *.tar.7z *.tar.lzma *.tlzma *.tar.xz *.txz)")
+			# " (*.7z *.arj *.rar *.zip *.tar *.tar.gz *.tgz *.tar.bz *.tar.bz2 *.tbz *.tbz2  *.tbz *.tar.7z *.tar.lzma *.tlzma *.tar.xz *.txz)")
+			filter = self.tr("Archive") + " (*.7z)")
 		if (not fileName.isEmpty()):
 			self.__archfile.load(fileName)
 			self.treeView.model().refresh()
