@@ -44,7 +44,7 @@ class	ArchItem:
 			return self.__name
 
 class	ArchItemFile(ArchItem):
-	def __init__(self, name,  mtime, parent, size):
+	def __init__(self, name, mtime, parent, size):
 		super(ArchItemFile, self).__init__(name,  mtime, parent)
 		self.__size = size
 
@@ -52,11 +52,51 @@ class	ArchItemFile(ArchItem):
 	def	isDir():
 		return False
 
+	def	setSize(self, value):
+		self.__size = value
+
+	def	getSize(self):
+		return self.__size
+
 class	ArchItemFolder(ArchItem):
-	def __init__(self, name,  mtime, parent):
+	def __init__(self, name, mtime, parent):
 		super(ArchItemFile, self).__init__(name,  mtime, parent)
 		self.__children = ArchItemSet()
 
 	@classmethod
 	def	isDir():
 		return True
+
+	def	getChildren(self):
+		return self.__children
+
+	def	getChildrenCount(self):
+		return self.__children.count()
+
+	def	getChild(self, item):
+		return self.__children.getChild(item)
+
+	def	addChild(self, item):
+		if (not self.__children.contains(item.getName())):
+			self.__children.add(item)
+
+	def	addChildRecursive(self, filePath, isDir, mtime, size):
+		s = filePath[0]
+		if (len(filePath) == 1):	# last itme in stack
+			if self.__children.contains(s):	# update
+				item = self.getChild(s)
+				if item.isDir() != isDir:				# FIXME:
+					pass
+				else:
+					item.setMtime(mtime)
+					if (not isDir):
+						item.setSize(size)
+			else:
+				self.addChild(ArchItemFolder(s, mtime, self) if isDir else ArchItemFile(s, mtime, self, size))
+		else:					# dive in
+			new_item = ArchItemFolder(s, mtime, self)	# FIXME: wrong mtime
+			self.addChild(new_item)
+			new_item.addChildRecursive(filepath[1:], isDir, mtime, size)
+
+	def	delChild(self, item):
+		return self.__children.del_(item)
