@@ -2,6 +2,8 @@
 ArchItem* - representation of archive entries in model
 '''
 
+import QtCore
+
 from architemset import ArchItemSet
 
 class	ArchItem:
@@ -44,8 +46,8 @@ class	ArchItem:
 			return self.__name
 
 class	ArchItemFile(ArchItem):
-	def __init__(self, name, mtime, parent, size):
-		super(ArchItemFile, self).__init__(name,  mtime, parent)
+	def __init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None, size = 0L):
+		super(ArchItemFile, self).__init__(name, mtime, parent)
 		self.__size = size
 
 	@classmethod
@@ -59,8 +61,8 @@ class	ArchItemFile(ArchItem):
 		return self.__size
 
 class	ArchItemFolder(ArchItem):
-	def __init__(self, name, mtime, parent):
-		super(ArchItemFile, self).__init__(name,  mtime, parent)
+	def __init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None):
+		super(ArchItemFile, self).__init__(name, mtime, parent)
 		self.__children = ArchItemSet()
 
 	@classmethod

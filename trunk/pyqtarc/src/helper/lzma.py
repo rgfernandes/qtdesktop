@@ -20,10 +20,14 @@ class	ArchHelper7z:
 	def	get_mime():
 		return self.mimes
 
+	def	__init__(self):
+		self.__path = None
+
 	def	list(self,  path):
 		'''
 		@param path: 
 		'''
+		QProcess arch;
 		// 7z start
 		arch.start("7za", QStringList() << "l" << archname);
 		// 7z end
