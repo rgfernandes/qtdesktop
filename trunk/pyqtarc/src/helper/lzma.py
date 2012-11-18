@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 '''
 7z helper
+TODO:
+* One helper class+
+* 5 callbacks(str) - name, isdir, mtime, size, csize
 '''
 
 import sys, re, datetime, subprocess, pprint
@@ -37,9 +40,9 @@ class	ArchHelper7z:
 		out, err = p.communicate()
 		retvalue = list()
 		for match in self.__rx.finditer(out):
-			s = match.group()
+			s = match.group().rstrip("\n")
 			retvalue.append((
-					s[53:].rstrip("\n"),	# name:str
+					s[53:],	# name:str
 					(s[20] == 'D'),		# isdir:bool
 					datetime.datetime.strptime(s[:19], "%Y-%m-%d %H:%M:%S"),	# mtime:datetime
 					long(s[26:38].lstrip()),	# size:long
