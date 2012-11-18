@@ -9,6 +9,9 @@ class	ArchFile:
 	def	__init__(self):
 		self.__root = architem.ArchItemFolder("")
 
+	def	getRoot(self):
+		return self.__root
+
 	def	sort(self):
 		self.__root.getChildren().sort()
 

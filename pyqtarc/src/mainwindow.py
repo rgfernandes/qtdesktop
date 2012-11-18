@@ -2,6 +2,7 @@ from PyQt4 import QtCore, QtGui
 from ui.Ui_main import Ui_Main
 
 from archfile	import ArchFile
+from architemmodel import ArchItemModel
 
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
