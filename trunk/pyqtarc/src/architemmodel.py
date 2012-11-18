@@ -1,8 +1,10 @@
+from PyQt4 import QtCore, QtGui
+
 class	ArchItemModel(QtCore.QAbstractItemModel):
 	def	__init__(self,  archfile,  parent = None):
 		super(ArchItemModel, self).__init__(parent)
 		self.__archfile = archfile
-		self.__iconProvider = QtCore.QFileIconProvider()
+		self.__iconProvider = QtGui.QFileIconProvider()
 
 	def	index(self, row, column, index):
 		if not self.hasIndex(index):
@@ -31,17 +33,17 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 		if (index.isValid()):
 			item = index.internalPointer()
 		else:
-			item = archive.getRoot()
-		return item.childCount()
+			item = self.__archfile.getRoot()
+		return item.getChildrenCount()
 
-	def	columntCount(self, index):
+	def	columnCount(self, index):
 		return 3
 
 	def	data(self, index, role):
 		if (not index.isValid()):
 			return QtCore.QVariant()
 		item = index.internalPointer()
-		if (role == Qt.DisplayRole):
+		if (role == QtCore.Qt.DisplayRole):
 			section = index.column()
 			if (section == 0):
 				return item.getName()
@@ -51,13 +53,13 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 				return item.getDateTime().toString("yyyy-MM-dd HH:mm:ss")
 			else:
 				return QtCore.QVariant()
-		if (role == Qt.DecorationRole):
+		if (role == QtCore.Qt.DecorationRole):
 			if (index.column() == 0):
 				return iconProvider.icon(QFileIconProvider.Folder) if item.isDir() else iconProvider.icon(QFileIconProvider.File)
 		return QtCore.QVariant()
 
 	def	headerData(self, section, orientation, role):
-		if ((role == Qt.DisplayRole) and (orientation == Qt.Horizontal)):
+		if ((role == QtCore.Qt.DisplayRole) and (orientation == QtCore.Qt.Horizontal)):
 			if (section == 0):
 				return QtCore.QString(self.tr("Name"))
 			elif (section == 1):
@@ -69,7 +71,7 @@ class	ArchItemModel(QtCore.QAbstractItemModel):
 		return QtCore.QVariant()
 
 	def	flags(self, index):
-		return (Qt.ItemIsSelectable|Qt.ItemIsEnabled|Qt.ItemIsDragEnabled|Qt.ItemIsDropEnabled) if index.isValid() else Qt.NoItemFlags
+		return (QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEnabled|QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsDropEnabled) if index.isValid() else QtCore.Qt.NoItemFlags
 
 	def	item(self, index):
 		return index.internalPointer()

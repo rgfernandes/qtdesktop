@@ -2,11 +2,11 @@
 ArchItem* - representation of archive entries in model
 '''
 
-import QtCore
+from PyQt4 import QtCore
 
 from architemset import ArchItemSet
 
-class	ArchItem:
+class	ArchItem(object):
 	def __init__(self, name,  mtime, parent):
 		self.__name = name
 		self.__mtime = mtime
@@ -62,7 +62,7 @@ class	ArchItemFile(ArchItem):
 
 class	ArchItemFolder(ArchItem):
 	def __init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None):
-		super(ArchItemFile, self).__init__(name, mtime, parent)
+		super(ArchItemFolder, self).__init__(name, mtime, parent)
 		self.__children = ArchItemSet()
 
 	@classmethod
