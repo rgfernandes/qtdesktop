@@ -33,11 +33,11 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			self.treeView.model().refresh()
 
 	def	__onActionAddFile(self):
-		fileName = QtGui.QFileDialog.getOpenFileName(
+		fileNames = QtGui.QFileDialog.getOpenFileNames(
 			parent = None,
 			caption=self.tr("Add file"),
 			directory="",
 			filter = self.tr("Any file") + " (*.*)")
-		if (not fileName.isEmpty()):
-			self.__archfile.add(fileName)
+		if (not fileNames.isEmpty()):
+			self.__archfile.add(fileNames)
 			self.treeView.model().refresh()

@@ -37,7 +37,7 @@ class	ArchHelper7z:
 		'''
 		return self.mimes
 
-	def	list(self, path, files=tuple()):
+	def	list(self, path, files=list()):
 		'''
 		List archive.
 		TODO: err handling: str, errcode
@@ -46,7 +46,7 @@ class	ArchHelper7z:
 		@return: (name, isdir, mtime, size, csize)
 		@rtype: list
 		'''
-		p = subprocess.Popen(["7za", "l", path] + list(files), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		p = subprocess.Popen(["7za", "l", path] + files, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
 		if (p.returncode):
 			return (p.returncode, err)
@@ -63,7 +63,7 @@ class	ArchHelper7z:
 			)
 		return (0, retvalue)
 
-	def	add(self, apath, fpath):
+	def	add(self, apath, fpaths):
 		'''
 		@param apath: full path to archive
 		@type path: str
@@ -72,12 +72,12 @@ class	ArchHelper7z:
 		@return: errcode, errmsg
 		@rtype: (int, str)
 		'''
-		p = subprocess.Popen(["7za", "a", apath, fpath], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		p = subprocess.Popen(["7za", "a", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
 		if (p.returncode):
 			return (p.returncode, err)
-		fname = os.path.basename(str(fpath))
-		return self.list(str(apath), (fname,))
+		fnames = map(os.path.basename, fpaths)
+		return self.list(apath, fnames)
 
 if __name__ == '__main__':
 	helper = ArchHelper7z()
