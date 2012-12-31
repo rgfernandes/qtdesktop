@@ -39,12 +39,12 @@ class	ArchFile:
 		'''
 		self.__file = path
 		self.__helper = ArchHelper7z()
-		errcode, result = self.__helper.list(path)
+		errcode, result = self.__helper.list(str(path))
 		if (errcode):
 			return
 		return self.__list(result)
 
-	def	add(self, path):
+	def	add(self, paths):
 		'''
 		get file name
 		try to add
@@ -53,8 +53,7 @@ class	ArchFile:
 		TODO: same as load
 		TODO: folder
 		'''
-		f = QtCore.QFileInfo(path)
-		errcode, result = self.__helper.add(self.__file, path)
+		errcode, result = self.__helper.add(self.__file, map(str, paths))
 		if errcode:
 			return
 		return self.__list(result)
