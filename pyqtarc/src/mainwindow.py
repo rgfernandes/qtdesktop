@@ -17,7 +17,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__setSlots(self):
 		self.connect(self.action_FileOpen,	QtCore.SIGNAL( "triggered()" ), self.__onActionFileOpen )
 		self.connect(self.action_AddFile,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFile )
-		#self.connect(self.action_AddDirectory,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFolder )
+		self.connect(self.action_AddDirectory,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFolder )
 
 	def	__onActionFileOpen(self):
 		'''
@@ -34,10 +34,17 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 
 	def	__onActionAddFile(self):
 		fileNames = QtGui.QFileDialog.getOpenFileNames(
-			parent = None,
 			caption=self.tr("Add file"),
-			directory="",
 			filter = self.tr("Any file") + " (*.*)")
 		if (not fileNames.isEmpty()):
 			self.__archfile.add(fileNames)
 			self.treeView.model().refresh()
+
+	def	__onActionAddFolder(self):
+		folderName = QtGui.QFileDialog.getExistingDirectory(
+			caption=self.tr("Add folder"),)
+		if (not folderName.isEmpty()):
+			self.__archfile.add([folderName,])
+			self.treeView.model().refresh()
+		#if (dialog.exec_()):
+		#	fileNames = dialog.selectedFiles()
