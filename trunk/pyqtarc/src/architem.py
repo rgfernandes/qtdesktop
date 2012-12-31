@@ -84,10 +84,10 @@ class	ArchItemFolder(ArchItem):
 
 	def	addChildRecursive(self, filePath, isDir, mtime, size):
 		s = filePath[0]
-		if (len(filePath) == 1):	# last itme in stack
-			if self.__children.contains(s):	# update
+		if (len(filePath) == 1):			# last itme in stack
+			if self.__children.contains(s):		# update
 				item = self.getChild(s)
-				if item.isDir() != isDir:				# FIXME:
+				if item.isDir() != isDir:	# FIXME:
 					pass
 				else:
 					item.setMtime(mtime)
@@ -95,10 +95,15 @@ class	ArchItemFolder(ArchItem):
 						item.setSize(size)
 			else:
 				self.addChild(ArchItemFolder(s, mtime, self) if isDir else ArchItemFile(s, mtime, self, size))
-		else:					# dive in
-			new_item = ArchItemFolder(s, mtime, self)	# FIXME: wrong mtime
-			self.addChild(new_item)
-			new_item.addChildRecursive(filePath[1:], isDir, mtime, size)
+		else:						# dive in
+			if self.__children.contains(s):		# update
+				item = self.getChild(s)
+				if item.isDir() != isDir:	# FIXME: convert file to item
+					pass
+			else:
+				item = ArchItemFolder(s, mtime, self)	# FIXME: wrong mtime
+				self.addChild(item)
+			item.addChildRecursive(filePath[1:], isDir, mtime, size)
 
 	def	delChild(self, item):
 		return self.__children.del_(item)
