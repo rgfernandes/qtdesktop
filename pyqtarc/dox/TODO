@@ -3,9 +3,11 @@
 	* List
 	* Add
 	* Extract
+	* Del
+	* Replace
 * password
 * New
-* compression level, solid
+* compression level, solid, volumes
 * CLI
 * DE integration (KDE, GNOME - *.desktop)
 * Cut/Copy/Paste

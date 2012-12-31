@@ -1,3 +1,14 @@
+= formats =
+* arj
+* tar[.gz/bz2/xz]
+* zip
++ jar
++ 7z
+- rar
+- deb
+- rpm
+- iso
+
 Try:
 * qtiocompressor
 
