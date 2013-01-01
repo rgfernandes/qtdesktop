@@ -38,12 +38,12 @@ class	ArchItem(object):
 		return self.__row
 
 	def	getFullPath(self):
+		#print self.__name, self.__parent
 		if self.__parent:
 			s = self.__parent.getFullPath()
 			if s:
 				return s + "/" + self.__name
-		else:
-			return self.__name
+		return self.__name
 
 class	ArchItemFile(ArchItem):
 	def __init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None, size = 0L):

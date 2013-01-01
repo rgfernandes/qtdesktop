@@ -79,6 +79,15 @@ class	ArchHelper7z:
 		fnames = map(os.path.basename, fpaths)
 		return self.list(apath, fnames)
 
+	def	extract(self, apath, fpaths, destdir):
+		print fpaths, destdir, type(destdir)
+		p = subprocess.Popen(["7za", "x", "-o"+destdir, apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		out, err = p.communicate()
+		return (p.returncode, err)
+
+	def	extractAs(self, apath, fpaths, destdir):
+		return (0, '')
+
 if __name__ == '__main__':
 	helper = ArchHelper7z()
 	for i in helper.list(sys.argv[1]):
