@@ -12,14 +12,31 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.setupUi(self)
 		self.__setSlots()
 		self.__archfile = ArchFile()
+		self.__addressStack = list()
 		self.treeView.setModel(ArchItemModel(self.__archfile))
 
 	def	__setSlots(self):
+		self.connect(self.treeView,		QtCore.SIGNAL( "activated(const QModelIndex &)" ), self.__onActionActivated )
+		self.connect(self.action_Up,		QtCore.SIGNAL( "triggered()" ), self.__onActionUp )
 		self.connect(self.action_FileOpen,	QtCore.SIGNAL( "triggered()" ), self.__onActionFileOpen )
 		self.connect(self.action_AddFile,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFile )
 		self.connect(self.action_AddDirectory,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFolder )
 		self.connect(self.action_Extract,	QtCore.SIGNAL( "triggered()" ), self.__onActionExtract )
 		self.connect(self.action_Delete,	QtCore.SIGNAL( "triggered()" ), self.__onActionDelete )
+
+	def	__onActionActivated(self, index):
+		item = index.internalPointer()	# ArchItem*
+		if item.isDir():
+			self.__addressStack.append(index.parent())
+			self.treeView.setRootIndex(index)
+			self.address.setText(item.getFullPath())
+
+	def	__onActionUp(self):
+		if len(self.__addressStack):
+			index = self.__addressStack.pop()
+			self.treeView.setRootIndex(index)
+			item = index.internalPointer()
+			self.address.setText(item.getFullPath() if item else "")
 
 	def	__onActionFileOpen(self):
 		'''
@@ -56,10 +73,9 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		'''
 		fileNames = list()
 		selected = self.treeView.selectedIndexes()
-		if (selected):
-			for i in self.treeView.selectedIndexes():
-				if (i.column() == 0):	# exclude 1+ columns
-					fileNames.append(i.internalPointer())
+		for i in selected:
+			if (i.column() == 0):	# exclude 1+ columns
+				fileNames.append(i.internalPointer())
 		return fileNames
 
 	def	__onActionExtract(self):
