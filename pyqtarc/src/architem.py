@@ -1,5 +1,6 @@
 '''
 ArchItem* - representation of archive entries in model
+TODO: ArchItemRoot
 '''
 
 from PyQt4 import QtCore
@@ -7,7 +8,7 @@ from PyQt4 import QtCore
 from architemset import ArchItemSet
 
 class	ArchItem(object):
-	def __init__(self, name,  mtime, parent):
+	def	__init__(self, name,  mtime, parent):
 		self.__name = name
 		self.__mtime = mtime
 		self.__parent = parent
@@ -46,12 +47,16 @@ class	ArchItem(object):
 		return self.__name
 
 class	ArchItemFile(ArchItem):
-	def __init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None, size = 0L):
+	def	__init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None, size = 0L):
 		super(ArchItemFile, self).__init__(name, mtime, parent)
 		self.__size = size
 
 	@classmethod
 	def	isDir(self):
+		return False
+
+	@classmethod
+	def	isRoot(self):
 		return False
 
 	def	setSize(self, value):
@@ -61,13 +66,20 @@ class	ArchItemFile(ArchItem):
 		return self.__size
 
 class	ArchItemFolder(ArchItem):
-	def __init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None):
+	def	__init__(self, name, mtime = QtCore.QDateTime.currentDateTime(), parent = None):
 		super(ArchItemFolder, self).__init__(name, mtime, parent)
 		self.__children = ArchItemSet()
+
+	#def	__del__(self):
+	#	self.__children.clear()
 
 	@classmethod
 	def	isDir(self):
 		return True
+
+	@classmethod
+	def	isRoot(self):
+		return False
 
 	def	getChildren(self):
 		return self.__children
@@ -106,4 +118,25 @@ class	ArchItemFolder(ArchItem):
 			item.addChildRecursive(filePath[1:], isDir, mtime, size)
 
 	def	delChild(self, item):
-		return self.__children.del_(item)
+		return self.__children.del_item(item)
+
+	def	delChildRecursively(self, itemlist):
+		'''
+		itemlist: [str,]
+		@return: 0 on success
+		'''
+		item = self.getChild(itemlist[0])
+		if (item):
+			if (len(itemlist) > 1):
+				if (item.isDir()):
+					return item.delChildRecursively(itemlist[1:])
+				return 1
+			self.delChild(item)
+			return 0
+		return 1
+
+class	ArchItemRoot(ArchItemFolder):
+
+	@classmethod
+	def	isRoot(self):
+		return False

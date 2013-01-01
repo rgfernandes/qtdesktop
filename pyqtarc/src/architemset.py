@@ -12,6 +12,10 @@ class	ArchItemSet:
 			self.__files[name] = item
 
 	def	get(self, item):
+		'''
+		@param item: int or str
+		@return: item or none
+		'''
 		if (isinstance(item,  int)):
 			return self.__list[item] if ((item >= 0) and (item < len(self.__list))) else None
 		else:
@@ -19,17 +23,6 @@ class	ArchItemSet:
 
 	def	contains(self, name):
 		return (name in self.__dirs) or (name in self.__files)
-
-	def	del_(self, item):
-		name = item.getName()
-		if item.isDir():
-			del self.__dirs[name]
-		else:
-			del self.__files[name]
-		row = item.getRow()
-		del self.__list[row]
-		for i in self.__list[row:]:
-			i.setRow(i.getRow() - 1)
 
 	def	count(self):
 		return len(self.__dirs) + len(self.__files)
@@ -41,7 +34,21 @@ class	ArchItemSet:
 			if (item.isDir()):
 				item.getChildren().sort()
 
+	def	del_item(self, item):
+		name = item.getName()
+		row = item.getRow()
+		del self.__list[row]
+		if item.isDir():
+			del self.__dirs[name]
+		else:
+			del self.__files[name]
+		for i in self.__list[row:]:
+			i.setRow(i.getRow() - 1)
+
 	def	clear(self):
+		'''
+		TODO: realy del items
+		'''
 		for item in self.__dirs.values():
 			item.getChildren().clear()
 		self.__dirs.clear()

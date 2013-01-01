@@ -80,13 +80,14 @@ class	ArchHelper7z:
 		return self.list(apath, fnames)
 
 	def	extract(self, apath, fpaths, destdir):
-		print fpaths, destdir, type(destdir)
-		p = subprocess.Popen(["7za", "x", "-o"+destdir, apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		p = subprocess.Popen(["7za", "e", "-o"+destdir, apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
 		return (p.returncode, err)
 
-	def	extractAs(self, apath, fpaths, destdir):
-		return (0, '')
+	def	delete(self, apath, fpaths):
+		p = subprocess.Popen(["7za", "d", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		out, err = p.communicate()
+		return (p.returncode, err)
 
 if __name__ == '__main__':
 	helper = ArchHelper7z()
