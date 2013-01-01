@@ -46,14 +46,25 @@ class	ArchFile:
 
 	def	add(self, paths):
 		'''
-		get file name
-		try to add
-		get file info
-		add ArchItemFile
-		TODO: same as load
-		TODO: folder
 		'''
 		errcode, result = self.__helper.add(self.__file, map(str, paths))
 		if errcode:
 			return
 		return self.__list(result)
+
+	def	extract(self, fileNames, dest):
+		'''
+		fileNames: list(ArchItem*)
+		dest: str
+		'''
+		src = list()
+		for i in fileNames:
+			src.append(str(i.getFullPath()))
+		errcode, result = self.__helper.extract(self.__file, src, str(dest))
+
+	def	extractAs(self, fileName, dest):
+		'''
+		fileName: str
+		dest: str
+		'''
+		errcode, result = self.__helper.extractAs(self.__file, fileName, dest)
