@@ -50,32 +50,32 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#if (dialog.exec_()):
 		#	fileNames = dialog.selectedFiles()
 
+	def	__getSelected(self):
+		'''
+		@return: [ArchItem*,]
+		'''
+		fileNames = list()
+		selected = self.treeView.selectedIndexes()
+		if (selected):
+			for i in self.treeView.selectedIndexes():
+				if (i.column() == 0):	# exclude 1+ columns
+					fileNames.append(i.internalPointer())
+		return fileNames
+
 	def	__onActionExtract(self):
 		'''
 		If 1 - select file
 		else: select folder
 		'''
-		selected = self.treeView.selectedIndexes()
-		if (selected):
-			fileNames = list()
-			for i in self.treeView.selectedIndexes():
-				if (i.column() == 0):	# exclude 1+ columns
-					fileNames.append(i.internalPointer())
-			if (len(fileNames) == 1) and (not fileNames[0].isDir()):
-				dest = QtGui.QFileDialog.getSaveFileName(
-					caption=self.tr("Extract file as"),
-					directory=fileNames[0].getFullPath())
-				if (not dest.isEmpty()):
-					fileName = fileNames[0].getFullPath()
-					if (QtCore.QFileInfo(fileName).fileName() != QtCore.QFileInfo(dest).fileName()):
-						self.__archfile.extractAs(fileName, dest)
-						return
-					dest = QtCore.QFileInfo(dest).dir().absolutePath()
-			else:
-				dest = QtGui.QFileDialog.getExistingDirectory(
-					caption=self.tr("Extract to folder"),)
+		fileNames = self.__getSelected()
+		if (fileNames):
+			dest = QtGui.QFileDialog.getExistingDirectory(
+				caption=self.tr("Extract to folder"),)
 			if (not dest.isEmpty()):
 				self.__archfile.extract(fileNames, dest)
 
 	def	__onActionDelete(self):
-		pass
+		fileNames = self.__getSelected()
+		if (fileNames):
+			err, msg = self.__archfile.delete(fileNames)
+			self.treeView.model().reset()

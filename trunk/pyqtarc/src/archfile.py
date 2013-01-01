@@ -60,11 +60,17 @@ class	ArchFile:
 		src = list()
 		for i in fileNames:
 			src.append(str(i.getFullPath()))
-		errcode, result = self.__helper.extract(self.__file, src, str(dest))
+		return self.__helper.extract(self.__file, src, str(dest))
 
-	def	extractAs(self, fileName, dest):
+	def	delete(self, fileNames):
 		'''
-		fileName: str
-		dest: str
+		fileNames: [ArchItem*,]
 		'''
-		errcode, result = self.__helper.extractAs(self.__file, fileName, dest)
+		src = list()
+		for i in fileNames:
+			src.append(str(i.getFullPath()))
+		err, msg = self.__helper.delete(self.__file, src)
+		if (not err):
+			for i in src:
+				self.__root.delChildRecursively(i.split('/'))
+		return err, msg
