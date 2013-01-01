@@ -1,20 +1,21 @@
 0.0.1:
-	* Open
 	* List
 	* Add
 	* Extract
 	* Del
-	* Replace
-* password
-* New
-* compression level, solid, volumes
-* CLI
-* DE integration (KDE, GNOME - *.desktop)
-* Cut/Copy/Paste
-* MoveTo, MoveFrom
-* Drug'n'Drop
-* link w/ natural libs
-* arj, rpm, deb, iso, cab
+	* Update
+	* treeview => 
+0.0.x:
+	* password
+	* New
+	* compression level, solid, volumes
+	* CLI
+	* DE integration (KDE, GNOME - *.desktop)
+	* Cut/Copy/Paste
+	* MoveTo, MoveFrom
+	* Drug'n'Drop
+	* link w/ natural libs
+	* arj, rpm, deb, iso, cab
 = Or =
 use mc (/usr/libexec/mc/ext.d)
 

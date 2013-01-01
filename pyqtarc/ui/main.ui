@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>288</width>
-    <height>253</height>
+    <width>440</width>
+    <height>358</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,18 +16,12 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QTreeView" name="treeView">
-      <property name="acceptDrops">
+     <widget class="QLabel" name="address"/>
+    </item>
+    <item>
+     <widget class="QListView" name="treeView">
+      <property name="isWrapping" stdset="0">
        <bool>true</bool>
-      </property>
-      <property name="dragEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
      </widget>
     </item>
@@ -38,7 +32,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>288</width>
+     <width>440</width>
      <height>20</height>
     </rect>
    </property>
@@ -114,6 +108,8 @@
    <addaction name="action_AddDirectory"/>
    <addaction name="action_Extract"/>
    <addaction name="action_Delete"/>
+   <addaction name="separator"/>
+   <addaction name="action_Up"/>
   </widget>
   <action name="action_FileNew">
    <property name="icon">
@@ -366,6 +362,15 @@
    </property>
    <property name="text">
     <string>&amp;Columns</string>
+   </property>
+  </action>
+  <action name="action_Up">
+   <property name="icon">
+    <iconset resource="../pyqtarc.qrc">
+     <normaloff>:/icons/icons/24x24/go-up.png</normaloff>:/icons/icons/24x24/go-up.png</iconset>
+   </property>
+   <property name="text">
+    <string>Up</string>
    </property>
   </action>
  </widget>
