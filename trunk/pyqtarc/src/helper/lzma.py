@@ -8,43 +8,22 @@ TODO:
 '''
 
 import sys, os, re, datetime, subprocess, pprint
+from base import ArchHelper
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-class	ArchHelper7z:
+class	ArchHelper7z(ArchHelper):
 	exts = ('7z',)
 	mimes = ('application/x-7z-compressed',)
 
 	def	__init__(self):
 		self.__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
 
-	@classmethod
-	def	get_ext():
-		'''
-		Get file extensions supported
-		@return: extensions
-		@rtype: list
-		'''
-		return self.exts
-
-	@classmethod
-	def	get_mime():
-		'''
-		Get file mimetypes supported
-		@return: extensions
-		@rtype: list
-		'''
-		return self.mimes
 
 	def	list(self, path, files=list()):
 		'''
-		List archive.
 		TODO: err handling: str, errcode
-		@param path: full path to archive
-		@type path: str
-		@return: (name, isdir, mtime, size, csize)
-		@rtype: list
 		'''
 		p = subprocess.Popen(["7za", "l", path] + files, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
@@ -64,14 +43,6 @@ class	ArchHelper7z:
 		return (0, retvalue)
 
 	def	add(self, apath, fpaths):
-		'''
-		@param apath: full path to archive
-		@type path: str
-		@param fpath: full path to file/folder to add
-		@type fpath: str
-		@return: errcode, errmsg
-		@rtype: (int, str)
-		'''
 		p = subprocess.Popen(["7za", "a", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
 		if (p.returncode):

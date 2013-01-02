@@ -3,34 +3,32 @@
 	* Add
 	* Extract
 	* Del
-	* Update
-	* treeview => 
+	* treeview => listview
+	* base handler class
+	- handler capabilities
+	- auto handler selection
+	- statusbar
+	- recurse extract (extract recursively)
+	- check on exists (add/extract)
+	- Update (all)
+0.0.2:
+	- add to subfolder ()
+	- mkdir
+	- tableview
 0.0.x:
+	- rename
 	* password
 	* New
-	* compression level, solid, volumes
+	* compression level, methods, solid, volumes
 	* CLI
 	* DE integration (KDE, GNOME - *.desktop)
 	* Cut/Copy/Paste
 	* MoveTo, MoveFrom
 	* Drug'n'Drop
-	* link w/ natural libs
 	* arj, rpm, deb, iso, cab
-= Or =
-use mc (/usr/libexec/mc/ext.d)
 
-= Current =
-MainWindow->treeView->model(ArchItemModel(Archive))
-ArchItemModel(QAbstractItemModel): Archive(archive) - model for viewing
-Archive	- archive file representation (load,save,extract etc); root=ArchItem
-ArchItem - a folder/file in archive
-ArchItemPack	// Class containing ArchItems - as children of ArchItem
-
-= Need =
-misc arch handlers:
-	- list
-	- get info
-	- add
-	- del
-	- extract
-	- replace?
+extract recurse:
+	* recursive mkdir
+add to subfolder:
+	* tmp file
+	* named pip + stdin/stdout
