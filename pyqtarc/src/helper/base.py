@@ -20,6 +20,9 @@ HCAN_MKDIR	= 64
 HCAN_TEST	= 128
 # TODO: solid, level, method, multivolume
 
+exts = tuple()
+mimes = tuple()
+
 class	ArchHelper:
 	#exts = (,)
 	#mimes = (,)
@@ -104,3 +107,5 @@ class	ArchHelper:
 	@classmethod
 	def	test(self, apath):
 		return (0, [])
+
+mainclass = ArchHelper

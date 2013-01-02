@@ -34,12 +34,12 @@ class	ArchFile:
 			self.__root.addChildRecursive(i[0].split("/"), i[1], QtCore.QDateTime(i[2]), i[3])
 		self.__root.getChildren().sort()
 
-	def	load(self, path):
+	def	load(self, hclass, path):
 		'''
 		TODO: choosing helper
 		'''
 		self.__file = path
-		self.__helper = ArchHelperZip()
+		self.__helper = hclass()
 		errcode, result = self.__helper.list(str(path))
 		if (errcode):
 			return
