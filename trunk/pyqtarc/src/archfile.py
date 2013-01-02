@@ -1,6 +1,7 @@
 from PyQt4 import QtCore
 import architem
 from helper.lzma import ArchHelper7z
+from helper.zip import ArchHelperZip
 import os
 
 class	ArchFile:
@@ -38,7 +39,7 @@ class	ArchFile:
 		TODO: choosing helper
 		'''
 		self.__file = path
-		self.__helper = ArchHelper7z()
+		self.__helper = ArchHelperZip()
 		errcode, result = self.__helper.list(str(path))
 		if (errcode):
 			return

@@ -42,10 +42,10 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		'''
 		filter " (*.7z *.arj *.rar *.zip *.tar *.tar.gz *.tgz *.tar.bz *.tar.bz2 *.tbz *.tbz2  *.tbz *.tar.7z *.tar.lzma *.tlzma *.tar.xz *.txz)")
 		'''
-		fileName = QtCore.QString("test.7z")
-		#fileName = QtGui.QFileDialog.getOpenFileName(
-		#	caption=self.tr("Open file"),
-		#	filter = self.tr("Archive") + " (*.7z)")
+		#fileName = QtCore.QString("test.7z")
+		fileName = QtGui.QFileDialog.getOpenFileName(
+			caption=self.tr("Open file"),
+			filter = self.tr("Archive") + " (*.zip)")
 		if (not fileName.isEmpty()):
 			self.__archfile.load(fileName)
 			self.treeView.model().refresh()
