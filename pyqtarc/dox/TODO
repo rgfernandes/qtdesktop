@@ -7,8 +7,8 @@
 	* base handler class
 	* handler capabilities
 	* zip handler
-	- auto handler selection
 	- statusbar
+	- auto handler selection
 	- recurse extract (extract recursively)
 	- check on exists (add/extract)
 	- Update (all)
@@ -33,3 +33,6 @@ extract recurse:
 add to subfolder:
 	* tmp file
 	* named pip + stdin/stdout
+
+http://stackoverflow.com/questions/1796180/python-get-list-of-all-classes-within-current-module
+http://stackoverflow.com/questions/487971/is-there-a-standard-way-to-list-names-of-python-modules-in-a-package

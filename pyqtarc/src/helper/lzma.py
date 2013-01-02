@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 '''
 7z helper. Load from archfile.ArchFile.load()
-TODO:
-* One helper class+
-* 5 callbacks(str) - name, isdir, mtime, size, csize
 '''
 
 import sys, os, re, datetime, subprocess, pprint
@@ -16,15 +13,11 @@ sys.setdefaultencoding('utf-8')
 class	ArchHelper7z(ArchHelper):
 	exts = ('7z',)
 	mimes = ('application/x-7z-compressed',)
+	#                  date              time              attrs                size       csize       name
 	__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
 
 	@classmethod
 	def	get_capabilities():
-		'''
-		Get handler capabilities
-		@return: extensions
-		@rtype: list
-		'''
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
 	def	list(self, path, files=list()):

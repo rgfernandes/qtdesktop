@@ -1,0 +1,17 @@
+Archive:  test.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+       0  Stored        0   0% 05-28-2011 15:37 00000000  1.txt
+       4  Stored        4   0% 05-28-2011 15:38 ac30c475  2.dat
+    7157  Defl:N     2757  62% 05-03-2009 12:57 0a2cedc4  9430.txt
+       8  Stored        8   0% 05-28-2011 15:38 bb166bce  aaa.lst
+   18288  Defl:N     3751  80% 06-23-2012 14:13 cbae6e55  B623.opml
+     430  Defl:N      183  57% 06-04-2009 00:43 01a063b2  config.xml
+       0  Stored        0   0% 05-28-2011 15:37 00000000  dir1/
+       0  Stored        0   0% 05-28-2011 15:37 00000000  dir1/333
+       0  Stored        0   0% 11-19-2012 01:34 00000000  dir2/
+       0  Stored        0   0% 11-19-2012 01:34 00000000  dir2/dir21/
+       0  Stored        0   0% 11-19-2012 01:34 00000000  dir2/dir21/asdlfghlefhsg
+     252  Defl:N      128  49% 05-29-2011 19:21 826525e2  README
+--------          -------  ---                            -------
+   26139             6831  74%                            12 files
