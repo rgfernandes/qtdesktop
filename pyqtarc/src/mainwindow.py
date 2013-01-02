@@ -40,6 +40,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 
 	def	__setSlots(self):
 		self.connect(self.treeView,		QtCore.SIGNAL( "activated(const QModelIndex &)" ), self.__onActionActivated )
+		self.connect(self.treeView,		QtCore.SIGNAL( "selectionChanged(const QItemSelection &, const QItemSelection &)" ), self.__onActionSelected )
 		self.connect(self.action_Up,		QtCore.SIGNAL( "triggered()" ), self.__onActionUp )
 		self.connect(self.action_FileOpen,	QtCore.SIGNAL( "triggered()" ), self.__onActionFileOpen )
 		self.connect(self.action_AddFile,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFile )
@@ -54,6 +55,16 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			self.treeView.setRootIndex(index)
 			self.address.setText(item.getFullPath())
 
+	def	__onActionSelected(self, selected, deselected):
+		print "ok"
+		indexes = selected.indexes()
+		if indexes.count() != 1:
+			self.statusBar().clearMessage()
+		else:
+			item = indexes[0].internalPointer()	# ArchItem*
+			if not item.isDir():
+				self.statusBar().showMessage(item.getFullPath())
+
 	def	__onActionUp(self):
 		if len(self.__addressStack):
 			index = self.__addressStack.pop()
@@ -66,9 +77,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		filter " (*.7z *.arj *.rar *.zip *.tar *.tar.gz *.tgz *.tar.bz *.tar.bz2 *.tbz *.tbz2  *.tbz *.tar.7z *.tar.lzma *.tlzma *.tar.xz *.txz)")
 		'''
 		#fileName = QtCore.QString("test.7z")
-		fileName = QtGui.QFileDialog.getOpenFileName(
-			caption=self.tr("Open file"),
-			filter = self.tr("Archive") + " (%s)" % self.__exts)
+		fileName = QtGui.QFileDialog.getOpenFileName(caption=self.tr("Open file"), filter = self.tr("Archive") + " (%s)" % self.__exts)
 		if (not fileName.isEmpty()):
 			mime = self.__magic.file(str(fileName)).split(';')[0]
 			self.__archfile.load(self.__mime2helper[mime], fileName)

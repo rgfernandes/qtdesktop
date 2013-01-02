@@ -8,12 +8,12 @@
 	* handler capabilities
 	* zip handler
 	* auto handler selection
-	- statusbar
-	- reload model after load
+	* reload model after load
 	- recurse extract (extract recursively)
 	- check on exists (add/extract)
 	- Update (all)
 0.0.2:
+	- statusbar
 	- add to subfolder ()
 	- mkdir
 	- tableview

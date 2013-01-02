@@ -40,6 +40,7 @@ class	ArchFile:
 		'''
 		self.__file = path
 		self.__helper = hclass()
+		self.__root.getChildren().clear()
 		errcode, result = self.__helper.list(str(path))
 		if (errcode):
 			return

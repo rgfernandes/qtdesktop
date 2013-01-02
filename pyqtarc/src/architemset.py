@@ -53,4 +53,4 @@ class	ArchItemSet:
 			item.getChildren().clear()
 		self.__dirs.clear()
 		self.__files.clear()
-		self.__list.clear()
+		self.__list = []
