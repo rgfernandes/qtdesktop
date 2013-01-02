@@ -12,22 +12,31 @@
 	* recurse extract (extract recursively)
 	- check on exists (add/extract)
 	- Update (all)
+	- checks
+	- cyr
+	- setup
+	- rpm
 0.0.2:
+	- Drug'n'Drop
 	- statusbar
-	- add to subfolder ()
-	- mkdir
 	- tableview
-0.0.x:
+	- add to archive subfolder ()
+	- mkdir
 	- rename
+	- check archivers
+0.0.3:
 	* password
 	* New
 	* compression level, methods, solid, volumes
-	* CLI
-	* DE integration (KDE, GNOME - *.desktop)
 	* Cut/Copy/Paste
-	* MoveTo, MoveFrom
-	* Drug'n'Drop
-	* arj, rpm, deb, iso, cab
+	* MoveTo, MoveFrom (?)
+	* jar, arj, rpm, deb, iso, cab etc
+	* DE integration (KDE, GNOME - *.desktop)
+	* CLI (?)
+0.0.4:
+	* C++
+0.0.X:
+	* Open file in archive
 
 extract recurse:
 	* list all given
@@ -36,6 +45,3 @@ extract recurse:
 add to subfolder:
 	* tmp file
 	* named pip + stdin/stdout
-
-http://stackoverflow.com/questions/1796180/python-get-list-of-all-classes-within-current-module
-http://stackoverflow.com/questions/487971/is-there-a-standard-way-to-list-names-of-python-modules-in-a-package
