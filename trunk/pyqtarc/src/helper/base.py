@@ -3,6 +3,7 @@
 Helpers base:
 * documentation
 * constants
+Helper is framework independent and can be called from cli
 '''
 
 import sys, os, re, datetime, subprocess
