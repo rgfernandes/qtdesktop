@@ -5,15 +5,38 @@ from ui.Ui_main import Ui_Main
 from archfile	import ArchFile
 from architemmodel import ArchItemModel
 
+import pkgutil
+import magic
+
+#def test1(pkg):
+#	return [name for _, name, _ in pkgutil.iter_modules([pkg])]
+
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
 		QtGui.QMainWindow.__init__(self)
 		#self.modelMain = None
 		self.setupUi(self)
 		self.__setSlots()
-		self.__archfile = ArchFile()
-		self.__addressStack = list()
+		self.__archfile = ArchFile()	# archive tree
+		self.__addressStack = list()	# current root stack
+		self.__exts = ""
+		self.__mime2helper = dict()
+		self.__magic = magic.open(magic.MIME)
+		self.__magic.load()
+		self.__init_helpers()
 		self.treeView.setModel(ArchItemModel(self.__archfile))
+
+	def	__init_helpers(self):
+		#exec "from helper import %s" % ','.join(test1('helper'))
+		from helper import lzma, zip
+		a = locals()
+		for i in a:
+			if (i != 'self'):
+				self.__exts += (" *." + " ".join(a[i].exts))
+				for j in a[i].mimes:
+					self.__mime2helper[j] = a[i].mainclass
+				#Sprint a[i].mainclass
+		self.__exts = self.__exts.lstrip(' ')
 
 	def	__setSlots(self):
 		self.connect(self.treeView,		QtCore.SIGNAL( "activated(const QModelIndex &)" ), self.__onActionActivated )
@@ -45,9 +68,10 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#fileName = QtCore.QString("test.7z")
 		fileName = QtGui.QFileDialog.getOpenFileName(
 			caption=self.tr("Open file"),
-			filter = self.tr("Archive") + " (*.zip)")
+			filter = self.tr("Archive") + " (%s)" % self.__exts)
 		if (not fileName.isEmpty()):
-			self.__archfile.load(fileName)
+			mime = self.__magic.file(str(fileName)).split(';')[0]
+			self.__archfile.load(self.__mime2helper[mime], fileName)
 			self.treeView.model().refresh()
 
 	def	__onActionAddFile(self):

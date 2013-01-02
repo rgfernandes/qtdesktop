@@ -7,8 +7,9 @@
 	* base handler class
 	* handler capabilities
 	* zip handler
+	* auto handler selection
 	- statusbar
-	- auto handler selection
+	- reload model after load
 	- recurse extract (extract recursively)
 	- check on exists (add/extract)
 	- Update (all)

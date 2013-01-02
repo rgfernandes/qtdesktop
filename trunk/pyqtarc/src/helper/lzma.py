@@ -10,6 +10,9 @@ from base import *
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+exts = ('7z',)
+mimes = ('application/x-7z-compressed',)
+
 class	ArchHelper7z(ArchHelper):
 	exts = ('7z',)
 	mimes = ('application/x-7z-compressed',)
@@ -60,6 +63,8 @@ class	ArchHelper7z(ArchHelper):
 		p = subprocess.Popen(["7za", "d", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
 		return (p.returncode, err)
+
+mainclass = ArchHelper7z
 
 if __name__ == '__main__':
 	helper = ArchHelper7z()

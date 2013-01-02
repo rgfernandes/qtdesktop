@@ -18,3 +18,5 @@ List columns:
 - attributes: DRHSA
 - crc
 '''
+
+#__all__ = ['lzma', 'zip']

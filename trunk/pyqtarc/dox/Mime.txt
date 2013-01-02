@@ -45,5 +45,5 @@ war	application/x-war
 tar.xz,txz	application/x-xz-compressed-tar
 zip	application/x-zip
 zip	application/x-zip-compressed
-zoo	application/x-zoo
 zip	application/zip
+zoo	application/x-zoo
