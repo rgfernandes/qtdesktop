@@ -5,7 +5,8 @@
 	* Del
 	* treeview => listview
 	* base handler class
-	- handler capabilities
+	* handler capabilities
+	* zip handler
 	- auto handler selection
 	- statusbar
 	- recurse extract (extract recursively)

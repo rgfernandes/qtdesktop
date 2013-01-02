@@ -8,7 +8,7 @@ TODO:
 '''
 
 import sys, os, re, datetime, subprocess, pprint
-from base import ArchHelper
+from base import *
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -16,10 +16,16 @@ sys.setdefaultencoding('utf-8')
 class	ArchHelper7z(ArchHelper):
 	exts = ('7z',)
 	mimes = ('application/x-7z-compressed',)
+	__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
 
-	def	__init__(self):
-		self.__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
-
+	@classmethod
+	def	get_capabilities():
+		'''
+		Get handler capabilities
+		@return: extensions
+		@rtype: list
+		'''
+		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
 	def	list(self, path, files=list()):
 		'''
@@ -50,11 +56,13 @@ class	ArchHelper7z(ArchHelper):
 		fnames = map(os.path.basename, fpaths)
 		return self.list(apath, fnames)
 
+	@classmethod
 	def	extract(self, apath, fpaths, destdir):
 		p = subprocess.Popen(["7za", "e", "-o"+destdir, apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
 		return (p.returncode, err)
 
+	@classmethod
 	def	delete(self, apath, fpaths):
 		p = subprocess.Popen(["7za", "d", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()

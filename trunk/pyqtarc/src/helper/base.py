@@ -10,6 +10,16 @@ import sys, os, re, datetime, subprocess
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+HCAN_LIST	= 1
+HCAN_ADD	= 2
+HCAN_ADDTO	= 4
+HCAN_EXTRACT	= 8
+HCAN_DELETE	= 16
+HCAN_RENAME	= 32
+HCAN_MKDIR	= 64
+HCAN_TEST	= 128
+# TODO: solid, level, method, multivolume
+
 class	ArchHelper:
 	#exts = (,)
 	#mimes = (,)
@@ -39,7 +49,7 @@ class	ArchHelper:
 		@return: extensions
 		@rtype: list
 		'''
-		return self.mimes
+		return 0
 
 	@classmethod
 	def	list(self, path, files=list()):
@@ -66,9 +76,31 @@ class	ArchHelper:
 		return (0, [])
 
 	@classmethod
+	def	addto(self, apath, dst, fpaths):
+		'''
+		Add items to selected archive folder
+		'''
+		return (0, [])
+
+	@classmethod
 	def	extract(self, apath, fpaths, destdir):
+		'''
+		TODO: chg destdir and files
+		'''
 		return (0, [])
 
 	@classmethod
 	def	delete(self, apath, fpaths):
+		return (0, [])
+
+	@classmethod
+	def	rename(self, apath, src, dst):
+		return (0, [])
+
+	@classmethod
+	def	mkdir(self, apath, name):
+		return (0, [])
+
+	@classmethod
+	def	test(self, apath):
 		return (0, [])
