@@ -9,7 +9,7 @@
 	* zip handler
 	* auto handler selection
 	* reload model after load
-	- recurse extract (extract recursively)
+	* recurse extract (extract recursively)
 	- check on exists (add/extract)
 	- Update (all)
 0.0.2:
@@ -30,7 +30,9 @@
 	* arj, rpm, deb, iso, cab
 
 extract recurse:
-	* recursive mkdir
+	* list all given
+	* recursive mkdir (os.path.exists+os.mkdirs)
+	* expanf files (-o dst+os.path.dirname)
 add to subfolder:
 	* tmp file
 	* named pip + stdin/stdout

@@ -62,7 +62,7 @@ class	ArchFile:
 		src = list()
 		for i in fileNames:
 			src.append(str(i.getFullPath()))
-		return self.__helper.extract(self.__file, src, str(dest))
+		return self.__helper.extract(str(self.__file), src, str(dest))
 
 	def	delete(self, fileNames):
 		'''

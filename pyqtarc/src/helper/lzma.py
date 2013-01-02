@@ -52,11 +52,34 @@ class	ArchHelper7z(ArchHelper):
 		fnames = map(os.path.basename, fpaths)
 		return self.list(apath, fnames)
 
-	@classmethod
 	def	extract(self, apath, fpaths, destdir):
-		p = subprocess.Popen(["7za", "e", "-o"+destdir, apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, err = p.communicate()
-		return (p.returncode, err)
+		#print apath, fpaths, destdir
+		for src in fpaths:
+			srcdir = os.path.dirname(src)		# src path parent - to cut from dst
+			err, dst = self.list(apath, [src,])	# get children
+			# 1. mkdirs
+			for i in dst:
+				dstrel = i[0][len(srcdir)+1:] if srcdir else i[0]	# real relative dst path
+				dstfolder = dstrel if i[1] else os.path.dirname(dstrel)
+				if dstfolder:	# not for files from root
+					dstfolderabs = os.path.join(destdir, dstfolder)
+					if not os.path.exists(dstfolderabs):
+						#print "mkdir", dstfolderabs
+						os.makedirs(dstfolderabs)
+				#print i[0], i[1], srcdir, dstrel, os.path.dirname(dstrel)
+			# 2. expand files
+			for i in dst:
+				if not i[1]:
+					dstrel = i[0][len(srcdir)+1:] if srcdir else i[0]	# real relative dst path
+					dstfolder = os.path.dirname(dstrel)
+					outfolder = os.path.join(destdir, dstfolder)
+					#print "out", outfolder
+					p = subprocess.Popen(["7za", "e", "-o"+outfolder, apath, i[0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+					out, err = p.communicate()
+					if p.returncode:
+						print err
+					#return (p.returncode, err)
+		return 0, ''
 
 	@classmethod
 	def	delete(self, apath, fpaths):
