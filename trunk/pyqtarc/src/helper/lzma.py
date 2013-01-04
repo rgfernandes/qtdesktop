@@ -44,13 +44,54 @@ class	ArchHelper7z(ArchHelper):
 			)
 		return (0, retvalue)
 
-	def	add(self, apath, fpaths):
-		p = subprocess.Popen(["7za", "a", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	def	__get_extras(self, dst, srcpath):
+		'''
+		get extra dirs/files
+		@dst: set
+		@param srcpath:str - absolute src path
+		'''
+		base = os.path.dirname(srcpath)
+		cutlen = len(base)+1
+		retvalue = list()
+		for root, dirs, files in os.walk(srcpath):
+			relroot = root[cutlen:]
+			if relroot not in dst:
+				#retvalue.append(root)
+				retvalue.append(relroot)
+				del dirs[:]
+			else:
+				for f in files:
+					relfile = os.path.join(relroot, f)
+					if relfile not in dst:
+						#retvalue.append(os.path.join(root, f))
+						retvalue.append(relfile)
+		return retvalue
+
+	def	add(self, apath, fpaths, skip):
+		'''
+		'''
+		if skip:
+			# 1. get archive list to set
+			dst = set()
+			err, result = self.list(apath)
+			if err:
+				return err, "cant list archive"
+			for i in result:
+				dst.add(i[0])
+			# 2. walk through fs searching what _absent_ (top-down, cutting header (dirname))
+			src = list()
+			for fpath in fpaths:
+				src.extend(self.__get_extras(dst, fpath))
+			args = ["a", "-w"+os.path.dirname(fpaths[0])]
+			cwd = os.getcwd()
+			os.chdir(os.path.dirname(fpaths[0]))
+			p = subprocess.Popen(["7za", "a", apath,] + src, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			cwd = os.getcwd()
+		else:
+			p = subprocess.Popen(["7za", "a", apath,] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		out, err = p.communicate()
-		if (p.returncode):
-			return (p.returncode, err)
-		fnames = map(os.path.basename, fpaths)
-		return self.list(apath, fnames)
+		#print out
+		return (p.returncode, err)
 
 	def	extract(self, apath, fpaths, destdir):
 		#print apath, fpaths, destdir

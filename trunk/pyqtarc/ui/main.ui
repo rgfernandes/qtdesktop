@@ -20,8 +20,20 @@
     </item>
     <item>
      <widget class="QListView" name="treeView">
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="dragDropMode">
+       <enum>QAbstractItemView::NoDragDrop</enum>
+      </property>
+      <property name="flow">
+       <enum>QListView::TopToBottom</enum>
+      </property>
       <property name="isWrapping" stdset="0">
        <bool>true</bool>
+      </property>
+      <property name="viewMode">
+       <enum>QListView::ListMode</enum>
       </property>
      </widget>
     </item>

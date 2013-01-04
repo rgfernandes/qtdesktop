@@ -10,13 +10,15 @@
 	* auto handler selection
 	* reload model after load
 	* recurse extract (extract recursively)
-	- check on exists (add/extract)
-	- Update (all)
-	- checks
+	* check on exists (add) - replace/skip
+	- check on exists (extract)
+	- check everything
+	- wrap on resize
 	- cyr
 	- setup
 	- rpm
 0.0.2:
+	- Add: += Update
 	- Drug'n'Drop
 	- statusbar
 	- tableview
@@ -37,11 +39,8 @@
 	* C++
 0.0.X:
 	* Open file in archive
-
-extract recurse:
-	* list all given
-	* recursive mkdir (os.path.exists+os.mkdirs)
-	* expanf files (-o dst+os.path.dirname)
-add to subfolder:
-	* tmp file
-	* named pip + stdin/stdout
+= usual functions =
+filter(func, iter) - пропускает iter через func
+map - Apply function to every item of iterable and return a list of the results
+reduce - Apply function of two arguments cumulatively to the items of iterable, from left to right, so as to reduce the iterable to a single value.
+zip - 
