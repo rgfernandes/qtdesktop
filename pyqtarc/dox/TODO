@@ -11,9 +11,9 @@
 	* reload model after load
 	* recurse extract (extract recursively)
 	* check on exists (add) - replace/skip
+	* wrap on resize
 	- check on exists (extract)
 	- check everything
-	- wrap on resize
 	- cyr
 	- setup
 	- rpm
