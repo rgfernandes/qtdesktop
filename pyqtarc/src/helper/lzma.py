@@ -47,8 +47,8 @@ class	ArchHelper7z(ArchHelper):
 	def	__get_extras(self, dst, srcpath):
 		'''
 		get extra dirs/files
-		@dst: set
-		@param srcpath:str - absolute src path
+		@param dst:set - arc dirs/files
+		@param srcpath:str - absolute FS path
 		'''
 		base = os.path.dirname(srcpath)
 		cutlen = len(base)+1
@@ -69,6 +69,7 @@ class	ArchHelper7z(ArchHelper):
 
 	def	add(self, apath, fpaths, skip):
 		'''
+		TODO: skip => mode (replace, update, skip)
 		'''
 		if skip:
 			# 1. get archive list to set
@@ -82,7 +83,6 @@ class	ArchHelper7z(ArchHelper):
 			src = list()
 			for fpath in fpaths:
 				src.extend(self.__get_extras(dst, fpath))
-			args = ["a", "-w"+os.path.dirname(fpaths[0])]
 			cwd = os.getcwd()
 			os.chdir(os.path.dirname(fpaths[0]))
 			p = subprocess.Popen(["7za", "a", apath,] + src, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -93,8 +93,9 @@ class	ArchHelper7z(ArchHelper):
 		#print out
 		return (p.returncode, err)
 
-	def	extract(self, apath, fpaths, destdir):
+	def	extract(self, apath, fpaths, destdir, skip):
 		#print apath, fpaths, destdir
+		replacekey = "-aos" if skip else "-aoa"
 		for src in fpaths:
 			srcdir = os.path.dirname(src)		# src path parent - to cut from dst
 			err, dst = self.list(apath, [src,])	# get children
@@ -115,7 +116,7 @@ class	ArchHelper7z(ArchHelper):
 					dstfolder = os.path.dirname(dstrel)
 					outfolder = os.path.join(destdir, dstfolder)
 					#print "out", outfolder
-					p = subprocess.Popen(["7za", "e", "-o"+outfolder, apath, i[0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+					p = subprocess.Popen(["7za", "e", replacekey, "-o"+outfolder, apath, i[0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 					out, err = p.communicate()
 					if p.returncode:
 						print err
