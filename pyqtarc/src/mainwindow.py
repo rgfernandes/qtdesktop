@@ -79,8 +79,10 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		fileName = QtCore.QString("test.7z")
 		#fileName = QtGui.QFileDialog.getOpenFileName(caption=self.tr("Open file"), filter = self.tr("Archive") + " (%s)" % self.__exts)
 		if (not fileName.isEmpty()):
-			mime = self.__magic.file(str(fileName)).split(';')[0]
-			self.__archfile.load(self.__mime2helper[mime], fileName)
+			absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
+			#print str(fileName), str(absFileName)
+			mime = self.__magic.file(str(absFileName)).split(';')[0]
+			self.__archfile.load(self.__mime2helper[mime], absFileName)
 			self.treeView.model().refresh()
 
 	def	__onActionAddFile(self):
