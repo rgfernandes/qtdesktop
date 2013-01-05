@@ -17,9 +17,6 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		QtGui.QMainWindow.__init__(self)
 		#self.modelMain = None
 		self.setupUi(self)
-		self.treeView = ArchItemView(self.centralwidget)
-		self.verticalLayout.addWidget(self.treeView)
-		self.__setSlots()
 		self.__archfile = ArchFile()	# archive tree
 		self.__addressStack = list()	# current root stack
 		self.__exts = ""
@@ -27,6 +24,9 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__magic = magic.open(magic.MIME)
 		self.__magic.load()
 		self.__init_helpers()
+		self.treeView = ArchItemView(self.__archfile, self.centralwidget)
+		self.verticalLayout.addWidget(self.treeView)
+		self.__setSlots()
 		self.treeView.setModel(ArchItemModel(self.__archfile))
 
 	def	__init_helpers(self):
@@ -87,6 +87,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			mime = self.__magic.file(str(absFileName)).split(';')[0]
 			self.__archfile.load(self.__mime2helper[mime], absFileName)
 			self.treeView.model().refresh()
+			#self.treeView.model().sort(0)
 
 	def	__onActionAddFile(self):
 		fileNames = QtGui.QFileDialog.getOpenFileNames(
