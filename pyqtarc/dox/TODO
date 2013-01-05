@@ -13,14 +13,17 @@
 	* check on exists (add: replace/skip
 	* wrap on resize
 	* check on exists (extract: replace/skip)
-	- sort
+	* DnD in
+	- archfile - qt only
 	- non-ascii support
+	- sort
 	- check everything
 	- setup
 	- rpm
 0.0.2:
 	- Add: += update
-	- Drug'n'Drop (need inherit)
+	- DnD out
+	- Cut/Copy/Paste
 	- statusbar
 	- tableview
 	- add to archive subfolder ()
@@ -31,7 +34,6 @@
 	* password
 	* New
 	* compression level, methods, solid, volumes
-	* Cut/Copy/Paste
 	* MoveTo, MoveFrom (?)
 	* jar, arj, rpm, deb, iso, cab etc
 	* DE integration (KDE, GNOME - *.desktop)

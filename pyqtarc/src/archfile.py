@@ -47,6 +47,8 @@ class	ArchFile(QtCore.QObject):
 				if dir and (not dir in self.__dir_cache):
 					self.__dir_cache.add(dir)
 		self.__root.getChildren().sort()
+		#pprint.pprint(self.__dir_cache)
+		#pprint.pprint(self.__file_cache)
 
 	def	add(self, paths):
 		'''
@@ -83,7 +85,7 @@ class	ArchFile(QtCore.QObject):
 			return
 		src = list()
 		for i in fileNames:
-			src.append(i.getFullPath())
+			src.append(str(i.getFullPath()))
 		return self.__helper.extract(str(self.__file), src, str(dest), chk == 2)
 
 	def	delete(self, fileNames):
@@ -134,7 +136,7 @@ class	ArchFile(QtCore.QObject):
 		# 1. prepare extractable
 		arcdirs = set()
 		arcfiles = set()
-		cutlen = len(os.path.dirname(arcitems[0].getFullPath()))
+		cutlen = len(os.path.dirname(str(arcitems[0].getFullPath())))
 		if cutlen:
 			cutlen += 1
 		for i in arcitems:

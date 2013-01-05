@@ -3,6 +3,7 @@ from PyQt4 import QtCore, QtGui
 class	ArchItemView(QtGui.QListView):
 	def	__init__(self, archfile, parent = None):
 		'''
+		http://www.trinitydesktop.org/docs/qt4/model-view-dnd.html
 		+acceptDrops?
 		DnD = DD
 		+selectionMode - extended

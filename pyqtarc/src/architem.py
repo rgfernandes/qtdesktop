@@ -9,6 +9,8 @@ from architemset import ArchItemSet
 
 class	ArchItem(object):
 	def	__init__(self, name,  mtime, parent):
+		#self.__name = QtCore.QString().fromUtf8(name)	# FIXME:
+		#self.__name = QtCore.QString().fromLocal8Bit(name)
 		self.__name = name
 		self.__mtime = mtime
 		self.__parent = parent
