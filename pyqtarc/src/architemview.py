@@ -1,7 +1,7 @@
 from PyQt4 import QtCore, QtGui
 
 class	ArchItemView(QtGui.QListView):
-	def	__init__(self, parent = None):
+	def	__init__(self, archfile, parent = None):
 		'''
 		+acceptDrops?
 		DnD = DD
@@ -26,7 +26,9 @@ class	ArchItemView(QtGui.QListView):
 		self.verticalLayout.addWidget(self.treeView)
 		'''
 		super(ArchItemView, self).__init__(parent)
+		self.__archfile = archfile
 		self.setAcceptDrops(True)
+		self.setDropIndicatorShown(True)
 		self.setDragEnabled(True)
 		self.setDragDropMode(QtGui.QAbstractItemView.DragDrop)
 		self.setResizeMode(QtGui.QListView.Adjust)
@@ -34,3 +36,22 @@ class	ArchItemView(QtGui.QListView):
 		self.setSelectionBehavior (QtGui.QAbstractItemView.SelectRows)
 		self.setSelectionMode (QtGui.QAbstractItemView.ExtendedSelection)
 		self.setWrapping(True)
+
+	def	dragEnterEvent(self, event):
+		event.acceptProposedAction()
+
+	def	dragMoveEvent(self, event):
+		event.acceptProposedAction()
+
+	def	dragLeaveEvent(self, event):
+		event.accept()
+
+	def	dropEvent(self, event):	# QDropEvent
+		mimeData = event.mimeData()	# QMimeData
+		if mimeData.hasUrls():
+			fileNames = list()
+			for i in mimeData.urls():	# QtCore.QUrl
+				if i.isLocalFile():
+					fileNames.append(i.toLocalFile())
+			self.__archfile.add(fileNames)
+			self.model().refresh()
