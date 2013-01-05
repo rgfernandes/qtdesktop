@@ -18,40 +18,6 @@
     <item>
      <widget class="QLabel" name="address"/>
     </item>
-    <item>
-     <widget class="QListView" name="treeView">
-      <property name="acceptDrops">
-       <bool>true</bool>
-      </property>
-      <property name="dragDropMode">
-       <enum>QAbstractItemView::DragDrop</enum>
-      </property>
-      <property name="alternatingRowColors">
-       <bool>true</bool>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::ExtendedSelection</enum>
-      </property>
-      <property name="selectionBehavior">
-       <enum>QAbstractItemView::SelectRows</enum>
-      </property>
-      <property name="movement">
-       <enum>QListView::Free</enum>
-      </property>
-      <property name="flow">
-       <enum>QListView::TopToBottom</enum>
-      </property>
-      <property name="isWrapping" stdset="0">
-       <bool>true</bool>
-      </property>
-      <property name="resizeMode">
-       <enum>QListView::Adjust</enum>
-      </property>
-      <property name="viewMode">
-       <enum>QListView::ListMode</enum>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -106,10 +72,8 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="action_ViewTree"/>
     <addaction name="action_ViewTable"/>
     <addaction name="action_ViewIcons"/>
-    <addaction name="action_ViewColumns"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
@@ -359,14 +323,6 @@
     <bool>true</bool>
    </property>
   </action>
-  <action name="action_ViewTree">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>T&amp;ree</string>
-   </property>
-  </action>
   <action name="action_ViewTable">
    <property name="checkable">
     <bool>true</bool>
@@ -383,14 +339,6 @@
     <string>&amp;Icons</string>
    </property>
   </action>
-  <action name="action_ViewColumns">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Columns</string>
-   </property>
-  </action>
   <action name="action_Up">
    <property name="icon">
     <iconset resource="../pyqtarc.qrc">
@@ -398,6 +346,9 @@
    </property>
    <property name="text">
     <string>Up</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>
