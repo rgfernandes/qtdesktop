@@ -4,6 +4,7 @@ from ui.Ui_main import Ui_Main
 
 from archfile	import ArchFile
 from architemmodel import ArchItemModel
+from architemview import ArchItemView
 
 import pkgutil
 import magic
@@ -16,6 +17,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		QtGui.QMainWindow.__init__(self)
 		#self.modelMain = None
 		self.setupUi(self)
+		self.treeView = ArchItemView(self.centralwidget)
+		self.verticalLayout.addWidget(self.treeView)
 		self.__setSlots()
 		self.__archfile = ArchFile()	# archive tree
 		self.__addressStack = list()	# current root stack

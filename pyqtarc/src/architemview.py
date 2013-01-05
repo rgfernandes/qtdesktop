@@ -1,16 +1,36 @@
 from PyQt4 import QtCore, QtGui
 
-class	ArchItemView(QtCore.QListView):
+class	ArchItemView(QtGui.QListView):
 	def	__init__(self, parent = None):
 		'''
-		acceptDrops?
+		+acceptDrops?
 		DnD = DD
-		selectionMode - extended
-		selectionBehav - rows
+		+selectionMode - extended
+		+selectionBehav - rows
 		iswrapping - ok
-		resizeMode - ajust
-		viewMode - listview
+		+resizeMode - ajust
+		[viewMode - listview
 		
+		self.treeView = QtGui.QListView(self.centralwidget)
+		self.treeView.setAcceptDrops(True)
+		self.treeView.setDragDropMode(QtGui.QAbstractItemView.DragDrop)
+		self.treeView.setAlternatingRowColors(False)
+		self.treeView.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
+		self.treeView.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+		self.treeView.setMovement(QtGui.QListView.Free)
+		self.treeView.setFlow(QtGui.QListView.TopToBottom)
+		self.treeView.setProperty("isWrapping", True)
+		self.treeView.setResizeMode(QtGui.QListView.Adjust)
+		self.treeView.setViewMode(QtGui.QListView.ListMode)
+		self.treeView.setObjectName(_fromUtf8("treeView"))
+		self.verticalLayout.addWidget(self.treeView)
 		'''
 		super(ArchItemView, self).__init__(parent)
-	
+		self.setAcceptDrops(True)
+		self.setDragEnabled(True)
+		self.setDragDropMode(QtGui.QAbstractItemView.DragDrop)
+		self.setResizeMode(QtGui.QListView.Adjust)
+		self.setMovement(QtGui.QListView.Free)
+		self.setSelectionBehavior (QtGui.QAbstractItemView.SelectRows)
+		self.setSelectionMode (QtGui.QAbstractItemView.ExtendedSelection)
+		self.setWrapping(True)
