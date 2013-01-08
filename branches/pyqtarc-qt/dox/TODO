@@ -1,3 +1,11 @@
+Qt-only:
+	* process - read to qstring
+	* regex
+	* structure
+	* return structure
+	* qset
+	* list
+
 0.0.1:
 	* List
 	* Add

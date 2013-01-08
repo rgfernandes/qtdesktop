@@ -5,6 +5,7 @@
 '''
 
 import sys, os, re, datetime, subprocess, pprint
+from PyQt4 import QtCore
 from base import *
 
 reload(sys)
@@ -23,7 +24,25 @@ class	ArchHelper7z(ArchHelper):
 	def	get_capabilities():
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
-	def	list(self, path, files=list()):
+	def	list(self, path, files=[]):
+		proc = QtCore.QProcess()
+		args = QtCore.QStringList("l")
+		args << path
+		args += files
+		print str(args)
+		proc.start("7za", args)
+		proc.waitForFinished(-1)
+		out = QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput())
+		err = QtCore.QString.fromLocal8Bit(proc.readAllStandardError())
+		print "Exit code:", proc.exitCode()
+		print "Stdout:"
+		print out
+		print "Stderr:"
+		print err
+		return (0, [])
+		
+
+	def	old_list(self, path, files=[]):
 		'''
 		TODO: err handling: str, errcode
 		'''
