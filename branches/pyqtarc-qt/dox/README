@@ -1,0 +1,46 @@
+= formats =
+* arj
+* tar[.gz/bz2/xz]
+* zip
++ jar
++ 7z
+- rar
+- deb
+- rpm
+- iso
+
+Try:
+* qtiocompressor
+
+QFileIconProvider::Computer
+QFileIconProvider::Desktop
+QFileIconProvider::Trashcan
+QFileIconProvider::Network
+QFileIconProvider::Drive
+QFileIconProvider::Folder
+QFileIconProvider::File
+====
+Add: to root only
+Rename: no
+View?
+...
+
+* QtFM: MyModel : QtGui.QFileSystemModel (src/gui/dialogs) : QAbstractItemModel + fileInfo(), isDir(), name(), path(), mkdir(), rmdir().
+* QAbstractFileEngine => QResourceFileEngine, QFSFileEngine
+* QDirModel, QFileSystemModel
+
+	QFileSystemModel *model = new QFileSystemModel;
+	model->setRootPath(QDir::currentPath());
+	QTreeView *tree = new QTreeView(splitter);
+	tree->setModel(model);
+
+* http://code.google.com/p/osdab/
+* http://lestornqt.blogspot.com/2008/01/qabstractfileengine-qdirmodel.html
+* http://www.prog.org.ru/topic_9576_0.html
+
+So, try:
+	* ...
+	* QFileSystemModel = ...
+	* model->setRootPath("ftp://")
+	* QTreeView = ...
+	* tree->setModel
