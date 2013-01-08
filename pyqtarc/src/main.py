@@ -13,6 +13,7 @@ def main():
 	translator.load(trpath + QtCore.QDir.separator() + trfile)
 	app.installTranslator(translator)
 	# letsgo
+	#QtCore.QTextCodec.setCodecForCStrings(QTextCodec.codecForName("UTF-8"))
 	mw = MainWindow()
 	mw.show()
 	sys.exit(app.exec_())

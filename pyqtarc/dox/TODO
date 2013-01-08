@@ -48,7 +48,7 @@ map - Apply function to every item of iterable and return a list of the results
 reduce - Apply function of two arguments cumulatively to the items of iterable, from left to right, so as to reduce the iterable to a single value.
 zip - 
 http://mirror.yandex.ru/fedora/russianfedora/russianfedora/fixes/fedora/releases/17/Everything/i386/os/unzip-6.0-5.fc17.R.i686.rpm
-
+DnD: http://freedesktop.org/wiki/Specifications/XDS
 CLI:
 	* -l
 	* -a -rewrite/update/skip <aname> fn1 fn2 ...

@@ -48,11 +48,26 @@ class	ArchItemView(QtGui.QListView):
 		event.accept()
 
 	def	dropEvent(self, event):	# QDropEvent
+		print "drop:"
 		mimeData = event.mimeData()	# QMimeData
+		print "Formats:"
+		for i in mimeData.formats():	# Xarchiver: XdndDirectSave0; ark: application/x-kde-ark-dndextract-service; application/x-kde-ark-dndextract-path
+			print i
+		print mimeData.data("XdndDirectSave0")
 		if mimeData.hasUrls():
 			fileNames = list()
 			for i in mimeData.urls():	# QtCore.QUrl
 				if i.isLocalFile():
 					fileNames.append(i.toLocalFile())
+				else:
+					print "Non-file url:", i
 			self.__archfile.add(fileNames)
 			self.model().refresh()
+		if mimeData.hasText():
+			print "Text:"
+			print mimeData.text()
+		if mimeData.hasHtml():
+			print "Html:"
+			print mimeData.html()
+
+
