@@ -29,17 +29,31 @@ class	ArchHelper7z(ArchHelper):
 		args = QtCore.QStringList("l")
 		args << path
 		args += files
-		print str(args)
+		rx = QtCore.QRegExp("(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) ([D.][R.][H.][S.][A.]) ([ 0-9]{12}) ([ 0-9]{12})  ([^\n]*)\n")
 		proc.start("7za", args)
 		proc.waitForFinished(-1)
 		out = QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput())
 		err = QtCore.QString.fromLocal8Bit(proc.readAllStandardError())
-		print "Exit code:", proc.exitCode()
-		print "Stdout:"
-		print out
-		print "Stderr:"
-		print err
-		return (0, [])
+		#print "Exit code:", proc.exitCode()
+#		print "Stdout:"
+#		print out
+#		print "Stderr:"
+#		print err
+#		print "Capture:"
+		retvalue = []
+		pos = rx.indexIn(out)
+		while (pos != -1):
+			#print QtCore.QDateTime.fromString(rx.cap(1), "yyyy-MM-dd hh:mm:ss"), rx.cap(2)[0]=='D', rx.cap(3).trimmed().toULong()[0], rx.cap(4).trimmed().toULong()[0] or 0L, rx.cap(5).toLocal8Bit()
+			retvalue.append((
+				rx.cap(5),
+				rx.cap(2)[0]=='D',
+				QtCore.QDateTime.fromString(rx.cap(1), "yyyy-MM-dd hh:mm:ss"),
+				rx.cap(3).trimmed().toULong()[0],
+				rx.cap(4).trimmed().toULong()[0] or 0L,
+			))
+			pos += rx.matchedLength()
+			pos = rx.indexIn(out, pos)
+		return (proc.exitCode(), retvalue)
 		
 
 	def	old_list(self, path, files=[]):

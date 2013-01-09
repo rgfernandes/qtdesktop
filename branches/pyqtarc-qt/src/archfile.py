@@ -36,14 +36,15 @@ class	ArchFile(QtCore.QObject):
 		if (errcode):
 			return
 		for i in result:
+			print i[0].toLocal8Bit()
 			# name:str, isdir:bool, mtime:datetime, size:int
-			self.__root.addChildRecursive(i[0].split("/"), i[1], QtCore.QDateTime(i[2]), i[3])
+			self.__root.addChildRecursive(i[0].split("/"), i[1], i[2], i[3])
 			if i[1]:
 				self.__dir_cache.add(i[0])
 			else:
 				self.__file_cache.add(i[0])
 				# patch
-				dir = os.path.dirname(i[0])
+				dir = QtCore.QFileInfo(i[0]).dir().dirName()
 				if dir and (not dir in self.__dir_cache):
 					self.__dir_cache.add(dir)
 		self.__root.getChildren().sort()
