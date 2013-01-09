@@ -55,6 +55,7 @@ class	ArchFile(QtCore.QObject):
 		'''
 		# 1. chk exist
 		chk, newdirs, newfiles = self.__chk_add(paths)	# 0 - add, 1 - u?, 2 - a+x, 3 - return
+		return
 		if chk == 3:
 			#print "3"
 			return
@@ -120,9 +121,12 @@ class	ArchFile(QtCore.QObject):
 		fsfiles = set()
 		#print "1. load sources", fsitems
 		for src in fsitems:
-			d, f = self.__chk_listdir(str(src), True)
-			fsdirs.update(d)
-			fsfiles.update(f)
+			if (QtCore.QFileInfo(src).isFile()):
+				fsfiles.add(src)
+			else:
+				d, f = self.__chk_listdir(src, True)
+				fsdirs.update(d)
+				fsfiles.update(f)
 		return self.__chk_chk(arcdirs, arcfiles, fsdirs, fsfiles, True)
 
 	def	__chk_extract(self, arcitems, fsfolder):
@@ -156,17 +160,25 @@ class	ArchFile(QtCore.QObject):
 		return self.__chk_chk(arcdirs, arcfiles, fsdirs, fsfiles, False)
 
 	def	__chk_listdir(self, path, mode):
+		'''
+		os.path.dirname(path) => QFileInfo(path).dir().dirName()
+		len(str) => .size()/.count()
+		@param path:QString - absolute path of folder to walk
+		@param mode:bool - True==add (remove heading part exept own), False - extract (remove including path)
+		@return set(dirs), set(files) - recurse content of path - relative names
+		'''
 		fsdirs = set()
 		fsfiles = set()
-		cutlen = len(os.path.dirname(path))+1 if mode else len(path)+1
+		cutlen = QtCore.QFileInfo(path).dir().dirName().size()+1 if mode else path.size()+1
 		#print "Lets go", path
-		for root, dirs, files in os.walk(path):
+		for root, dirs, files in os.walk(path.toLocal8Bit().data()):
 			#print root
-			dir = root[cutlen:]
+			dir = QtCore.QString(root[cutlen:])	# ???
+			print dir.toUtf8()
 			if (dir):
 				fsdirs.add(dir)
 			for f in files:
-				fsfiles.add(os.path.join(dir, f))
+				fsfiles.add(dir + "/" + f)
 		return fsdirs, fsfiles
 
 	def	__chk_chk(self, arcdirs, arcfiles, fsdirs, fsfiles, direction):

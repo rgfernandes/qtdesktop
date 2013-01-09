@@ -6,7 +6,7 @@ Qt-only:
 		+ return structure
 		+ qset has no sence for python
 		+ list
-	* del
+	+ del
 	* add
 	* extract
 
