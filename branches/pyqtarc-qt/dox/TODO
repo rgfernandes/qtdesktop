@@ -1,10 +1,14 @@
 Qt-only:
-	* process - read to qstring
-	* regex
-	* structure
-	* return structure
-	* qset
-	* list
+	+ list
+		+ process - read to qstring
+		+ regex
+		+ structure
+		+ return structure
+		+ qset has no sence for python
+		+ list
+	* del
+	* add
+	* extract
 
 0.0.1:
 	* List

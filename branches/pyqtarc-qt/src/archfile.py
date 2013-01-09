@@ -32,11 +32,10 @@ class	ArchFile(QtCore.QObject):
 		self.__dir_cache = set()
 		self.__file_cache = set()
 		self.__root.getChildren().clear()
-		errcode, result = self.__helper.list(str(path))
+		errcode, result = self.__helper.list(path)
 		if (errcode):
 			return
 		for i in result:
-			print i[0].toLocal8Bit()
 			# name:str, isdir:bool, mtime:datetime, size:int
 			self.__root.addChildRecursive(i[0].split("/"), i[1], i[2], i[3])
 			if i[1]:
@@ -93,9 +92,9 @@ class	ArchFile(QtCore.QObject):
 		'''
 		fileNames: [ArchItem*,]
 		'''
-		src = list()
+		src = QtCore.QStringList()
 		for i in fileNames:
-			src.append(str(i.getFullPath()))
+			src << i.getFullPath()
 		err, msg = self.__helper.delete(self.__file, src)
 		if (not err):
 			for i in src:

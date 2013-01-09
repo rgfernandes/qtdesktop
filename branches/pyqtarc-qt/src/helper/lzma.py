@@ -18,64 +18,44 @@ class	ArchHelper7z(ArchHelper):
 	exts = ('7z',)
 	mimes = ('application/x-7z-compressed',)
 	#                  date              time              attrs                size       csize       name
-	__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
+	__rx = QtCore.QRegExp("(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) ([D.][R.][H.][S.][A.]) ([ 0-9]{12}) ([ 0-9]{12})  ([^\n]*)\n")
+	#__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
 
 	@classmethod
 	def	get_capabilities():
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
-	def	list(self, path, files=[]):
+	def	__exec(self, cmd, args):
+		'''
+		Execute external program
+		@param cmd:str - command ("7za")
+		@param args:QStringList
+		@return errcode, stdout, stderr
+		'''
 		proc = QtCore.QProcess()
-		args = QtCore.QStringList("l")
-		args << path
-		args += files
-		rx = QtCore.QRegExp("(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) ([D.][R.][H.][S.][A.]) ([ 0-9]{12}) ([ 0-9]{12})  ([^\n]*)\n")
-		proc.start("7za", args)
+		proc.start(cmd, args)
 		proc.waitForFinished(-1)
-		out = QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput())
-		err = QtCore.QString.fromLocal8Bit(proc.readAllStandardError())
-		#print "Exit code:", proc.exitCode()
-#		print "Stdout:"
-#		print out
-#		print "Stderr:"
-#		print err
-#		print "Capture:"
-		retvalue = []
-		pos = rx.indexIn(out)
-		while (pos != -1):
-			#print QtCore.QDateTime.fromString(rx.cap(1), "yyyy-MM-dd hh:mm:ss"), rx.cap(2)[0]=='D', rx.cap(3).trimmed().toULong()[0], rx.cap(4).trimmed().toULong()[0] or 0L, rx.cap(5).toLocal8Bit()
-			retvalue.append((
-				rx.cap(5),
-				rx.cap(2)[0]=='D',
-				QtCore.QDateTime.fromString(rx.cap(1), "yyyy-MM-dd hh:mm:ss"),
-				rx.cap(3).trimmed().toULong()[0],
-				rx.cap(4).trimmed().toULong()[0] or 0L,
-			))
-			pos += rx.matchedLength()
-			pos = rx.indexIn(out, pos)
-		return (proc.exitCode(), retvalue)
-		
+		return (
+			proc.exitCode(),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput()),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardError()),
+		)
 
-	def	old_list(self, path, files=[]):
-		'''
-		TODO: err handling: str, errcode
-		'''
-		p = subprocess.Popen(["7za", "l", path] + files, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, err = p.communicate()
-		if (p.returncode):
-			return (p.returncode, err)
-		retvalue = list()
-		for match in self.__rx.finditer(out):
-			s = match.group().rstrip("\n")
+	def	list(self, path, files=[]):
+		errcode, out, err = self.__exec("7za", (QtCore.QStringList("l") << path) + files)
+		retvalue = []
+		pos = self.__rx.indexIn(out)
+		while (pos != -1):
 			retvalue.append((
-					s[53:],	# name:str
-					(s[20] == 'D'),		# isdir:bool
-					datetime.datetime.strptime(s[:19], "%Y-%m-%d %H:%M:%S"),	# mtime:datetime
-					long(s[26:38].lstrip()),	# size:long
-					long(s[39:51].lstrip()) if s[39:51].lstrip() else 0,		# csize:long
-				)
-			)
-		return (0, retvalue)
+				self.__rx.cap(5),
+				self.__rx.cap(2)[0]=='D',
+				QtCore.QDateTime.fromString(self.__rx.cap(1), "yyyy-MM-dd hh:mm:ss"),
+				self.__rx.cap(3).trimmed().toULong()[0],
+				self.__rx.cap(4).trimmed().toULong()[0] or 0L,
+			))
+			pos += self.__rx.matchedLength()
+			pos = self.__rx.indexIn(out, pos)
+		return (errcode, retvalue)		
 
 	def	__get_extras(self, dst, srcpath):
 		'''
@@ -163,8 +143,3 @@ class	ArchHelper7z(ArchHelper):
 		return (p.returncode, err)
 
 mainclass = ArchHelper7z
-
-if __name__ == '__main__':
-	helper = ArchHelper7z()
-	for i in helper.list(sys.argv[1]):
-		print i[0], i[1], i[2], i[3], i[4]
