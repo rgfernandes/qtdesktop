@@ -136,10 +136,8 @@ class	ArchHelper7z(ArchHelper):
 					#return (p.returncode, err)
 		return 0, ''
 
-	@classmethod
 	def	delete(self, apath, fpaths):
-		p = subprocess.Popen(["7za", "d", apath] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, err = p.communicate()
-		return (p.returncode, err)
+		errcode, out, err = self.__exec("7za", (QtCore.QStringList("d") << apath) + fpaths)
+		return (errcode, err)
 
 mainclass = ArchHelper7z
