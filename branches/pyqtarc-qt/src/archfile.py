@@ -55,12 +55,11 @@ class	ArchFile(QtCore.QObject):
 		'''
 		# 1. chk exist
 		chk, newdirs, newfiles = self.__chk_add(paths)	# 0 - add, 1 - u?, 2 - a+x, 3 - return
-		return
 		if chk == 3:
 			#print "3"
 			return
 		# 2. add
-		errcode, msg = self.__helper.add(self.__file, map(str, paths), chk == 2)
+		errcode, msg = self.__helper.add(self.__file, paths, chk == 2)
 		if errcode:
 			print "error adding"
 			print msg
@@ -161,7 +160,7 @@ class	ArchFile(QtCore.QObject):
 
 	def	__chk_listdir(self, path, mode):
 		'''
-		os.path.dirname(path) => QFileInfo(path).dir().dirName()
+		os.path.dirname(path) => QFileInfo(path).dir().path()
 		len(str) => .size()/.count()
 		@param path:QString - absolute path of folder to walk
 		@param mode:bool - True==add (remove heading part exept own), False - extract (remove including path)
@@ -169,17 +168,25 @@ class	ArchFile(QtCore.QObject):
 		'''
 		fsdirs = set()
 		fsfiles = set()
-		cutlen = QtCore.QFileInfo(path).dir().dirName().size()+1 if mode else path.size()+1
-		#print "Lets go", path
-		for root, dirs, files in os.walk(path.toLocal8Bit().data()):
-			#print root
-			dir = QtCore.QString(root[cutlen:])	# ???
-			print dir.toUtf8()
-			if (dir):
-				fsdirs.add(dir)
-			for f in files:
-				fsfiles.add(dir + "/" + f)
+		#print path, QtCore.QFileInfo(path).dir().path(), QtCore.QFileInfo(path).dir().path().size()
+		cutlen = QtCore.QFileInfo(path).dir().path().size()+1 if mode else path.size()+1
+		self.__walk(path, cutlen, fsdirs, fsfiles)
 		return fsdirs, fsfiles
+
+	def	__walk(self, path, cutlen, dirs, files):
+		'''
+		@param path:str
+		'''
+		dir = path.mid(cutlen)
+		if (dir):
+			dirs.add(dir)
+		for f in QtCore.QDir(path).entryInfoList():
+			if f.isFile():
+				files.add(f.absoluteFilePath().mid(cutlen))
+			else:
+				fp = f.fileName()
+				if not (fp == "." or fp == ".."):
+					self.__walk(f.absoluteFilePath(), cutlen, dirs, files)
 
 	def	__chk_chk(self, arcdirs, arcfiles, fsdirs, fsfiles, direction):
 		#print "arcdirs:", arcdirs

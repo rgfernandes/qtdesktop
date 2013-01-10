@@ -57,54 +57,59 @@ class	ArchHelper7z(ArchHelper):
 			pos = self.__rx.indexIn(out, pos)
 		return (errcode, retvalue)		
 
-	def	__get_extras(self, dst, srcpath):
-		'''
-		get extra dirs/files
-		@param dst:set - arc dirs/files
-		@param srcpath:str - absolute FS path
-		'''
-		base = os.path.dirname(srcpath)
-		cutlen = len(base)+1
-		retvalue = list()
-		for root, dirs, files in os.walk(srcpath):
-			relroot = root[cutlen:]
-			if relroot not in dst:
-				#retvalue.append(root)
-				retvalue.append(relroot)
-				del dirs[:]
-			else:
-				for f in files:
-					relfile = os.path.join(relroot, f)
-					if relfile not in dst:
-						#retvalue.append(os.path.join(root, f))
-						retvalue.append(relfile)
-		return retvalue
-
 	def	add(self, apath, fpaths, skip):
 		'''
 		TODO: skip => mode (replace, update, skip)
 		'''
 		if skip:
 			# 1. get archive list to set
-			dst = set()
 			err, result = self.list(apath)
 			if err:
 				return err, "cant list archive"
+			dst = set()
 			for i in result:
 				dst.add(i[0])
+				if (not i[1]):	# file; workaround
+					dst.add(QtCore.QFileInfo(i[0]).dir().path())
 			# 2. walk through fs searching what _absent_ (top-down, cutting header (dirname))
-			src = list()
+			src = QtCore.QStringList()
 			for fpath in fpaths:
-				src.extend(self.__get_extras(dst, fpath))
-			cwd = os.getcwd()
-			os.chdir(os.path.dirname(fpaths[0]))
-			p = subprocess.Popen(["7za", "a", apath,] + src, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-			cwd = os.getcwd()
+				src += self.__get_extras(dst, fpath)
+			cwd = QtCore.QDir.currentPath()
+			QtCore.QDir.setCurrent(QtCore.QFileInfo(fpaths[0]).dir().path())
+			errcode, out, err = self.__exec("7za", (QtCore.QStringList("a") << apath) + src)
+			QtCore.QDir.setCurrent(cwd)
 		else:
-			p = subprocess.Popen(["7za", "a", apath,] + fpaths, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		out, err = p.communicate()
+			errcode, out, err = self.__exec("7za", (QtCore.QStringList("a") << apath) + fpaths)
 		#print out
-		return (p.returncode, err)
+		return (errcode, err)
+
+	def	__get_extras(self, dst, srcpath):
+		'''
+		get extra dirs/files in srcpath
+		@param dst:set - arc dirs/files
+		@param srcpath:str - absolute FS path
+		@return: QStringList - files to add (rdlative)
+		'''
+		base = QtCore.QFileInfo(srcpath).dir().path()
+		cutlen = base.size() + 1
+		retvalue = QtCore.QStringList()
+		self.__walk(srcpath, cutlen, dst, retvalue)
+		return retvalue
+
+	def	__walk(self, path, cutlen, dirs, retvalue):
+		'''
+		@param path:str
+		'''
+		relname = path.mid(cutlen)
+		if (not relname in dirs):
+			dirs.add(relname)
+		else:
+			if (QtCore.QFileInfo(path).isDir()):
+				for f in QtCore.QDir(path).entryInfoList():
+					fp = f.fileName()
+					if not (fp == "." or fp == ".."):
+						self.__walk(f.absoluteFilePath(), cutlen, dirs, retvalue)
 
 	def	extract(self, apath, fpaths, destdir, skip):
 		#print apath, fpaths, destdir
