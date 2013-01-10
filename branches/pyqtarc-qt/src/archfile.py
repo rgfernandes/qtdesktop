@@ -80,13 +80,13 @@ class	ArchFile(QtCore.QObject):
 		fileNames: list(ArchItem*)
 		dest: str
 		'''
-		chk, newdirs, newfiles = self.__chk_extract(fileNames, str(dest))
+		chk, newdirs, newfiles = self.__chk_extract(fileNames, dest)
 		if chk == 3:
 			return
-		src = list()
+		src = QtCore.QStringList()
 		for i in fileNames:
-			src.append(str(i.getFullPath()))
-		return self.__helper.extract(str(self.__file), src, str(dest), chk == 2)
+			src << i.getFullPath()
+		return self.__helper.extract(self.__file, src, dest, chk == 2)
 
 	def	delete(self, fileNames):
 		'''
@@ -139,7 +139,7 @@ class	ArchFile(QtCore.QObject):
 		# 1. prepare extractable
 		arcdirs = set()
 		arcfiles = set()
-		cutlen = len(os.path.dirname(str(arcitems[0].getFullPath())))
+		cutlen = QtCore.QFileInfo(arcitems[0].getFullPath()).dir().path().size()
 		if cutlen:
 			cutlen += 1
 		for i in arcitems:
@@ -148,10 +148,10 @@ class	ArchFile(QtCore.QObject):
 				tosearch = i.getFullPath()+'/'
 				for j in self.__dir_cache:
 					if j.startswith(tosearch):
-						arcdirs.add(j[cutlen:])
+						arcdirs.add(j.mid(cutlen))
 				for j in self.__file_cache:
 					if j.startswith(tosearch):
-						arcfiles.add(j[cutlen:])
+						arcfiles.add(j.mid(cutlen))
 			else:
 				arcfiles.add(i.getName())
 		# 2. prepare dest

@@ -29,6 +29,7 @@ Qt-only:
 	- archfile - qt only
 	- non-ascii support
 	- sort
+	- doc, pylint etc
 	- check everything
 	- setup
 	- rpm
