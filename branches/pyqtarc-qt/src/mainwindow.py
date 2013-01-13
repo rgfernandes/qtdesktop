@@ -50,6 +50,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.connect(self.action_AddDirectory,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFolder )
 		self.connect(self.action_Extract,	QtCore.SIGNAL( "triggered()" ), self.__onActionExtract )
 		self.connect(self.action_Delete,	QtCore.SIGNAL( "triggered()" ), self.__onActionDelete )
+		self.connect(self.action_HelpAboutQt,	QtCore.SIGNAL( "triggered()" ), QtGui.QApplication.aboutQt )
 
 	def	__onActionActivated(self, index):
 		item = index.internalPointer()	# ArchItem*
@@ -59,7 +60,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			self.address.setText(item.getFullPath())
 
 	def	__onActionSelected(self, selected, deselected):
-		print "ok"
+		#print "ok"
 		indexes = selected.indexes()
 		if indexes.count() != 1:
 			self.statusBar().clearMessage()
@@ -79,15 +80,10 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		'''
 		filter " (*.7z *.arj *.rar *.zip *.tar *.tar.gz *.tgz *.tar.bz *.tar.bz2 *.tbz *.tbz2  *.tbz *.tar.7z *.tar.lzma *.tlzma *.tar.xz *.txz)")
 		'''
-		fileName = QtCore.QString("test.7z")
-		#fileName = QtGui.QFileDialog.getOpenFileName(caption=self.tr("Open file"), filter = self.tr("Archive") + " (%s)" % self.__exts)
+		#fileName = QtCore.QString("test.7z")
+		fileName = QtGui.QFileDialog.getOpenFileName(caption=self.tr("Open file"), filter = self.tr("Archive") + " (%s)" % self.__exts)
 		if (not fileName.isEmpty()):
-			absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
-			#print str(fileName), str(absFileName)
-			mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
-			self.__archfile.load(self.__mime2helper[mime], absFileName)
-			self.treeView.model().refresh()
-			#self.treeView.model().sort(0)
+			self._file_open(fileName)
 
 	def	__onActionAddFile(self):
 		fileNames = QtGui.QFileDialog.getOpenFileNames(
@@ -134,3 +130,11 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		if (fileNames):
 			err, msg = self.__archfile.delete(fileNames)
 			self.treeView.model().reset()
+
+	def	_file_open(self, fileName):
+		absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
+		#print str(fileName), str(absFileName)
+		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
+		self.__archfile.load(self.__mime2helper[mime], absFileName)
+		self.treeView.model().refresh()
+		#self.treeView.model().sort(0)

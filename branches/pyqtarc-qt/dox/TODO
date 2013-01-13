@@ -26,8 +26,9 @@ Qt-only:
 	* wrap on resize
 	* check on exists (extract: replace/skip)
 	* DnD in
-	- archfile - qt only
-	- non-ascii support
+	* archfile - qt only
+	* non-ascii support
+	* CLI - open file
 	- sort
 	- doc, pylint etc
 	- check everything
@@ -63,6 +64,7 @@ zip -
 http://mirror.yandex.ru/fedora/russianfedora/russianfedora/fixes/fedora/releases/17/Everything/i386/os/unzip-6.0-5.fc17.R.i686.rpm
 DnD: http://freedesktop.org/wiki/Specifications/XDS
 CLI:
+	*
 	* -l
 	* -a -rewrite/update/skip <aname> fn1 fn2 ...
 	* -d <aname> fn1 ...
