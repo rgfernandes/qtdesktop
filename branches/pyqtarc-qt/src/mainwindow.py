@@ -27,7 +27,11 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.treeView = ArchItemView(self.__archfile, self.centralwidget)
 		self.verticalLayout.addWidget(self.treeView)
 		self.__setSlots()
-		self.treeView.setModel(ArchItemModel(self.__archfile))
+		self.__model = ArchItemModel(self.__archfile)
+		#self.__proxyModel = QtGui.QSortFilterProxyModel()
+		#self.__proxyModel.setSourceModel(self.__model)
+		#self.treeView.setModel(self.__proxyModel)
+		self.treeView.setModel(self.__model)
 
 	def	__init_helpers(self):
 		#exec "from helper import %s" % ','.join(test1('helper'))
@@ -136,5 +140,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#print str(fileName), str(absFileName)
 		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
 		self.__archfile.load(self.__mime2helper[mime], absFileName)
-		self.treeView.model().refresh()
 		#self.treeView.model().sort(0)
+		#self.__archfile.sort()
+		#self.treeView.reset()
+		self.treeView.model().refresh()
