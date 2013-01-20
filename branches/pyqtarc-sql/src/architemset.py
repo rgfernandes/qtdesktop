@@ -38,7 +38,6 @@ class	ArchItemSet:
 		return len(self.__dirs) + len(self.__files)
 
 	def	sort(self, recurse = True):
-		print "sorting"
 		self.__list.clear()
 		for i in self.__dirs.values():
 			self.__list.append(i.getName())

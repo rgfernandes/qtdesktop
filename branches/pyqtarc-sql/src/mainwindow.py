@@ -1,5 +1,5 @@
 # filter: 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtSql
 from ui.Ui_main import Ui_Main
 
 from archfile	import ArchFile
@@ -33,7 +33,6 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#self.treeView.setModel(self.__proxyModel)
 		#self.treeView.setModel(self.__model)
 		#self.treeView.setSortingEnabled(True)
-		self.treeView.setModel(ArchItemModel(self.__archfile))
 
 	def	__init_helpers(self):
 		#exec "from helper import %s" % ','.join(test1('helper'))
@@ -46,6 +45,16 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 					self.__mime2helper[j] = a[i].mainclass
 				#Sprint a[i].mainclass
 		self.__exts = self.__exts.lstrip(' ')
+
+	def	setModel(self, db):
+		self.__model = QtSql.QSqlTableModel()
+		self.__model.setTable("arch")
+		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
+		self.__model.setSort(1, QtCore.Qt.AscendingOrder)
+		self.__model.select()
+		self.treeView.setModel(self.__model)
+		self.treeView.setModelColumn(2)
+		#self.treeView.setModel(ArchItemModel(self.__archfile))
 
 	def	__setSlots(self):
 		self.connect(self.treeView,		QtCore.SIGNAL( "activated(const QModelIndex &)" ), self.__onActionActivated )
@@ -138,10 +147,45 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			self.treeView.model().reset()
 
 	def	_file_open(self, fileName):
+		#def	add_record(row, v, q):
+		#	'''by query'''
+		def	add_record(row, v):
+			'''by model'''
+			self.__model.insertRow(row)
+			self.__model.setData(self.__model.index(row, 0), QtCore.QVariant(row+1)) 
+			self.__model.setData(self.__model.index(row, 1), QtCore.QVariant(None)) 
+			self.__model.setData(self.__model.index(row, 2), QtCore.QVariant(v[0])) 
+			self.__model.setData(self.__model.index(row, 3), QtCore.QVariant(v[1])) 
+			self.__model.submitAll()
+		def	add_record0(v):
+			''''by record'''
+			rec = self.__model.record()
+			rec.setValue("name", v[0])
+			rec.setValue("parent_id", None)
+			rec.setValue("isdir", v[1])
+			print "Insert:", self.__model.insertRecord(-1, rec)
 		absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
-		#print str(fileName), str(absFileName)
 		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
-		self.__archfile.load(self.__mime2helper[mime], absFileName)
-		#self.treeView.model().sort(0)
-		#self.treeView.reset()
-		self.treeView.model().refresh()
+		#self.__archfile.load(self.__mime2helper[mime], absFileName)
+		##self.treeView.reset()
+		#self.treeView.model().refresh()
+		#self.__root.getChildren().clear()
+		# clear arch table
+		errcode, result = self.__mime2helper[mime]().list(absFileName)
+		if (errcode):
+			return
+		#self.__model.clear()
+		#self.__model.submitAll()
+		#rows = self.__model.rowCount()
+		QtSql.QSqlQuery("DELETE FROM arch").exec_()
+		q = QtSql.QSqlQuery()
+		q.prepare("INSERT INTO arch (id, parent_id, name, isdir) VALUES (:id, :parent_id, :name, :isdir)")
+		for i, v in enumerate(result):	# name:str, isdir:bool, mtime:datetime, size:int
+			#add_record(i+rows, v)
+			q.bindValue(":id", i+1)
+			q.bindValue(":parent_id", None)
+			q.bindValue(":name", v[0])
+			q.bindValue(":isdir", v[1])
+			q.exec_()
+		print "SubmitAll:", self.__model.submitAll()
+		#QtSql.QSqlDatabase.database().commit()

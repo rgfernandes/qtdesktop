@@ -48,8 +48,8 @@ class	ArchHelper7z(ArchHelper):
 		pos = self.__rx.indexIn(out)
 		while (pos != -1):
 			retvalue.append((
-				self.__rx.cap(5),
-				self.__rx.cap(2)[0]=='D',
+				self.__rx.cap(5),		#name
+				self.__rx.cap(2)[0]=='D',	#isdir
 				QtCore.QDateTime.fromString(self.__rx.cap(1), "yyyy-MM-dd hh:mm:ss"),
 				self.__rx.cap(3).trimmed().toULong()[0],
 				self.__rx.cap(4).trimmed().toULong()[0] or 0L,
