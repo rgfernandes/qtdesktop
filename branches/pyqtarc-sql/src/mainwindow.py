@@ -12,6 +12,18 @@ import magic
 #def test1(pkg):
 #	return [name for _, name, _ in pkgutil.iter_modules([pkg])]
 
+class	MySqlTableModel(QtSql.QSqlTableModel):
+	def	__init__(self, parent = None, db = None):
+		super(MySqlTableModel, self).__init__(parent, db)
+		self.__iconProvider = QtGui.QFileIconProvider()
+
+	def	data(self, index, role):
+		if (not index.isValid()):
+			return QtCore.QVariant()
+		if (role == QtCore.Qt.DecorationRole):	#index.column() == 2
+			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if index.sibling(index.row(), 3).data().toBool() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
+		return super(MySqlTableModel, self).data(index, role)
+
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
 		QtGui.QMainWindow.__init__(self)
@@ -47,7 +59,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__exts = self.__exts.lstrip(' ')
 
 	def	setModel(self, db):
-		self.__model = QtSql.QSqlTableModel()
+		self.__model = MySqlTableModel(self, db)
 		self.__model.setTable("arch")
 		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
 		self.__model.setSort(1, QtCore.Qt.AscendingOrder)
@@ -187,5 +199,5 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			q.bindValue(":name", v[0])
 			q.bindValue(":isdir", v[1])
 			q.exec_()
-		print "SubmitAll:", self.__model.submitAll()
+		self.__model.submitAll()
 		#QtSql.QSqlDatabase.database().commit()
