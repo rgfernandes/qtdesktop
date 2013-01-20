@@ -40,9 +40,10 @@ Qt-only:
 	- Cut/Copy/Paste
 	- statusbar
 	- tableview
-	- add to archive subfolder ()
+	- add to [archive subfolder]
 	- mkdir
 	- rename
+	- extract as
 	- check archivers
 0.0.3:
 	* password
