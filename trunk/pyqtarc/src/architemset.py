@@ -1,8 +1,18 @@
+from PyQt4 import QtCore
+
 class	ArchItemSet:
 	def	__init__(self):
 		self.__dirs = dict()
 		self.__files = dict()
-		self.__list = list()
+		self.__list = QtCore.QStringList()	# list of names
+
+	def	__resort(self, recurse = False):
+		self.__list.sort()
+		for i, name in enumerate(self.__list):
+			item = self.get(name)
+			item.setRow(i)
+			if (recurse) and (item.isDir()):
+				item.getChildren().sort()
 
 	def	add(self, item):
 		name = item.getName()
@@ -10,6 +20,7 @@ class	ArchItemSet:
 			self.__dirs[name] = item
 		else:
 			self.__files[name] = item
+		self.sort(False)
 
 	def	get(self, item):
 		'''
@@ -17,9 +28,8 @@ class	ArchItemSet:
 		@return: item or none
 		'''
 		if (isinstance(item,  int)):
-			return self.__list[item] if ((item >= 0) and (item < len(self.__list))) else None
-		else:
-			return self.__dirs.get(item,  self.__files.get(item,  None))
+			item = self.__list[item]
+		return self.__dirs.get(item,  self.__files.get(item,  None))
 
 	def	contains(self, name):
 		return (name in self.__dirs) or (name in self.__files)
@@ -27,23 +37,34 @@ class	ArchItemSet:
 	def	count(self):
 		return len(self.__dirs) + len(self.__files)
 
-	def	sort(self):
-		self.__list = self.__dirs.values() + self.__files.values()
-		for i, item in enumerate(self.__list):
+	def	sort(self, recurse = True):
+		print "sorting"
+		self.__list.clear()
+		for i in self.__dirs.values():
+			self.__list.append(i.getName())
+		self.__list.sort()
+		tmplist = QtCore.QStringList()
+		for i in self.__files.values():
+			tmplist.append(i.getName())
+		tmplist.sort()
+		self.__list += tmplist
+		for i, name in enumerate(self.__list):
+			item = self.get(name)
 			item.setRow(i)
-			if (item.isDir()):
+			if recurse and (item.isDir()):
 				item.getChildren().sort()
 
 	def	del_item(self, item):
 		name = item.getName()
 		row = item.getRow()
-		del self.__list[row]
+		self.__list.removeAt(row)
 		if item.isDir():
 			del self.__dirs[name]
 		else:
 			del self.__files[name]
-		for i in self.__list[row:]:
-			i.setRow(i.getRow() - 1)
+		for name in self.__list[row:]:
+			item = self.get(name)
+			item.setRow(item.getRow() - 1)
 
 	def	clear(self):
 		'''
@@ -53,4 +74,4 @@ class	ArchItemSet:
 			item.getChildren().clear()
 		self.__dirs.clear()
 		self.__files.clear()
-		self.__list = []
+		self.__list.clear()

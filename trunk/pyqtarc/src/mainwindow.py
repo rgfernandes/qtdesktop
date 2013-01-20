@@ -97,7 +97,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			filter = self.tr("Any file") + " (*.*)")
 		if (not fileNames.isEmpty()):
 			self.__archfile.add(fileNames)
-			self.treeView.model().refresh()
+			self.treeView.model().reset()
 
 	def	__onActionAddFolder(self):
 		folderName = QtGui.QFileDialog.getExistingDirectory(
@@ -143,6 +143,5 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
 		self.__archfile.load(self.__mime2helper[mime], absFileName)
 		#self.treeView.model().sort(0)
-		#self.__archfile.sort()
-		self.treeView.reset()
-		#self.treeView.model().refresh()
+		#self.treeView.reset()
+		self.treeView.model().refresh()

@@ -61,7 +61,7 @@ class	ArchFile(QtCore.QObject):
 		# 2. add
 		errcode, msg = self.__helper.add(self.__file, paths, chk == 2)
 		if errcode:
-			print "error adding"
+			print "error adding:", errcode
 			print msg
 			return
 		# 3. update caches
@@ -70,8 +70,10 @@ class	ArchFile(QtCore.QObject):
 		# 4. update gfx
 		errcode, result = self.__helper.list(self.__file, list(newdirs|newfiles))
 		if (errcode):
+			print "error listing:", errcode
 			return
 		for i in result:
+			print "result"
 			self.__root.addChildRecursive(i[0].split("/"), i[1], QtCore.QDateTime(i[2]), i[3])
 		self.__root.getChildren().sort()
 
