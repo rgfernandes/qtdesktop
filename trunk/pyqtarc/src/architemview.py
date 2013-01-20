@@ -69,5 +69,3 @@ class	ArchItemView(QtGui.QListView):
 		if mimeData.hasHtml():
 			print "Html:"
 			print mimeData.html()
-
-

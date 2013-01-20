@@ -1,3 +1,16 @@
+= mimitar =
+(libarchive)
+[-cjtvxyZz] [-f file] [file]
+-c create
+-j bzip2
+-t list?
+-v verbose?
+-x extract
+-y bzip2
+-Z compress
+-z gzip
+-f - archive
+
 = formats =
 * arj
 * tar[.gz/bz2/xz]

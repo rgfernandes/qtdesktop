@@ -1,0 +1,39 @@
+http://doc.qt.digia.com/qq/qq01-sorting-qlistviews.html
+class MyListViewItem : public QListViewItem
+{
+public:
+MyListViewItem( QListView* parent, QString subject, QString sender, QString date );
+QString key( int column, bool ascending ) const;
+};
+
+QString MyListViewItem::key( int column, bool ascending ) const
+{
+if ( column == 1 ) {
+    QString senderText = text( 1 );
+    int firstbracket = senderText.find( "<" );
+    if ( firstbracket == -1 )
+	return senderText;
+    else
+	return senderText.mid( firstbracket + 1,
+			       senderText.length() -
+			       firstbracket - 2 );
+} else {
+    return QListViewItem::key( column, ascending );
+}
+}
+
+int MyListViewItem::compare( QListViewItem* item, int column, bool ascending ) const
+{
+if ( column == 2 ) {
+    QDate d = QDate::fromString( text( 2 ), Qt::LocalDate );
+    QDate e = QDate::fromString( item->text( 2 ), Qt::LocalDate );
+    return e.daysTo( d );
+} else {
+    return QListViewItem::compare( item, column, ascending );
+}
+}
+
+    QListView* mail = new QListView( this );
+    mail->addColumn( "Subject" );
+    mail->addColumn( "Sender" );
+    mail->addColumn( "Date" );
