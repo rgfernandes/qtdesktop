@@ -36,11 +36,11 @@ def createConnection(db, mw):
 						else:
 							ok = True;
 				if (ok):
-					QtGui.QMessageBox.information(0,
+					QtGui.QMessageBox.information(mw,
 						mw.tr("Creating database"),
 						mw.tr("Database created OK"))
 			else:
-				QtGui.QMessageBox.critical(0,
+				QtGui.QMessageBox.critical(mw,
 					mw.tr("Creating database error"),
 					mw.tr("Unable to read sql."))
 				return False

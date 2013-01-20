@@ -12,9 +12,9 @@ import magic
 #def test1(pkg):
 #	return [name for _, name, _ in pkgutil.iter_modules([pkg])]
 
-class	MySqlTableModel(QtSql.QSqlTableModel):
+class	MyTableModel(QtSql.QSqlTableModel):
 	def	__init__(self, parent = None, db = None):
-		super(MySqlTableModel, self).__init__(parent, db)
+		super(MyTableModel, self).__init__(parent, db)
 		self.__iconProvider = QtGui.QFileIconProvider()
 
 	def	data(self, index, role):
@@ -22,7 +22,19 @@ class	MySqlTableModel(QtSql.QSqlTableModel):
 			return QtCore.QVariant()
 		if (role == QtCore.Qt.DecorationRole):	#index.column() == 2
 			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if index.sibling(index.row(), 3).data().toBool() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
-		return super(MySqlTableModel, self).data(index, role)
+		return super(MyTableModel, self).data(index, role)
+
+class	MyQueryModel(QtSql.QSqlQueryModel):
+	def	__init__(self):
+		super(MyQueryModel, self).__init__()
+		self.__iconProvider = QtGui.QFileIconProvider()
+
+	def	data(self, index, role):
+		if (not index.isValid()):
+			return QtCore.QVariant()
+		if (role == QtCore.Qt.DecorationRole):	#index.column() == 2
+			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if index.sibling(index.row(), 3).data().toBool() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
+		return super(MyQueryModel, self).data(index, role)
 
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
@@ -59,11 +71,17 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__exts = self.__exts.lstrip(' ')
 
 	def	setModel(self, db):
-		self.__model = MySqlTableModel(self, db)
+		self.__model = MyTableModel(self, db)
 		self.__model.setTable("arch")
 		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
-		self.__model.setSort(1, QtCore.Qt.AscendingOrder)
+		#self.__model.setSort(3, QtCore.Qt.DescendingOrder)	# dir
+		#self.__model.setSort(2, QtCore.Qt.AscendingOrder)	# name
+		self.__model.setFilter("1=1 ORDER BY isdir DESC, name ASC")	# nice hack
 		self.__model.select()
+		'''
+		self.__model = MyQueryModel()
+		self.__model.setQuery("SELECT id, parent_id, nane, isdir FROM arch ORDER BY isdir, name", db)
+		'''
 		self.treeView.setModel(self.__model)
 		self.treeView.setModelColumn(2)
 		#self.treeView.setModel(ArchItemModel(self.__archfile))
