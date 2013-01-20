@@ -27,13 +27,13 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.treeView = ArchItemView(self.__archfile, self.centralwidget)
 		self.verticalLayout.addWidget(self.treeView)
 		self.__setSlots()
-		self.__model = ArchItemModel(self.__archfile)
-		self.__proxyModel = QtGui.QSortFilterProxyModel(self)
-		self.__proxyModel.setSourceModel(self.__model)
-		self.treeView.setModel(self.__proxyModel)
+		#self.__model = ArchItemModel(self.__archfile)
+		#self.__proxyModel = QtGui.QSortFilterProxyModel(self)
+		#self.__proxyModel.setSourceModel(self.__model)
+		#self.treeView.setModel(self.__proxyModel)
 		#self.treeView.setModel(self.__model)
 		#self.treeView.setSortingEnabled(True)
-		#self.treeView.setModel(ArchItemModel(self.__archfile))
+		self.treeView.setModel(ArchItemModel(self.__archfile))
 
 	def	__init_helpers(self):
 		#exec "from helper import %s" % ','.join(test1('helper'))
