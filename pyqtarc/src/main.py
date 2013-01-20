@@ -16,4 +16,7 @@ def main():
 	#QtCore.QTextCodec.setCodecForCStrings(QTextCodec.codecForName("UTF-8"))
 	mw = MainWindow()
 	mw.show()
+	argv = app.arguments()
+	if (argv.count() == 2):
+		mw._file_open(argv[1])
 	sys.exit(app.exec_())

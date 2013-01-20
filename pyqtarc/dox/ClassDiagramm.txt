@@ -1,0 +1,13 @@
+main.main:
+ mainwindow.MainWindow:
+  architemmodel.ArchItemModel
+  archfile.ArchFile:
+   helper.lzma.ArchHelper7z
+   architem.ArchItemFolder:
+    architemset.ArchItemSet
+   architem.ArchItemFile
+
+So, to add function:
+	mainwindow
+	archfile
+	helper

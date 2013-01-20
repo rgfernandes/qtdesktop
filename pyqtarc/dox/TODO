@@ -1,3 +1,15 @@
+Qt-only:
+	+ list
+		+ process - read to qstring
+		+ regex
+		+ structure
+		+ return structure
+		+ qset has no sence for python
+		+ list
+	+ del
+	* add
+	* extract
+
 0.0.1:
 	* List
 	* Add
@@ -14,9 +26,11 @@
 	* wrap on resize
 	* check on exists (extract: replace/skip)
 	* DnD in
-	- archfile - qt only
-	- non-ascii support
+	* archfile - qt only
+	* non-ascii support
+	* CLI - open file
 	- sort
+	- doc, pylint etc
 	- check everything
 	- setup
 	- rpm
@@ -26,9 +40,10 @@
 	- Cut/Copy/Paste
 	- statusbar
 	- tableview
-	- add to archive subfolder ()
+	- add to [archive subfolder]
 	- mkdir
 	- rename
+	- extract as
 	- check archivers
 0.0.3:
 	* password
@@ -50,7 +65,13 @@ zip -
 http://mirror.yandex.ru/fedora/russianfedora/russianfedora/fixes/fedora/releases/17/Everything/i386/os/unzip-6.0-5.fc17.R.i686.rpm
 DnD: http://freedesktop.org/wiki/Specifications/XDS
 CLI:
+	*
 	* -l
 	* -a -rewrite/update/skip <aname> fn1 fn2 ...
 	* -d <aname> fn1 ...
 	* -e -r/u/s -o <output> <aname> fn1 ...
+Ark DnD:
+	application/x-kde-ark-dndextract-service	:1.61
+	application/x-kde-ark-dndextract-path	/DndExtract/1
+Thoughts:
+	* сканировать dest fs - плохая идея. Лучше по месту
