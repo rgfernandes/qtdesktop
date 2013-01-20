@@ -24,18 +24,6 @@ class	MyTableModel(QtSql.QSqlTableModel):
 			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if index.sibling(index.row(), 3).data().toBool() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
 		return super(MyTableModel, self).data(index, role)
 
-class	MyQueryModel(QtSql.QSqlQueryModel):
-	def	__init__(self):
-		super(MyQueryModel, self).__init__()
-		self.__iconProvider = QtGui.QFileIconProvider()
-
-	def	data(self, index, role):
-		if (not index.isValid()):
-			return QtCore.QVariant()
-		if (role == QtCore.Qt.DecorationRole):	#index.column() == 2
-			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if index.sibling(index.row(), 3).data().toBool() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
-		return super(MyQueryModel, self).data(index, role)
-
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
 		QtGui.QMainWindow.__init__(self)
@@ -177,45 +165,42 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			self.treeView.model().reset()
 
 	def	_file_open(self, fileName):
-		#def	add_record(row, v, q):
-		#	'''by query'''
-		def	add_record(row, v):
-			'''by model'''
-			self.__model.insertRow(row)
-			self.__model.setData(self.__model.index(row, 0), QtCore.QVariant(row+1)) 
-			self.__model.setData(self.__model.index(row, 1), QtCore.QVariant(None)) 
-			self.__model.setData(self.__model.index(row, 2), QtCore.QVariant(v[0])) 
-			self.__model.setData(self.__model.index(row, 3), QtCore.QVariant(v[1])) 
-			self.__model.submitAll()
-		def	add_record0(v):
-			''''by record'''
-			rec = self.__model.record()
-			rec.setValue("name", v[0])
-			rec.setValue("parent_id", None)
-			rec.setValue("isdir", v[1])
-			print "Insert:", self.__model.insertRecord(-1, rec)
+		def	add_record(id, parent, v, q):
+			#print v[2].toTime_t()
+			q.bindValue(":id", i)
+			q.bindValue(":parent_id", parent)
+			q.bindValue(":name", v[0])
+			q.bindValue(":isdir", v[1])
+			q.bindValue(":datetime", v[2].toTime_t() if v[2] else None)
+			q.bindValue(":nsize", v[3])
+			q.bindValue(":csize", v[4])
+			q.exec_()
 		absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
 		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
-		#self.__archfile.load(self.__mime2helper[mime], absFileName)
-		##self.treeView.reset()
-		#self.treeView.model().refresh()
-		#self.__root.getChildren().clear()
-		# clear arch table
 		errcode, result = self.__mime2helper[mime]().list(absFileName)
 		if (errcode):
 			return
-		#self.__model.clear()
-		#self.__model.submitAll()
-		#rows = self.__model.rowCount()
+		folderdict = dict()	# path: id for folders
 		QtSql.QSqlQuery("DELETE FROM arch").exec_()
 		q = QtSql.QSqlQuery()
-		q.prepare("INSERT INTO arch (id, parent_id, name, isdir) VALUES (:id, :parent_id, :name, :isdir)")
-		for i, v in enumerate(result):	# name:str, isdir:bool, mtime:datetime, size:int
-			#add_record(i+rows, v)
-			q.bindValue(":id", i+1)
-			q.bindValue(":parent_id", None)
-			q.bindValue(":name", v[0])
-			q.bindValue(":isdir", v[1])
-			q.exec_()
-		self.__model.submitAll()
-		#QtSql.QSqlDatabase.database().commit()
+		q.prepare("INSERT INTO arch (id, parent_id, name, isdir, datetime, nsize, csize) VALUES (:id, :parent_id, :name, :isdir, :datetime, :nsize, :csize)")
+		i = 1
+		for v in result:	# name:QString, isdir:bool, datetime:QDateTime, nsize:ULong, csize:ULong
+			pathlist = v[0].split("/")	# FIXME: separator()
+			name = pathlist.takeLast()
+			parent_id = None
+			path = QtCore.QString()
+			sep = ""
+			for n in pathlist:
+				path = path + sep + n
+				sep = "/"
+				id = folderdict.get(path, None)
+				if (id):
+					parent_id = id
+					continue
+				add_record(i, parent_id, (n, True, None, None, None), q)
+				parent_id = i
+				i += 1
+			add_record(i, parent_id, (name, v[1], v[2], v[3], v[4]), q)
+			i += 1
+		#self.__model.submitAll()
