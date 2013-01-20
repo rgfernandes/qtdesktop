@@ -64,7 +64,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
 		#self.__model.setSort(3, QtCore.Qt.DescendingOrder)	# dir
 		#self.__model.setSort(2, QtCore.Qt.AscendingOrder)	# name
-		self.__model.setFilter("1=1 ORDER BY isdir DESC, name ASC")	# nice hack
+		self.__model.setFilter("parent_id IS NULL ORDER BY isdir DESC, name ASC")	# nice hack
+		#self.__model.setFilter("parent_id=NULL")	# nice hack
 		self.__model.select()
 		'''
 		self.__model = MyQueryModel()
@@ -199,8 +200,13 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 					parent_id = id
 					continue
 				add_record(i, parent_id, (n, True, None, None, None), q)
+				folderdict[path] = i
 				parent_id = i
 				i += 1
 			add_record(i, parent_id, (name, v[1], v[2], v[3], v[4]), q)
+			if (v[1]):
+				folderdict[v[0]] = i
 			i += 1
+		#self.__model.setFilter("parent_id=NULL")
+		#self.__model.select()
 		#self.__model.submitAll()
