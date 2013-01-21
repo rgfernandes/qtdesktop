@@ -42,7 +42,7 @@ class	MyTableModel(QtSql.QSqlTableModel):
 		return self.__get_any(index, 1).toUInt()[0]
 
 	def	get_name(self, index):
-		return self.__get_any(index, 2).toString()[0]
+		return self.__get_any(index, 2).toString()
 
 	def	get_isdir(self, index):
 		return self.__get_any(index, 3).toBool()
@@ -71,6 +71,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__magic = magic.open(magic.MIME)
 		self.__magic.load()
 		self.__init_helpers()
+		self.__file = None
+		self.__helper = None
 		self.treeView = ArchItemView(self.__archfile, self.centralwidget)
 		self.verticalLayout.addWidget(self.treeView)
 		self.__setSlots()
@@ -181,12 +183,12 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		'''
 		@return: [ArchItem*,]
 		'''
-		fileNames = list()
+		ids = list()
 		selected = self.treeView.selectedIndexes()
 		for i in selected:
-			if (i.column() == 0):	# exclude 1+ columns
-				fileNames.append(i.internalPointer())
-		return fileNames
+			#if (i.column() == 0):	# exclude 1+ columns
+			ids.append(i.internalPointer())
+		return ids
 
 	def	__onActionExtract(self):
 		'''
@@ -201,10 +203,21 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 				self.__archfile.extract(fileNames, dest)
 
 	def	__onActionDelete(self):
-		fileNames = self.__getSelected()
-		if (fileNames):
-			err, msg = self.__archfile.delete(fileNames)
-			self.treeView.model().reset()
+		pathlist = QtCore.QStringList()
+		idlist = list()
+		for index in self.treeView.selectedIndexes():
+			if (index.column() == 7):	# exclude 1+ columns
+				pathlist.append(index.data().toString())
+				idlist.append(self.__model.get_id(index))
+		if len(idlist):
+			err, msg = self.__helper.delete(self.__file, pathlist)
+			if (not err):
+				print "DELETE FROM main.arch WHERE id IN (%s)" % ",".join(map(str, idlist))
+				QtSql.QSqlQuery("DELETE FROM main.arch WHERE id IN (%s)" % ",".join(map(str, idlist))).exec_()
+				self.__model.select()
+				#self.treeView.model().reset()
+			else:
+				print "Err:", msg
 
 	def	_file_open(self, fileName):
 		def	add_record(id, parent, v, q):
@@ -218,9 +231,10 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			q.bindValue(":csize", v[4])
 			q.bindValue(":fullpath", v[5])
 			q.exec_()
-		absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
-		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
-		errcode, result = self.__mime2helper[mime]().list(absFileName)
+		self.__file = QtCore.QFileInfo(fileName).canonicalFilePath()
+		mime = self.__magic.file(str(self.__file)).split(';')[0]	# FIXME
+		self.__helper = self.__mime2helper[mime]()
+		errcode, result = self.__helper.list(self.__file)
 		if (errcode):
 			return
 		folderdict = dict()	# path: id for folders
