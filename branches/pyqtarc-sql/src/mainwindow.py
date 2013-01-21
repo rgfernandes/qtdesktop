@@ -30,7 +30,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#self.modelMain = None
 		self.setupUi(self)
 		self.__archfile = ArchFile()	# archive tree
-		self.__addressStack = list()	# current root stack
+		self.__addressStack = list()	# current folder stack (ids)
 		self.__exts = ""
 		self.__mime2helper = dict()
 		self.__magic = magic.open(magic.MIME)
@@ -62,15 +62,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__model = MyTableModel(self, db)
 		self.__model.setTable("arch")
 		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
-		#self.__model.setSort(3, QtCore.Qt.DescendingOrder)	# dir
-		#self.__model.setSort(2, QtCore.Qt.AscendingOrder)	# name
-		self.__model.setFilter("parent_id IS NULL ORDER BY isdir DESC, name ASC")	# nice hack
-		#self.__model.setFilter("parent_id=NULL")	# nice hack
-		self.__model.select()
-		'''
-		self.__model = MyQueryModel()
-		self.__model.setQuery("SELECT id, parent_id, nane, isdir FROM arch ORDER BY isdir, name", db)
-		'''
+		self.__setFilter()
 		self.treeView.setModel(self.__model)
 		self.treeView.setModelColumn(2)
 		#self.treeView.setModel(ArchItemModel(self.__archfile))
@@ -86,14 +78,35 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.connect(self.action_Delete,	QtCore.SIGNAL( "triggered()" ), self.__onActionDelete )
 		self.connect(self.action_HelpAboutQt,	QtCore.SIGNAL( "triggered()" ), QtGui.QApplication.aboutQt )
 
+	def	__setFilter(self):
+		'''
+		Set current file filter by addressStack
+		'''
+		if len(self.__addressStack):
+			self.__model.setFilter("parent_id = %d ORDER BY isdir DESC, name ASC" % self.__addressStack[len(self.__addressStack)-1])
+		else:
+			self.__model.setFilter("parent_id IS NULL ORDER BY isdir DESC, name ASC")	# nice hack
+		self.__model.select()
+		#self.address.setText(item.getFullPath() if item else "")
+
 	def	__onActionActivated(self, index):
-		item = index.internalPointer()	# ArchItem*
-		if item.isDir():
-			self.__addressStack.append(index.parent())
-			self.treeView.setRootIndex(index)
-			self.address.setText(item.getFullPath())
+		'''
+		Dive into folder
+		'''
+		isdir = index.sibling(index.row(), 3).data().toBool()
+		if isdir:
+			#print index.sibling(index.row(), 0).data().toUInt()
+			self.__addressStack.append(index.sibling(index.row(), 0).data().toUInt()[0])	# FIXME: check success convert
+			self.__setFilter()
+
+	def	__onActionUp(self):
+		if len(self.__addressStack):
+			self.__addressStack.pop()
+			self.__setFilter()
 
 	def	__onActionSelected(self, selected, deselected):
+		'''
+		'''
 		#print "ok"
 		indexes = selected.indexes()
 		if indexes.count() != 1:
@@ -102,13 +115,6 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			item = indexes[0].internalPointer()	# ArchItem*
 			if not item.isDir():
 				self.statusBar().showMessage(item.getFullPath())
-
-	def	__onActionUp(self):
-		if len(self.__addressStack):
-			index = self.__addressStack.pop()
-			self.treeView.setRootIndex(index)
-			item = index.internalPointer()
-			self.address.setText(item.getFullPath() if item else "")
 
 	def	__onActionFileOpen(self):
 		'''
