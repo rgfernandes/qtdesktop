@@ -26,8 +26,38 @@ class	MyTableModel(QtSql.QSqlTableModel):
 		if (not index.isValid()):
 			return QtCore.QVariant()
 		if (role == QtCore.Qt.DecorationRole):	#index.column() == 2
-			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if index.sibling(index.row(), 3).data().toBool() else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
+			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if self.get_isdir(index) else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
 		return super(MyTableModel, self).data(index, role)
+
+	def	__get_any(self, index, column):
+		'''
+		return: QVariant - record field
+		'''
+		return index.sibling(index.row(), column).data()
+
+	def	get_id(self, index):
+		return self.__get_any(index, 0).toUInt()[0]
+
+	def	get_parent(self, index):
+		return self.__get_any(index, 1).toUInt()[0]
+
+	def	get_name(self, index):
+		return self.__get_any(index, 2).toString()[0]
+
+	def	get_isdir(self, index):
+		return self.__get_any(index, 3).toBool()
+
+	def	get_datetime(self, index):
+		return self.__get_any(index, 4).toUInt()[0]	# FIXME:
+
+	def	get_nsize(self, index):
+		return self.__get_any(index, 5).toUInt()[0]
+
+	def	get_csize(self, index):
+		return self.__get_any(index, 6).toUInt()[0]
+
+	def	get_path(self, index):
+		return self.__get_any(index, 7).toString()
 
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
@@ -101,7 +131,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		isdir = index.sibling(index.row(), 3).data().toBool()
 		if isdir:
 			#print index.sibling(index.row(), 0).data().toUInt()
-			self.__addressStack.append(index.sibling(index.row(), 0).data().toUInt()[0])	# FIXME: check success convert
+			self.__addressStack.append(self.__model.get_id(index))	# FIXME: check success convert
 			self.__setFilter()
 
 	def	__onActionUp(self):
@@ -186,6 +216,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			q.bindValue(":datetime", v[2].toTime_t() if v[2] else None)
 			q.bindValue(":nsize", v[3])
 			q.bindValue(":csize", v[4])
+			q.bindValue(":fullpath", v[5])
 			q.exec_()
 		absFileName = QtCore.QFileInfo(fileName).canonicalFilePath()
 		mime = self.__magic.file(str(absFileName)).split(';')[0]	# FIXME
@@ -195,7 +226,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		folderdict = dict()	# path: id for folders
 		QtSql.QSqlQuery("DELETE FROM arch").exec_()
 		q = QtSql.QSqlQuery()
-		q.prepare("INSERT INTO arch (id, parent_id, name, isdir, datetime, nsize, csize) VALUES (:id, :parent_id, :name, :isdir, :datetime, :nsize, :csize)")
+		q.prepare("INSERT INTO arch (id, parent_id, name, isdir, datetime, nsize, csize, fullpath) VALUES (:id, :parent_id, :name, :isdir, :datetime, :nsize, :csize, :fullpath)")
 		i = 1
 		for v in result:	# name:QString, isdir:bool, datetime:QDateTime, nsize:ULong, csize:ULong
 			Debug("Try to add: %s" % v[0])
@@ -214,13 +245,13 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 					Debug("Found: %s" % path)
 					continue
 				Debug("Add new intermediate folder: (%d) %s (%s)" % (i, n, path))
-				add_record(i, parent_id, (n, True, None, None, None), q)
+				add_record(i, parent_id, (n, True, None, None, None, path), q)
 				folderdict[path] = i
 				parent_id = i
 				i += 1
 			if (not v[1]) or (not v[0] in folderdict):
 				Debug("Add new item:(%d) %s (%s)" % (i, name, v[0]))
-				add_record(i, parent_id, (name, v[1], v[2], v[3], v[4]), q)
+				add_record(i, parent_id, (name, v[1], v[2], v[3], v[4], v[0]), q)
 				if (v[1]):
 					Debug("Add new folder to cache:(%d) %s" % (i, v[0]))
 					folderdict[v[0]] = i
