@@ -1,5 +1,6 @@
 # filter: 
 from PyQt4 import QtCore, QtGui, QtSql
+from PyQt4.QtCore import qDebug
 from ui.Ui_main import Ui_Main
 
 from archfile	import ArchFile
@@ -11,6 +12,10 @@ import magic
 
 #def test1(pkg):
 #	return [name for _, name, _ in pkgutil.iter_modules([pkg])]
+
+def	Debug(s):
+		pass
+		#qDebug(s)
 
 class	MyTableModel(QtSql.QSqlTableModel):
 	def	__init__(self, parent = None, db = None):
@@ -193,6 +198,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		q.prepare("INSERT INTO arch (id, parent_id, name, isdir, datetime, nsize, csize) VALUES (:id, :parent_id, :name, :isdir, :datetime, :nsize, :csize)")
 		i = 1
 		for v in result:	# name:QString, isdir:bool, datetime:QDateTime, nsize:ULong, csize:ULong
+			Debug("Try to add: %s" % v[0])
 			pathlist = v[0].split("/")	# FIXME: separator()
 			name = pathlist.takeLast()
 			parent_id = None
@@ -201,18 +207,24 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			for n in pathlist:
 				path = path + sep + n
 				sep = "/"
+				Debug("Try to search: %s" % path)
 				id = folderdict.get(path, None)
 				if (id):
 					parent_id = id
+					Debug("Found: %s" % path)
 					continue
+				Debug("Add new intermediate folder: (%d) %s (%s)" % (i, n, path))
 				add_record(i, parent_id, (n, True, None, None, None), q)
 				folderdict[path] = i
 				parent_id = i
 				i += 1
-			add_record(i, parent_id, (name, v[1], v[2], v[3], v[4]), q)
-			if (v[1]):
-				folderdict[v[0]] = i
-			i += 1
+			if (not v[1]) or (not v[0] in folderdict):
+				Debug("Add new item:(%d) %s (%s)" % (i, name, v[0]))
+				add_record(i, parent_id, (name, v[1], v[2], v[3], v[4]), q)
+				if (v[1]):
+					Debug("Add new folder to cache:(%d) %s" % (i, v[0]))
+					folderdict[v[0]] = i
+				i += 1
 		#self.__model.setFilter("parent_id=NULL")
 		#self.__model.select()
 		#self.__model.submitAll()
