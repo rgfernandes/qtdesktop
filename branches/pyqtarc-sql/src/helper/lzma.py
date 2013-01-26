@@ -141,7 +141,6 @@ class	ArchHelper7z(ArchHelper):
 		return 0, ''
 
 	def	delete(self, apath, fpaths):
-		errcode, out, err = self.__exec("7za", (QtCore.QStringList("d") << apath) + fpaths)
-		return (errcode, err)
+		return self.__exec("7za", (QtCore.QStringList("d") << apath) + fpaths)
 
 mainclass = ArchHelper7z

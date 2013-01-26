@@ -4,7 +4,7 @@ from PyQt4.QtCore import qDebug
 from ui.Ui_main import Ui_Main
 
 from archfile	import ArchFile
-from architemmodel import ArchItemModel
+#from architemmodel import ArchItemModel
 from architemview import ArchItemView
 
 import pkgutil
@@ -73,7 +73,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__init_helpers()
 		self.__file = None
 		self.__helper = None
-		self.treeView = ArchItemView(self.__archfile, self.centralwidget)
+		self.treeView = ArchItemView(self.centralwidget)
 		self.verticalLayout.addWidget(self.treeView)
 		self.__setSlots()
 		#self.__model = ArchItemModel(self.__archfile)
@@ -82,6 +82,13 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#self.treeView.setModel(self.__proxyModel)
 		#self.treeView.setModel(self.__model)
 		#self.treeView.setSortingEnabled(True)
+
+	def	__db_err(self, q):
+		err = q.lastError()
+		print "Err type:", err.type()
+		print "Err no:", err.number()
+		print "Drv txt:", err.driverText()
+		print "DB txt:", err.databaseText()
 
 	def	__init_helpers(self):
 		#exec "from helper import %s" % ','.join(test1('helper'))
@@ -95,7 +102,15 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 				#Sprint a[i].mainclass
 		self.__exts = self.__exts.lstrip(' ')
 
+	def	__init_db(self, db):
+		#db.transaction()
+		q = QtSql.QSqlQuery()
+		#db.commit()
+		if not q.exec_("DELETE FROM arch"):
+			self.__db_err(q)
+
 	def	setModel(self, db):
+		self.__init_db(db)
 		self.__model = MyTableModel(self, db)
 		self.__model.setTable("arch")
 		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
@@ -206,18 +221,20 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		pathlist = QtCore.QStringList()
 		idlist = list()
 		for index in self.treeView.selectedIndexes():
+			#print index.column()
 			if (index.column() == 7):	# exclude 1+ columns
 				pathlist.append(index.data().toString())
 				idlist.append(self.__model.get_id(index))
 		if len(idlist):
-			err, msg = self.__helper.delete(self.__file, pathlist)
-			if (not err):
-				print "DELETE FROM main.arch WHERE id IN (%s)" % ",".join(map(str, idlist))
+			#print "Something to delete"
+			errcode, out, err = self.__helper.delete(self.__file, pathlist)
+			if (errcode or err):
+				print "Err:", out
+			else:
+				#print "DELETE FROM arch WHERE id IN (%s)" % ",".join(map(str, idlist))
 				QtSql.QSqlQuery("DELETE FROM main.arch WHERE id IN (%s)" % ",".join(map(str, idlist))).exec_()
 				self.__model.select()
 				#self.treeView.model().reset()
-			else:
-				print "Err:", msg
 
 	def	_file_open(self, fileName):
 		def	add_record(id, parent, v, q):
@@ -238,6 +255,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		if (errcode):
 			return
 		folderdict = dict()	# path: id for folders
+		QtSql.QSqlDatabase.database().transaction()
 		QtSql.QSqlQuery("DELETE FROM arch").exec_()
 		q = QtSql.QSqlQuery()
 		q.prepare("INSERT INTO arch (id, parent_id, name, isdir, datetime, nsize, csize, fullpath) VALUES (:id, :parent_id, :name, :isdir, :datetime, :nsize, :csize, :fullpath)")
@@ -270,6 +288,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 					Debug("Add new folder to cache:(%d) %s" % (i, v[0]))
 					folderdict[v[0]] = i
 				i += 1
+		QtSql.QSqlDatabase.database().commit()
 		#self.__model.setFilter("parent_id=NULL")
-		#self.__model.select()
+		self.__model.select()
 		#self.__model.submitAll()

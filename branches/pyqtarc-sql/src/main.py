@@ -24,7 +24,7 @@ def createConnection(db, mw):
 				lst = QtCore.QString(file.readAll()).split("\n")
 				file.close()
 			if (not lst.isEmpty()):
-				print "create tables"
+				#print "create tables"
 				q = QtSql.QSqlQuery(db)
 				for s in lst:
 					if (not s.isEmpty()):
