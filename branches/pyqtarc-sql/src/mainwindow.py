@@ -194,14 +194,26 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 
 	def	__add_entries(self, entrynames):
 		# 1. list src
-		if load_fs(entrynames):
-			# 2. check folders<>files
-			# 3. check on exists
-			q = QtSql.QSqlQuery("SELECT fs.fullpath FROM fs JOIN arch ON fs.fullpath = arch.fullpath")
-			if (q.exec_()):
-				pass
-			# 4. add to archive
-			# select fullpath from fs where fullpath not in (select fullpath from arch) and (endpoint)
-			return False
-			#self.treeView.model().refresh()	# FIXME: reload
-			#self.treeView.model().reset()	# FIXME: reload
+		load_fs(entrynames)	# FIXME: false now
+		# 2. check folders<>files
+		# 3. check on exists
+		q = QtSql.QSqlQuery("SELECT fullpath FROM fs WHERE isinarch=1")
+		result = QtCore.QString()
+		while (q.next()):
+			result += (q.value(0).toString() + "\n")
+		if not result.isEmpty():
+			msg = QtGui.QMessageBox(
+				QtGui.QMessageBox.Question,
+				self.tr("John, I need help"),
+				self.tr("Some folders and/or files to add exist in archive"),
+				QtGui.QMessageBox.Yes|QtGui.QMessageBox.No|QtGui.QMessageBox.Cancel
+			)
+			msg.setInformativeText(self.tr("Do you want to replace them?"))
+			msg.setDetailedText(result)
+			responce = msg.exec_()
+			print {QtGui.QMessageBox.Yes:1, QtGui.QMessageBox.No:2, QtGui.QMessageBox.Cancel:3}[responce]
+		# 4. add to archive
+		# select fullpath from fs where fullpath not in (select fullpath from arch) and (endpoint)
+		return False
+		#self.treeView.model().refresh()	# FIXME: reload
+		#self.treeView.model().reset()	# FIXME: reload
