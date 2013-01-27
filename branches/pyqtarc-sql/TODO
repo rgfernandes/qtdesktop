@@ -1,0 +1,49 @@
+* create db
+* create tables
+* load
+* decorate
+* sort
+* load recurse
+* navigate (dive in/up)
+* del
+... add (files/folders)
+- extract
+
+= fixme =
+- dclick tries to edit
+- db from stratch
+- reload db on start
+- index arch fields
+- foldercache => db
+- __addresstack => current_root + parent_id
+- sql scheme: id autoinc off
+- sql scheme: uniq parent_id + name
+
+= test arcivers =
+== who ==
+7za, [un]arj, [un]zip, tar, lzh, rar, zoo, iso, cpio (rpm), ace, cab, [l]paq
+== what ==
+* list
+* test
+* del
+* [mkdir]
+* mv
+* extract:
+	* recursive/full
+	* skip(files/all)/update/replace
+* pack (recursive):
+	* to root/subfolder
+	* skip/update/replace
+	* volumes
+	* solid
+	* compression levels
+	* compression methods
+= Add =
++ list src (everything, mak enpoints - files and empty dirs)
+* check files<>folders
+* warning on exists
+* if u/r:
+	- as is (u/a)
+* else:
+	- del exists or not endpoints
+	- add rest
