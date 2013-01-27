@@ -3,9 +3,9 @@ from PyQt4 import QtCore, QtGui, QtSql
 from PyQt4.QtCore import qDebug
 from ui.Ui_main import Ui_Main
 
-from archfile	import ArchFile
-#from architemmodel import ArchItemModel
-from architemview import ArchItemView
+#from archfile		import ArchFile
+from archtablemodel	import ArchTableModel
+from architemview	import ArchItemView
 
 import pkgutil
 import magic
@@ -17,54 +17,12 @@ def	Debug(s):
 		pass
 		#qDebug(s)
 
-class	MyTableModel(QtSql.QSqlTableModel):
-	def	__init__(self, parent = None, db = None):
-		super(MyTableModel, self).__init__(parent, db)
-		self.__iconProvider = QtGui.QFileIconProvider()
-
-	def	data(self, index, role):
-		if (not index.isValid()):
-			return QtCore.QVariant()
-		if (role == QtCore.Qt.DecorationRole):	#index.column() == 2
-			return self.__iconProvider.icon(QtGui.QFileIconProvider.Folder) if self.get_isdir(index) else self.__iconProvider.icon(QtGui.QFileIconProvider.File)
-		return super(MyTableModel, self).data(index, role)
-
-	def	__get_any(self, index, column):
-		'''
-		return: QVariant - record field
-		'''
-		return index.sibling(index.row(), column).data()
-
-	def	get_id(self, index):
-		return self.__get_any(index, 0).toUInt()[0]
-
-	def	get_parent(self, index):
-		return self.__get_any(index, 1).toUInt()[0]
-
-	def	get_name(self, index):
-		return self.__get_any(index, 2).toString()
-
-	def	get_isdir(self, index):
-		return self.__get_any(index, 3).toBool()
-
-	def	get_datetime(self, index):
-		return self.__get_any(index, 4).toUInt()[0]	# FIXME:
-
-	def	get_nsize(self, index):
-		return self.__get_any(index, 5).toUInt()[0]
-
-	def	get_csize(self, index):
-		return self.__get_any(index, 6).toUInt()[0]
-
-	def	get_path(self, index):
-		return self.__get_any(index, 7).toString()
-
 class	MainWindow(QtGui.QMainWindow, Ui_Main):
 	def	__init__(self):
 		QtGui.QMainWindow.__init__(self)
 		#self.modelMain = None
 		self.setupUi(self)
-		self.__archfile = ArchFile()	# archive tree
+		#self.__archfile = ArchFile()	# archive tree
 		self.__addressStack = list()	# current folder stack (ids)
 		self.__exts = ""
 		self.__mime2helper = dict()
@@ -111,7 +69,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 
 	def	setModel(self, db):
 		self.__init_db(db)
-		self.__model = MyTableModel(self, db)
+		self.__model = ArchTableModel(self, db)
 		self.__model.setTable("arch")
 		self.__model.setEditStrategy(QtSql.QSqlTableModel.OnManualSubmit)
 		self.__setFilter()
