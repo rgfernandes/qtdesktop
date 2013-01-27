@@ -123,8 +123,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			caption=self.tr("Add file"),
 			filter = self.tr("Any file") + " (*.*)")
 		if (not fileNames.isEmpty()):
-			if load_fs(fileNames):
-				self.treeView.model().reset()	# FIXME: reload
+			self.__add_entries(fileNames)
 
 	def	__onActionAddFolder(self):
 		'''
@@ -133,8 +132,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		folderName = QtGui.QFileDialog.getExistingDirectory(
 			caption=self.tr("Add folder"),)
 		if (not folderName.isEmpty()):
-			if load_fs([folderName,]):	# FIXME: to QStringList
-				self.treeView.model().refresh()	# FIXME: reload
+			self.__add_entries([folderName,])	# FIXME: to QStringList
 
 	def	__onActionExtract(self):
 		'''
@@ -195,5 +193,15 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.__model.select()
 
 	def	__add_entries(self, entrynames):
-		#self.__archfile.add(fileNames)
-		return False
+		# 1. list src
+		if load_fs(entrynames):
+			# 2. check folders<>files
+			# 3. check on exists
+			q = QtSql.QSqlQuery("SELECT fs.fullpath FROM fs JOIN arch ON fs.fullpath = arch.fullpath")
+			if (q.exec_()):
+				pass
+			# 4. add to archive
+			# select fullpath from fs where fullpath not in (select fullpath from arch) and (endpoint)
+			return False
+			#self.treeView.model().refresh()	# FIXME: reload
+			#self.treeView.model().reset()	# FIXME: reload

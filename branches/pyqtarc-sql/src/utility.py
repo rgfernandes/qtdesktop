@@ -57,9 +57,10 @@ def createConnection(db, mw):
 				if (ok):
 					ok = QtSql.QSqlDatabase.database().commit()
 				if (ok):
-					QtGui.QMessageBox.information(mw,
-						mw.tr("Creating database"),
-						mw.tr("Database created OK"))
+					pass
+					#QtGui.QMessageBox.information(mw,
+					#	mw.tr("Creating database"),
+					#	mw.tr("Database created OK"))
 			else:
 				QtGui.QMessageBox.critical(mw,
 					mw.tr("Creating database error"),
@@ -134,32 +135,33 @@ def	load_fs(paths):
 			absprefix = fi.canonicalPath()
 		relbase = fi.fileName()
 		if (fi.isFile()):
-			__add_entry(q, relbase, False)
+			__add_entry(q, relbase, False, True)
 		else:
 			__walk(q, absprefix, relbase)
+	q.exec_("UPDATE fs SET isinarch=1 WHERE fullpath IN (SELECT fs.fullpath FROM fs JOIN arch ON fs.fullpath = arch.fullpath)")
 	return QtSql.QSqlDatabase.database().commit()
-
-def	__add_entry(q, path, isdir, endpoint=False):
-	q.bindValue(":fullpath", path)
-	q.bindValue(":isdir", isdir)
-	q.bindValue(":endpoint", endpoint)
-	q.exec_()
 
 def	__walk(q, absprefix, relbase):
 	'''
-	Walk through filesystem trree adding dirs/files to database.
+	Walk through filesystem tree adding dirs/files to database.
 	@param absprefix:str - absulute path
 	@param relbase:str - relative path
 	'''
 	__filter = QtCore.QDir.Dirs|QtCore.QDir.Files|QtCore.QDir.NoSymLinks|QtCore.QDir.NoDotAndDotDot|QtCore.QDir.Readable|QtCore.QDir.Hidden
 	entrylist = QtCore.QDir(absprefix + "/" + relbase).entryInfoList(__filter)
 	if entrylist:
-		__add_entry(q, relbase, True)
+		__add_entry(q, relbase, True, False)
 		for f in entrylist:
 			relpath = relbase + "/" + f.fileName()
 			if f.isFile():
-				__add_entry(q, relpath, False)
+				__add_entry(q, relpath, False, True)
 			else:
 				__walk(q, absprefix, relpath)
 	else:
 		__add_entry(q, relbase, True, True)
+
+def	__add_entry(q, path, isdir, endpoint):
+	q.bindValue(":fullpath", path)
+	q.bindValue(":isdir", isdir)
+	q.bindValue(":endpoint", endpoint)
+	q.exec_()
