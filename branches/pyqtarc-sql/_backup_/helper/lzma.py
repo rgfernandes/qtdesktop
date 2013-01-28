@@ -25,7 +25,6 @@ class	ArchHelper7z(ArchHelper):
 	def	get_capabilities():
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
-	@classmethod
 	def	list(self, path, files=[]):
 		#print files
 		errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("l") << path) + files)
@@ -43,22 +42,61 @@ class	ArchHelper7z(ArchHelper):
 			pos = self.__rx.indexIn(out, pos)
 		return (errcode, retvalue)		
 
-	@classmethod
-	def	delete(self, apath, fpaths):
-		return self.exec_cmd("7za", (QtCore.QStringList("d") << apath) + fpaths)
-
-	@classmethod
-	def	add(self, archive, absprefix, relpaths):
+	def	add(self, apath, fpaths, skip):
 		'''
 		TODO: skip => mode (replace, update, skip)
 		@param apath:QString - absolute basedir of entries to add
 		@param fpaths:QStringList - relative paths of entries to add
 		'''
-		cwd = QtCore.QDir.currentPath()
-		QtCore.QDir.setCurrent(absprefix)
-		errcode, out, err = self.exec_cmd("7za", QtCore.QStringList("a") << archive << relpaths)
-		QtCore.QDir.setCurrent(cwd)
-		return (errcode, out, err)
+		if skip:
+			# 1. get archive list to set
+			err, result = self.list(apath)
+			if err:
+				return err, "cant list archive"
+			dst = set()
+			for i in result:
+				dst.add(i[0])
+				if (not i[1]):	# file; workaround
+					dst.add(QtCore.QFileInfo(i[0]).dir().path())
+			# 2. walk through fs searching what _absent_ (top-down, cutting header (dirname))
+			src = QtCore.QStringList()
+			for fpath in fpaths:
+				src += self.__get_extras(dst, fpath)
+			cwd = QtCore.QDir.currentPath()
+			QtCore.QDir.setCurrent(QtCore.QFileInfo(fpaths[0]).dir().path())
+			errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("a") << apath) + src)
+			QtCore.QDir.setCurrent(cwd)
+		else:
+			errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("a") << apath) + fpaths)
+		#print out
+		return (errcode, err)
+
+	def	__get_extras(self, dst, srcpath):
+		'''
+		get extra dirs/files in srcpath
+		@param dst:set - arc dirs/files
+		@param srcpath:str - absolute FS path
+		@return: QStringList - files to add (rdlative)
+		'''
+		base = QtCore.QFileInfo(srcpath).dir().path()
+		cutlen = base.size() + 1
+		retvalue = QtCore.QStringList()
+		self.__walk(srcpath, cutlen, dst, retvalue)
+		return retvalue
+
+	def	__walk(self, path, cutlen, dirs, retvalue):
+		'''
+		@param path:str
+		'''
+		relname = path.mid(cutlen)
+		if (not relname in dirs):
+			dirs.add(relname)
+		else:
+			if (QtCore.QFileInfo(path).isDir()):
+				for f in QtCore.QDir(path).entryInfoList():
+					fp = f.fileName()
+					if not (fp == "." or fp == ".."):
+						self.__walk(f.absoluteFilePath(), cutlen, dirs, retvalue)
 
 	def	extract(self, apath, fpaths, destdir, skip):
 		#print apath, fpaths, destdir
@@ -87,5 +125,8 @@ class	ArchHelper7z(ArchHelper):
 					errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("e") << replacekey << "-o"+outfolder << apath << i[0]))
 					#return (p.returncode, err)
 		return 0, ''
+
+	def	delete(self, apath, fpaths):
+		return self.exec_cmd("7za", (QtCore.QStringList("d") << apath) + fpaths)
 
 mainclass = ArchHelper7z

@@ -47,3 +47,6 @@
 * else:
 	- del exists or not endpoints
 	- add rest
+= Extract =
+extract to: 7za e test.7z 11.txt -ottt
+7z x *.zip -o* (extracts all *.zip archives to subfolders with names of these archives)

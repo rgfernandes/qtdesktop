@@ -6,6 +6,8 @@ Helpers base:
 Helper is framework independent and can be called from cli
 '''
 
+from PyQt4 import QtCore
+
 import sys, os, re, datetime, subprocess
 
 reload(sys)
@@ -27,6 +29,23 @@ mimes = tuple()
 class	ArchHelper:
 	#exts = (,)
 	#mimes = (,)
+
+	@classmethod
+	def	exec_cmd(self, cmd, args):
+		'''
+		Execute external program
+		@param cmd:str - command ("7za")
+		@param args:QStringList
+		@return errcode, stdout, stderr
+		'''
+		proc = QtCore.QProcess()
+		proc.start(cmd, args)
+		proc.waitForFinished(-1)
+		return (
+			proc.exitCode(),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput()),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardError()),
+		)
 
 	@classmethod
 	def	get_ext():
@@ -67,6 +86,10 @@ class	ArchHelper:
 		return (0, [])
 
 	@classmethod
+	def	delete(self, apath, fpaths):
+		return (0, '', '')
+
+	@classmethod
 	def	add(self, apath, fpaths):
 		'''
 		@param apath: full path to archive
@@ -79,12 +102,12 @@ class	ArchHelper:
 		#return (p.returncode, err)
 		return (0, [])
 
-	@classmethod
-	def	addto(self, apath, dst, fpaths):
-		'''
-		Add items to selected archive folder
-		'''
-		return (0, [])
+#	@classmethod
+#	def	addto(self, apath, dst, fpaths):
+#		'''
+#		Add items to selected archive folder
+#		'''
+#		return (0, [])
 
 	@classmethod
 	def	extract(self, apath, fpaths, destdir):
@@ -93,17 +116,13 @@ class	ArchHelper:
 		'''
 		return (0, [])
 
-	@classmethod
-	def	delete(self, apath, fpaths):
-		return (0, [])
+#	@classmethod
+#	def	rename(self, apath, src, dst):
+#		return (0, [])
 
-	@classmethod
-	def	rename(self, apath, src, dst):
-		return (0, [])
-
-	@classmethod
-	def	mkdir(self, apath, name):
-		return (0, [])
+#	@classmethod
+#	def	mkdir(self, apath, name):
+#		return (0, [])
 
 	@classmethod
 	def	test(self, apath):

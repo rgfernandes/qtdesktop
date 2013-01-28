@@ -181,10 +181,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			ids.append(i.internalPointer())
 		return ids
 
-	def	_file_open(self, fileName):
-		self.__file = QtCore.QFileInfo(fileName).canonicalFilePath()
-		mime = self.__magic.file(str(self.__file)).split(';')[0]	# FIXME
-		self.__helper = self.__mime2helper[mime]()
+
+	def	__reload(self):
 		errcode, result = self.__helper.list(self.__file)
 		if (errcode):
 			return
@@ -192,7 +190,16 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		#self.__model.setFilter("parent_id=NULL")
 		self.__model.select()
 
+	def	_file_open(self, fileName):
+		self.__file = QtCore.QFileInfo(fileName).canonicalFilePath()
+		mime = self.__magic.file(str(self.__file)).split(';')[0]	# FIXME
+		self.__helper = self.__mime2helper[mime]()
+		self.__reload()
+
 	def	__add_entries(self, entrynames):
+		'''
+		@param entrynames:QStringList - absolute paths of entries to add
+		'''
 		# 1. list src
 		load_fs(entrynames)	# FIXME: false now
 		# 2. check folders<>files
@@ -201,7 +208,9 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		result = QtCore.QString()
 		while (q.next()):
 			result += (q.value(0).toString() + "\n")
-		if not result.isEmpty():
+		if result.isEmpty():
+			action = 0
+		else:
 			msg = QtGui.QMessageBox(
 				QtGui.QMessageBox.Question,
 				self.tr("John, I need help"),
@@ -211,9 +220,28 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			msg.setInformativeText(self.tr("Do you want to replace them?"))
 			msg.setDetailedText(result)
 			responce = msg.exec_()
-			print {QtGui.QMessageBox.Yes:1, QtGui.QMessageBox.No:2, QtGui.QMessageBox.Cancel:3}[responce]
+			action = {QtGui.QMessageBox.Yes:1, QtGui.QMessageBox.No:2, QtGui.QMessageBox.Cancel:3}[responce]
 		# 4. add to archive
+		# here we have:
+		# 0 (simply add => add selected)
+		# 1 (replace => add selected)
+		# 2 (skip => add custom list (endpoints))
+		# 3 (break => return)
+		if (action == 3):
+			return
+		absprefix = QtCore.QFileInfo(entrynames[0]).absolutePath()
+		relpaths = QtCore.QStringList()
+		if (action < 2):
+			for i in entrynames:
+				relpaths << QtCore.QFileInfo(i).fileName()
+		else:
+			q = QtSql.QSqlQuery("SELECT fullpath FROM fs WHERE isinarch=0 and endpoint=1")
+			while (q.next()):
+				relpaths << q.value(0).toString()
+		errcode, out, err = self.__helper.add(self.__file, absprefix, relpaths)
+		if (errcode) or (err):
+			print "error:", err
+		else:
+			self.__reload()	# FIXME:
 		# select fullpath from fs where fullpath not in (select fullpath from arch) and (endpoint)
-		return False
-		#self.treeView.model().refresh()	# FIXME: reload
-		#self.treeView.model().reset()	# FIXME: reload
+		#self.treeView.model().refresh()	# reload? select()?, reset()?
