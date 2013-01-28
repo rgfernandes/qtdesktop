@@ -26,9 +26,9 @@ class	ArchHelper7z(ArchHelper):
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
 	@classmethod
-	def	list(self, path, files=[]):
+	def	list(self, archive, files=[]):
 		#print files
-		errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("l") << path) + files)
+		errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("l") << archive) + files)
 		retvalue = []
 		pos = self.__rx.indexIn(out)
 		while (pos != -1):
@@ -44,8 +44,8 @@ class	ArchHelper7z(ArchHelper):
 		return (errcode, retvalue)		
 
 	@classmethod
-	def	delete(self, apath, fpaths):
-		return self.exec_cmd("7za", (QtCore.QStringList("d") << apath) + fpaths)
+	def	delete(self, archive, fpaths):
+		return self.exec_cmd("7za", (QtCore.QStringList("d") << archive) + fpaths)
 
 	@classmethod
 	def	add(self, archive, absprefix, relpaths):
