@@ -7,7 +7,7 @@ def	Debug(s):
 		pass
 		#qDebug(s)
 
-def	db_err(self, q):
+def	db_err(q):
 	'''
 	TODO: add query string
 	'''
@@ -117,6 +117,8 @@ def	load_arch(result):
 				Debug("Add new folder to cache:(%d) %s" % (i, v[0]))
 				folderdict[v[0]] = i
 			i += 1
+	# mark endpoint
+	QtSql.QSqlQuery("UPDATE arch SET endpoint=0 WHERE id IN (SELECT parent_id FROM arch WHERE parent_id IS NOT NULL)").exec_()
 	QtSql.QSqlDatabase.database().commit()
 
 def	load_fs(paths):
@@ -138,7 +140,7 @@ def	load_fs(paths):
 			__add_entry(q, relbase, False, True)
 		else:
 			__walk(q, absprefix, relbase)
-	q.exec_("UPDATE fs SET isinarch=1 WHERE fullpath IN (SELECT fs.fullpath FROM fs JOIN arch ON fs.fullpath = arch.fullpath)")
+	q.exec_("UPDATE fs SET alive=1 WHERE fullpath IN (SELECT fs.fullpath FROM fs JOIN arch ON fs.fullpath = arch.fullpath)")
 	return QtSql.QSqlDatabase.database().commit()
 
 def	__walk(q, absprefix, relbase):

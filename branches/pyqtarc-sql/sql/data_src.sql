@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS arch (
 	datetime	INTEGER NULL,
 	nsize		INTEGER NULL,
 	csize		INTEGER NULL,
-	fullpath	TEXT NOT NULL
+	fullpath	TEXT NOT NULL,
+	endpoint	BOOLEAN DEFAULT 1
 	);
 CREATE TRIGGER IF NOT EXISTS arch_d
 	BEFORE
@@ -17,8 +18,8 @@ CREATE TRIGGER IF NOT EXISTS arch_d
 		DELETE FROM arch WHERE parent_id=old.id;
 	END;
 CREATE TABLE IF NOT EXISTS fs (
-	fullpath	TEXT NOT NULL,
+	fullpath	TEXT PRIMARY KEY,
 	isdir		BOOLEAN NOT NULL,
 	endpoint	BOOLEAN NOT NULL,
-	isinarch	BOOLEAN DEFAULT 0
+	alive		BOOLEAN DEFAULT 0
 	);

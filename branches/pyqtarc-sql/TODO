@@ -6,7 +6,7 @@
 * load recurse
 * navigate (dive in/up)
 * del
-... add (files/folders)
+* add (files/folders)
 - extract
 
 = fixme =
@@ -39,7 +39,7 @@
 	* compression levels
 	* compression methods
 = Add =
-+ list src (everything, mak enpoints - files and empty dirs)
+* list src (everything, mark enpoints - files and empty dirs)
 * check files<>folders
 * warning on exists
 * if u/r:
@@ -49,4 +49,22 @@
 	- add rest
 = Extract =
 extract to: 7za e test.7z 11.txt -ottt
+* db: добавить поля: arch.endpoint:bool, arch.mark:int (0 - not, 1 - extract (exists), 2 - notexists (extract anyway))
++ после загрузки - отметить endpoint: (все - endpoint => всехние папы - not endpoint)
+* составить список распакуемого (mark? cascade on selected IDs)
+* проверить exists (endpoint & mark => QFileInfo.exists() => mark=1)
+* если skip - убрать exists
+* если похер - распаковать
+(в любом случае - -o для каждого)
+
+another way:
++ insert into fs selected (id in ...)
++ insert into fs fullpath starts with fs.fullpath + "/"
++ remove not endpoints
+* foreach:
+	- check exists
+	- and mark file/dir
+* check dir<>file
+
+= misc =
 7z x *.zip -o* (extracts all *.zip archives to subfolders with names of these archives)

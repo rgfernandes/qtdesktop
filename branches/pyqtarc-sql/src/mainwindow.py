@@ -58,7 +58,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		self.connect(self.treeView,		QtCore.SIGNAL( "selectionChanged(const QItemSelection &, const QItemSelection &)" ), self.__onActionSelected )
 		self.connect(self.action_Up,		QtCore.SIGNAL( "triggered()" ), self.__onActionUp )
 		self.connect(self.action_FileOpen,	QtCore.SIGNAL( "triggered()" ), self.__onActionFileOpen )
-		self.connect(self.action_AddFile,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFile )
+		self.connect(self.action_AddFile,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFiles )
 		self.connect(self.action_AddDirectory,	QtCore.SIGNAL( "triggered()" ), self.__onActionAddFolder )
 		self.connect(self.action_Extract,	QtCore.SIGNAL( "triggered()" ), self.__onActionExtract )
 		self.connect(self.action_Delete,	QtCore.SIGNAL( "triggered()" ), self.__onActionDelete )
@@ -115,7 +115,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		if (not fileName.isEmpty()):
 			self._file_open(fileName)
 
-	def	__onActionAddFile(self):
+	def	__onActionAddFiles(self):
 		'''
 		Add files to archive
 		'''
@@ -140,12 +140,19 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		If 1 - select file
 		else: select folder
 		'''
-		fileNames = self.__getSelected()
-		if (fileNames):
+		entries = self.__getSelectedIDs()
+		if (entries):
 			dest = QtGui.QFileDialog.getExistingDirectory(caption=self.tr("Extract to folder"),)
 			#dest = QtCore.QString("/home/eugene/Version/SVN/qtdesktop/trunk/pyqtarc/tmp")
 			if (not dest.isEmpty()):
-				self.__archfile.extract(fileNames, dest)
+				# get current path
+				if len(self.__addressStack):
+					q = QtSql.QSqlQuery("SELECT fullpath FROM arch WHERE id=%d" % self.__addressStack[-1:][0])
+					if q.next():
+						srcdir = q.value(0).toString()
+				else:
+					srcdir = QtCore.QString()
+				self.__extract_entries(srcdir, dest, entries)
 
 	def	__onActionDelete(self):
 		'''
@@ -155,7 +162,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		idlist = list()
 		for index in self.treeView.selectedIndexes():
 			#print index.column()
-			if (index.column() == 7):	# exclude 1+ columns
+			if (index.column() == 7):
 				pathlist.append(index.data().toString())
 				idlist.append(self.__model.get_id(index))
 		if len(idlist):
@@ -169,18 +176,25 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 				self.__model.select()
 				#self.treeView.model().reset()
 
-	def	__getSelected(self):
+	def	__getSelectedIDs(self):
+		'''
+		'''
+		retvalue = dict()
+		for index in self.treeView.selectedIndexes():
+			id = self.__model.get_id(index)
+			retvalue[self.__model.get_id(index)] = True
+		return retvalue.keys()
+
+	def	__getSelectedPaths(self):
 		'''
 		Called from __onActionExtract
 		@return: [ArchItem*,]
 		'''
-		ids = list()
-		selected = self.treeView.selectedIndexes()
-		for i in selected:
-			#if (i.column() == 0):	# exclude 1+ columns
-			ids.append(i.internalPointer())
-		return ids
-
+		retvalue = list()
+		for index in self.treeView.selectedIndexes():
+			if (index.column() == 7):	# 1, 2, 3, 5, 7
+				retvalue.append(index.data().toString())
+		return retvalue
 
 	def	__reload(self):
 		errcode, result = self.__helper.list(self.__file)
@@ -204,7 +218,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		load_fs(entrynames)	# FIXME: false now
 		# 2. check folders<>files
 		# 3. check on exists
-		q = QtSql.QSqlQuery("SELECT fullpath FROM fs WHERE isinarch=1")
+		q = QtSql.QSqlQuery("SELECT fullpath FROM fs WHERE alive=1")
 		result = QtCore.QString()
 		while (q.next()):
 			result += (q.value(0).toString() + "\n")
@@ -222,11 +236,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			responce = msg.exec_()
 			action = {QtGui.QMessageBox.Yes:1, QtGui.QMessageBox.No:2, QtGui.QMessageBox.Cancel:3}[responce]
 		# 4. add to archive
-		# here we have:
-		# 0 (simply add => add selected)
-		# 1 (replace => add selected)
-		# 2 (skip => add custom list (endpoints))
-		# 3 (break => return)
+		# here we have: 0 (simply add => add selected), 1 (replace => add selected), 2 (skip => add custom list (endpoints)), 3 (break => return)
 		if (action == 3):
 			return
 		absprefix = QtCore.QFileInfo(entrynames[0]).absolutePath()
@@ -235,7 +245,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			for i in entrynames:
 				relpaths << QtCore.QFileInfo(i).fileName()
 		else:
-			q = QtSql.QSqlQuery("SELECT fullpath FROM fs WHERE isinarch=0 and endpoint=1")
+			q = QtSql.QSqlQuery("SELECT fullpath FROM fs WHERE alive=0 and endpoint=1")
 			while (q.next()):
 				relpaths << q.value(0).toString()
 		errcode, out, err = self.__helper.add(self.__file, absprefix, relpaths)
@@ -243,5 +253,57 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			print "error:", err
 		else:
 			self.__reload()	# FIXME:
-		# select fullpath from fs where fullpath not in (select fullpath from arch) and (endpoint)
-		#self.treeView.model().refresh()	# reload? select()?, reset()?
+
+	def	__extract_entries(self, src, dest, idlist):
+		'''
+		@param dest:QString - absolute path extract to
+		@param entrynames:list[int,] - full paths of entries to extract
+		'''
+		# 0. prepare
+		#QtSql.QSqlDatabase.database().transaction()
+		QtSql.QSqlQuery("DELETE FROM fs").exec_()
+		#basearchname = entrynames[0].
+		# 1. prepare db
+		# - insert selected into
+		QtSql.QSqlQuery("INSERT INTO fs (fullpath, isdir, endpoint, alive) SELECT fullpath, isdir, endpoint, 0 FROM arch WHERE arch.id IN (%s)" % ",".join(map(str, idlist))).exec_()
+		# - insert children
+		QtSql.QSqlQuery("INSERT INTO fs (fullpath, isdir, endpoint, alive) SELECT arch.fullpath, arch.isdir, arch.endpoint, 0 FROM arch JOIN fs ON (arch.fullpath LIKE fs.fullpath||'/%') WHERE arch.endpoint=1").exec_()
+		# - remove not endpoint
+		QtSql.QSqlQuery("DELETE FROM fs WHERE endpoint=0").exec_()
+		# 2. check exists
+		q = QtSql.QSqlQuery("SELECT arch.id, fs.fullpath FROM fs JOIN arch ON (fs.fullpath = arch.fullpath)")
+		toskip = list()
+		toextract = list()
+		ask = QtCore.QString()
+		tocut = src.length() + 1 if src.length() else 0
+		while (q.next()):
+			id = q.value(0).toUInt()[0]
+			s = q.value(1).toString()
+			f = QtCore.QFileInfo(dest + "/" + s.mid(tocut))
+			if (f.exists()):
+				toskip.append(id)
+				ask += (s + "\n")
+			else:
+				toextract.append(id)
+		# 3. ask
+		if (ask.length()):
+			msg = QtGui.QMessageBox(
+				QtGui.QMessageBox.Question,
+				self.tr("John, I need help"),
+				self.tr("Some folders and/or files to extract exist in filesystem"),
+				QtGui.QMessageBox.Yes|QtGui.QMessageBox.No|QtGui.QMessageBox.Cancel
+			)
+			msg.setInformativeText(self.tr("Do you want to replace them?"))
+			msg.setDetailedText(ask)
+			responce = msg.exec_()
+			action = {QtGui.QMessageBox.Yes:1, QtGui.QMessageBox.No:2, QtGui.QMessageBox.Cancel:3}[responce]
+		else:
+			action = 0
+		# 4. go
+		if (action == 3):
+			return
+		if (action == 1):	# replace
+			toextract.extend(toskip)
+		q = QtSql.QSqlQuery("SELECT fullpath FROM arch WHERE id IN (%s)" % ",".join(map(str, toextract)))
+		while (q.next()):
+			print q.value(0).toString()

@@ -27,7 +27,6 @@ class	ArchHelper7z(ArchHelper):
 
 	@classmethod
 	def	list(self, archive, files=[]):
-		#print files
 		errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("l") << archive) + files)
 		retvalue = []
 		pos = self.__rx.indexIn(out)
