@@ -304,6 +304,8 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 			return
 		if (action == 1):	# replace
 			toextract.extend(toskip)
+		fpaths = list()
 		q = QtSql.QSqlQuery("SELECT fullpath FROM arch WHERE id IN (%s)" % ",".join(map(str, toextract)))
 		while (q.next()):
-			print q.value(0).toString()
+			fpaths.append(q.value(0).toString())
+		errcode, out, err = self.__helper.extract(self.__file, src, dest, fpaths, False)

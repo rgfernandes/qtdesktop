@@ -59,32 +59,21 @@ class	ArchHelper7z(ArchHelper):
 		QtCore.QDir.setCurrent(cwd)
 		return (errcode, out, err)
 
-	def	extract(self, apath, fpaths, destdir, skip):
-		#print apath, fpaths, destdir
+	def	extract(self, archive, srcfolder, dstfolder, fpaths, skip):
+		'''
+		@param archive:QString - path of archive
+		@param srcfolder:QString - parent archive folder of extractable entries
+		@param dstfolder:QString - filesystem folder extract to
+		@param fpaths:QStringList - entries to extract
+		@param skip:bool - dummy
+		'''
+		tocut = srcfolder.length() + 1 if srcfolder.length() else 0
 		replacekey = "-aos" if skip else "-aoa"
 		for src in fpaths:
-			srcdir = QtCore.QFileInfo(src).dir().path()	# src path parent - to cut from dst
-			srclen = srcdir.size()
-			err, dst = self.list(apath, [src,])	# get children
-			# 1. mkdirs
-			for i in dst:
-				dstrel = i[0].mid(srclen+1) if (not srcdir.isEmpty()) else i[0]	# real relative dst path
-				dstfolder = dstrel if i[1] else QtCore.QFileInfo(dstrel).dir().path()
-				if dstfolder:	# not for files from root
-					dstfolderabs = destdir + "/" + dstfolder
-					if not QtCore.QFileInfo(dstfolderabs).exists():
-						#print "mkdir", dstfolderabs
-						QtCore.QDir.mkpath(dstfolderabs)
-				#print i[0], i[1], srcdir, dstrel, os.path.dirname(dstrel)
-			# 2. expand files
-			for i in dst:
-				if not i[1]:
-					dstrel = i[0].mid(srclen+1) if (not srcdir.isEmpty()) else i[0]	# real relative dst path
-					dstfolder = QtCore.QFileInfo(dstrel).dir().path()
-					outfolder = destdir + "/" + dstfolder
-					#print "out", outfoldererrcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("d") << apath) + fpaths)
-					errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("e") << replacekey << "-o"+outfolder << apath << i[0]))
-					#return (p.returncode, err)
-		return 0, ''
+			dstpath = QtCore.QFileInfo(dstfolder + "/" + src.mid(tocut))
+			outfolder = dstpath.absolutePath()
+			#print dstdir, dstpath.fileName()
+			errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("e") << replacekey << "-o"+outfolder << archive << src))
+		return errcode, out, err
 
 mainclass = ArchHelper7z

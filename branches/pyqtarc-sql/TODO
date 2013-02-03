@@ -18,6 +18,8 @@
 - __addresstack => current_root + parent_id
 - sql scheme: id autoinc off
 - sql scheme: uniq parent_id + name
+- iterator for helper.list()
+- iterator for helper.extract()'s fpaths
 
 = test arcivers =
 == who ==
