@@ -33,7 +33,7 @@ lzo	application/x-lzop
 	application/x-lzop-compressed-tar
 wim	application/x-ms-wim
 rar	application/x-rar
-rar	application/x-rar-compressed
+	application/x-rar-compressed
 rpm	application/x-rpm
 	application/x-rzip
 tar	application/x-tar
