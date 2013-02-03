@@ -75,7 +75,7 @@ class	ArchHelper:
 		return 0
 
 	@classmethod
-	def	list(self, archive, files=list()):
+	def	get_list(self, archive, files=list()):
 		'''
 		List archive.
 		@param archive: full path to archive
@@ -136,5 +136,23 @@ class	ArchHelper:
 	@classmethod
 	def	test(self, apath):
 		return (0, [])
+
+	@classmethod
+	def	clitest(self, argv):
+		if (len(argv) != 2):
+			print "Usage: %s <filename>" % argv[0]
+		else:
+			errcode, retvalue = self.get_list(argv[1])
+			if retvalue:
+				print "D datetime            nsize      csize      name"
+				print "- ------------------- ---------- ---------- -..."
+				for i in retvalue:
+					print "%s %s %10d %10d %s" % (
+						'D' if(i[1]) else '-',
+						i[2].toString("yyyy-MM-dd hh:mm:ss"),
+						i[3],
+						i[4],
+						i[0]
+					)
 
 mainclass = ArchHelper

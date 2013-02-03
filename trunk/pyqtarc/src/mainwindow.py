@@ -197,7 +197,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 		return retvalue
 
 	def	__reload(self):
-		errcode, result = self.__helper.list(self.__file)
+		errcode, result = self.__helper.get_list(self.__file)
 		if (errcode):
 			return
 		load_arch(result)

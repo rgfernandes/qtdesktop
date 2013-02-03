@@ -4,7 +4,7 @@
 7z helper. Load from archfile.ArchFile.load()
 '''
 
-import sys, os, re, datetime, subprocess, pprint
+import sys
 from PyQt4 import QtCore
 from base import *
 
@@ -18,15 +18,15 @@ class	ArchHelper7z(ArchHelper):
 	exts = ('7z',)
 	mimes = ('application/x-7z-compressed',)
 	#                  date              time              attrs                size       csize       name
-	__rx = QtCore.QRegExp("(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) ([D.][R.][H.][S.][A.]) ([ 0-9]{12}) ([ 0-9]{12})  ([^\n]*)\n")
 	#__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
+	__rx = QtCore.QRegExp("(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) ([D.][R.][H.][S.][A.]) ([ 0-9]{12}) ([ 0-9]{12})  ([^\n]*)\n")
 
 	@classmethod
 	def	get_capabilities():
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
 	@classmethod
-	def	list(self, archive, files=[]):
+	def	get_list(self, archive, files=[]):
 		errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("l") << archive) + files)
 		retvalue = []
 		pos = self.__rx.indexIn(out)
@@ -59,6 +59,7 @@ class	ArchHelper7z(ArchHelper):
 		QtCore.QDir.setCurrent(cwd)
 		return (errcode, out, err)
 
+	@classmethod
 	def	extract(self, archive, srcfolder, dstfolder, fpaths, skip):
 		'''
 		@param archive:QString - path of archive
@@ -77,3 +78,6 @@ class	ArchHelper7z(ArchHelper):
 		return errcode, out, err
 
 mainclass = ArchHelper7z
+
+if (__name__ == '__main__'):
+	mainclass.clitest(sys.argv)
