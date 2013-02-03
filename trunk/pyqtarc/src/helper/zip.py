@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 '''
 ZIP helper
+TODO: delete folder: zip -d folder/*
 '''
 
 import sys
@@ -19,7 +20,7 @@ class	ArchHelperZip(ArchHelper):
  
 	@classmethod
 	def	get_capabilities():
-		return HCAN_LIST
+		return HCAN_LIST|HCAN_ADD
 
 	@classmethod
 	def	get_list(self, archive):
@@ -38,6 +39,19 @@ class	ArchHelperZip(ArchHelper):
 			pos += self.__rx.matchedLength()
 			pos = self.__rx.indexIn(out, pos)
 		return (errcode, retvalue)		
+
+	@classmethod
+	def	add(self, archive, absprefix, relpaths):
+		'''
+		TODO: skip => mode (replace, update, skip)
+		@param apath:QString - absolute basedir of entries to add
+		@param fpaths:QStringList - relative paths of entries to add
+		'''
+		cwd = QtCore.QDir.currentPath()
+		QtCore.QDir.setCurrent(absprefix)
+		errcode, out, err = self.exec_cmd("zip", QtCore.QStringList("-r") << "-q" << archive << relpaths)
+		QtCore.QDir.setCurrent(cwd)
+		return (errcode, out, err)
 
 mainclass = ArchHelperZip
 
