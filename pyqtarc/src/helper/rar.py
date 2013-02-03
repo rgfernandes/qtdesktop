@@ -50,6 +50,23 @@ class	ArchHelperRar(ArchHelper):
 						odd = not odd
 		return (errcode, retvalue)		
 
+	@classmethod
+	def	delete(self, archive, fpaths):
+		return self.exec_cmd("rar", (QtCore.QStringList("d") << archive) + fpaths)
+
+	@classmethod
+	def	add(self, archive, absprefix, relpaths):
+		'''
+		TODO: skip => mode (replace, update, skip)
+		@param apath:QString - absolute basedir of entries to add
+		@param fpaths:QStringList - relative paths of entries to add
+		'''
+		cwd = QtCore.QDir.currentPath()
+		QtCore.QDir.setCurrent(absprefix)
+		errcode, out, err = self.exec_cmd("rar", QtCore.QStringList("a") << archive << relpaths)
+		QtCore.QDir.setCurrent(cwd)
+		return (errcode, out, err)
+
 mainclass = ArchHelperRar
 
 if (__name__ == '__main__'):
