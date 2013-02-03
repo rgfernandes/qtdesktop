@@ -6,6 +6,8 @@ Helpers base:
 Helper is framework independent and can be called from cli
 '''
 
+from PyQt4 import QtCore
+
 import sys, os, re, datetime, subprocess
 
 reload(sys)
@@ -27,6 +29,23 @@ mimes = tuple()
 class	ArchHelper:
 	#exts = (,)
 	#mimes = (,)
+
+	@classmethod
+	def	exec_cmd(self, cmd, args):
+		'''
+		Execute external program
+		@param cmd:str - command ("7za")
+		@param args:QStringList (archive name, options, filenames etc)
+		@return errcode, stdout, stderr
+		'''
+		proc = QtCore.QProcess()
+		proc.start(cmd, args)
+		proc.waitForFinished(-1)
+		return (
+			proc.exitCode(),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput()),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardError()),
+		)
 
 	@classmethod
 	def	get_ext():
@@ -56,35 +75,48 @@ class	ArchHelper:
 		return 0
 
 	@classmethod
-	def	list(self, path, files=list()):
+	def	list(self, archive, files=list()):
 		'''
 		List archive.
-		@param path: full path to archive
-		@type path: str
+		@param archive: full path to archive
+		@type archive: str
 		@return: (name, isdir, mtime, size, csize)
 		@rtype: list
 		'''
 		return (0, [])
 
 	@classmethod
-	def	add(self, apath, fpaths):
+	def	delete(self, archive, fpaths):
 		'''
-		@param apath: full path to archive
-		@type path: str
-		@param fpath: full path to file/folder to add
-		@type fpath: str
-		@return: errcode, errmsg
-		@rtype: (int, str)
+		@param archive: full path to archive
+		@type archive: str
+		@param fpath: entry names to delete
+		@type fpath: QStringList
+		@return: errcode, stdout, stderr
+		@rtype: (int, str, str)
 		'''
-		#return (p.returncode, err)
-		return (0, [])
+		return (0, '', '')
 
 	@classmethod
-	def	addto(self, apath, dst, fpaths):
+	def	add(self, archive, absprefix, relpaths):
 		'''
-		Add items to selected archive folder
+		@param archive: absolute path of archive
+		@type archive: str
+		@param absprefix: absolute path of folders which entries need to add
+		@type absprefix: str
+		@param relpaths: relative path of files/folders to add
+		@type relpaths: QStringList
+		@return: errcode, stdout, stderr
+		@rtype: (int, str, str)
 		'''
-		return (0, [])
+		return (0, '', '')
+
+#	@classmethod
+#	def	addto(self, apath, dst, fpaths):
+#		'''
+#		Add items to selected archive folder
+#		'''
+#		return (0, [])
 
 	@classmethod
 	def	extract(self, apath, fpaths, destdir):
@@ -93,17 +125,13 @@ class	ArchHelper:
 		'''
 		return (0, [])
 
-	@classmethod
-	def	delete(self, apath, fpaths):
-		return (0, [])
+#	@classmethod
+#	def	rename(self, apath, src, dst):
+#		return (0, [])
 
-	@classmethod
-	def	rename(self, apath, src, dst):
-		return (0, [])
-
-	@classmethod
-	def	mkdir(self, apath, name):
-		return (0, [])
+#	@classmethod
+#	def	mkdir(self, apath, name):
+#		return (0, [])
 
 	@classmethod
 	def	test(self, apath):

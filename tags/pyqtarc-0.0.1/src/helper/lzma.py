@@ -25,15 +25,31 @@ class	ArchHelper7z(ArchHelper):
 	def	get_capabilities():
 		return HCAN_LIST|HCAN_ADD|HCAN_EXTRACT|HCAN_DELETE
 
+	def	__exec(self, cmd, args):
+		'''
+		Execute external program
+		@param cmd:str - command ("7za")
+		@param args:QStringList
+		@return errcode, stdout, stderr
+		'''
+		proc = QtCore.QProcess()
+		proc.start(cmd, args)
+		proc.waitForFinished(-1)
+		return (
+			proc.exitCode(),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardOutput()),
+			QtCore.QString.fromLocal8Bit(proc.readAllStandardError()),
+		)
+
 	def	list(self, path, files=[]):
 		#print files
-		errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("l") << path) + files)
+		errcode, out, err = self.__exec("7za", (QtCore.QStringList("l") << path) + files)
 		retvalue = []
 		pos = self.__rx.indexIn(out)
 		while (pos != -1):
 			retvalue.append((
-				self.__rx.cap(5),		#name
-				self.__rx.cap(2)[0]=='D',	#isdir
+				self.__rx.cap(5),
+				self.__rx.cap(2)[0]=='D',
 				QtCore.QDateTime.fromString(self.__rx.cap(1), "yyyy-MM-dd hh:mm:ss"),
 				self.__rx.cap(3).trimmed().toULong()[0],
 				self.__rx.cap(4).trimmed().toULong()[0] or 0L,
@@ -45,8 +61,6 @@ class	ArchHelper7z(ArchHelper):
 	def	add(self, apath, fpaths, skip):
 		'''
 		TODO: skip => mode (replace, update, skip)
-		@param apath:QString - absolute basedir of entries to add
-		@param fpaths:QStringList - relative paths of entries to add
 		'''
 		if skip:
 			# 1. get archive list to set
@@ -64,10 +78,10 @@ class	ArchHelper7z(ArchHelper):
 				src += self.__get_extras(dst, fpath)
 			cwd = QtCore.QDir.currentPath()
 			QtCore.QDir.setCurrent(QtCore.QFileInfo(fpaths[0]).dir().path())
-			errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("a") << apath) + src)
+			errcode, out, err = self.__exec("7za", (QtCore.QStringList("a") << apath) + src)
 			QtCore.QDir.setCurrent(cwd)
 		else:
-			errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("a") << apath) + fpaths)
+			errcode, out, err = self.__exec("7za", (QtCore.QStringList("a") << apath) + fpaths)
 		#print out
 		return (errcode, err)
 
@@ -121,12 +135,13 @@ class	ArchHelper7z(ArchHelper):
 					dstrel = i[0].mid(srclen+1) if (not srcdir.isEmpty()) else i[0]	# real relative dst path
 					dstfolder = QtCore.QFileInfo(dstrel).dir().path()
 					outfolder = destdir + "/" + dstfolder
-					#print "out", outfoldererrcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("d") << apath) + fpaths)
-					errcode, out, err = self.exec_cmd("7za", (QtCore.QStringList("e") << replacekey << "-o"+outfolder << apath << i[0]))
+					#print "out", outfoldererrcode, out, err = self.__exec("7za", (QtCore.QStringList("d") << apath) + fpaths)
+					errcode, out, err = self.__exec("7za", (QtCore.QStringList("e") << replacekey << "-o"+outfolder << apath << i[0]))
 					#return (p.returncode, err)
 		return 0, ''
 
 	def	delete(self, apath, fpaths):
-		return self.exec_cmd("7za", (QtCore.QStringList("d") << apath) + fpaths)
+		errcode, out, err = self.__exec("7za", (QtCore.QStringList("d") << apath) + fpaths)
+		return (errcode, err)
 
 mainclass = ArchHelper7z

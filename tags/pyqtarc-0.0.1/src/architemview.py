@@ -1,7 +1,7 @@
 from PyQt4 import QtCore, QtGui
 
 class	ArchItemView(QtGui.QListView):
-	def	__init__(self, parent = None):
+	def	__init__(self, archfile, parent = None):
 		'''
 		http://www.trinitydesktop.org/docs/qt4/model-view-dnd.html
 		+acceptDrops?
@@ -27,7 +27,7 @@ class	ArchItemView(QtGui.QListView):
 		self.verticalLayout.addWidget(self.treeView)
 		'''
 		super(ArchItemView, self).__init__(parent)
-		#self.__archfile = archfile
+		self.__archfile = archfile
 		self.setAcceptDrops(True)
 		self.setDropIndicatorShown(True)
 		self.setDragEnabled(True)
@@ -61,7 +61,7 @@ class	ArchItemView(QtGui.QListView):
 					fileNames.append(i.toLocalFile())
 				else:
 					print "Non-file url:", i
-			#self.__archfile.add(fileNames)
+			self.__archfile.add(fileNames)
 			self.model().refresh()
 		if mimeData.hasText():
 			print "Text:"
