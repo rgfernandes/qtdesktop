@@ -26,7 +26,6 @@ class	ArchHelperRar(ArchHelper):
 		errcode, out, err = self.exec_cmd("unrar", (QtCore.QStringList("v") << archive))
 		retvalue = []
 		if (not errcode) and (not err):
-			# skip head
 			skipmode = True
 			odd = True
 			for s in out.split("\n"):
@@ -49,21 +48,6 @@ class	ArchHelperRar(ArchHelper):
 								s[23:31].trimmed().toULong()[0],
 							))
 						odd = not odd
-			# body
-		'''
-		pos = self.__rx.indexIn(out)
-		while (pos != -1):
-			isdir = self.__rx.cap(4).endsWith("/")
-			retvalue.append((
-				self.__rx.cap(4).left(self.__rx.cap(4).length()-1) if isdir else self.__rx.cap(4),		#name
-				isdir,	#isdir
-				QtCore.QDateTime.fromString(self.__rx.cap(3), "MM-dd-yyyy hh:mm"),
-				self.__rx.cap(1).trimmed().toULong()[0],
-				self.__rx.cap(2).trimmed().toULong()[0],
-			))
-			pos += self.__rx.matchedLength()
-			pos = self.__rx.indexIn(out, pos)
-		'''
 		return (errcode, retvalue)		
 
 mainclass = ArchHelperRar
