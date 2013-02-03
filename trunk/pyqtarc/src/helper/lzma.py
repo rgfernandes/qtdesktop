@@ -15,8 +15,6 @@ exts = ('7z',)
 mimes = ('application/x-7z-compressed',)
 
 class	ArchHelper7z(ArchHelper):
-	exts = ('7z',)
-	mimes = ('application/x-7z-compressed',)
 	#                  date              time              attrs                size       csize       name
 	#__rx = re.compile("\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [D.][R.][H.][S.][A.] [ 0-9]{12} [ 0-9]{12}  .*\n")
 	__rx = QtCore.QRegExp("(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) ([D.][R.][H.][S.][A.]) ([ 0-9]{12}) ([ 0-9]{12})  ([^\n]*)\n")

@@ -15,10 +15,6 @@ exts = ('zip',)
 mimes = ('application/x-zip', 'application/x-zip-compressed', 'application/zip',)
 
 class	ArchHelperZip(ArchHelper):
-	exts = ('7z',)
-	mimes = ('application/x-7z-compressed',)
-	#                  size        meth csize     compressn  date              time        crc          name
-	#__rx = re.compile("[ 0-9]{8}  .{6} [ 0-9]{8} [ 0-9]{3}% \d{2}-\d{2}-\d{4} \d{2}:\d{2} [0-9a-f]{8}  .*\n")
 	__rx = QtCore.QRegExp("([ 0-9]{8})  .{6} ([ 0-9]{8}) [ 0-9]{3}% (\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}) [0-9a-f]{8}  ([^\n]*)\n")
  
 	@classmethod

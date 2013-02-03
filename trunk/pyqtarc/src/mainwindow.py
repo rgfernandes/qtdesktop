@@ -29,11 +29,11 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 
 	def	__init_helpers(self):
 		#exec "from helper import %s" % ','.join(test1('helper'))
-		from helper import lzma, zip
+		from helper import lzma, zip, arj, rar, tar
 		a = locals()
 		for i in a:
 			if (i != 'self'):
-				self.__exts += (" *." + " ".join(a[i].exts))
+				self.__exts += (" *." + " *.".join(a[i].exts))
 				for j in a[i].mimes:
 					self.__mime2helper[j] = a[i].mainclass
 				#Sprint a[i].mainclass
