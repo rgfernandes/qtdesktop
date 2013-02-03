@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project pyqtarc -->
-<!-- Saved: 2012-11-18, 18:38:47 -->
+<!-- Saved: 2012-11-19, 01:55:08 -->
 <!-- Copyright (C) 2012 TI_Eugene, ti.eugene@gmail.com -->
 <Project version="4.6">
   <Language></Language>
@@ -17,8 +17,6 @@
     <Source>ui/__init__.py</Source>
     <Source>__init__.py</Source>
     <Source>src/__init__.py</Source>
-    <Source>ui/Ui_main.py</Source>
-    <Source>pyqtarc_rc.py</Source>
     <Source>src/helper/__init__.py</Source>
     <Source>src/archfile.py</Source>
     <Source>src/architem.py</Source>
@@ -27,6 +25,8 @@
     <Source>src/main.py</Source>
     <Source>src/mainwindow.py</Source>
     <Source>src/helper/lzma.py</Source>
+    <Source>ui/Ui_main.py</Source>
+    <Source>pyqtarc_rc.py</Source>
   </Sources>
   <Forms>
     <Form>ui/main.ui</Form>
