@@ -78,6 +78,7 @@ class	ArchHelper:
 	def	get_list(self, archive, files=list()):
 		'''
 		List archive.
+		TODO: add ctime, atime, access, dos flags?; ?size - B4 times
 		@param archive: full path to archive
 		@type archive: str
 		@return: (name, isdir, mtime, size, csize)

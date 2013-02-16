@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+'''
+TODO: separate *.ext for each helper
+'''
 
 from PyQt4 import QtCore, QtGui, QtSql
 from PyQt4.QtCore import qDebug
@@ -29,7 +32,7 @@ class	MainWindow(QtGui.QMainWindow, Ui_Main):
 
 	def	__init_helpers(self):
 		#exec "from helper import %s" % ','.join(test1('helper'))
-		from helper import lzma, zip, rar, tar	#, arj, tar
+		from helper import arj, lzma, zip, rar, tar	#, arj, tar
 		a = locals()
 		for i in a:
 			if (i != 'self'):
