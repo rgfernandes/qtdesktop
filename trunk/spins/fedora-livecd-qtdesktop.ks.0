@@ -1,0 +1,173 @@
+# fedora-livecd-qtdesktop.ks
+#
+# v.0 - inherited from F17
+#
+# Description:
+# - Fedora Live Spin with the QtDesktop Environment
+#
+# Maintainer(s):
+# - TI_Eugene <ti.eugene@gmail.com>
+#
+# Requirements:
+# - Live: RAM: HDD:
+# - Installed: RAM: HDD:
+#
+
+%include /usr/share/spin-kickstarts/fedora-live-base.ks
+%include /usr/share/spin-kickstarts/fedora-live-minimization.ks
+
+repo --name=rpmfusion-free --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-$releasever&arch=$basearch
+repo --name=rpmfusion-free-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-$releasever&arch=$basearch
+
+%packages
+
+# -cleanup
+-abrt*
+-acl
+-alsa-utils
+-audit
+-avahi*
+-bash-completion
+-bc
+-bridge-utils
+-btrfs-progs
+-c-ares
+-celt
+-cifs-utils
+-cyrus-sasl-gssapi
+-cyrus-sasl-plain
+-dejavu-*-fonts
+-dialog
+-efibootmgr
+-ethtool
+-fedora-icon-theme
+-foo2*
+-foo2qpdl
+-glibmm24
+-gnome-keyring
+-gnome-packagekit
+-gnome-python2*
+-gnome-themes
+-gnome-vfs2
+-google-droid*
+-groff
+-gtk2-engines
+-ibus*
+-iptables*
+-iptstate
+-iso-codes
+-jack-audio-connection-kit
+-jbigkit-libs
+-keyutils
+-krb5-auth-dialog
+-krb5-workstation
+-lcms
+-libavc1394
+-libbonobo*
+-libcollection
+-libdhash
+-libdmx
+-libffado
+-libgnome*
+-libiec61883
+-libini_config
+-libldb
+-libnetfilter_conntrack
+-libnfnetlink
+-libpath_utils
+-libraw1394
+-libref_array
+-libsamplerate
+-libsigc++20
+-libtalloc
+-libtevent
+-libwbclient
+-libxml++
+-libXxf86dga
+-lohit*
+-m17n*
+-m4
+-mailcap
+-man-db
+-mcelog
+-microcode_ctl
+-mtr
+-notify-python
+-ntfs-3g
+-ntsysv
+-openssh-server
+-PackageKit
+-pam_krb5
+-pam_pkcs11
+-passwdqc
+-passwdqc-lib
+-pcsc-lite-libs
+-plymouth-graphics-libs
+-plymouth-plugin*
+-plymouth-system-theme
+-plymouth-theme-charge
+-policycoreutils*
+-polkit-qt
+-powertop
+-preupgrade
+-pulseaudio
+-pulseaudio-utils
+-pyOpenSSL
+-python-paste
+-python-simplejson
+-quota
+-rng-tools
+-rtkit
+-sane-backends
+-selinux-policy*
+-sendmail
+-setools-console
+-setroubleshoot
+-speex
+-spice-vdagent
+-sssd*
+-system-config*
+-tcp_wrappers
+-tcpdump
+-tmpwatch
+-vconfig
+-xorg-x11-utils
+
+# +misc:
+rpmreaper
+#notification-daemon
+
+# +QtDesktop:
+clementine
+goldendict
+juffed-plugins
+nomacs
+pcmanfm-qt
+qastools
+qbittorrent
+qlipper
+qpdfview
+qterminal
+quiterss
+qupzilla
+qutim
+qxkb
+screengrab
+smplayer
+speedcrunch
+vlc
+razorqt
+lightdm-razorqt
+
+%end
+
+%post
+# create /etc/sysconfig/desktop (needed for installation)
+cat > /etc/sysconfig/desktop <<EOF
+PREFERRED=/usr/bin/startrazor
+DISPLAYMANAGER=/usr/sbin/lightdm
+EOF
+
+sed -i -e 's/NoDisplay=true/NoDisplay=false/g' /usr/share/applications/liveinst.desktop
+
+%end
