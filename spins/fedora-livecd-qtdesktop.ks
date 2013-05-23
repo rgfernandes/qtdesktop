@@ -1,0 +1,1 @@
+fedora-livecd-qtdesktop.ks.3

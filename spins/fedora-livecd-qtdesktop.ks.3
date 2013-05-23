@@ -1,0 +1,200 @@
+# fedora-livecd-qtdesktop.ks
+#
+# v.3 - v.2 -some_apps
+#
+# Description:
+# - Fedora Live Spin with the QtDesktop Environment
+#
+# Maintainer(s):
+# - TI_Eugene <ti.eugene@gmail.com>
+#
+# Requirements:
+# - Live: RAM: HDD:
+# - Installed: RAM: HDD:
+#
+
+%include /usr/share/spin-kickstarts/fedora-live-base.ks
+%include /usr/share/spin-kickstarts/fedora-live-minimization.ks
+
+repo --name=rpmfusion-free --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-$releasever&arch=$basearch
+repo --name=rpmfusion-free-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=free-fedora-updates-released-$releasever&arch=$basearch
+repo --name=rpmfusion-nonfree --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-$releasever&arch=$basearch
+repo --name=rpmfusion-nonfree-updates --mirrorlist=http://mirrors.rpmfusion.org/mirrorlist?repo=nonfree-fedora-updates-released-$releasever&arch=$basearch
+
+selinux --disabled
+firewall --disabled
+
+%packages
+
+# -cleanup
+-anthy
+-audit
+-bash-completion
+-bridge-utils
+-c-ares
+-compat-readline5
+-cyrus-sasl
+-cyrus-sasl-gssapi
+-cyrus-sasl-plain
+-dconf
+-dos2unix
+-dracut-network
+-espeak
+-fpaste
+-fprintd
+-fprintd-pam
+-gfs2-utils
+-gstreamer1-plugins-bad-free
+-gstreamer1-plugins-base
+-gstreamer1-plugins-good
+-gstreamer-plugins-espeak
+-gtk2-immodule-xim
+-gtk3-immodule-xim
+-hesiod
+-ibus
+-ibus-anthy
+-ibus-chewing
+-ibus-gtk2
+-ibus-gtk3
+-ibus-hangul
+-ibus-libpinyin
+-ibus-libs
+-ibus-m17n
+-ibus-qt
+-ibus-rawcode
+-ibus-typing-booster
+-im-chooser
+-im-chooser-common
+-imsettings
+-imsettings-libs
+-imsettings-qt
+-iptables-services
+-iptstate
+-irda-utils
+-iscsi-initiator-utils
+-kasumi
+-kernel-modules-extra
+-libbasicobjects
+-libchewing
+-libcollection
+-libdhash
+-libfprint
+-libhangul
+-libini_config
+-libipa_hbac
+-libmnl
+-libnetfilter_conntrack
+-libnfnetlink
+-libpath_utils
+-libref_array
+-libsss_idmap
+-libtranslit
+-libtranslit-m17n
+-m17n-contrib
+-m17n-db
+-m17n-lib
+-mailcap
+-mcelog
+-mtr
+-nmap-ncat
+-ntsysv
+-opencc
+-pam_krb5
+-pam_pkcs11
+-paps
+-paps-libs
+-passwdqc
+-passwdqc-lib
+-pcsc-lite-libs
+-plymouth-graphics-libs
+-plymouth-plugin-label
+-plymouth-plugin-two-step
+-plymouth-system-theme
+-plymouth-theme-charge
+-procmail
+-rdist
+-realmd
+-rsh
+-selinux-policy
+-selinux-policy-targeted
+-sendmail
+-setuptool
+-socat
+-spice-vdagent
+-sssd
+-sssd-client
+-stunnel
+-system-config-firewall-base
+-talk
+-tboot
+-trousers
+-words
+
+# ...and fonts
+-abattis-cantarell-fonts
+-cjkuni-uming-fonts
+-jomolhari-fonts
+-khmeros-base-fonts
+-khmeros-fonts-common
+-lklug-fonts
+-lohit-assamese-fonts
+-lohit-bengali-fonts
+-lohit-devanagari-fonts
+-lohit-gujarati-fonts
+-lohit-kannada-fonts
+-lohit-oriya-fonts
+-lohit-punjabi-fonts
+-lohit-tamil-fonts
+-lohit-telugu-fonts
+-nhn-nanum-gothic-fonts
+-paktype-naqsh-fonts
+-paratype-pt-sans-fonts
+-sil-abyssinica-fonts
+-sil-nuosu-fonts
+-sil-padauk-fonts
+-smc-fonts-common
+-smc-meera-fonts
+-stix-fonts
+-thai-scalable-fonts-common
+-thai-scalable-waree-fonts
+-vlgothic-fonts
+-wqy-zenhei-fonts
+
+# +misc:
+rpmreaper
+#notification-daemon
+
+# +QtDesktop:
+clementine
+goldendict
+juffed-plugins
+nomacs
+pcmanfm-qt
+qastools
+qbittorrent
+qlipper
+qpdfview
+qterminal
+quiterss
+qupzilla
+qutim
+qxkb
+screengrab
+smplayer
+speedcrunch
+vlc
+razorqt
+lightdm-razorqt
+
+%end
+
+%post
+# create /etc/sysconfig/desktop (needed for installation)
+cat > /etc/sysconfig/desktop <<EOF
+PREFERRED=/usr/bin/startrazor
+DISPLAYMANAGER=/usr/sbin/lightdm
+EOF
+
+sed -i -e 's/NoDisplay=true/NoDisplay=false/g' /usr/share/applications/liveinst.desktop
+
+%end

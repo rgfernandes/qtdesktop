@@ -1,0 +1,4 @@
+#!/bin/sh
+# (~55' @ P4 3GHz)
+# Result: ./fedoa-live-qtdesktop.iso (626MB)
+sudo livecd-creator -c fedora-livecd-qtdesktop.ks -f fedora-live-qtdesktop -t /mnt/shares/tmp --cache /mnt/shares/cache/yum
