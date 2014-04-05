@@ -1,0 +1,30 @@
+#summary Menu.
+
+= Menu =
+File:
+    * Open
+    * [Reload]
+    * [Print]
+    * [Settings]
+    * Quit
+View:
+    * Copy
+    * Wrap on/off
+    * Line no on/off
+    * Text encoding
+    * Font size:
+        * +
+        * -
+        * 100%
+    * Show spaces/tabs
+    * Show EOL
+    * Shrink
+    * Syntax
+Search:
+    * Search
+    * Search next
+    * Search prev
+    * Goto line
+About:
+    * About
+    * About Qt

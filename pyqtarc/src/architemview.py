@@ -11,7 +11,7 @@ class	ArchItemView(QtGui.QListView):
 		iswrapping - ok
 		+resizeMode - ajust
 		[viewMode - listview
-		
+
 		self.treeView = QtGui.QListView(self.centralwidget)
 		self.treeView.setAcceptDrops(True)
 		self.treeView.setDragDropMode(QtGui.QAbstractItemView.DragDrop)
@@ -48,12 +48,12 @@ class	ArchItemView(QtGui.QListView):
 		event.accept()
 
 	def	dropEvent(self, event):	# QDropEvent
-		print "drop:"
+		#print "drop:"
 		mimeData = event.mimeData()	# QMimeData
-		print "Formats:"
+		#print "Formats:"
 		for i in mimeData.formats():	# Xarchiver: XdndDirectSave0; ark: application/x-kde-ark-dndextract-service; application/x-kde-ark-dndextract-path
 			print i
-		print mimeData.data("XdndDirectSave0")
+		#print mimeData.data("XdndDirectSave0")
 		if mimeData.hasUrls():
 			fileNames = list()
 			for i in mimeData.urls():	# QtCore.QUrl
@@ -62,7 +62,7 @@ class	ArchItemView(QtGui.QListView):
 				else:
 					print "Non-file url:", i
 			#self.__archfile.add(fileNames)
-			self.model().refresh()
+			#self.model().refresh()
 		if mimeData.hasText():
 			print "Text:"
 			print mimeData.text()
