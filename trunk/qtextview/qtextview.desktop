@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Qt Text Viewer
+Name[ru]=Просмотр Текста
+Comment=Simple Text Viewer
+Comment[ru]=Простой Просмотр Текста
+Exec=qtextview %F
+Terminal=false
+Type=Application
+StartupNotify=false
+MimeType=text/plain;
+Icon=qtextview
+Categories=Qt;Utility;TextEditor;
+GenericName=Text Viewer
+GenericName[ru]=просмотр текста

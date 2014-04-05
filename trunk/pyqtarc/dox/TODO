@@ -1,14 +1,4 @@
-Qt-only:
-	+ list
-		+ process - read to qstring
-		+ regex
-		+ structure
-		+ return structure
-		+ qset has no sence for python
-		+ list
-	+ del
-	* add
-	* extract
+http://welinux.ru/post/1270/
 
 0.0.1:
 	* List
@@ -29,7 +19,7 @@ Qt-only:
 	* archfile - qt only
 	* non-ascii support
 	* CLI - open file
-	- sort
+	* sort
 	- doc, pylint etc
 	- check everything
 	- setup

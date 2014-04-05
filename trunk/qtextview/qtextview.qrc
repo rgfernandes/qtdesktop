@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="img">
+    <file>icons/oxygen/16/application-exit.png</file>
+    <file>icons/oxygen/16/document-open.png</file>
+    <file>icons/oxygen/16/edit-copy.png</file>
+    <file>icons/oxygen/16/format-font-size-less.png</file>
+    <file>icons/oxygen/16/format-font-size-more.png</file>
+    <file>icons/oxygen/16/go-next.png</file>
+    <file>icons/oxygen/16/go-previous.png</file>
+    <file>icons/oxygen/16/help-about.png</file>
+    <file>icons/oxygen/16/text-plain.png</file>
+  </qresource>
+</RCC>

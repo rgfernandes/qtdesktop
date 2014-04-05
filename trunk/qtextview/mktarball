@@ -1,0 +1,8 @@
+#!/bin/sh
+NAME=qtextview
+VER=`cat ver`
+NAMEVER=$NAME-$VER
+TMP=`mktemp -d` && \
+svn export . $TMP/$NAMEVER && \
+tar Jcf $NAMEVER.tar.xz -C $TMP $NAMEVER && \
+rm -rf $TMP
